@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Iniciar Sesión{% endblock %}
+
+{% block body %}
+<div class="login-container">
+    <div class="login-box">
+        <div class="login-text-container">
+            <h2>Safely</h2>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" name="username" autofocus required id="id_username" placeholder="Usuario">
+                <input type="password"name="password" required id="id_password" placeholder="Contraseña">
+                <input type="submit" value="Entrar" id="button" class="login-button">
+              </form>
+            <hr>
+            <a href="#">¿Olvidaste tú contraseña?</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

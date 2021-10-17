@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Registro{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <div class="profile-photo"></div>
+            <li><a href="{% url 'home-adm' %}">Home</a></li>
+            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="#">Ver actividades</a></li>
+            <li><a href="#">Notificar atrasos</a></li>
+            <li><a href="#">Control de pagos</a></li>
+            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="login-text-container">
+                    <h2>Creación Usuario</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="username" maxlength="150" autofocus required id="id_username" placeholder="Usuario">
+                        <input type="text" name="first_name" maxlength="30" id="id_first_name" placeholder="Nombre">
+                        <input type="text" name="last_name" maxlength="30" id="id_last_name" placeholder="Apellido">
+                        <input type="email" name="email" maxlength="254" id="id_email" placeholder="E-mail">
+                        <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
+                        <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
+                        <input type="submit" value="Registrar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

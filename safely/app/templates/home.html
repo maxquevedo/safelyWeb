@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Inicio{% endblock %}
+
+{% block body %}
+<header id="header">
+    <div class="logo-container">
+        <h2 class="sl">Safely</h2>
+    </div>
+    <div>
+        <nav id="nav">
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}">Inicio</a>
+                </li>
+                <li id="pln">
+                    <a href="#planes">Planes</a>
+                </li>
+                <li id="servicios">
+                    <a href="#servicios">Servicios</a>
+                </li>
+                <li id="empresa">
+                    <a href="#empresa">Empresa</a>
+                </li>
+                {% if user.is_anonymous %}
+                <li id="login">
+                    <a href="{% url 'login' %}">Iniciar Sesión</a>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">Cerrar sesión</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="image-container" id="inicio">
+    <div class="image">
+    </div>
+    <div class="first-text-container">
+        <h2>SVFX.LY</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimusinus, possimus est explicabo, tenetur libero officia sit autem facilis. Consequatur, voluptas ut?</p>
+    </div>
+</div>
+
+<div class="contenedor-precios" id="planes">
+    <div class="titulo"><h3>Planes</h3></div>
+    <div class="contenedor-cartas">
+        <div class="carta">
+            <h3>Plan A</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum consequatur consequuntur cum consectetur aliquam, beatae esse neque fugit vero ipsa quia dolor recusandae a accusantium itaque dolorem, laborum reiciendis doloremque!</p>
+        </div>
+        <div class="carta">
+            <h3>Plan B</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, enim esse! Nobis quis cupiditate reprehenderit, sapiente harum quae laborum saepe necessitatibus ex magnam aliquam, provident recusandae? Doloribus, at nulla! Sint.</p>
+        </div>
+        <div class="carta">
+            <h3>Plan C</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi possimus magni, omnis ratione soluta eaque explicabo nihil nisi odio culpa, maiores reiciendis eligendi, quas aperiam optio minus nobis animi consectetur.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
