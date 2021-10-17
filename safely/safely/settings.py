@@ -90,6 +90,18 @@ DATABASES = {
     }
 }
 
+# database cloud
+#DATABASES = {
+#    'default':{
+#	'ENGINGE': 'django.db.backends.oracle',
+# 	'NAME': '13.84.205.180:1521/xe',
+#	'USER': 'C#safely',
+#	'PASSWORD': 'safely',
+#	'HOST': '',
+#	'PORT':'',
+#    }
+#}
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
