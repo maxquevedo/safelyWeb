@@ -169,9 +169,12 @@ def login_view(request):
     return render(request,'registration/login.html',{'form':form})
 
 def login_filter(request):
-    if request.user.is_staff:
+    if request.user.groups.filter(name="Admin"):
         return redirect(to='home-adm')
-    return redirect(to='home-prof')
+    elif request.user.groups.filter(name="Profesional"):
+        return redirect(to='home-prof')
+    else:
+        return redirect(to='home')
 
 #mantenedor 
 @permission_required('app.view_user')

@@ -82,12 +82,9 @@ WSGI_APPLICATION = 'safely.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '13.84.205.180:1521/xe',
-        #'NAME': '127.0.0.1:1521/xe',
-        'USER': 'c##safely',
-        #'USER': 'C##mati',
-        'PASSWORD':'c#safely',
-        #'PASSWORD': 'mati123',
+        'NAME': '192.168.0.2:1521/xe',
+        'USER': 'c##safelyto',
+        'PASSWORD':'safelyto',
         'HOST': '',
         'PORT': '',
     }
