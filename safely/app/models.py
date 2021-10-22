@@ -20,6 +20,9 @@ class Actividad(models.Model):
         managed = False
         db_table = 'actividad'
 
+    def __str__(self):
+        return self.nombre
+
 
 class Administrador(models.Model):
     id_perfil = models.OneToOneField('Perfil', on_delete=models.PROTECT, db_column='id_perfil', primary_key=True)
@@ -32,6 +35,11 @@ class Administrador(models.Model):
         managed = False
         db_table = 'administrador'
 
+    def __str__(self):
+        return self.nombre
+
+
+
 
 class Alerta(models.Model):
     id_alerta = models.BigIntegerField(primary_key=True)
@@ -43,6 +51,10 @@ class Alerta(models.Model):
         managed = False
         db_table = 'alerta'
 
+    def __str__(self):
+        return self.id_alerta
+
+
 
 class Asesoria(models.Model):
     id_actividad = models.OneToOneField(Actividad, on_delete=models.PROTECT, db_column='id_actividad', primary_key=True)
@@ -53,6 +65,7 @@ class Asesoria(models.Model):
     class Meta:
         managed = False
         db_table = 'asesoria'
+
 
 
 class Capacitacion(models.Model):
