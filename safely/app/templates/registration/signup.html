@@ -1,6 +1,11 @@
 
 {% extends 'base.html' %}
 {% load static %}
+{% block js %}
+<script>
+document.getElementById("id_groups").removeAttribute("multiple"); 
+</script>
+{% endblock %}
 {% block tittle %}Registro{% endblock %}
 
 {% block body %}
@@ -32,6 +37,7 @@
                         <input type="email" name="email" maxlength="254" id="id_email" placeholder="E-mail">
                         <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
                         <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
+                        {{form.groups}}
                         <input type="submit" value="Registrar" id="button" class="alter-button">
                     </form>
                 </div>

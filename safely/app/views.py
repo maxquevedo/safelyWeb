@@ -16,6 +16,7 @@ ActividadSerializer,CapacitacionSerializer,
 AsesoriaSerializer,VisitaSerializer, UserSerializer
     
 )
+from django.contrib.auth.models import Group
 from .models import (
 Rol, Usuario, Perfil, 
 Administrador, Profesional, Cliente,
@@ -131,12 +132,14 @@ def signup_view(request):
     if request.method == 'POST':
         formulario = CustomUserCreationForm(data=request.POST)
         if formulario.is_valid():
-            formulario.save()
+            usuario = formulario.save()
+            group = request.POST.get('groups')
+            usuario.groups.add(group)
             messages.success(request, 'Usuario creado correctamente')
             return redirect(to="mantenedor")
         data["form"] = formulario
     return render(request, 'registration/signup.html', data)
-
+    
 @login_required
 def home_professional(request):
     if request.method == 'POST':
