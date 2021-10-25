@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Planes -LISTA{% endblock %}
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <div class="profile-photo"></div>
+            <li><a href="{% url 'home-adm' %}">Home</a></li>
+            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="#">Ver actividades</a></li>
+            <li><a href="#">Notificar atrasos</a></li>
+            <li><a href="#">Control de pagos</a></li>
+            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+
+
+            <form action="" method="post">
+            {% csrf_token %}
+            <label for="">Nombre</label>
+            <input type="text" name="nombre">
+            <br>
+            <label for="">Descripcion</label>
+            <input type="text" name="descripcion" >
+            <br>
+            <label for="">Servicios</label>
+            <select name="id_servicio" id="">
+                <option value="">Seleccionar</option>
+                {% for c in servicios %}
+                <option value="{{ c.0 }}">{{ c.1 }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <input type="submit" value="Guardar">
+        </form>
+        {{mensaje}}
+
+
+
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Identificador</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Servicios</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for p in planes %}
+                        <tr>
+                            <td>{{p.0}}</td>
+                            <td>{{p.1}}</td>
+                            <td>{{p.2}}</td>
+                            <td>{{p.5}}</td>
+                            <td>
+                                <a href="{% url 'editar-plan' p.0 %}" id="modificar">Modificar</a>
+                                <a href="{% url 'eliminar-plan' p.0 %}" id="eliminar">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

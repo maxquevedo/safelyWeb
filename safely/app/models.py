@@ -161,7 +161,7 @@ class Perfil(models.Model):
     fec_registro = models.DateField()
     vigente = models.CharField(max_length=1)
     tipo_perf = models.CharField(max_length=1)
-    id_usuario = models.ForeignKey('Usuario', on_delete=models.PROTECT, db_column='id_usuario')
+    id_usuario = models.ForeignKey('User', on_delete=models.PROTECT, db_column='id_usuario')
 
     class Meta:
         managed = False

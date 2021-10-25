@@ -1,3 +1,4 @@
+import django
 from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
@@ -23,6 +24,8 @@ from django.core.paginator import Paginator
 from django.http import Http404
 
 
+def main(request):
+    return render(request,'admin/main.html')
 
 def home(request):
     return render(request, 'home.html')
@@ -209,3 +212,123 @@ def ServicioDelete(request,id):
     servicio.delete()
     messages.success(request, "Servicio eliminado correctamente")
     return redirect(to='lista-servicios')
+
+#############################
+############################
+from django.db import connection
+import cx_Oracle
+
+
+def test(request):
+    data = {
+        'planes':listado_plan(),
+        'servicios':listado_servicios(),
+    }
+    #agregar_plan(4,'plan test','descripcion test',2)
+    modificar_plan(2,'AAAAAA ','AAA AAAA',1)
+
+    if request.method == 'POST':
+        id_plan = request.POST.get('id_plan')
+        nombre = request.POST.get('nombre')
+        descripcion = request.POST.get('descripcion')
+        id_servicio = request.POST.get('id_servicio')
+        salida = agregar_plan(id_plan,nombre, descripcion, id_servicio)
+        if salida == 1:
+            data['mensaje'] = 'Agregado'
+            data['planes'] = listado_plan()
+        else:
+            data['mensaje'] = 'No se guardo'
+    return render(request, 'administrador/planes/test.html',data)
+
+
+
+
+
+def mod_plan(request,id_plan):
+    data = {
+        'modificar':modificar_plan()
+    }
+
+    if request.method == 'GET':
+        form = data
+    else:
+        form = data(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Servicio modificado correctamente")
+        return redirect(to='lista-servicios')
+   
+
+    return render(request,'administrador/planes/modplan.html',data)
+
+def ServicioEdit(request,id_servicio):
+    servicio = Servicio.objects.get(id_servicio=id_servicio)
+    if request.method == 'GET':
+        form = ServicioUpdateForm(instance=servicio)
+    else:
+        form = ServicioUpdateForm(request.POST, instance=servicio)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Servicio modificado correctamente")
+        return redirect(to='lista-servicios')
+    return render(request,'administrador/servicios/editar-servicio.html',{'form':form})
+
+
+
+
+def planes(request):
+    data = {
+        'planes':listado_plan(),
+        'servicios':listado_servicios()
+    }
+    #agregar_plan('PLANC','DESCRIPCION PLAN C',3)
+            
+    return render(request, 'administrador/planes/listarplanes.html',data)
+
+
+#LISTAS
+def listado_plan():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_PLAN_PLANB",[out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    
+    return lista
+
+def listado_servicios():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_SERVICIOS",[out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    
+    return lista
+
+#AGREGAR
+
+def agregar_plan(id_plan,nombre, descripcion, id_servicio):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor() 
+    salida = cursor.var(cx_Oracle.NUMBER)
+
+    cursor.callproc('SP_AGREGAR_PLAN',[id_plan,nombre,descripcion,id_servicio,salida])   
+    return salida.getvalue()
+
+#Modificar
+
+def modificar_plan(id_plan,nombre, descripcion, id_servicio):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor() 
+    salida = cursor.var(cx_Oracle.NUMBER)
+
+    cursor.callproc('SP_ACTUALIZAR_PLAN',[id_plan,nombre,descripcion,id_servicio,salida])   
+    return salida.getvalue()
