@@ -6,10 +6,10 @@ Alerta,
 Lista,
 Pac,Mejoras,
 Reporte,TipoReporte,
-Actividad, Capacitacion,Asesoria,TipoAsesoria,Visita, User
+Actividad, Capacitacion,Asesoria,TipoAsesoria,Visita
 )
 from rest_framework import serializers
-
+from django.contrib.auth.models import User
 # SECCION USUARIO
 
 class UserSerializer(serializers.ModelSerializer):
