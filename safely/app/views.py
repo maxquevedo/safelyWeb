@@ -155,7 +155,9 @@ def home_professional(request):
     return render(request, 'profesional/home-profesional.html', context)
 
 def home_admin(request):
-    return render(request,'administrador/home-adm.html')
+    usuario = User.objects.all().order_by('id')
+    context = {'usuario': usuario }
+    return render(request,'administrador/home-adm.html', context)
 
 def maintainer(request):
     return render(request, 'administrador/mantenedor.html')
@@ -213,6 +215,7 @@ def UserDelete(request,id):
     usuario.delete()
     messages.success(request, "Usuario eliminado correctamente")
     return redirect(to="listar")
+
 ##PLAN
 def PlanCreate(request):
     data = {

@@ -533,6 +533,14 @@ nav > ul > li > a {
     margin: auto;
 }
 
+.lista h2 {
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    padding-bottom: 30px;
+}
+
 .lista table {
     border-collapse: collapse;
     border-radius: 18px;

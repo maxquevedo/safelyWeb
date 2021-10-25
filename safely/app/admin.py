@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from app.models import Perfil, Profesional
+
+admin.site.register(Perfil)
+admin.site.register(Profesional)
