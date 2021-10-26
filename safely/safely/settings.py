@@ -82,16 +82,25 @@ WSGI_APPLICATION = 'safely.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        #'NAME': '192.168.0.2:1521/xe', #leo
-        # 'NAME': '13.84.205.180:1521/xe', #oracle
-        'NAME': '127.0.0.1:1521/xe', #mati
-        'USER': 'c##safely',
-        'PASSWORD':'safely',
+        'NAME': '192.168.0.2:1521/xe',
+        'USER': 'c##safelyto',
+        'PASSWORD':'safelyto',
         'HOST': '',
         'PORT': '',
     }
 }
 
+# database cloud
+#DATABASES = {
+#    'default':{
+#	'ENGINGE': 'django.db.backends.oracle',
+# 	'NAME': '13.84.205.180:1521/xe',
+#	'USER': 'C#safely',
+#	'PASSWORD': 'safely',
+#	'HOST': '',
+#	'PORT':'',
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

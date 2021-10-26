@@ -1,12 +1,22 @@
-import django
 from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import CustomUserCreationForm,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm
 from django.contrib.auth.forms import  AuthenticationForm
-
-from django.contrib.auth.models import Group
-
+from rest_framework import viewsets
+from .serializers import (
+RolSerializer,UsuarioSerializer,PerfilSerializer,
+AdministradorSerializer,ProfesionalSerializer,ClienteSerializer,
+ServicioSerializer,PlanSerializer,ContratoSerializer,
+AlertaSerializer,
+ListaSerializer,
+PacSerializer,MejorasSerializer,
+ReporteSerializer,TipoReporteSerializer,
+ActividadSerializer,CapacitacionSerializer,
+AsesoriaSerializer,VisitaSerializer, UserSerializer
+    
+)
+from django.contrib.auth.models import Group, User
 from .models import (
 Rol, Usuario, Perfil, 
 Administrador, Profesional, Cliente,
@@ -15,7 +25,7 @@ Alerta,
 Lista,
 Pac,Mejoras,
 Reporte,TipoReporte,
-Actividad, Capacitacion,Asesoria,Visita, User
+Actividad, Capacitacion,Asesoria,Visita
 )
 
 from django.contrib.auth.decorators import login_required, permission_required
@@ -23,6 +33,94 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
 
+class UserViewset(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('id')
+    serializer_class = UserSerializer
+
+# SECCION USUARIO
+class RolViewset(viewsets.ModelViewSet):
+    queryset = Rol.objects.all().order_by('id_rol')
+    serializer_class = RolSerializer
+
+class UsuarioViewset(viewsets.ModelViewSet):
+    queryset = Usuario.objects.all().order_by('id_usuario')
+    serializer_class = UsuarioSerializer
+
+class PerfilViewset(viewsets.ModelViewSet):
+    queryset = Perfil.objects.all()
+    serializer_class = PerfilSerializer
+
+class AdministradorViewset(viewsets.ModelViewSet):
+    queryset = Administrador.objects.all()
+    serializer_class = AdministradorSerializer
+
+class ProfesionalViewset(viewsets.ModelViewSet):
+    queryset = Profesional.objects.all()
+    serializer_class = ProfesionalSerializer
+
+class ClienteViewset(viewsets.ModelViewSet):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+
+#########################################################################
+# SECCION CONTRATO
+class ServicioViewset(viewsets.ModelViewSet):
+    queryset = Servicio.objects.all()
+    serializer_class = ServicioSerializer
+
+class PlanlViewset(viewsets.ModelViewSet):
+    queryset = Plan.objects.all()
+    serializer_class = PlanSerializer
+
+class ContratoViewset(viewsets.ModelViewSet):
+    queryset = Contrato.objects.all()
+    serializer_class = ContratoSerializer
+
+#########################################################################
+# SECCION ALERTA
+class AlertaViewset(viewsets.ModelViewSet):
+    queryset = Alerta.objects.all()
+    serializer_class = AlertaSerializer
+#########################################################################
+#SECCION LISTA
+class ListaViewset(viewsets.ModelViewSet):
+    queryset = Lista.objects.all()
+    serializer_class = ListaSerializer
+#########################################################################
+#SECCION PAC/MEJORAS
+class PacViewset(viewsets.ModelViewSet):
+    queryset = Pac.objects.all()
+    serializer_class = PacSerializer
+
+class MejorasViewset(viewsets.ModelViewSet):
+    queryset = Mejoras.objects.all()
+    serializer_class = MejorasSerializer
+#########################################################################
+#SECCION REPORTE
+class ReporteViewset(viewsets.ModelViewSet):
+    queryset = Reporte.objects.all()
+    serializer_class = ReporteSerializer
+
+class TipoReporteViewset(viewsets.ModelViewSet):
+    queryset = TipoReporte.objects.all()
+    serializer_class = TipoReporteSerializer
+#########################################################################
+#SECCION ACTIVIDAD
+class ActividadViewset(viewsets.ModelViewSet):
+    queryset = Actividad.objects.all()
+    serializer_class = ActividadSerializer
+
+class CapacitacionViewset(viewsets.ModelViewSet):
+    queryset = Capacitacion.objects.all()
+    serializer_class = CapacitacionSerializer
+
+class AsesoriaViewset(viewsets.ModelViewSet):
+    queryset = Asesoria.objects.all()
+    serializer_class = AsesoriaSerializer
+
+class VisitaViewset(viewsets.ModelViewSet):
+    queryset = Visita.objects.all()
+    serializer_class = VisitaSerializer
 
 def home(request):
     return render(request, 'home.html')
@@ -101,6 +199,7 @@ def UserLista(request):
 @permission_required('app.change_user')
 def UserEdit(request,id):
     usuario = User.objects.get(id=id)
+    usuario.is_active = 0
     if request.method == 'GET':
         form = UserUpdateForm(instance=usuario)
     else:
@@ -212,114 +311,3 @@ def ServicioDelete(request,id):
     servicio.delete()
     messages.success(request, "Servicio eliminado correctamente")
     return redirect(to='lista-servicios')
-
-#############################
-############################
-#############################
-############################
-#############################
-############################
-#############################
-############################
-from django.db import connection
-import cx_Oracle
-
-
-def test(request):
-    data = {
-        'planes':listado_plan(),
-        'servicios':listado_servicios(),
-    }
-    #agregar_plan(4,'plan test','descripcion test',2)
-    modificar_plan(2,'AAAAAA ','AAA AAAA',1)
-
-    if request.method == 'POST':
-        id_plan = request.POST.get('id_plan')
-        nombre = request.POST.get('nombre')
-        descripcion = request.POST.get('descripcion')
-        id_servicio = request.POST.get('id_servicio')
-        salida = agregar_plan(id_plan,nombre, descripcion, id_servicio)
-        if salida == 1:
-            data['mensaje'] = 'Agregado'
-            data['planes'] = listado_plan()
-        else:
-            data['mensaje'] = 'No se guardo'
-    return render(request, 'administrador/planes/test.html',data)
-
-
-
-
-
-def mod_plan(request,id_plan):
-    data = {
-        'modificar':modificar_plan()
-    }
-
-    if request.method == 'GET':
-        form = data
-    else:
-        form = data(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Servicio modificado correctamente")
-        return redirect(to='lista-servicios')
-   
-
-    return render(request,'administrador/planes/modplan.html',data)
-
-def planes(request):
-    data = {
-        'planes':listado_plan(),
-        'servicios':listado_servicios()
-    }
-    #agregar_plan('PLANC','DESCRIPCION PLAN C',3)
-            
-    return render(request, 'administrador/planes/listarplanes.html',data)
-
-
-#LISTAS
-def listado_plan():
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-    out_cur = django_cursor.connection.cursor()
-
-    cursor.callproc("SP_LISTAR_PLAN_PLANB",[out_cur])
-
-    lista = []
-    for fila in out_cur:
-        lista.append(fila)
-    
-    return lista
-
-def listado_servicios():
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-    out_cur = django_cursor.connection.cursor()
-
-    cursor.callproc("SP_LISTAR_SERVICIOS",[out_cur])
-
-    lista = []
-    for fila in out_cur:
-        lista.append(fila)
-    
-    return lista
-
-#AGREGAR
-
-def agregar_plan(id_plan,nombre, descripcion, id_servicio):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor() 
-    salida = cursor.var(cx_Oracle.NUMBER)
-
-    cursor.callproc('SP_AGREGAR_PLAN',[id_plan,nombre,descripcion,id_servicio,salida])   
-    return salida.getvalue()
-
-#Modificar
-
-def modificar_plan(id_plan,nombre, descripcion, id_servicio):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor() 
-    salida = cursor.var(cx_Oracle.NUMBER)
-
-    cursor.callproc('SP_ACTUALIZAR_PLAN',[id_plan,nombre,descripcion,id_servicio,salida])   
-    return salida.getvalue()
