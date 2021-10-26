@@ -1,7 +1,7 @@
 from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import CustomUserCreationForm,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm
+from .forms import CustomUserCreationForm, UserActive,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm
 from django.contrib.auth.forms import  AuthenticationForm
 from rest_framework import viewsets
 from .serializers import (
@@ -213,8 +213,14 @@ def UserEdit(request,id):
 @permission_required('app.delete_user')
 def UserDelete(request,id):
     usuario = User.objects.get(id=id)
-    usuario.delete()
-    messages.success(request, "Usuario eliminado correctamente")
+    usuario.is_active = 0
+    if request.method == 'POST':
+        form = UserActive(instance=usuario)
+    else:
+        form = UserActive(request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Usuario desactivado correctamente")
     return redirect(to="listar")
 
 ##PLAN

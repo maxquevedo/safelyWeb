@@ -14,6 +14,11 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = [ "username", "first_name", "last_name", "email", "is_active"]
 
+class UserActive(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['is_active']
+
 class PlanForm(forms.ModelForm):
     class Meta:
         model = Plan
