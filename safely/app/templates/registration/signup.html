@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load static %}
 {% block js %}
@@ -37,19 +36,7 @@ document.getElementById("id_groups").removeAttribute("multiple");
                         <input type="email" name="email" maxlength="254" id="id_email" placeholder="E-mail">
                         <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
                         <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
-
                         {{form.groups}}
-
-                        <label for="cars">Elegir grupo:</label>
-
-                        <select id="">
-                            <option value="" id="id_groups" multiple="">
-                             </option><option value="1">Administrador</option>
-                             <option value="2">Cliente</option>
-                             <option value="3">Profesional</option>
-                        </select>
-                        
-
                         <input type="submit" value="Registrar" id="button" class="alter-button">
                     </form>
                 </div>

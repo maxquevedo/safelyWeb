@@ -7,9 +7,9 @@
     var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['Usuario 1', 'Usuario 2', 'Usuario 3','Usuario 4','Usuario 5','{{user.username}}'],
+        labels: [{% for u in usuario %}'{{u.first_name}}',{% endfor %}],
         datasets: [{
-            label: 'Cantiad de visitas',
+            label: 'Cantidad de visitas',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

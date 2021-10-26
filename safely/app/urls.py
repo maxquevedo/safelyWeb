@@ -33,13 +33,12 @@ router.register('asesoria',AsesoriaViewset)
 router.register('visita',VisitaViewset)
 router.register('user',UserViewset)
 
-from .views import (main, signup_view, home, home_professional, 
+from .views import (signup_view, home, home_professional, 
 home_admin, maintainer, login_view,
 UserLista, UserEdit, UserDelete, login_filter, plan_lista,
 PlanEdit, PlanDelete, PlanCreate,ServicioCreate,Servicio_lista,ServicioEdit,ServicioDelete,planes,test,mod_plan)
 
 urlpatterns = [
-    path('main/', main, name="main"),
     path('', home, name="home"),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),

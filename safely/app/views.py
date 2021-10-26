@@ -24,9 +24,6 @@ from django.core.paginator import Paginator
 from django.http import Http404
 
 
-def main(request):
-    return render(request,'admin/main.html')
-
 def home(request):
     return render(request, 'home.html')
 
@@ -60,7 +57,9 @@ def home_professional(request):
     return render(request, 'profesional/home-profesional.html', context)
 
 def home_admin(request):
-    return render(request,'administrador/home-adm.html')
+    usuario = User.objects.all().order_by('id')
+    context = {'usuario': usuario }
+    return render(request,'administrador/home-adm.html', context)
 
 def maintainer(request):
     return render(request, 'administrador/mantenedor.html')
@@ -118,6 +117,7 @@ def UserDelete(request,id):
     usuario.delete()
     messages.success(request, "Usuario eliminado correctamente")
     return redirect(to="listar")
+
 ##PLAN
 def PlanCreate(request):
     data = {
@@ -215,6 +215,12 @@ def ServicioDelete(request,id):
 
 #############################
 ############################
+#############################
+############################
+#############################
+############################
+#############################
+############################
 from django.db import connection
 import cx_Oracle
 
@@ -260,21 +266,6 @@ def mod_plan(request,id_plan):
    
 
     return render(request,'administrador/planes/modplan.html',data)
-
-def ServicioEdit(request,id_servicio):
-    servicio = Servicio.objects.get(id_servicio=id_servicio)
-    if request.method == 'GET':
-        form = ServicioUpdateForm(instance=servicio)
-    else:
-        form = ServicioUpdateForm(request.POST, instance=servicio)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Servicio modificado correctamente")
-        return redirect(to='lista-servicios')
-    return render(request,'administrador/servicios/editar-servicio.html',{'form':form})
-
-
-
 
 def planes(request):
     data = {
