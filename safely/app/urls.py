@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from .views import (
+from .viewsets import (
 RolViewset,UsuarioViewset,PerfilViewset,
 AdministradorViewset,ProfesionalViewset,ClienteViewset,
 ServicioViewset,PlanlViewset,ContratoViewset,

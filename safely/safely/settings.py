@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'rest_framework',
+    'cliente',
+    'profesional'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +62,7 @@ ROOT_URLCONF = 'safely.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,25 +84,15 @@ WSGI_APPLICATION = 'safely.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '192.168.0.2:1521/xe',
-        'USER': 'c##safelyto',
-        'PASSWORD':'safelyto',
+        #'NAME': '192.168.0.2:1521/xe',
+        'NAME': '127.0.0.1:1521/xe',
+        'USER': 'c##safely',
+        'PASSWORD':'safely',
         'HOST': '',
         'PORT': '',
     }
 }
 
-# database cloud
-#DATABASES = {
-#    'default':{
-#	'ENGINGE': 'django.db.backends.oracle',
-# 	'NAME': '13.84.205.180:1521/xe',
-#	'USER': 'C#safely',
-#	'PASSWORD': 'safely',
-#	'HOST': '',
-#	'PORT':'',
-#    }
-#}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
