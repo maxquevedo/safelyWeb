@@ -268,7 +268,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=150) 
     last_name = models.CharField(max_length=150) 
     email = models.CharField(max_length=150) 
-    
+    is_active = models.BooleanField
     class Meta:
         managed = False
         db_table = 'auth_user'

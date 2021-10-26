@@ -16,7 +16,7 @@ ActividadSerializer,CapacitacionSerializer,
 AsesoriaSerializer,VisitaSerializer, UserSerializer
     
 )
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from .models import (
 Rol, Usuario, Perfil, 
 Administrador, Profesional, Cliente,
@@ -25,7 +25,7 @@ Alerta,
 Lista,
 Pac,Mejoras,
 Reporte,TipoReporte,
-Actividad, Capacitacion,Asesoria,Visita, User
+Actividad, Capacitacion,Asesoria,Visita
 )
 
 from django.contrib.auth.decorators import login_required, permission_required
@@ -199,6 +199,7 @@ def UserLista(request):
 @permission_required('app.change_user')
 def UserEdit(request,id):
     usuario = User.objects.get(id=id)
+    usuario.is_active = 0
     if request.method == 'GET':
         form = UserUpdateForm(instance=usuario)
     else:
