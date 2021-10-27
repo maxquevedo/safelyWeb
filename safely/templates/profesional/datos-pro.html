@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Profesional{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+        <div class="menu-vertical">
+            <ul>
+                <h2>{{user.get_full_name}}</h2>
+                <i class="icon ion-md-briefcase"></i>
+                <li><a class="active" href="{% url 'datos-prof' %}">Datos Personales</a></li>
+                <li><a href="#">Asesorias</a></li>
+                <li><a href="#">Capacitaciones</a></li>
+                <li><a href="#">Mejoras</a></li>
+                <li><a href="#">Checklist</a></li>
+                <li><a href="#">Clientes</a></li>
+                <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    <div class="info-perfiles">
+        <div class="info-box-perfiles">
+            <div class="info-titulos">
+                <h3>Usuario</h3>
+                <h3>Nombre</h3>
+                <h3>Apellido</h3>
+                <h3>Correo</h3>
+            </div>
+            <div class="resultados-info">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        {{ u_form.username }}
+                        {{ u_form.first_name }}
+                        {{ u_form.last_name }}
+                        {{ u_form.email }}
+                        <input type="submit" value="Modificar" id="button" class="alter-button">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

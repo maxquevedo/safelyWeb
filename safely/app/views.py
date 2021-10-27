@@ -41,19 +41,7 @@ def signup_view(request):
         data["form"] = formulario
     return render(request, 'registration/signup.html', data)
     
-@login_required
-def home_professional(request):
-    if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        if u_form.is_valid():
-            u_form.save()
-    else:
-        u_form = UserUpdateForm(instance=request.user)
-    context = {
-        'u_form': u_form,
-    }
 
-    return render(request, 'profesional/home-profesional.html', context)
 
 def home_admin(request):
     usuario = User.objects.all().order_by('id')
@@ -100,7 +88,6 @@ def UserLista(request):
 @permission_required('app.change_user')
 def UserEdit(request,id):
     usuario = User.objects.get(id=id)
-    usuario.is_active = 0
     if request.method == 'GET':
         form = UserUpdateForm(instance=usuario)
     else:
