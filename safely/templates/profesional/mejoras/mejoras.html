@@ -1,0 +1,30 @@
+{% extends 'profesional/base-profesional.html' %}
+{% load static %}
+{% block tittle %}Profesional{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="info-perfiles">
+
+        <div class="container-mantenedor">
+            <div class="mantenedor-user">
+                <a href="{% url 'ingresar_me' %}">
+                    <div class="acciones-mantenedor">
+                        <div class="desc-acc">
+                            <h3>INGRESAR MEJORAS</h3>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'revisar_me' %}">
+                <div class="acciones-mantenedor">
+                    <div class="desc-acc">
+                        <h3>REVISAR MEJORAS</h3>
+
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

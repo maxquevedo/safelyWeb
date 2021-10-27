@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import fields
-from .models import Plan, Servicio
+from .models import Lista, Mejoras, Plan, Servicio,Asesoria,Capacitacion,Lista,Mejoras
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -12,7 +12,7 @@ class CustomUserCreationForm(UserCreationForm):
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = [ "username", "first_name", "last_name", "email", "is_active"]
+        fields = [ "username", "first_name", "last_name", "email"]
 
 class UserActive(forms.ModelForm):
     class Meta:
@@ -38,3 +38,23 @@ class ServicioUpdateForm(forms.ModelForm):
     class Meta:
         model = Servicio
         fields = ['nombre', 'descripcion']
+
+class AsesoriaForm(forms.ModelForm):
+    class Meta:
+        model = Asesoria
+        fields = '__all__'
+
+class CapacitacionForm(forms.ModelForm):
+    class Meta:
+        model = Capacitacion
+        fields = '__all__'
+
+class ListaForm(forms.ModelForm):
+    class Meta:
+        model = Lista
+        fields = '__all__'
+
+class MejorasForm(forms.ModelForm):
+    class Meta:
+        model = Mejoras
+        fields = '__all__'
