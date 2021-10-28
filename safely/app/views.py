@@ -74,7 +74,7 @@ def login_view(request):
 def login_filter(request):
     if request.user.groups.filter(name="Administrador"):
         return redirect(to='home-adm')
-    elif request.user.groups.filter(name="Prof"):
+    elif request.user.groups.filter(name="Profesional"):
         return redirect(to='home-prof')
     else:
         return redirect(to='home')
