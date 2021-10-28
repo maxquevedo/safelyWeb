@@ -1,13 +1,5 @@
 from django.db.models import fields
-from .models import (
-Rol, Usuario, Perfil, Administrador, Profesional, Cliente,
-Servicio, Plan, Contrato, 
-Alerta,
-Lista,
-Pac,Mejoras,
-Reporte,TipoReporte,
-Actividad, Capacitacion,Asesoria,TipoAsesoria,Visita
-)
+from .models import *
 from rest_framework import serializers
 from django.contrib.auth.models import User
 # SECCION USUARIO
@@ -15,19 +7,6 @@ from django.contrib.auth.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
-
-class RolSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Rol
-        fields = '__all__'
-
-class UsuarioSerializer(serializers.ModelSerializer):
-    #nombre_rol = serializers.CharField(read_only=True,source="id_rol.nombre")
-    id_rol = RolSerializer(read_only=True) # este campo solo es de lectura 
-    rol = serializers.PrimaryKeyRelatedField(queryset=Rol.objects.all().order_by('id_rol'),source="id_rol")
-    class Meta:
-        model = Usuario
         fields = '__all__'
 
 class PerfilSerializer(serializers.ModelSerializer):
@@ -50,6 +29,12 @@ class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
         fields = '__all__'
+  
+class ClienteContratoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClienteContrato
+        fields = '__all__'
+  
 
 #########################################################################
 # SECCION CONTRATO

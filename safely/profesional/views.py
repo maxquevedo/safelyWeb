@@ -9,12 +9,15 @@ from app.models import *
 from app.forms import *
 
 # Create your views here.
+
+#INICIO PREFESIONAL
 @login_required
 def home_professional(request):
 
     return render(request, 'profesional/home-profesional.html')
 
 
+#MODIFICAR DATOS PROFESIONAL
 @login_required
 def datos_pro(request):
     if request.method == 'POST':
@@ -59,9 +62,48 @@ def ingresar_ase(request):
     return render(request, 'profesional/asesorias/ingresar-a.html')
 
 @login_required
-def modificar_ase(request):
-    return render(request, 'profesional/asesorias/modificar-a.html')
+def modificar_ase(request,id_asesoria):
+    ase = Asesoria.objects.get(id_asesoria=id_asesoria)
+    if request.method == 'GET':
+        form = AsesoriaModificar(instance=ase)
+    else:
+        form = PlanUpdateForm(request.POST, instance=ase)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Modificado correctamente")
+        return redirect(to='vista_asesorias')
 
+    return render(request, 'profesional/asesorias/modificar-a.html',{'form':form})
+
+
+
+def crear_tipo_ase(request):
+    data = {
+        'form': TipoAsesoriaForm
+    }
+    if request.method == 'POST':
+        formulario = TipoAsesoriaForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+            return redirect (to='vista_asesorias')
+        else:
+            data["form"] = formulario 
+    return render(request, 'profesional/asesorias/crear-tipo-a.html',data )
+
+
+def lista_ase(request):
+    ase = Asesoria.objects.all().order_by('id_asesoria')
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(ase, 5)
+        plan = paginator.page(page)
+    except:
+        raise Http404
+
+    context = {'entity': ase,
+                'paginator': paginator}
+    return render(request, 'profesional/asesorias/lista-asesoria.html', context)
 
 #######################################################################################################
 ## CAPACITACIONES
@@ -72,10 +114,22 @@ def vista_capacitacion(request):
 
     return render(request, 'profesional/capacitaciones/capacitaciones.html')
 
+
+
 @login_required
 def crear_capa(request):
-
-    return render(request, 'profesional/capacitaciones/crear-c.html')
+    data = {
+        'form': CapacitacionForm
+    }
+    if request.method == 'POST':
+        formulario = CapacitacionForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+            return redirect (to='vista_capacitacion')
+        else:
+            data["form"] = formulario 
+    return render(request, 'profesional/capacitaciones/crear-c.html',data)
 
 @login_required
 def ingresar_capa(request):
@@ -83,9 +137,19 @@ def ingresar_capa(request):
     return render(request, 'profesional/capacitaciones/ingresar-c.html')
 
 @login_required
-def modificar_capa(request):
+def modificar_capa(request,id_capacitacion):
+    capa = Capacitacion.objects.get(id_capacitacion=id_capacitacion)
 
-    return render(request, 'profesional/capacitaciones/modificar-c.html')
+    if request.method == 'GET':
+        form = CapacitacionForm(instance=capa)
+    else:
+        form = PlanUpdateForm(request.POST, instance=capa)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Modificado correctamente")
+        return redirect(to='vista_capacitacion')
+
+    return render(request, 'profesional/capacitaciones/modificar-c.html',{'form':form})
 
 
 #######################################################################################################
@@ -99,8 +163,18 @@ def vista_checklist(request):
 
 @login_required
 def crear_ch(request):
-
-    return render(request, 'profesional/checklist/crear-ch.html')
+    data = {
+        'form': ListaForm
+    }
+    if request.method == 'POST':
+        formulario = ListaForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+            return redirect (to='vista_checklist')
+        else:
+            data["form"] = formulario 
+    return render(request, 'profesional/checklist/crear-ch.html',data)
 
 @login_required
 def ingresar_ch(request):
@@ -112,6 +186,22 @@ def modificar_ch(request):
 
     return render(request, 'profesional/checklist/modificar-ch.html')
 
+##
+@login_required
+def modificar_ase(request,id_asesoria):
+    ase = Asesoria.objects.get(id_asesoria=id_asesoria)
+    if request.method == 'GET':
+        form = AsesoriaModificar(instance=ase)
+    else:
+        form = PlanUpdateForm(request.POST, instance=ase)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Modificado correctamente")
+        return redirect(to='vista_asesorias')
+
+    return render(request, 'profesional/asesorias/modificar-a.html',{'form':form})
+
+##
 #######################################################################################################
 ## MEJORAS
 #######################################################################################################

@@ -1,23 +1,22 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from .viewsets import (
-RolViewset,UsuarioViewset,PerfilViewset,
+from .viewsets import (PerfilViewset,
 AdministradorViewset,ProfesionalViewset,ClienteViewset,
 ServicioViewset,PlanlViewset,ContratoViewset,
 AlertaViewset, ListaViewset, PacViewset,
 MejorasViewset, ReporteViewset, TipoReporteViewset,
 ActividadViewset, CapacitacionViewset, AsesoriaViewset,
-VisitaViewset, UserViewset
+VisitaViewset, UserViewset,ClienteContratoViewset
 )
 
 router = routers.DefaultRouter()
-router.register('rol',RolViewset)
-router.register('usuario',UsuarioViewset)
+
 router.register('perfil',PerfilViewset)
 router.register('administrador',AdministradorViewset)
 router.register('profesional',ProfesionalViewset)
 router.register('cliente',ClienteViewset)
+router.register('clienteContrato',ClienteContratoViewset)
 router.register('servicio',ServicioViewset)
 router.register('plan',PlanlViewset)
 router.register('contrato',ContratoViewset)

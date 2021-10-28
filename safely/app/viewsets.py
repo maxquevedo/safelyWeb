@@ -1,5 +1,4 @@
-from .serializers import (
-RolSerializer,UsuarioSerializer,PerfilSerializer,
+from .serializers import (PerfilSerializer,
 AdministradorSerializer,ProfesionalSerializer,ClienteSerializer,
 ServicioSerializer,PlanSerializer,ContratoSerializer,
 AlertaSerializer,
@@ -7,9 +6,11 @@ ListaSerializer,
 PacSerializer,MejorasSerializer,
 ReporteSerializer,TipoReporteSerializer,
 ActividadSerializer,CapacitacionSerializer,
-AsesoriaSerializer,VisitaSerializer, UserSerializer
+AsesoriaSerializer,VisitaSerializer, UserSerializer,
+ClienteContratoSerializer
     
 )
+from django.contrib.auth.models import User
 from rest_framework import viewsets
 from .models import *
 
@@ -18,13 +19,6 @@ class UserViewset(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 # SECCION USUARIO
-class RolViewset(viewsets.ModelViewSet):
-    queryset = Rol.objects.all().order_by('id_rol')
-    serializer_class = RolSerializer
-
-class UsuarioViewset(viewsets.ModelViewSet):
-    queryset = Usuario.objects.all().order_by('id_usuario')
-    serializer_class = UsuarioSerializer
 
 class PerfilViewset(viewsets.ModelViewSet):
     queryset = Perfil.objects.all()
@@ -41,6 +35,10 @@ class ProfesionalViewset(viewsets.ModelViewSet):
 class ClienteViewset(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
+
+class ClienteContratoViewset(viewsets.ModelViewSet):
+    queryset = ClienteContrato.objects.all()
+    serializer_class = ClienteContratoSerializer
 
 #########################################################################
 # SECCION CONTRATO

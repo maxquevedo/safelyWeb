@@ -6,8 +6,7 @@ from django.contrib.auth.forms import  AuthenticationForm
 from rest_framework import viewsets
 
 from django.contrib.auth.models import Group, User
-from .models import (
-Rol, Usuario, Perfil, 
+from .models import ( Perfil, 
 Administrador, Profesional, Cliente,
 Servicio, Plan, Contrato, 
 Alerta,
@@ -16,7 +15,6 @@ Pac,Mejoras,
 Reporte,TipoReporte,
 Actividad, Capacitacion,Asesoria,Visita
 )
-
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -74,9 +72,9 @@ def login_view(request):
     return render(request,'registration/login.html',{'form':form})
 
 def login_filter(request):
-    if request.user.groups.filter(name="Admin"):
+    if request.user.groups.filter(name="Administrador"):
         return redirect(to='home-adm')
-    elif request.user.groups.filter(name="Profesional"):
+    elif request.user.groups.filter(name="Prof"):
         return redirect(to='home-prof')
     else:
         return redirect(to='home')
