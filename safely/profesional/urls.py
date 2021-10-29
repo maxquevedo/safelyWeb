@@ -3,6 +3,7 @@ from django.urls import path, include
 from profesional.views import *
 
 urlpatterns = [
+    path('profesional/asesoria/test', test, name='test'),
     path('profesional/', home_professional, name='home-prof'),
     path('profesional/datos/', datos_pro, name='datos-prof'),
 
@@ -25,6 +26,6 @@ urlpatterns = [
 
     path('profesional/mejoras/', vista_mejoras, name='vista_mejoras'),
     path('profesional/mejoras/crear', revisar_me, name='revisar_me'),
-    path('profesional/mejoras/ingresar', ingresar_me, name='ingresar_me'),
+    path('profesional/mejoras/ingresar', crear_me, name='crear_me'),
 
 ]

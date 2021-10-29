@@ -17,6 +17,11 @@ def home_professional(request):
     return render(request, 'profesional/home-profesional.html')
 
 
+def test(request):
+
+    return render(request, 'profesional/asesorias/test.html')
+
+
 #MODIFICAR DATOS PROFESIONAL
 @login_required
 def datos_pro(request):
@@ -152,6 +157,19 @@ def modificar_capa(request,id_capacitacion):
     return render(request, 'profesional/capacitaciones/modificar-c.html',{'form':form})
 
 
+def lista_capa(request):
+    ase = Capacitacion.objects.all().order_by('id_capacitacion')
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(ase, 5)
+        plan = paginator.page(page)
+    except:
+        raise Http404
+
+    context = {'entity': ase,
+                'paginator': paginator}
+    return render(request, 'profesional/asesorias/lista-capacitacion.html', context)
+
 #######################################################################################################
 ## CHECKLIST
 #######################################################################################################
@@ -183,27 +201,36 @@ def ingresar_ch(request):
 
 @login_required
 def modificar_ch(request):
-
-    return render(request, 'profesional/checklist/modificar-ch.html')
-
-##
-@login_required
-def modificar_ase(request,id_asesoria):
-    ase = Asesoria.objects.get(id_asesoria=id_asesoria)
+    ase = Lista.objects.get(id_lista=id_lista)
     if request.method == 'GET':
-        form = AsesoriaModificar(instance=ase)
+        form = ListaForm(instance=ase)
     else:
-        form = PlanUpdateForm(request.POST, instance=ase)
+        form = ListaForm(request.POST, instance=ase)
         if form.is_valid():
             form.save()
             messages.success(request, "Modificado correctamente")
-        return redirect(to='vista_asesorias')
+        return redirect(to='vista_checklist')
 
-    return render(request, 'profesional/asesorias/modificar-a.html',{'form':form})
+
+    return render(request, 'profesional/checklist/modificar-ch.html')
+
+def lista_ch(request):
+    ase = Lista.objects.all().order_by('id_lista')
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(ase, 5)
+        plan = paginator.page(page)
+    except:
+        raise Http404
+
+    context = {'entity': ase,
+                'paginator': paginator}
+    return render(request, 'profesional/asesorias/lista-ch.html', context)
 
 ##
 #######################################################################################################
 ## MEJORAS
+
 #######################################################################################################
 
 @login_required
@@ -216,12 +243,20 @@ def revisar_me(request):
 
     return render(request, 'profesional/mejoras/revisar-me.html')
 
-@login_required
-def ingresar_me(request):
 
-    return render(request, 'profesional/mejoras/ingresar-me.html')
-
-
+def crear_me(request):
+    data = {
+        'form': MejorasForm
+    }
+    if request.method == 'POST':
+        formulario = MejorasForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+            return redirect (to='vista_mejoras')
+        else:
+            data["form"] = formulario 
+    return render(request, 'profesional/asesorias/crear-me.html',data )
 
 
 
