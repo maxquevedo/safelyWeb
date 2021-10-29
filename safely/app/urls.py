@@ -1,36 +1,5 @@
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
-from .viewsets import (PerfilViewset,
-AdministradorViewset,ProfesionalViewset,ClienteViewset,
-ServicioViewset,PlanlViewset,ContratoViewset,
-AlertaViewset, ListaViewset, PacViewset,
-MejorasViewset, ReporteViewset, TipoReporteViewset,
-ActividadViewset, CapacitacionViewset, AsesoriaViewset,
-VisitaViewset, UserViewset,ClienteContratoViewset
-)
-
-router = routers.DefaultRouter()
-
-router.register('perfil',PerfilViewset)
-router.register('administrador',AdministradorViewset)
-router.register('profesional',ProfesionalViewset)
-router.register('cliente',ClienteViewset)
-router.register('clienteContrato',ClienteContratoViewset)
-router.register('servicio',ServicioViewset)
-router.register('plan',PlanlViewset)
-router.register('contrato',ContratoViewset)
-router.register('alerta',AlertaViewset)
-router.register('lista',ListaViewset)
-router.register('pac',PacViewset)
-router.register('listamejoras',MejorasViewset)
-router.register('reporte',ReporteViewset)
-router.register('tiporeporte',TipoReporteViewset)
-router.register('actividad',ActividadViewset)
-router.register('capacitacion',CapacitacionViewset)
-router.register('asesoria',AsesoriaViewset)
-router.register('visita',VisitaViewset)
-router.register('user',UserViewset)
 
 from .views import (signup_view, home,
 home_admin, maintainer, login_view,
@@ -40,10 +9,7 @@ PlanEdit, PlanDelete, PlanCreate,ServicioCreate,Servicio_lista,ServicioEdit,Serv
 urlpatterns = [
     path('', home, name="home"),
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/', include(router.urls)),
     path('administrador/usuario/registro-usuario/', signup_view, name='signup'),
-
     path('administrador/', home_admin, name='home-adm'),
     path('administrador/mantenedor/', maintainer, name='mantenedor'),
     path('login/', login_view, name='login'),

@@ -35,6 +35,7 @@ LOGOUT_REDIRECT_URL ='/'
 
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,9 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'rest_framework',
     'cliente',
-    'profesional'
+    'profesional',
+    'api'
 ]
 
 MIDDLEWARE = [

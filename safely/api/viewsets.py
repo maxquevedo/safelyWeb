@@ -12,7 +12,7 @@ ClienteContratoSerializer
 )
 from django.contrib.auth.models import User
 from rest_framework import viewsets
-from .models import *
+from app.models import *
 
 class UserViewset(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('id')

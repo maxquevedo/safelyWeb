@@ -9,10 +9,17 @@ from django.db import models
 
 
 class Actividad(models.Model):
+    CHOICES = (
+    ('1', "Capacitacion"),
+    ('2', "Asesoria"),
+    ('3', "Visita"),
+
+    )
+
     id_actividad = models.BigIntegerField(primary_key=True)
     nombre = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=250)
-    tipo_actividad = models.CharField(max_length=1)
+    tipo_actividad = models.CharField(max_length=1, choices=CHOICES)
     id_capacitacion = models.ForeignKey('Capacitacion', models.DO_NOTHING, db_column='id_capacitacion', blank=True, null=True)
     id_asesoria = models.ForeignKey('Asesoria', models.DO_NOTHING, db_column='id_asesoria', blank=True, null=True)
     id_visita = models.ForeignKey('Visita', models.DO_NOTHING, db_column='id_visita', blank=True, null=True)
@@ -21,6 +28,8 @@ class Actividad(models.Model):
         managed = False
         db_table = 'actividad'
 
+    def __str__(self):
+        return self.nombre
 
 class Administrador(models.Model):
     id_admin = models.BigIntegerField(primary_key=True)
@@ -160,6 +169,8 @@ class Plan(models.Model):
         managed = False
         db_table = 'plan'
 
+    def __str__(self):
+        return self.nombre
 
 class Profesional(models.Model):
     id_profesional = models.BigIntegerField(primary_key=True)
@@ -194,6 +205,8 @@ class Servicio(models.Model):
         managed = False
         db_table = 'servicio'
 
+    def __str__(self):
+        return self.nombre
 
 class TipoAsesoria(models.Model):
     id_tipo_asesoria = models.CharField(primary_key=True, max_length=1)
@@ -202,6 +215,11 @@ class TipoAsesoria(models.Model):
     class Meta:
         managed = False
         db_table = 'tipo_asesoria'
+    
+    def __str__(self):
+        return self.nombre
+
+
 
 
 class TipoReporte(models.Model):
@@ -212,6 +230,8 @@ class TipoReporte(models.Model):
         managed = False
         db_table = 'tipo_reporte'
 
+    def __str__(self):
+        return self.nombre
 
 class User(models.Model):
     #id = models.IntegerField(primary_key=True)
