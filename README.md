@@ -38,7 +38,3 @@ python manage.py inspectdb > .\app\models.py
 
 ## Crear app
 python manage.py startapp "nombre"
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/mati
