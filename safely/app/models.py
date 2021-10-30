@@ -7,13 +7,11 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
 class Actividad(models.Model):
     CHOICES = (
     ('1', "Capacitacion"),
     ('2', "Asesoria"),
     ('3', "Visita"),
-
     )
 
     id_actividad = models.BigIntegerField(primary_key=True)
@@ -43,8 +41,10 @@ class Administrador(models.Model):
 class Alerta(models.Model):
     id_alerta = models.BigIntegerField(primary_key=True)
     fec_aviso = models.DateField()
-    id_cliente = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cliente')
-    id_profesional = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_profesional')
+    descripcion = models.CharField(max_length=300)
+    estado = models.FloatField()
+    id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cli')
+    id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof')
 
     class Meta:
         managed = False
@@ -53,26 +53,48 @@ class Alerta(models.Model):
 
 class Asesoria(models.Model):
     id_asesoria = models.BigIntegerField(primary_key=True)
+    nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=250)
-    id_tipo_asesoria = models.ForeignKey('TipoAsesoria', models.DO_NOTHING, db_column='id_tipo_asesoria')
+    id_tipo_ase = models.ForeignKey('TipoAsesoria', models.DO_NOTHING, db_column='id_tipo_ase')
+    estado = models.FloatField()
 
     class Meta:
         managed = False
         db_table = 'asesoria'
 
+    def __str__(self):
+        return self.nombre
 
 class Capacitacion(models.Model):
     id_capacitacion = models.BigIntegerField(primary_key=True)
+    nombre = models.CharField(max_length=50)
     cant_asistentes = models.CharField(max_length=2)
     materiales = models.CharField(max_length=250)
+    estado = models.FloatField()
 
     class Meta:
         managed = False
         db_table = 'capacitacion'
 
+    def __str__(self):
+        return self.nombre
+
+class Chat(models.Model):
+    id_chat = models.BigIntegerField(primary_key=True)
+    mensaje = models.CharField(max_length=500)
+    fec_mensaje = models.DateTimeField()
+    enviado_por = models.CharField(max_length=30)
+    cabecera = models.CharField(max_length=50)
+    id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof')
+    id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cli')
+
+    class Meta:
+        managed = False
+        db_table = 'chat'
+
 
 class Cliente(models.Model):
-    id_cliente = models.BigIntegerField(primary_key=True)
+    id_cli = models.BigIntegerField(primary_key=True)
     razon_social = models.CharField(max_length=50)
     id_perfil = models.ForeignKey('Perfil', models.DO_NOTHING, db_column='id_perfil')
 
@@ -84,7 +106,7 @@ class Cliente(models.Model):
 class ClienteContrato(models.Model):
     id = models.BigIntegerField(primary_key=True)
     id_contrato = models.ForeignKey('Contrato', models.DO_NOTHING, db_column='id_contrato')
-    id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
+    id_cli = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cli')
 
     class Meta:
         managed = False
@@ -100,6 +122,7 @@ class Contrato(models.Model):
     pago_mensual = models.BigIntegerField()
     pago_extra = models.BigIntegerField()
     total_pago = models.BigIntegerField()
+    estado = models.FloatField()
     id_plan = models.ForeignKey('Plan', models.DO_NOTHING, db_column='id_plan')
 
     class Meta:
@@ -112,8 +135,8 @@ class Lista(models.Model):
     descripcion = models.CharField(max_length=250)
     is_valid = models.FloatField()
     recomendacion = models.CharField(max_length=250)
-    id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
-    id_profesional = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_profesional')
+    id_cli = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cli')
+    id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof')
 
     class Meta:
         managed = False
@@ -122,23 +145,28 @@ class Lista(models.Model):
 
 class Mejoras(models.Model):
     id_mejora = models.BigIntegerField(primary_key=True)
+    nombre = models.CharField(max_length=50)
     propuesta = models.CharField(max_length=250)
     aceptacion = models.FloatField()
-    pac = models.ForeignKey('Pac', models.DO_NOTHING)
+    estado = models.FloatField()
+    id_pac = models.ForeignKey('Pac', models.DO_NOTHING, db_column='id_pac')
 
     class Meta:
         managed = False
         db_table = 'mejoras'
 
+    def __str__(self):
+        return self.nombre
+
 
 class Pac(models.Model):
-    id = models.BigIntegerField(primary_key=True)
-    fec_estimada = models.DateField()
+    id_pac = models.BigIntegerField(primary_key=True)
+    fec_estimada = models.DateField(blank=True, null=True)
     fec_ida = models.DateField()
-    estado = models.BooleanField()
+    estado = models.FloatField()
     id_actividad = models.ForeignKey(Actividad, models.DO_NOTHING, db_column='id_actividad')
-    id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
-    id_profesional = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_profesional')
+    id_cli = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cli')
+    id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof')
 
     class Meta:
         managed = False
@@ -146,11 +174,17 @@ class Pac(models.Model):
 
 
 class Perfil(models.Model):
+    CHOICES = (
+    ('1', "Administrador"),
+    ('2', "Profesional"),
+    ('3', "Cliente"),
+
+    )
     id_perfil = models.BigIntegerField(primary_key=True)
     rut = models.CharField(max_length=12)
     telefono = models.BigIntegerField()
     direccion = models.CharField(max_length=200)
-    tipo_perf = models.CharField(max_length=1)
+    tipo_perf = models.CharField(max_length=1, choices=CHOICES)
     id_auth_user = models.ForeignKey('User', on_delete=models.PROTECT, db_column='id_auth_user')
 
     class Meta:
@@ -159,10 +193,12 @@ class Perfil(models.Model):
 
 
 class Plan(models.Model):
+
     id_plan = models.BigIntegerField(primary_key=True)
     nombre = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=250)
     costo = models.BigIntegerField()
+    estado = models.FloatField()
     id_servicio = models.ForeignKey('Servicio', models.DO_NOTHING, db_column='id_servicio')
 
     class Meta:
@@ -173,7 +209,7 @@ class Plan(models.Model):
         return self.nombre
 
 class Profesional(models.Model):
-    id_profesional = models.BigIntegerField(primary_key=True)
+    id_prof = models.BigIntegerField(primary_key=True)
     id_perfil = models.ForeignKey(Perfil, models.DO_NOTHING, db_column='id_perfil')
 
     class Meta:
@@ -189,7 +225,7 @@ class Reporte(models.Model):
     cant_accidentes = models.BigIntegerField()
     cant_multas = models.BigIntegerField()
     id_tipo_reporte = models.ForeignKey('TipoReporte', models.DO_NOTHING, db_column='id_tipo_reporte')
-    pac = models.ForeignKey(Pac, models.DO_NOTHING)
+    id_pac = models.ForeignKey(Pac, models.DO_NOTHING, db_column='id_pac')
 
     class Meta:
         managed = False
@@ -200,6 +236,7 @@ class Servicio(models.Model):
     id_servicio = models.BigIntegerField(primary_key=True)
     nombre = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=250)
+    estado = models.FloatField()
 
     class Meta:
         managed = False
@@ -209,18 +246,15 @@ class Servicio(models.Model):
         return self.nombre
 
 class TipoAsesoria(models.Model):
-    id_tipo_asesoria = models.CharField(primary_key=True, max_length=1)
+    id_tipo_ase = models.CharField(primary_key=True, max_length=1)
     nombre = models.CharField(max_length=50)
 
     class Meta:
         managed = False
         db_table = 'tipo_asesoria'
-    
+
     def __str__(self):
         return self.nombre
-
-
-
 
 class TipoReporte(models.Model):
     id_tipo_reporte = models.BigIntegerField(primary_key=True)
@@ -248,11 +282,15 @@ class User(models.Model):
     def str(self):
         return self.username
 
-
 class Visita(models.Model):
     id_visita = models.BigIntegerField(primary_key=True)
+    nombre = models.CharField(max_length=50)
     is_extra = models.FloatField()
+    estado = models.FloatField()
 
     class Meta:
         managed = False
         db_table = 'visita'
+
+    def __str__(self):
+        return self.nombre

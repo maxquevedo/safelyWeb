@@ -1,6 +1,7 @@
 from django.db.models import fields
-from app.models import (Actividad,Administrador,Alerta,Asesoria,Capacitacion,Cliente,Contrato,Lista,
-Mejoras,Pac,Perfil,Plan,Profesional,Reporte,Servicio,TipoAsesoria,TipoReporte,User,Visita
+from app.models import (Actividad,Administrador,Alerta,Asesoria,Capacitacion,Chat,Cliente,
+Contrato,ClienteContrato,Lista,Mejoras,Pac,Perfil,Plan,Profesional,Reporte,
+Servicio,TipoAsesoria,TipoReporte,User,Visita
 )
 from rest_framework import serializers
 from django.contrib.auth.models import User
@@ -31,6 +32,11 @@ class CapacitacionSerializer(serializers.ModelSerializer):
         model = Capacitacion
         fields = '__all__'
 
+class ChatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Chat
+        fields = '__all__'
+
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
@@ -39,6 +45,11 @@ class ClienteSerializer(serializers.ModelSerializer):
 class ContratoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contrato
+        fields = '__all__'
+
+class ClienteContratoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClienteContrato
         fields = '__all__'
 
 class ListaSerializer(serializers.ModelSerializer):

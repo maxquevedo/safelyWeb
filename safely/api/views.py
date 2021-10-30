@@ -1,17 +1,20 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from app.models import (Actividad,Administrador,Alerta,Asesoria,Capacitacion,Cliente,Contrato,Lista,
-Mejoras,Pac,Perfil,Plan,Profesional,Reporte,Servicio,TipoAsesoria,TipoReporte,User,Visita
+from app.models import (Actividad,Administrador,Alerta,Asesoria,Capacitacion,Chat,Cliente,
+Contrato,ClienteContrato,Lista,Mejoras,Pac,Perfil,Plan,Profesional,Reporte,
+Servicio,TipoAsesoria,TipoReporte,User,Visita
 )
 from .serializers import (ActividadSerializer,AdministradorSerializer,AlertaSerializer,AsesoriaSerializer,
-CapacitacionSerializer,ClienteSerializer,ContratoSerializer,ListaSerializer,MejorasSerializer,
-PacSerializer,PerfilSerializer,PlanSerializer,ProfesionalSerializer,ReporteSerializer,ServicioSerializer,
-TipoAsesoriaSerializer,TipoReporteSerializer,UserSerializer,VisitaSerializer
+CapacitacionSerializer,ChatSerializer,ClienteSerializer,ContratoSerializer,ClienteContratoSerializer,
+ListaSerializer,MejorasSerializer,PacSerializer,PerfilSerializer,PlanSerializer,ProfesionalSerializer,
+ReporteSerializer,ServicioSerializer,TipoAsesoriaSerializer,TipoReporteSerializer,UserSerializer,
+VisitaSerializer
 )
 
 from django.contrib.auth.models import Group, User
-# ACTIVIDAD
 
+
+# ACTIVIDAD
 @api_view(['GET'])
 def ActividadLista(request):
     act = Actividad.objects.all()
@@ -46,16 +49,6 @@ def ActividadModificar(request,pk):
     act.save()
     serializer = ActividadSerializer(act)
     return Response(serializer.data)
-
-
-#@api_view(['POST'])
-#def ActividadModificar(request, pk):
-#    act = Actividad.objects.get(id_actividad=pk)
-#    serializer = ActividadSerializer(instance = act ,data=request.data)
-
-#    if serializer.is_valid():
-#        serializer.save()
-#    return Response(serializer.data)
 
 @api_view(['DELETE'])
 def ActividadEliminar(request, pk):
@@ -536,4 +529,96 @@ def UserEliminar(request, pk):
 ##########
 ##########
 
-#perfil
+# PerfilSerializer
+@api_view(['GET'])
+def PerfilLista(request):
+    act = Perfil.objects.all()
+    serializer = PerfilSerializer(act, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def PerfilDetalles(request,pk):
+    act = Perfil.objects.get(id_perfil=pk)
+    serializer = PerfilSerializer(act, many=False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def PerfilCrear(request):
+    serializer = PerfilSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['PATCH'])
+def PerfilModificar(request,pk):
+    act = Perfil.objects.get(id_perfil=pk)
+    data = request.data
+
+    act.id_perfil = data.get("id_perfil", act.id_perfil)
+    act.rut = data.get("rut", act.rut)
+    act.telefono = data.get("telefono", act.telefono)
+    act.direccion = data.get("direccion", act.direccion)
+    act.tipo_perf = data.get("tipo_perf", act.tipo_perf)
+    act.id_auth_user = data.get("id_auth_user", act.id_auth_user)
+
+    act.save()
+    serializer = PerfilSerializer(act)
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def PerfilEliminar(request, pk):
+    act = Perfil.objects.get(id_perfil=pk)
+    act.delete()
+    return Response('Eliminado correctamente')
+
+##########
+##########
+##########
+
+# ReporteSerializer
+@api_view(['GET'])
+def ReporteLista(request):
+    act = Reporte.objects.all()
+    serializer = ReporteSerializer(act, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def ReporteDetalles(request,pk):
+    act = Reporte.objects.get(id_reporte=pk)
+    serializer = ReporteSerializer(act, many=False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def ReporteCrear(request):
+    serializer = ReporteSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['PATCH'])
+def ReporteModificar(request,pk):
+    act = Reporte.objects.get(id_reporte=pk)
+    data = request.data
+
+    act.id_reporte = data.get("id_reporte", act.id_reporte)
+    act.cant_asesoria = data.get("cant_asesoria", act.cant_asesoria)
+    act.cant_llamadas = data.get("cant_llamadas", act.cant_llamadas)
+    act.cant_visitas = data.get("cant_visitas", act.cant_visitas)
+    act.cant_accidentes = data.get("cant_accidentes", act.cant_accidentes)
+    act.cant_multas = data.get("cant_multas", act.cant_multas)
+    act.id_tipo_reporte = data.get("id_tipo_reporte", act.id_tipo_reporte)
+    act.id_pac = data.get("id_pac", act.id_pac)
+
+    act.save()
+    serializer = ReporteSerializer(act)
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def ReporteEliminar(request, pk):
+    act = Reporte.objects.get(id_reporte=pk)
+    act.delete()
+    return Response('Eliminado correctamente')
+
+##########
+##########
+##########
