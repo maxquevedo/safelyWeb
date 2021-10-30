@@ -1,22 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'profesional/base-profesional.html' %}
 {% load static %}
 {% block tittle %}Profesional{% endblock %}
 
 {% block body %}
 <div class="container-menu">
-    <div class="menu-vertical">
-        <ul>
-            <h2>{{user.get_full_name}}</h2>
-            <div class="profile-photo"></div>
-            <li><a class="active" href="{% url 'home' %}">Home</a></li>
-            <li><a href="#">Mensajes</a></li>
-            <li><a href="#">Reportes</a></li>
-            <li><a href="#">Administrar actividades</a></li>
-            <li><a href="#">Administrar clientes</a></li>
-            <li><a href="#">Crear chequeos</a></li>
-            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-        </ul>
-    </div>
     <div class="info-perfiles">
         <div class="info-box-perfiles">
             <div class="info-titulos">

@@ -1,0 +1,23 @@
+{% extends 'profesional/base-profesional.html' %}
+{% load static %}
+{% block tittle %}Registro{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="login-text-container">
+                    <h2>CREAR TIPO DE ASESORIA</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form}}
+                        <input type="submit" value="Registrar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
