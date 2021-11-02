@@ -25,6 +25,7 @@
                             <td>{{entity.id_asesoria}}</td>
                             <td>{{entity.descripcion}}</td>
                             <td>{{entity.id_tipo_ase}}</td>
+                            <td><a href="{% url 'modificar_ase' entity.id_asesoria %}" id="modificar">modificar</a></td>
                         </tr>
                         {% endfor %}
                         {% endif %}

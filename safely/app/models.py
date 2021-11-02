@@ -52,11 +52,11 @@ class Alerta(models.Model):
 
 
 class Asesoria(models.Model):
-    id_asesoria = models.BigIntegerField(primary_key=True)
+    id_asesoria = models.IntegerField(primary_key=True)
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=250)
     id_tipo_ase = models.ForeignKey('TipoAsesoria', models.DO_NOTHING, db_column='id_tipo_ase')
-    estado = models.FloatField()
+    estado = models.BooleanField()
 
     class Meta:
         managed = False
@@ -70,7 +70,7 @@ class Capacitacion(models.Model):
     nombre = models.CharField(max_length=50)
     cant_asistentes = models.CharField(max_length=2)
     materiales = models.CharField(max_length=250)
-    estado = models.FloatField()
+    estado = models.BooleanField()
 
     class Meta:
         managed = False

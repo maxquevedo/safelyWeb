@@ -442,7 +442,7 @@ def PacLista(request):
 
 @api_view(['GET'])
 def PacDetalles(request,pk):
-    act = Pac.objects.get(id=pk)
+    act = Pac.objects.get(id_pac=pk)
     serializer = PacSerializer(act, many=False)
     return Response(serializer.data)
 
@@ -455,10 +455,10 @@ def PacCrear(request):
 
 @api_view(['PATCH'])
 def PacModificar(request,pk):
-    act = Pac.objects.get(id=pk)
+    act = Pac.objects.get(id_pac=pk)
     data = request.data
 
-    act.id = data.get("id", act.id)
+    act.id = data.get("id_pac", act.id_pac)
     act.fec_estimada = data.get("fec_estimada", act.fec_estimada)
     act.fec_ida = data.get("fec_ida", act.fec_ida)
     act.estado = data.get("estado", act.estado)
@@ -473,7 +473,7 @@ def PacModificar(request,pk):
 
 @api_view(['DELETE'])
 def PacEliminar(request, pk):
-    act = Pac.objects.get(id=pk)
+    act = Pac.objects.get(id_pac=pk)
     act.delete()
     return Response('Eliminado correctamente')
 
@@ -616,6 +616,54 @@ def ReporteModificar(request,pk):
 @api_view(['DELETE'])
 def ReporteEliminar(request, pk):
     act = Reporte.objects.get(id_reporte=pk)
+    act.delete()
+    return Response('Eliminado correctamente')
+
+##########
+##########
+##########
+
+# ChatSerializer
+@api_view(['GET'])
+def ChatLista(request):
+    act = Chat.objects.all()
+    serializer = ChatSerializer(act, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def ChatDetalles(request,pk):
+    act = Chat.objects.get(id_chat=pk)
+    serializer = ChatSerializer(act, many=False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def ChatCrear(request):
+    serializer = ChatSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['PATCH'])
+def ChatModificar(request,pk):
+    act = Reporte.objects.get(id_chat=pk)
+    data = request.data
+
+    act.id_chat = data.get("id_chat", act.id_chat)
+    act.mensaje = data.get("mensaje", act.mensaje)
+    act.fec_mensaje = data.get("fec_mensaje", act.fec_mensaje)
+    act.enviado_por = data.get("enviado_por", act.enviado_por)
+    act.cabecera = data.get("cabecera", act.cabecera)
+    act.cant_multas = data.get("cant_multas", act.cant_multas)
+    act.id_prof = data.get("id_prof", act.id_prof)
+    act.id_cli = data.get("id_cli", act.id_cli)
+
+    act.save()
+    serializer = ChatSerializer(act)
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def ChatEliminar(request, pk):
+    act = Chat.objects.get(id_chat=pk)
     act.delete()
     return Response('Eliminado correctamente')
 

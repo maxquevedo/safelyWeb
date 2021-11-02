@@ -52,13 +52,18 @@ class TipoAsesoriaForm(forms.ModelForm):
 
 class AsesoriaModificar(forms.ModelForm):
     class Meta:
-        model = Servicio
-        fields = '__all__'
+        model = Asesoria
+        fields = ['nombre', 'descripcion','estado']
 ## Capacitacion 
 class CapacitacionForm(forms.ModelForm):
     class Meta:
         model = Capacitacion
         fields = '__all__'
+
+class CapacitacionModificar(forms.ModelForm):
+    class Meta:
+        model = Capacitacion
+        fields = ['nombre', 'cant_asistentes','materiales']
 ## Lista 
 class ListaForm(forms.ModelForm):
     class Meta:

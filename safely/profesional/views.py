@@ -8,6 +8,7 @@ from django.http import Http404
 from app.models import *
 from app.forms import *
 
+
 # Create your views here.
 
 #INICIO PREFESIONAL
@@ -72,11 +73,11 @@ def modificar_ase(request,id_asesoria):
     if request.method == 'GET':
         form = AsesoriaModificar(instance=ase)
     else:
-        form = PlanUpdateForm(request.POST, instance=ase)
+        form = AsesoriaModificar(request.POST, instance=ase)
         if form.is_valid():
             form.save()
             messages.success(request, "Modificado correctamente")
-        return redirect(to='vista_asesorias')
+        return redirect(to='lista_ase')
 
     return render(request, 'profesional/asesorias/modificar-a.html',{'form':form})
 
@@ -146,13 +147,13 @@ def modificar_capa(request,id_capacitacion):
     capa = Capacitacion.objects.get(id_capacitacion=id_capacitacion)
 
     if request.method == 'GET':
-        form = CapacitacionForm(instance=capa)
+        form = CapacitacionModificar(instance=capa)
     else:
-        form = PlanUpdateForm(request.POST, instance=capa)
+        form = CapacitacionModificar(request.POST, instance=capa)
         if form.is_valid():
             form.save()
             messages.success(request, "Modificado correctamente")
-        return redirect(to='vista_capacitacion')
+        return redirect(to='lista_capa')
 
     return render(request, 'profesional/capacitaciones/modificar-c.html',{'form':form})
 

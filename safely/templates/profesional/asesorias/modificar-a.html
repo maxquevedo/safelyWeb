@@ -1,0 +1,29 @@
+{% extends 'profesional/base-profesional.html' %}
+{% load static %}
+{% block tittle %}editar{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="login-text-container">
+                    <h2>Editar Plan</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <h5>Nombre del Plan</h5>
+                        {{ form.nombre }}
+                        <h5>Descripción</h5>
+                        {{ form.descripcion }}
+                        <h5>estado</h5>
+                        {{ form.estado }}
+
+                        <input type="submit" value="Modificar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
