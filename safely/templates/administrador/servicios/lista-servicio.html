@@ -36,7 +36,7 @@
                         <tr>
                             <td>{{entity.id_servicio}}</td>
                             <td>{{entity.nombre}}</td>
-                            <td>{{entity.descripcion}}</td>
+                            <td class="desc"><p>{{entity.descripcion}}</p></td>
 
                             <td>
                                 <a href="{% url 'editar-servicio' entity.id_servicio %}" id="modificar">Modificar</a>

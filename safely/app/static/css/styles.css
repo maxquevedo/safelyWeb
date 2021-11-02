@@ -73,12 +73,12 @@ nav > ul > li > a {
 }
 
 .login-box {
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.02));
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.03));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     -moz-backdrop-filter: blur(10px);
     border:1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     margin: auto;
     width: 400px;
     height: 500px;
@@ -96,7 +96,7 @@ nav > ul > li > a {
     -webkit-backdrop-filter: blur(10px);
     -moz-backdrop-filter: blur(10px);
     border:1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     margin: auto;
     width: 400px;
     height: 640px;
@@ -126,7 +126,7 @@ nav > ul > li > a {
     margin-bottom: 20px;
     height: 36px;
     width: 240px;
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     border-radius: 6px;
     padding-left: 8px;
     background-color: rgba(var(--b3f,250,250,250),1);
@@ -141,7 +141,7 @@ nav > ul > li > a {
     margin-bottom: 20px;
     height: 36px;
     width: 240px;
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     border-radius: 6px;
     padding-left: 8px;
     background-color: rgba(var(--b3f,250,250,250),1);
@@ -260,7 +260,7 @@ nav > ul > li > a {
 }
 
 .carta {
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.02));
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.03));
     border-radius: 18px;
     border:1px solid #dfdfdf;
     align-items: center;
@@ -275,7 +275,7 @@ nav > ul > li > a {
     border: 3px solid #24a0ed;
     height: 380px;
     width: 26%;
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
 }
 
 .carta p {
@@ -315,7 +315,7 @@ nav > ul > li > a {
     margin: auto;
     list-style-type: none;
     width: 350px;
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.02));
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.03));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     -moz-backdrop-filter: blur(10px);
@@ -323,7 +323,7 @@ nav > ul > li > a {
     height: auto;
     overflow: auto;
     border-radius: 0px 18px 18px 0px;
-    box-shadow: 0px 0px 16px rgba(0,0,0,0.02);
+    box-shadow: 0px 0px 16px rgba(0,0,0,0.04);
     display: block;
     align-items: center;
     border:1px solid #dfdfdf;
@@ -331,7 +331,7 @@ nav > ul > li > a {
 
 .menu-vertical li a {
     display: block;
-    color: #000;
+    color: #1a1a1a;
     padding: 24px 28px;
     text-decoration: none;
     transition: 0.2s;
@@ -347,6 +347,11 @@ nav > ul > li > a {
     color: white;
 }
 
+.menu-vertical li a.active-pro {
+    background-color: #edad24;
+    color: white;
+}
+
 .menu-vertical li a:hover:not(.active) {
     background-color: #dfdfdf;
 }
@@ -356,7 +361,7 @@ nav > ul > li > a {
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    color: rgb(68, 68, 68);
+    color: #1a1a1a;
     font-size: 26px;
 }
 
@@ -364,13 +369,13 @@ nav > ul > li > a {
     width: 120px;
     height: 120px;
     margin: auto;
-    background-image: url('../img/profile.jpg');
+    background-image: url('../img/default.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 100px;
     margin-bottom: 20px;
-    box-shadow: inset 00px 00px 16px 1px rgba(0, 0, 0, 1);
+    box-shadow: inset 00px 00px 16px 1px rgba(0, 0, 0, 0.08);
 }
 
 .info-perfiles { 
@@ -381,9 +386,9 @@ nav > ul > li > a {
 }
 
 .info-perfiles .info-box-perfiles {
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.02));
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.03));
     border:1px solid #dfdfdf;
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     height: 480px;
     margin: auto;
     border-radius: 18px;
@@ -404,7 +409,7 @@ nav > ul > li > a {
     margin-bottom: 28px;
     padding-top: 2px;
     margin-left: 32px;
-    color: rgb(68, 68, 68);
+    color: #1a1a1a;
     font-size: 20px;
 }
 
@@ -443,9 +448,9 @@ nav > ul > li > a {
 }
 
 .info-perfiles .info-box-adm {
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.02));
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.03));
     border:1px solid #dfdfdf;
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     height: 520px;
     margin: auto;
     border-radius: 18px;
@@ -483,12 +488,12 @@ nav > ul > li > a {
 
 .mantenedor-user a {
     text-decoration: none;
-    color: #000;
+    color: #1a1a1a;
     margin: auto;
 }
 
 .acciones-mantenedor {
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.02));
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.03));
     border-radius: 18px;
     border:1px solid #dfdfdf;
     align-items: center;
@@ -503,8 +508,9 @@ nav > ul > li > a {
 .acciones-mantenedor:hover{
     height: 260px;
     width: 320px;
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.1);
     cursor: pointer;
+    border: 3px solid #24a0ed;
 }
 
 .desc-acc p {
@@ -515,6 +521,7 @@ nav > ul > li > a {
 }
 
 .desc-acc h3 {
+    width: 80%;
     margin: auto;
     text-align: center;
     font-size: 23px;
@@ -546,7 +553,7 @@ nav > ul > li > a {
     border-radius: 18px;
     overflow: hidden;
     text-align: center;
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.06);
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
 }
 
 .lista table td a {
@@ -573,11 +580,28 @@ nav > ul > li > a {
     background-color: #18ac30;
 }
 
+.desc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.desc p {
+    width: 96%;
+    height: 52px;
+    text-align: justify;
+    margin-left: auto;
+    overflow: auto;
+}
+
 .lista td, .lista th {
     border: 1px solid #ddd;
     width: 200px;
-    height: 48px;
+    max-width: 200;
+    height: 52px;
 }
+
 
 .lista tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -601,7 +625,7 @@ nav > ul > li > a {
 
 .num-pag a{
     text-decoration: none;
-    color: black;
+    color: #1a1a1a;
     margin: auto;
 }
 
@@ -617,7 +641,7 @@ nav > ul > li > a {
     padding: 8px 16px;
     margin: auto;
     margin-left: 8px;
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
 }
 
 .page-item.active {
@@ -630,3 +654,102 @@ nav > ul > li > a {
 
 /*Seccion listar*/
 
+/*Seccion asesoria*/
+
+.botones-asesorias {
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    display: flex;
+    height: 40px;
+    padding-bottom: 30px;
+}
+
+.botones-asesorias a {
+    border-radius: 8px;
+    display: flex;
+    text-decoration: none;
+    margin: auto;
+    height: 40px;
+    padding: 2px 20px;
+    align-items: center;
+    justify-content: center;
+    color:  #ffff;
+}
+
+.color-verde {
+    background-color: #18ac30;
+}
+
+.color-azul {
+    background-color: #24a0ed;
+}
+
+.color-amarillo {
+    background-color: #edad24;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25){
+    .container-mantenedor {
+        width: 74%;
+    }
+    
+    .acciones-mantenedor {
+        height: 200px;
+        width: 260px;
+    }
+    
+    .acciones-mantenedor:hover{
+        height: 220px;
+        width: 280px;
+    }
+    
+    .desc-acc p {
+        font-size: 14px;
+    }
+    
+    .desc-acc h3 {
+        font-size: 23px;
+        padding-bottom: 22px;
+    }
+
+    .menu-vertical { 
+        width: 300px;
+    }
+    
+    .menu-vertical ul {
+        width: 300px;
+    }
+    
+    .menu-vertical li a {
+        padding: 18px 24px;
+    }
+
+    .menu-vertical ul h2 {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+    
+    .menu-vertical .profile-photo { 
+        width: 100px;
+        height: 100px;
+    }
+
+    .info-perfiles { 
+        width: 74%;
+    }
+
+    .lista table td a {
+        padding: 4px 8px;
+    }
+    
+    .lista td, .lista th {
+        border: 1px solid #ddd;
+        width: 200px;
+        height: 52px;
+    }
+
+    .page-item {
+        padding: 6px 14px;
+    }
+}

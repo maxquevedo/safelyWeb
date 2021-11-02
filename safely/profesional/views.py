@@ -44,7 +44,6 @@ def datos_pro(request):
 
 @login_required
 def vista_asesorias(request):
-
     return render(request, 'profesional/asesorias/asesoria.html')
 
 @login_required
@@ -64,7 +63,6 @@ def crear_ase(request):
 
 @login_required
 def ingresar_ase(request):
-
     return render(request, 'profesional/asesorias/ingresar-a.html')
 
 @login_required
@@ -109,7 +107,7 @@ def lista_ase(request):
 
     context = {'entity': ase,
                 'paginator': paginator}
-    return render(request, 'profesional/asesorias/lista-asesoria.html', context)
+    return render(request, 'profesional/asesorias/asesoria.html', context)
 
 #######################################################################################################
 ## CAPACITACIONES
