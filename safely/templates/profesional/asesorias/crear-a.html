@@ -7,7 +7,6 @@
     <div class="menu-vertical">
         <ul>
             <h2>{{user.get_full_name}}</h2>
-            <div class="profile-photo"></div>
             <li><a href="{% url 'home-prof' %}">Home</a></li>
             <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
             <li><a href="{% url 'vista_actividad' %}">Actividad</a></li>
@@ -24,7 +23,7 @@
     <div class="info-perfiles">
         <div class="login-container">
             <div class="signup-box">
-                <div class="login-text-container">
+                <div class="perfil-text-container">
                     <h2>CREAR ASESORIAS</h2>
                     <form action="" method="post">
                         {% csrf_token %}
