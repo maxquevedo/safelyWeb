@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Profesional - Capacitaciones{% endblock %}
+{% block tittle %}Profesional - Visita{% endblock %}
 
 {% block body %}
 <div class="container-menu">
@@ -12,10 +12,10 @@
             <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
             <li><a href="{% url 'vista_actividad' %}">Actividad</a></li>
             <li><a href="{% url 'lista_ase' %}">Asesorías</a></li>
-            <li><a class="active-pro" href="{% url 'lista_capa' %}">Capacitaciones</a></li>
+            <li><a href="{% url 'lista_capa' %}">Capacitaciones</a></li>
             <li><a href="{% url 'vista_mejoras' %}">Mejoras</a></li>
             <li><a href="{% url 'lista_ch' %}">Checklist</a></li>
-            <li><a href="{% url 'vista_visita' %}">Visita</a></li>
+            <li><a class="active-pro"  href="{% url 'vista_visita' %}">Visita</a></li>
             <li><a href="#">Clientes</a></li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
@@ -23,30 +23,29 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Capacitaciones</h2>
+                <h2>Visita</h2>
                 <div class="botones-asesorias">
-                    <a class ="color-verde" href="{% url 'crear_capa' %}">Crear Capacitacion</a>
-                    <a class ="color-azul" href="{% url 'ingresar_ase' %}">Ingresar Capacitacion</a>
+                    <a class ="color-verde" href="{% url 'crear_visita' %}">Crear mejora</a>
                 </div>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID CAPACITACION</th>
+                            <th>ID VISITA</th>
                             <th>NOMBRE</th>
-                            <th>N° DE ASISTENTES</th>
-                            <th>MATERIALES</th>
-                            <TH>ACCIÓN</TH>
+                            <th>EXTRA</th>
+                            <TH>ESTADO</TH>
+                             <TH>ACCION </TH>
                         </tr>
                     </thead>
                     <tbody>
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.id_capacitacion}}</td>
+                            <td>{{entity.id_visita}}</td>
                             <td>{{entity.nombre}}</td>
-                            <td>{{entity.cant_asistentes}}</td>
-                            <td>{{entity.materiales}}</td>
-                            <td><a href="{% url 'modificar_capa' entity.id_capacitacion %}" id="modificar">modificar</a></td>
+                            <td>{{entity.is_extra}}</td>
+                            <td>{{entity.estado}}</td>
+                            <td><a href="{% url 'modificar_visita' entity.id_visita %}" id="modificar">modificar</a></td>
                         </tr>
                         {% endfor %}
                         {% endif %}

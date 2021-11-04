@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Datos Profesional{% endblock %}
+{% block tittle %}Profesional - Asesorias{% endblock %}
 
 {% block body %}
 <div class="container-menu">
@@ -10,10 +10,12 @@
             <div class="profile-photo"></div>
             <li><a href="{% url 'home-prof' %}">Home</a></li>
             <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
-            <li><a class="active-pro" href="{% url 'vista_asesorias' %}">Asesorías</a></li>
-            <li><a href="{% url 'vista_capacitacion' %}">Capacitaciones</a></li>
+            <li><a href="{% url 'vista_actividad' %}">Actividad</a></li>
+            <li><a class="active-pro" href="{% url 'lista_ase' %}">Asesorías</a></li>
+            <li><a href="{% url 'lista_capa' %}">Capacitaciones</a></li>
             <li><a href="{% url 'vista_mejoras' %}">Mejoras</a></li>
-            <li><a href="{% url 'vista_checklist' %}">Checklist</a></li>
+            <li><a href="{% url 'lista_ch' %}">Checklist</a></li>
+            <li><a href="{% url 'vista_visita' %}">Visita</a></li>
             <li><a href="#">Clientes</a></li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
@@ -21,18 +23,20 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Lista de Asesorías</h2>
+                <h2>Asesorías</h2>
                 <div class="botones-asesorias">
                     <a class ="color-verde" href="{% url 'crear_ase' %}">Crear Asesoría</a>
                     <a class ="color-azul" href="{% url 'ingresar_ase' %}">Ingresar Asesoría</a>
-                    <a class ="color-amarillo" href="{% url 'crear_tipo_ase' %">Crear tipo de Asesoría</a>
+                    <a class ="color-amarillo" href="{% url 'crear_tipo_ase' %}">Crear tipo de Asesoría</a>
                 </div>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID ASESORÍA</th>
-                            <th>DESCRIPCIÓN</th>
-                            <th>TIPO ASESORÍA</th>
+                            <th>ID ASESORIA</th>
+                            <th>NOMBRE</th>
+                            <th>DESCRIPCION</th>
+                            <th>TIPO DE ASESORÍA</th>
+                            <TH>ACCIÓN</TH>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +44,7 @@
                         {% for entity in entity %}
                         <tr>
                             <td>{{entity.id_asesoria}}</td>
+                            <td>{{entity.nombre}}</td>
                             <td>{{entity.descripcion}}</td>
                             <td>{{entity.id_tipo_ase}}</td>
                             <td><a href="{% url 'modificar_ase' entity.id_asesoria %}" id="modificar">modificar</a></td>

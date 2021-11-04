@@ -2,7 +2,10 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import fields
-from .models import Lista, Mejoras, Plan, Servicio,Asesoria,Capacitacion,Lista,Mejoras,TipoAsesoria
+from .models import Lista, Mejoras, Plan, Servicio,Asesoria,Capacitacion,Lista,Mejoras,TipoAsesoria,Actividad, Visita
+
+
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -53,7 +56,7 @@ class TipoAsesoriaForm(forms.ModelForm):
 class AsesoriaModificar(forms.ModelForm):
     class Meta:
         model = Asesoria
-        fields = ['nombre', 'descripcion','estado']
+        fields = ['nombre', 'descripcion','id_tipo_ase']
 ## Capacitacion 
 class CapacitacionForm(forms.ModelForm):
     class Meta:
@@ -69,8 +72,25 @@ class ListaForm(forms.ModelForm):
     class Meta:
         model = Lista
         fields = '__all__'
+
+class ListaModificar(forms.ModelForm):
+    class Meta:
+        model = Lista
+        fields = ['descripcion', 'is_valid','recomendacion']
 ## Mejoras 
 class MejorasForm(forms.ModelForm):
     class Meta:
         model = Mejoras
+        fields = '__all__'
+
+## Actividad
+class ActividadForm(forms.ModelForm):
+    class Meta:
+        model = Actividad
+        fields = '__all__'
+
+## VISITA
+class VisitaForm(forms.ModelForm):
+    class Meta:
+        model = Visita
         fields = '__all__'

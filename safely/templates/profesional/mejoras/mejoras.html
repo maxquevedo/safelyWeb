@@ -1,28 +1,63 @@
-{% extends 'profesional/base-profesional.html' %}
+{% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Profesional{% endblock %}
+{% block tittle %}Profesional - Mejoras{% endblock %}
 
 {% block body %}
 <div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <div class="profile-photo"></div>
+            <li><a href="{% url 'home-prof' %}">Home</a></li>
+            <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
+            <li><a href="{% url 'vista_actividad' %}">Actividad</a></li>
+            <li><a href="{% url 'lista_ase' %}">Asesorías</a></li>
+            <li><a href="{% url 'lista_capa' %}">Capacitaciones</a></li>
+            <li><a class="active-pro"  href="{% url 'vista_mejoras' %}">Mejoras</a></li>
+            <li><a href="{% url 'lista_ch' %}">Checklist</a></li>
+            <li><a href="{% url 'vista_visita' %}">Visita</a></li>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
     <div class="info-perfiles">
-
-        <div class="container-mantenedor">
-            <div class="mantenedor-user">
-                <a href="{% url 'ingresar_me' %}">
-                    <div class="acciones-mantenedor">
-                        <div class="desc-acc">
-                            <h3>INGRESAR MEJORAS</h3>
-                        </div>
-                    </div>
-                </a>
-                <a href="{% url 'revisar_me' %}">
-                <div class="acciones-mantenedor">
-                    <div class="desc-acc">
-                        <h3>REVISAR MEJORAS</h3>
-
-                    </div>
+        <div class="container-lista">
+            <div class="lista">
+                <h2>Mejoras</h2>
+                <div class="botones-asesorias">
+                    <a class ="color-verde" href="{% url 'crear_me' %}">Crear mejora</a>
                 </div>
-                </a>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID MEJORA</th>
+                            <th>NOMBRE</th>
+                            <th>PROPUESTA</th>
+                            <th>ACEPTACION</th>
+                            <TH>ESTADO</TH>
+                            <TH>ID PROFESIONAL ACTIVIDAD CLIENTE </TH>
+                             <TH>ACCION </TH>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.id_mejora}}</td>
+                            <td>{{entity.nombre}}</td>
+                            <td>{{entity.propuesta}}</td>
+                            <td>{{entity.aceptacion}}</td>
+                            <td>{{entity.estado}}</td>
+                            <td>{{entity.id_pac}}</td>
+                            <td><a href="{% url 'modificar_capa' entity.id_mejora %}" id="modificar">modificar</a></td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
             </div>
         </div>
     </div>

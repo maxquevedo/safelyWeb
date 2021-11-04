@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Crear Capacitaciones{% endblock %}
+{% block tittle %}Crear Actividad{% endblock %}
 
 {% block body %}
 <div class="container-menu">
@@ -10,8 +10,9 @@
             <div class="profile-photo"></div>
             <li><a href="{% url 'home-prof' %}">Home</a></li>
             <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
+            <li><a class="active-pro" href="{% url 'vista_actividad' %}">Actividad</a></li>
             <li><a href="{% url 'lista_ase' %}">Asesorías</a></li>
-            <li><a class="active-pro"  href="{% url 'lista_capa' %}">Capacitaciones</a></li>
+            <li><a href="{% url 'lista_capa' %}">Capacitaciones</a></li>
             <li><a href="{% url 'vista_mejoras' %}">Mejoras</a></li>
             <li><a href="{% url 'lista_ch' %}">Checklist</a></li>
             <li><a href="{% url 'vista_visita' %}">Visita</a></li>
@@ -24,11 +25,10 @@
         <div class="login-container">
             <div class="signup-box">
                 <div class="login-text-container">
-                    <h2>CREAR CAPACITACION</h2>
+                    <h2>CREAR ACTIVIDAD</h2>
                     <form action="" method="post">
                         {% csrf_token %}
                         {{form}}
-
                         <input type="submit" value="Registrar" id="button" class="alter-button">
                     </form>
                 </div>
