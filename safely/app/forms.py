@@ -76,7 +76,7 @@ class ListaForm(forms.ModelForm):
 class ListaModificar(forms.ModelForm):
     class Meta:
         model = Lista
-        fields = ['descripcion', 'is_valid','recomendacion']
+        fields = '__all__'
 ## Mejoras 
 class MejorasForm(forms.ModelForm):
     class Meta:

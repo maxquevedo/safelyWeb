@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,include
 from .views import (ActividadLista,ActividadDetalles,ActividadCrear,ActividadModificar,ActividadEliminar,
 CapacitacionLista,CapacitacionDetalles,CapacitacionCrear,CapacitacionModificar,CapacitacionEliminar,
 ClienteLista,ClienteDetalles,
@@ -10,7 +10,6 @@ ListaLista,ListaDetalles,ListaCrear,ListaModificar,ListaEliminar,
 VisitaLista,VisitaDetalles,VisitaCrear,VisitaModificar,VisitaEliminar,
 AlertaLista,AlertaDetalles,AlertaCrear,AlertaModificar,AlertaEliminar,
 MejorasLista,MejorasDetalles,MejorasCrear,MejorasModificar,MejorasEliminar,
-PacLista,PacDetalles,PacCrear,PacModificar,PacEliminar,
 UserLista,UserDetalles,UserCrear,UserModificar,UserEliminar,
 
 PerfilLista,PerfilDetalles,PerfilCrear,PerfilModificar,PerfilEliminar,
@@ -20,7 +19,10 @@ ChatLista,ChatDetalles,ChatCrear,ChatModificar,ChatEliminar,
 )
 
 from . import views
+
+
 urlpatterns = [
+
     path('actividad/', views.ActividadLista, name="ActividadLista"),
     path('actividad/detalles/<str:pk>/', views.ActividadDetalles, name="ActividadDetalles"),
     path('actividad/crear', views.ActividadCrear, name="ActividadCrear"),
@@ -78,12 +80,6 @@ urlpatterns = [
     path('mejoras/crear', views.MejorasCrear, name="MejorasCrear"),
     path('mejoras/modificar/<str:pk>/', views.MejorasModificar, name="MejorasModificar"),
     path('mejoras/eliminar/<str:pk>/',views.MejorasEliminar,name="MejorasEliminar"),
-
-    path('pac/', views.PacLista, name="PacLista"),
-    path('pac/detalles/<str:pk>/', views.PacDetalles, name="PacDetalles"),
-    path('pac/crear', views.PacCrear, name="PacCrear"),
-    path('pac/modificar/<str:pk>/', views.PacModificar, name="PacModificar"),
-    path('pac/eliminar/<str:pk>/',views.PacEliminar,name="PacEliminar"),
 
     path('user/', views.UserLista, name="UserLista"),
     path('user/detalles/<str:pk>/', views.UserDetalles, name="UserDetalles"),

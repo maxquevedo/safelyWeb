@@ -10,8 +10,7 @@ from .models import ( Perfil,
 Administrador, Profesional, Cliente,
 Servicio, Plan, Contrato, 
 Alerta,
-Lista,
-Pac,Mejoras,
+Lista,Mejoras,
 Reporte,TipoReporte,
 Actividad, Capacitacion,Asesoria,Visita
 )

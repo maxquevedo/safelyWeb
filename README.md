@@ -27,11 +27,16 @@ python manage.py makemigrations
 
 python manage.py migrate
 
+## Migrar datos
+python manage.py dumpdata > db.json
+
+python manage.py loaddata db.json
+
 ## Crear usuario para Oracle
-``` bash
-create user c##safely2 identified by safely;
-grant connect, resource to c##safely2;
-alter user c##safely2 default tablespace users quota unlimited on users;
+``` sql
+create user c##safely identified by safely;
+grant connect, resource to c##safely;
+alter user c##safely default tablespace users quota unlimited on users;
 ```
 
 ## Para saber que esta instalado en entorno virtual

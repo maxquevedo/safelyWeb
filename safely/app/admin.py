@@ -15,7 +15,6 @@ admin.site.register(Contrato)
 admin.site.register(Lista)
 admin.site.register(Mejoras)
 
-admin.site.register(Pac)
 admin.site.register(Perfil)
 
 admin.site.register(Plan)

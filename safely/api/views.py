@@ -1,12 +1,12 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from app.models import (Actividad,Administrador,Alerta,Asesoria,Capacitacion,Chat,Cliente,
-Contrato,ClienteContrato,Lista,Mejoras,Pac,Perfil,Plan,Profesional,Reporte,
+Contrato,ClienteContrato,Lista,Mejoras,Perfil,Plan,Profesional,Reporte,
 Servicio,TipoAsesoria,TipoReporte,User,Visita
 )
 from .serializers import (ActividadSerializer,AdministradorSerializer,AlertaSerializer,AsesoriaSerializer,
 CapacitacionSerializer,ChatSerializer,ClienteSerializer,ContratoSerializer,ClienteContratoSerializer,
-ListaSerializer,MejorasSerializer,PacSerializer,PerfilSerializer,PlanSerializer,ProfesionalSerializer,
+ListaSerializer,MejorasSerializer,PerfilSerializer,PlanSerializer,ProfesionalSerializer,
 ReporteSerializer,ServicioSerializer,TipoAsesoriaSerializer,TipoReporteSerializer,UserSerializer,
 VisitaSerializer
 )
@@ -425,55 +425,6 @@ def MejorasModificar(request,pk):
 @api_view(['DELETE'])
 def MejorasEliminar(request, pk):
     act = Mejoras.objects.get(id_mejora=pk)
-    act.delete()
-    return Response('Eliminado correctamente')
-
-##########
-##########
-##########
-
-# PacSerializer
-
-@api_view(['GET'])
-def PacLista(request):
-    act = Pac.objects.all()
-    serializer = PacSerializer(act, many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def PacDetalles(request,pk):
-    act = Pac.objects.get(id_pac=pk)
-    serializer = PacSerializer(act, many=False)
-    return Response(serializer.data)
-
-@api_view(['POST'])
-def PacCrear(request):
-    serializer = PacSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
-
-@api_view(['PATCH'])
-def PacModificar(request,pk):
-    act = Pac.objects.get(id_pac=pk)
-    data = request.data
-
-    act.id = data.get("id_pac", act.id_pac)
-    act.fec_estimada = data.get("fec_estimada", act.fec_estimada)
-    act.fec_ida = data.get("fec_ida", act.fec_ida)
-    act.estado = data.get("estado", act.estado)
-    act.id_actividad = data.get("id_actividad", act.id_actividad)
-    act.id_cliente = data.get("id_cliente", act.id_cliente)
-    act.id_profesional = data.get("id_profesional", act.id_profesional)
-
-    act.save()
-    serializer = PacSerializer(act)
-    return Response(serializer.data)
-
-
-@api_view(['DELETE'])
-def PacEliminar(request, pk):
-    act = Pac.objects.get(id_pac=pk)
     act.delete()
     return Response('Eliminado correctamente')
 

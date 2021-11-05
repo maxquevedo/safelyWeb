@@ -1,6 +1,6 @@
 from django.db.models import fields
 from app.models import (Actividad,Administrador,Alerta,Asesoria,Capacitacion,Chat,Cliente,
-Contrato,ClienteContrato,Lista,Mejoras,Pac,Perfil,Plan,Profesional,Reporte,
+Contrato,ClienteContrato,Lista,Mejoras,Perfil,Plan,Profesional,Reporte,
 Servicio,TipoAsesoria,TipoReporte,User,Visita
 )
 from rest_framework import serializers
@@ -62,10 +62,7 @@ class MejorasSerializer(serializers.ModelSerializer):
         model = Mejoras
         fields = '__all__'
 
-class PacSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Pac
-        fields = '__all__'
+
 
 class PerfilSerializer(serializers.ModelSerializer):
     class Meta:
