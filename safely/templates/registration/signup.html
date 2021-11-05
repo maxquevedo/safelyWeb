@@ -13,13 +13,12 @@ document.getElementById("id_groups").removeAttribute("multiple");
     <div class="menu-vertical">
         <ul>
             <h2>{{user.get_full_name}}</h2>
-            <div class="profile-photo"></div>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
             <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
             <li><a href="#">Reportes</a></li>
-            <li><a href="#">Ver actividades</a></li>
-            <li><a href="#">Notificar atrasos</a></li>
-            <li><a href="#">Control de pagos</a></li>
+            <li><a href="#">Ver Actividades</a></li>
+            <li><a href="#">Notificar Atrasos</a></li>
+            <li><a href="#">Control de Pagos</a></li>
             <li><a href="#">Accidentes</a></li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>

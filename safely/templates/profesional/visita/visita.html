@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Profesional - Checklist{% endblock %}
+{% block tittle %}Profesional - Visita{% endblock %}
 
 {% block body %}
 <div class="container-menu">
@@ -13,8 +13,8 @@
             <li><a href="{% url 'lista_ase' %}">Asesorías</a></li>
             <li><a href="{% url 'lista_capa' %}">Capacitaciones</a></li>
             <li><a href="{% url 'vista_mejoras' %}">Mejoras</a></li>
-            <li><a class="active-pro"  href="{% url 'lista_ch' %}">Checklist</a></li>
-            <li><a href="{% url 'vista_visita' %}">Visita</a></li>
+            <li><a href="{% url 'lista_ch' %}">Checklist</a></li>
+            <li><a class="active-pro"  href="{% url 'vista_visita' %}">Visita</a></li>
             <li><a href="#">Clientes</a></li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
@@ -22,40 +22,29 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Checklist</h2>
+                <h2>Visita</h2>
                 <div class="botones-asesorias">
-                    <a class ="color-verde" href="{% url 'crear_ch' %}">Crear Checklist</a>
-                    <a class ="color-azul" href="{% url 'ingresar_ch' %}">Ingresar Checklist</a>
+                    <a class ="color-verde" href="{% url 'crear_visita' %}">Crear mejora</a>
                 </div>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID CHECKLIST</th>
-                            <th>DESCRIPCION</th>
-                            <th>ESTADO</th>
-                            <th>RECOMENDACION</th>
-                            <th>CLIENTE</th>
-                            <th>PROFESIONAL</th>
-                            <TH>ACCIÓN</TH>
+                            <th>ID VISITA</th>
+                            <th>NOMBRE</th>
+                            <th>EXTRA</th>
+                            <TH>ESTADO</TH>
+                             <TH>ACCION </TH>
                         </tr>
                     </thead>
                     <tbody>
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.id_lista}}</td>
-                            <td>{{entity.descripcion}}</td>
-                            <td>
-                            {% if entity.is_valid %}
-                                    Activo
-                            {% else %}
-                                    Desactivado
-                            {% endif %}
-                            </td>
-                            <td>{{entity.recomendacion}}</td>
-                            <td>{{entity.id_cli}}</td>
-                            <td>{{entity.id_prof}}</td>
-                            <td><a href="{% url 'modificar_ch' entity.id_lista %}" id="modificar">modificar</a></td>
+                            <td>{{entity.id_visita}}</td>
+                            <td>{{entity.nombre}}</td>
+                            <td>{{entity.is_extra}}</td>
+                            <td>{{entity.estado}}</td>
+                            <td><a href="{% url 'modificar_visita' entity.id_visita %}" id="modificar">modificar</a></td>
                         </tr>
                         {% endfor %}
                         {% endif %}

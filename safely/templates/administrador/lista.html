@@ -6,13 +6,12 @@
     <div class="menu-vertical">
         <ul>
             <h2>{{user.get_full_name}}</h2>
-            <div class="profile-photo"></div>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
             <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
             <li><a href="#">Reportes</a></li>
-            <li><a href="#">Ver actividades</a></li>
-            <li><a href="#">Notificar atrasos</a></li>
-            <li><a href="#">Control de pagos</a></li>
+            <li><a href="#">Ver Actividades</a></li>
+            <li><a href="#">Notificar Atrasos</a></li>
+            <li><a href="#">Control de Pagos</a></li>
             <li><a href="#">Accidentes</a></li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
@@ -24,24 +23,24 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Identificador</th>
+                            <th class="table-id">Identificador</th>
                             <th>Usuario</th>
                             <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Correo</th>
-                            <th>Acción</th>
+                            <th class="table-action">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.id}}</td>
+                            <td class="table-id" >{{entity.id}}</td>
                             <td>{{entity.username}}</td>
                             <td>{{entity.first_name}}</td>
                             <td>{{entity.last_name}}</td>
                             <td>{{entity.email}}</td>
-                            <td>
+                            <td class="table-action">
                                 <a href="{% url 'editar' entity.id %}" id="modificar">Modificar</a>
                                 <a href="{% url 'eliminar' entity.id %}" id="eliminar">Desactivar</a>
                             </td>

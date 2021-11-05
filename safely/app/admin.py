@@ -31,5 +31,4 @@ admin.site.register(TipoAsesoria)
 admin.site.register(TipoReporte)
 
 
-admin.site.register(User)
 admin.site.register(Visita)

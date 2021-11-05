@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Profesional - Checklist{% endblock %}
+{% block tittle %}Profesional - Actividad{% endblock %}
 
 {% block body %}
 <div class="container-menu">
@@ -9,11 +9,11 @@
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-prof' %}">Home</a></li>
             <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
-            <li><a href="{% url 'vista_actividad' %}">Actividad</a></li>
+            <li><a class="active-pro" href="{% url 'vista_actividad' %}">Actividad</a></li>
             <li><a href="{% url 'lista_ase' %}">Asesorías</a></li>
             <li><a href="{% url 'lista_capa' %}">Capacitaciones</a></li>
             <li><a href="{% url 'vista_mejoras' %}">Mejoras</a></li>
-            <li><a class="active-pro"  href="{% url 'lista_ch' %}">Checklist</a></li>
+            <li><a href="{% url 'lista_ch' %}">Checklist</a></li>
             <li><a href="{% url 'vista_visita' %}">Visita</a></li>
             <li><a href="#">Clientes</a></li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
@@ -22,20 +22,20 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Checklist</h2>
+                <h2>Actividad</h2>
                 <div class="botones-asesorias">
-                    <a class ="color-verde" href="{% url 'crear_ch' %}">Crear Checklist</a>
-                    <a class ="color-azul" href="{% url 'ingresar_ch' %}">Ingresar Checklist</a>
+                    <a class ="color-verde" href="{% url 'crear_actividad' %}">Crear Actividad</a>
                 </div>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID CHECKLIST</th>
+                            <th>ID ACTIVIDAD</th>
+                            <th>NOMBRE</th>
                             <th>DESCRIPCION</th>
-                            <th>ESTADO</th>
-                            <th>RECOMENDACION</th>
-                            <th>CLIENTE</th>
-                            <th>PROFESIONAL</th>
+                            <th>TIPO DE ACTIVIDAD</th>
+                            <th>id_capacitacion </th>
+                            <th>id_asesoria </th>
+                            <th>id_visita </th>
                             <TH>ACCIÓN</TH>
                         </tr>
                     </thead>
@@ -43,19 +43,14 @@
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.id_lista}}</td>
+                            <td>{{entity.id_actividad}}</td>
+                            <td>{{entity.nombre}}</td>
                             <td>{{entity.descripcion}}</td>
-                            <td>
-                            {% if entity.is_valid %}
-                                    Activo
-                            {% else %}
-                                    Desactivado
-                            {% endif %}
-                            </td>
-                            <td>{{entity.recomendacion}}</td>
-                            <td>{{entity.id_cli}}</td>
-                            <td>{{entity.id_prof}}</td>
-                            <td><a href="{% url 'modificar_ch' entity.id_lista %}" id="modificar">modificar</a></td>
+                            <td>{{entity.tipo_actividad}}</td>
+                            <td>{{entity.id_capacitacion}}</td>
+                            <td>{{entity.id_asesoria}}</td>
+                            <td>{{entity.id_visita}}</td>
+                            <td><a href="{% url 'modificar_actividad' entity.id_actividad %}" id="modificar">modificar</a></td>
                         </tr>
                         {% endfor %}
                         {% endif %}

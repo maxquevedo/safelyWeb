@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ## Iniciar api
 python manage.py runserver
 
-## crear superuser
+## Crear superuser
 python manage.py createsuperuser
 
 ## Migraciones 
@@ -27,7 +27,14 @@ python manage.py makemigrations
 
 python manage.py migrate
 
-## Para saber que esta instalado
+## Crear usuario para Oracle
+``` bash
+create user c##safely2 identified by safely;
+grant connect, resource to c##safely2;
+alter user c##safely2 default tablespace users quota unlimited on users;
+```
+
+## Para saber que esta instalado en entorno virtual
 pip freeze --local
 
 ## Inspecciona la base de datos y coloca las tablas en models.py
