@@ -19,10 +19,10 @@ class Actividad(models.Model):
     id_actividad = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=250)
     descripcion = models.CharField(max_length=250)
-    tipo_act = models.CharField(max_length=1, choices=CHOICES)
-    fec_estimada = models.DateField()
-    fec_ida = models.DateField()
-    estado = models.CharField(max_length=1)
+    tipo_act = models.CharField('Tipo de actividad',max_length=1, choices=CHOICES)
+    fec_estimada = models.DateTimeField('Fecha estimada',auto_now=False)
+    fec_ida = models.DateTimeField('Fecha ida',auto_now=False,blank=True, null=True)
+    estado = models.BooleanField(max_length=1)
     cliente_id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='cliente_id_cli')
     id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof', blank=True, null=True)
     id_capacitacion = models.ForeignKey('Capacitacion', models.DO_NOTHING, db_column='id_capacitacion', blank=True, null=True)
@@ -44,12 +44,14 @@ class Administrador(models.Model):
         managed = False
         db_table = 'administrador'
 
+    def __str__(self):
+        return self.id_perfil.id_auth_user.username
 
 class Alerta(models.Model):
     id_alerta = models.AutoField(primary_key=True)
     fec_aviso = models.DateField()
     descripcion = models.CharField(max_length=300)
-    estado = models.FloatField()
+    estado = models.BooleanField()
     id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cli')
     id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof')
 
@@ -109,6 +111,8 @@ class Cliente(models.Model):
         managed = False
         db_table = 'cliente'
 
+    def __str__(self):
+        return self.id_perfil.id_auth_user.username
 
 class ClienteContrato(models.Model):
     id = models.AutoField(primary_key=True)
@@ -184,7 +188,9 @@ class Perfil(models.Model):
         db_table = 'perfil'
 
     def __str__(self):
-        return self.rut
+        return self.id_auth_user.username
+
+
 
 class Plan(models.Model):
     id_plan = models.AutoField(primary_key=True)
@@ -209,6 +215,8 @@ class Profesional(models.Model):
         managed = False
         db_table = 'profesional'
 
+    def __str__(self):
+        return self.id_perfil.id_auth_user.username
 
 class Reporte(models.Model):
     id_reporte = models.AutoField(primary_key=True)
