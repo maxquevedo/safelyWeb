@@ -49,10 +49,11 @@
                         start: '{{ Actividad.fec_ida|date:"Y-m-d" }}',
                         borderColor: 'Black',
                         backgroundColor: '#edad24',
+                        textColor: 'Black',
+
                     },
                 {% endfor %}
-
-            ]
+            ],
 
         });
         calendar.render();
@@ -60,3 +61,4 @@
     });
 </script>
 {% endblock %}
+

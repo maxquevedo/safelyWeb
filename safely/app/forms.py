@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import fields
-from django.forms.widgets import DateInput
+from django.forms.widgets import DateTimeInput
 from .models import Lista, Mejoras, Plan, Servicio,Asesoria,Capacitacion,Lista,Mejoras,TipoAsesoria,Actividad, Visita
 
 
@@ -85,7 +85,7 @@ class MejorasForm(forms.ModelForm):
         fields = '__all__'
 
 ## Actividad
-class DateTimeInput(forms.DateInput):
+class DateTimeInput(forms.DateTimeInput):
     input_type = 'datetime-local'
 
 class ActividadForm(forms.ModelForm):
@@ -95,8 +95,8 @@ class ActividadForm(forms.ModelForm):
 
         widgets = {
             
-            'fec_estimada': DateInput(attrs={'class': 'form-control'}),
-            'fec_ida': DateInput(attrs={'class': 'form-control'}),
+            'fec_estimada': DateTimeInput(attrs={'class': 'form-control'}),
+            'fec_ida': DateTimeInput(attrs={'class': 'form-control'}),
         }
         
       
