@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block tittle %}Home Profesional{% endblock %}
-
+{% block css %}
+<link rel="stylesheet" href="{% static 'fullcalendar/lib/main.css'  %}">
+{% endblock  %}
 {% block body %}
 <div class="container-menu">
     <div class="menu-vertical">
@@ -20,10 +22,41 @@
         </ul>
         
     </div>
-    <div class="info-perfiles">
-        <div class="resultados-info">
-            <h1>WENA Profesional</h1>
-        </div>
-    </div>
+
+
+
+        <div id="calendar" class="info-perfiles" style="padding: 30px;"></div>
+
+
 </div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'fullcalendar/lib/main.js' %}"></script>
+<script src="{% static 'fullcalendar/lib/locales-all.js' %}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        var calendarUI = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarUI,{
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+            },
+            events: [
+                {% for Actividad in object_list %}
+                    {
+                        title: '{{ Actividad.nombre }}',
+                        start: '{{ Actividad.fec_ida|date:"Y-m-d" }}',
+                        borderColor: 'Black',
+                        backgroundColor: '#edad24',
+                    },
+                {% endfor %}
+
+            ]
+
+        });
+        calendar.render();
+        calendar.setOption('locale','es');
+    });
+</script>
 {% endblock %}
