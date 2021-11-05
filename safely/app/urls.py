@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import (signup_view, home,
+from .views import (maintainer_plan, maintainer_service, maintainer_user, signup_view, home,
 home_admin, maintainer, login_view,
 UserLista, UserEdit, UserDelete, login_filter, plan_lista,
 PlanEdit, PlanDelete, PlanCreate,ServicioCreate,Servicio_lista,ServicioEdit,ServicioDelete)
@@ -12,6 +12,9 @@ urlpatterns = [
     path('administrador/usuario/registro-usuario/', signup_view, name='signup'),
     path('administrador/', home_admin, name='home-adm'),
     path('administrador/mantenedor/', maintainer, name='mantenedor'),
+    path('administrador/mantenedor-usuario/', maintainer_user, name='mantenedor-usr'),
+    path('administrador/mantenedor-plan/', maintainer_plan, name='mantenedor-plan'),
+    path('administrador/mantenedor-servicio/', maintainer_service, name='mantenedor-servicio'),
     path('login/', login_view, name='login'),
     path('administrador/usuario/lista-usuarios/', UserLista, name='listar'),
     path('administrador/usuario/editar/<int:id>/' ,UserEdit, name='editar'),

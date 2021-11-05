@@ -22,30 +22,23 @@
     <div class="info-perfiles">
         <div class="container-mantenedor">
             <div class="mantenedor-user">
-                <a href="{% url 'mantenedor-usr' %}">
+                <a href="{% url 'signup' %}">
                     <div class="acciones-mantenedor">
                         <div class="desc-acc">
-                            <h3>Mantenedor Usuario</h3>
-                            <p>Permite la creación de los usuarios dentro del sistema, listar, modificar y desactivar.</p>
+                            <h3>Crear Usuario</h3>
+                            <p>Permite la creación de usuario dentro del sistema Safely.</p>
                         </div>
                     </div>
                 </a>
-                <a href="{% url 'mantenedor-plan' %}">
+                <a href="{% url 'listar' %}">
                 <div class="acciones-mantenedor">
                     <div class="desc-acc">
-                        <h3>Mantenedor Plan</h3>
-                        <p>Permite la creación de los planes dentro del sistema, listar, modificar y desactivar.</p>
+                        <h3>Listar Usuarios</h3>
+                        <p>Permite la visualización de los usuarios dentro del sistema Safely.</p>
+                        <p>Para borrar o modificar usuarios, debe ingresar aquí.</p>
                     </div>
                 </div>
                 </a>
-                <a href="{% url 'mantenedor-servicio' %}">
-                    <div class="acciones-mantenedor">
-                        <div class="desc-acc">
-                            <h3>Mantenedor Servicio</h3>
-                            <p>Permite la creación de los servicios dentro del sistema, listar, modificar y desactivar.</p>
-                        </div>
-                    </div>
-                    </a>
             </div>
         </div>
     </div>

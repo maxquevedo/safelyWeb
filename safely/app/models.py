@@ -62,7 +62,7 @@ class Asesoria(models.Model):
     id_asesoria = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=250)
-    estado = models.FloatField()
+    estado = models.BooleanField()
     id_tipo_ase = models.ForeignKey('TipoAsesoria', models.DO_NOTHING, db_column='id_tipo_ase')
 
     class Meta:
@@ -77,7 +77,7 @@ class Capacitacion(models.Model):
     nombre = models.CharField(max_length=50)
     cant_asistentes = models.CharField(max_length=2)
     materiales = models.CharField(max_length=250)
-    estado = models.FloatField()
+    estado = models.BooleanField()
 
     class Meta:
         managed = False
@@ -129,7 +129,7 @@ class Contrato(models.Model):
     pago_mensual = models.BigIntegerField()
     pago_extra = models.BigIntegerField()
     total_pago = models.BigIntegerField()
-    estado = models.FloatField()
+    estado = models.BooleanField()
     id_plan = models.ForeignKey('Plan', models.DO_NOTHING, db_column='id_plan')
 
     class Meta:
@@ -155,7 +155,7 @@ class Mejoras(models.Model):
     nombre = models.CharField(max_length=50)
     propuesta = models.CharField(max_length=250)
     aceptacion = models.FloatField()
-    estado = models.FloatField()
+    estado = models.BooleanField()
     id_actividad = models.ForeignKey(Actividad, models.DO_NOTHING, db_column='id_actividad')
 
     class Meta:
@@ -191,7 +191,7 @@ class Plan(models.Model):
     nombre = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=250)
     costo = models.BigIntegerField()
-    estado = models.FloatField()
+    estado = models.BooleanField()
     id_servicio = models.ForeignKey('Servicio', models.DO_NOTHING, db_column='id_servicio')
 
     class Meta:
@@ -230,7 +230,7 @@ class Servicio(models.Model):
     id_servicio = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=250)
-    estado = models.FloatField()
+    estado = models.BooleanField()
 
     class Meta:
         managed = False
@@ -281,7 +281,7 @@ class Visita(models.Model):
     id_visita = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     is_extra = models.FloatField()
-    estado = models.FloatField()
+    estado = models.BooleanField()
 
     class Meta:
         managed = False

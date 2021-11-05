@@ -59,6 +59,15 @@ def home_admin(request):
 def maintainer(request):
     return render(request, 'administrador/mantenedor.html')
 
+def maintainer_user(request):
+    return render(request, 'administrador/mantenedor-usuario.html')
+
+def maintainer_plan(request):
+    return render(request, 'administrador/mantenedor-plan.html')
+
+def maintainer_service(request):
+    return render(request, 'administrador/mantenedor-servicio.html')
+
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
