@@ -1,0 +1,44 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    {% block head %}
+    <title>Safely - {% block tittle %}{% endblock %}</title>
+    {% endblock %}
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li ><a c href="{% url 'home-prof' %}">HOME</a></li>
+            <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
+            <li><a href="{% url 'vista_asesorias' %}">Asesorias</a></li>
+            <li><a href="{% url 'vista_capacitacion' %}">Capacitaciones</a></li>
+            <li><a href="{% url 'vista_mejoras' %}">Mejoras</a></li>
+            <li><a href="{% url 'vista_checklist' %}">Checklist</a></li>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+        
+    </div>
+    {% block body %}
+	<!--BODY-->
+	{% endblock %}
+
+</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/smooth.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% block js %}
+    {% endblock %}
+</body>
+</html>

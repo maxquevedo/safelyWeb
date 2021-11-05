@@ -1,0 +1,126 @@
+{% extends 'profesional/base-profesional.html' %}
+{% load static %}
+{% block tittle %}LISTA{% endblock %}
+
+{% block body %}
+<style>
+  
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.button3 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #f44336;
+}
+
+.button3:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+.button4 {
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+}
+
+.button4:hover {background-color: #e7e7e7;}
+
+.button5 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.button5:hover {
+  background-color: #555555;
+  color: white;
+}
+</style>
+<div class="container-menu">
+
+    <div class="info-perfiles">
+        <div class="container-lista">
+            
+            <div class="lista">
+                <h2>Lista de Usuarios</h2>
+                <table class="table">
+                    <button type="button">Click Me!</button> 
+<button class="button button1">Crear</button>
+<button class="button button2">Modificar</button>
+<button class="button button3">Red</button>
+<button class="button button4">Gray</button>
+<button class="button button5">Black</button>
+                
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Identificador</th>
+                            <th>Usuario</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Correo</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.id}}</td>
+                            <td>{{entity.username}}</td>
+                            <td>{{entity.first_name}}</td>
+                            <td>{{entity.last_name}}</td>
+                            <td>{{entity.email}}</td>
+                            <td>
+                                <a href="{% url 'editar' entity.id %}" id="modificar">Modificar</a>
+                                <a href="{% url 'eliminar' entity.id %}" id="eliminar">Desactivar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {%endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

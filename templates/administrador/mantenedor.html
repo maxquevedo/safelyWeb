@@ -1,0 +1,88 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Mantenedor{% endblock %}
+
+{% block body %}
+{% if perms.api.add_user %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <div class="profile-photo"></div>
+            <li><a href="{% url 'home-adm' %}">Home</a></li>
+            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="#">Ver actividades</a></li>
+            <li><a href="#">Notificar atrasos</a></li>
+            <li><a href="#">Control de pagos</a></li>
+            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div class="info-perfiles">
+        <div class="container-mantenedor">
+            <div class="mantenedor-user">
+                <a href="{% url 'signup' %}">
+                    <div class="acciones-mantenedor">
+                        <div class="desc-acc">
+                            <h3>Crear Usuario</h3>
+                            <p>Permite la creación de usuario dentro del sistema Safely.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'listar' %}">
+                <div class="acciones-mantenedor">
+                    <div class="desc-acc">
+                        <h3>Listar Usuarios</h3>
+                        <p>Permite la visualización de los usuarios dentro del sistema Safely.</p>
+                        <p>Para borrar o modificar usuarios, debe ingresar aquí.</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            
+            <div class="mantenedor-user">
+                <a href="{% url 'agregar-plan' %}">
+                    <div class="acciones-mantenedor">
+                        <div class="desc-acc">
+                            <h3>Crear Plan</h3>
+                            <p>Permite la creación de un plan dentro del sistema Safely.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'lista-plan' %}">
+                <div class="acciones-mantenedor">
+                    <div class="desc-acc">
+                        <h3>Listar planes</h3>
+                        <p>Permite la visualización de los planes dentro del sistema Safely.</p>
+                        <p>Para borrar o modificar planes, debe ingresar aquí.</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="mantenedor-user">
+                <a href="{% url 'agregar-servicio' %}">
+                    <div class="acciones-mantenedor">
+                        <div class="desc-acc">
+                            <h3>Crear Servicio</h3>
+                            <p>Permite la creación de un servicio dentro del sistema Safely.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'lista-servicios' %}">
+                <div class="acciones-mantenedor">
+                    <div class="desc-acc">
+                        <h3>Listar Servicios</h3>
+                        <p>Permite la visualización de los servicios dentro del sistema Safely.</p>
+                        <p>Para borrar o modificar servicios, debe ingresar aquí.</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

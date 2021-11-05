@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Servicio -LISTA{% endblock %}
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <div class="profile-photo"></div>
+            <li><a href="{% url 'home-adm' %}">Home</a></li>
+            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="#">Ver actividades</a></li>
+            <li><a href="#">Notificar atrasos</a></li>
+            <li><a href="#">Control de pagos</a></li>
+            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>Lista de Servicios</h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Identificador</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.id_servicio}}</td>
+                            <td>{{entity.nombre}}</td>
+                            <td>{{entity.descripcion}}</td>
+
+                            <td>
+                                <a href="{% url 'editar-servicio' entity.id_servicio %}" id="modificar">Modificar</a>
+                                <a href="{% url 'eliminar-servicio' entity.id_servicio %}" id="eliminar">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {%endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

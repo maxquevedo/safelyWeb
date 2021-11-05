@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}LISTA{% endblock %}
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <div class="profile-photo"></div>
+            <li><a href="{% url 'home-adm' %}">Home</a></li>
+            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="#">Ver actividades</a></li>
+            <li><a href="#">Notificar atrasos</a></li>
+            <li><a href="#">Control de pagos</a></li>
+            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>Lista de Usuarios</h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Identificador</th>
+                            <th>Usuario</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Correo</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.id}}</td>
+                            <td>{{entity.username}}</td>
+                            <td>{{entity.first_name}}</td>
+                            <td>{{entity.last_name}}</td>
+                            <td>{{entity.email}}</td>
+                            <td>
+                                <a href="{% url 'editar' entity.id %}" id="modificar">Modificar</a>
+                                <a href="{% url 'eliminar' entity.id %}" id="eliminar">Desactivar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {%endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
