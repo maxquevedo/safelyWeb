@@ -25,7 +25,7 @@ class home_professional(ListView):
     template_name = 'profesional/home-profesional.html'
 
     def get_queryset(self):
-        querySet = self.model.objects.filter(estado=1)
+        querySet = self.model.objects.filter(estado=2)
         return querySet
 
 
