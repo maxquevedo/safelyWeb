@@ -30,12 +30,12 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>ID ACTIVIDAD</th>
-                            <th>NOMBRE</th>
-                            <th>DESCRIPCION</th>
-                            <th>TIPO DE ACTIVIDAD</th>
-                            <th>id_capacitacion </th>
-                            <th>id_asesoria </th>
-                            <th>id_visita </th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Fecha estimada</th>
+                            <th>Fecha ida </th>
+                            <th>Estado </th>
+                            <th>Cliente </th>
                             <TH>ACCIÓN</TH>
                         </tr>
                     </thead>
@@ -43,14 +43,31 @@
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.id_actividad}}</td>
+                            <td class="table-id">{{entity.id_actividad}}</td>
                             <td>{{entity.nombre}}</td>
-                            <td>{{entity.descripcion}}</td>
-                            <td>{{entity.tipo_actividad}}</td>
-                            <td>{{entity.id_capacitacion}}</td>
-                            <td>{{entity.id_asesoria}}</td>
-                            <td>{{entity.id_visita}}</td>
-                            <td><a href="{% url 'modificar_actividad' entity.id_actividad %}" id="modificar">modificar</a></td>
+                            <td class="desc-act"><p>{{entity.descripcion}}</p></td>
+                            <td>{{entity.fec_estimada}}</td>
+                            <td>{{entity.fec_ida}}</td>
+                            <td>{% if entity.estado == '1' %}
+                                Solicitado
+                                {% elif entity.estado == '2' %}
+                                Pendiente
+                                {% elif entity.estado == '3' %}
+                                Realizado
+                                {% elif entity.estado == '4' %}
+                                Cancelado
+                                {% endif %}
+                            </td>
+                            <td>{{entity.cliente_id_cli}}</td>
+
+                            <td class="table-action" >
+                                <a href="{% url 'modificar_actividad' entity.id_actividad %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                                <a href="{% url 'modificar_actividad' entity.id_actividad %}" id="modificar">
+                                    <div class = "modificar"><p>Estado</p></div>
+                                </a>
+                            </td>
                         </tr>
                         {% endfor %}
                         {% endif %}

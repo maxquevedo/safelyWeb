@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Servicio -LISTA{% endblock %}
+{% block tittle %}Inofrmacion perfiles{% endblock %}
+
 {% block body %}
+{% if perms.api.add_user %}
 <div class="container-menu">
     <div class="menu-vertical">
         <ul>
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
-            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
-            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
-            <li><a  href="{% url 'infoProfesional' %}">info Profesional</a></li>
-            <li><a href="{% url 'infoCliente' %}">info Cliente</a></li>
+            <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a class="active" href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
             <li><a href="#">Ver Actividades</a></li>
             <li><a href="#">Notificar Atrasos</a></li>
@@ -22,35 +24,41 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Lista de Servicios</h2>
+                <h2>INFORMACION PERFILES</h2>
+                <div class="botones-asesorias">
+                    <a class ="color-verde" href="{% url 'crear_perfil' %}">Crear perfil</a>
+                </div>
                 <table class="table">
                     <thead class="thead-dark">
-                        <tr class="servicio">
-                            <th>Identificador</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Acción</th>
+                        <tr>
+                            <th>Id PErfil</th>
+                            <th>Rut</th>
+                            <th>Telefono</th>
+                            <th>Dirección</th>
+                            <th>Tipo de perfil</th>
+                            <th>Id Usuario</th>
+                            <TH>Acción</TH>
                         </tr>
                     </thead>
                     <tbody>
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.id_servicio}}</td>
-                            <td>{{entity.nombre}}</td>
-                            <td class="desc-act"><p>{{entity.descripcion}}</p></td>
+                            <td>{{entity.id_perfil}}</td>
+                            <td>{{entity.rut}}</td>
+                            <td>{{entity.telefono}}</td>
+                            <td>{{entity.direccion}}</td>
+                            <td>{{entity.tipo_perf}}</td>
+                            <td>{{entity.id_auth_user}}</td>
 
                             <td class="table-action">
-                                <a href="{% url 'editar-servicio' entity.id_servicio %}" id="modificar">
+                                <a href="{% url 'modificar_perfil' entity.id_perfil %}" id="modificar">
                                     <div class = "modificar"><p>Modificar</p></div>
-                                </a>
-                                <a href="{% url 'eliminar-servicio' entity.id_servicio %}" id="eliminar">
-                                    <div class = "vigente"><p>Desactivar</p></div>
                                 </a>
                             </td>
                         </tr>
                         {% endfor %}
-                        {%endif %}
+                        {% endif %}
                     </tbody>
                 </table>
                 <div class="num-pag">
@@ -58,7 +66,8 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-
+{% endif %}
 {% endblock %}

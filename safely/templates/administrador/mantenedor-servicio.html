@@ -1,7 +1,7 @@
 
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Mantenedor{% endblock %}
+{% block tittle %}Mantenedor Servicio{% endblock %}
 
 {% block body %}
 {% if perms.api.add_user %}
@@ -12,7 +12,7 @@
             <li><a href="{% url 'home-adm' %}">Home</a></li>
             <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
             <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
-            <li><a  href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoProfesional' %}">Info Profesional</a></li>
             <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
             <li><a href="#">Ver Actividades</a></li>
@@ -25,27 +25,20 @@
     <div class="info-perfiles">
         <div class="container-mantenedor">
             <div class="mantenedor-user">
-                <a href="{% url 'mantenedor-usr' %}">
+                <a href="{% url 'agregar-servicio' %}">
                     <div class="acciones-mantenedor">
                         <div class="desc-acc">
-                            <h3>Mantenedor Usuario</h3>
-                            <p>Permite la creación de los usuarios dentro del sistema, listar, modificar y desactivar.</p>
+                            <h3>Crear Servicio</h3>
+                            <p>Permite la creación de un servicio dentro del sistema Safely.</p>
                         </div>
                     </div>
                 </a>
-                <a href="{% url 'mantenedor-servicio' %}">
-                    <div class="acciones-mantenedor">
-                        <div class="desc-acc">
-                            <h3>Mantenedor Servicio</h3>
-                            <p>Permite la creación de los servicios dentro del sistema, listar, modificar y desactivar.</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="{% url 'mantenedor-plan' %}">
+                <a href="{% url 'lista-servicios' %}">
                 <div class="acciones-mantenedor">
                     <div class="desc-acc">
-                        <h3>Mantenedor Plan</h3>
-                        <p>Permite la creación de los planes dentro del sistema, listar, modificar y desactivar.</p>
+                        <h3>Listar Servicios</h3>
+                        <p>Permite la visualización de los servicios dentro del sistema Safely.</p>
+                        <p>Para borrar o modificar servicios, debe ingresar aquí.</p>
                     </div>
                 </div>
                 </a>

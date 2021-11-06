@@ -80,8 +80,8 @@ nav > ul > li > a {
     border:1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     margin: auto;
-    width: 400px;
-    height: 500px;
+    width: 500px;
+    height: 600px;
     align-content: center;
     align-items: center;
     text-align: center;
@@ -98,8 +98,8 @@ nav > ul > li > a {
     border:1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     margin: auto;
-    width: 400px;
-    height: 640px;
+    width: 500px;
+    height: auto;
     align-content: center;
     align-items: center;
     text-align: center;
@@ -114,7 +114,8 @@ nav > ul > li > a {
 
 .login-text-container > h2 {
     padding-bottom: 40px;
-    font-size: 38px;
+    padding-top: 40px;
+    font-size: 52px;
     text-shadow: 0px 0px 16px rgba(0,0,0,0.02);
 }
 
@@ -124,8 +125,9 @@ nav > ul > li > a {
     display: block;
     margin: auto;
     margin-bottom: 20px;
-    height: 36px;
-    width: 240px;
+    height: 44px;
+    width: 320px;
+    font-size: 16px;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     border-radius: 6px;
     padding-left: 8px;
@@ -139,8 +141,9 @@ nav > ul > li > a {
     display: block;
     margin: auto;
     margin-bottom: 20px;
-    height: 36px;
-    width: 240px;
+    height: 44px;
+    width: 340px;
+    font-size: 16px;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     border-radius: 6px;
     padding-left: 8px;
@@ -162,6 +165,8 @@ nav > ul > li > a {
     border-radius: 6px;
     color: white;
     transition: 0.2s;
+    font-size: 16px;
+    margin-bottom: 40px;
 }
 
 .login-text-container .alter-button:hover{
@@ -199,23 +204,35 @@ nav > ul > li > a {
 
 .perfil-text-container > h2 {
     padding-bottom: 40px;
-    font-size: 38px;
+    padding-top: 40px;
+    font-size: 44px;
     text-shadow: 0px 0px 16px rgba(0,0,0,0.02);
 }
 
-.perfil-text-container form input {
+.perfil-text-container form input[type=text], input[type=number], input[type=submit], input[type=email], input[type=password], input[type=datetime-local]{
     border:1px solid #dfdfdf;
     box-sizing:border-box;
     display: block;
     margin: auto;
     margin-bottom: 20px;
-    height: 36px;
-    width: 240px;
+    height: 44px;
+    width: 340px;
+    font-size: 16px;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     border-radius: 6px;
     padding-left: 8px;
     background-color: rgba(var(--b3f,250,250,250),1);
     border:1px solid #dfdfdf;
+}
+
+input[type=checkbox] {
+    box-sizing:border-box;
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    height: 44px;
+    width: 340px;
+    font-size: 16px;
 }
 
 .perfil-text-container select {
@@ -224,8 +241,9 @@ nav > ul > li > a {
     display: block;
     margin: auto;
     margin-bottom: 20px;
-    height: 36px;
-    width: 240px;
+    height: 44px;
+    width: 340px;
+    font-size: 16px;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     border-radius: 6px;
     padding-left: 8px;
@@ -247,6 +265,8 @@ nav > ul > li > a {
     border-radius: 6px;
     color: white;
     transition: 0.2s;
+    font-size: 16px;
+    margin-bottom: 40px;
 }
 
 .perfil-text-container .alter-button:hover{
@@ -387,7 +407,7 @@ nav > ul > li > a {
 }
 
 .menu-vertical { 
-    width: 350px;
+    width: 20%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -397,7 +417,7 @@ nav > ul > li > a {
 .menu-vertical ul {
     margin: auto;
     list-style-type: none;
-    width: 350px;
+    width: 20%;
     background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.03));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -415,10 +435,10 @@ nav > ul > li > a {
 .menu-vertical li a {
     display: block;
     color: #1a1a1a;
-    padding: 24px 28px;
+    padding: 26px 28px;
     text-decoration: none;
     transition: 0.2s;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .menu-vertical ul li {
@@ -442,8 +462,8 @@ nav > ul > li > a {
 .menu-vertical ul h2 {
     margin: auto;
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     color: #1a1a1a;
     font-size: 26px;
 }
@@ -462,7 +482,7 @@ nav > ul > li > a {
 }
 
 .info-perfiles { 
-    width: 70%;
+    width: 80%;
     height: 100%;
     display: flex;
     margin: auto;
@@ -555,7 +575,7 @@ nav > ul > li > a {
 /*Seccion mantenedor*/
 
 .container-mantenedor {
-    width: 70%;
+    width: 100%;
     height: 100vh;
     margin: auto;
     display:flex;
@@ -582,15 +602,13 @@ nav > ul > li > a {
     align-items: center;
     justify-content: center;
     margin: auto;
-    height: 240px;
-    width: 300px;
+    height: 300px;
+    width: 360px;
     transition: 0.2s;
     display: flex;
 }
 
 .acciones-mantenedor:hover{
-    height: 260px;
-    width: 320px;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.1);
     cursor: pointer;
     border: 3px solid #24a0ed;
@@ -600,14 +618,14 @@ nav > ul > li > a {
     width: 80%;
     text-align: center;
     margin: auto;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .desc-acc h3 {
     width: 80%;
     margin: auto;
     text-align: center;
-    font-size: 23px;
+    font-size: 30px;
     padding-bottom: 25px;
 }
 
@@ -627,7 +645,7 @@ nav > ul > li > a {
     margin: auto;
     justify-content: center;
     text-align: center;
-    font-size: 30px;
+    font-size: 36px;
     padding-bottom: 30px;
 }
 
@@ -640,51 +658,85 @@ nav > ul > li > a {
 }
 
 .lista table td a {
-    padding: 6px 10px;
-    border-radius: 6px;
     text-decoration: none;
     color: white;
+    display: inline-flex;
+    width: auto;
+}
+
+.lista table td a .modificar {
+    border-radius: 6px;
+    background-color: #1bbb35;
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    display: flex;
     transition: 0.2s;
 }
 
-.lista table td #eliminar{
+.lista table td a .vigente {
+    border-radius: 6px;
     background-color: crimson;
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    transition: 0.2s;
 }
 
-.lista table td #modificar{
-    background-color: #1bbb35;
+.lista table td a div p {
+    margin: auto;
 }
 
-.lista table td #eliminar:hover {
+
+.lista table td .vigente:hover {
     background-color: rgb(175, 16, 48);
 }
 
-.lista table td #modificar:hover {
+.lista table td .modificar:hover {
     background-color: #18ac30;
 }
 
-.desc {
+.lista .desc {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
+    width: 320px;
+    height: 58px;
 }
 
-.desc p {
-    width: 96%;
-    height: 52px;
+.lista desc p {
+    height: 42px;
     text-align: justify;
-    margin-left: auto;
+    overflow: auto;
+}
+
+.lista .desc-act {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 250px;
+    height: 58px;
+}
+
+.lista .desc-act p {
+    height: 58px;
+    text-align: justify;
     overflow: auto;
 }
 
 .lista td, .lista th {
     border: 1px solid #ddd;
-    width: 200px;
-    max-width: 200;
-    height: 52px;
+    width: 180px;
+    height: 42px;
+    font-size: 17px;
 }
 
+.lista .table-action {
+    width: 220px;
+}
 
 .lista tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -773,136 +825,62 @@ nav > ul > li > a {
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.25){
-    .container-mantenedor {
-        width: 74%;
-    }
-    
     .acciones-mantenedor {
         height: 200px;
         width: 260px;
     }
     
-    .acciones-mantenedor:hover{
-        height: 220px;
-        width: 280px;
-    }
-    
     .desc-acc p {
-        font-size: 14px;
+        font-size: 16px;
     }
     
     .desc-acc h3 {
-        font-size: 23px;
-        padding-bottom: 22px;
+        font-size: 24px;
+        padding-bottom: 24px;
     }
 
-    .menu-vertical { 
-        width: 300px;
-    }
-    
-    .menu-vertical ul {
-        width: 300px;
-    }
-    
     .menu-vertical li a {
-        padding: 18px 24px;
-    }
-
-    .menu-vertical ul h2 {
-        padding-top: 18px;
-        padding-bottom: 18px;
-    }
-    
-    .menu-vertical .profile-photo { 
-        width: 100px;
-        height: 100px;
-    }
-
-    .info-perfiles { 
-        width: 74%;
-    }
-
-    .lista table td a {
-        padding: 4px 8px;
-    }
-    
-    .lista td, .lista th {
-        border: 1px solid #ddd;
-        width: 200px;
-        height: 52px;
-    }
-
-    .page-item {
-        padding: 6px 14px;
-    }
-}
-
-@media (max-width:1366px){
-    .container-mantenedor {
-        width: 80%;
-    }
-    
-    .acciones-mantenedor {
-        height: 180px;
-        width: 260px;
-    }
-    
-    .acciones-mantenedor:hover{
-        height: 200px;
-        width: 280px;
-    }
-    
-    .desc-acc p {
-        font-size: 14px;
-    }
-    
-    .desc-acc h3 {
-        font-size: 23px;
-        padding-bottom: 22px;
-    }
-
-    .menu-vertical { 
-        width: 20%;
-    }
-    
-    .menu-vertical ul {
-        width: 20%;
-    }
-    
-    .menu-vertical li a {
-        padding: 14px 20px;
+        padding: 16px 20px;
+        font-size: 18px;
     }
 
     .menu-vertical ul h2 {
         padding-top: 16px;
         padding-bottom: 16px;
     }
+
+    .lista table td a .modificar {
+        width: 70px;
+        height: 30px;
+    }
     
-    .menu-vertical .profile-photo { 
-        width: 80px;
-        height: 80px;
-    }
-
-    .info-perfiles { 
-        width: 80%;
-    }
-
-    .lista table td a {
-        padding: 4px 6px;
+    .lista table td a .vigente {
+        width: 70px;
+        height: 30px;
     }
     
     .lista td, .lista th {
         border: 1px solid #ddd;
-        width: 150px;
-        height: 50px;
+        width: 120px;
+        height: 42px;
+        font-size: 14px;
     }
 
-    .lista .table-id {
-        width: 120px;
+    .lista .desc p {
+        height: 40px;
+    }
+
+    .lista .desc-act {
+        width: 200px;
+        height: 42px;
+    }
+    
+    .lista .desc-act p {
+        height: 42px;
     }
 
     .lista .table-action {
-        width: 200px;
+        width: 160px;
     }
 
     .page-item {
@@ -910,26 +888,167 @@ nav > ul > li > a {
     }
 
     .signup-box {
-        width: 400px;
+        width: 380px;
+        height: auto;
+    }
+    
+    .perfil-text-container > h2 {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        font-size: 34px;
+        text-shadow: 0px 0px 16px rgba(0,0,0,0.02);
+    }
+    
+    .perfil-text-container form input[type=text], input[type=number], input[type=submit], input[type=email], input[type=password], input[type=datetime-local] {
+        margin-bottom: 16px;
+        height: 36px;
+        width: 260px;
+        font-size: 14px;
+    }
+
+    input[type=checkbox] {
+        box-sizing:border-box;
+        display: block;
+        margin: auto;
+        margin-bottom: 16px;
+        height: 38px;
+        width: 300px;
+        font-size: 14px;
+    }
+    
+    .perfil-text-container select {
+        margin-bottom: 16px;
+        height: 36px;
+        width: 260px;
+        font-size: 14px;
+    }
+
+    .perfil-text-container .alter-button {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    #myChart {
+        height: auto;
+        width: 500px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
+@media (max-width:1366px){
+
+    .acciones-mantenedor {
+        height: 180px;
+        width: 240px;
+    }
+    
+    .desc-acc p {
+        font-size: 12px;
+    }
+    
+    .desc-acc h3 {
+        font-size: 20px;
+        padding-bottom: 22px;
+    }
+
+    .menu-vertical li a {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+
+    .menu-vertical ul h2 {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+    
+
+    .info-perfiles { 
+        width: 80%;
+    }
+
+    .lista table td a .modificar {
+        width: 60px;
+        height: 25px;
+    }
+    
+    .lista table td a .vigente {
+        width: 60px;
+        height: 25px;
+    }
+
+    .lista .desc {
+        width: 200px;
+    }
+
+    .lista.desc p {
+        height: 36px;
+    }
+
+    .lista .desc-act {
+
+        width: 140px;
+        height: 38px;
+    }
+    
+    .lista .desc-act p {
+        height: 38px;
+    }
+
+    .lista td, .lista th {
+        border: 1px solid #ddd;
+        width: 100px;
+        height: 38px;
+        font-size: 11px;
+    }
+
+    .lista .table-action {
+        width: 160px;
+    }
+
+    .page-item {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+
+    .signup-box {
+        width: 350px;
         height: auto;
     }
     
     .perfil-text-container > h2 {
         padding-top: 20px;
         padding-bottom: 20px;
-        font-size: 30px;
+        font-size: 26px;
         text-shadow: 0px 0px 16px rgba(0,0,0,0.02);
     }
     
-    .perfil-text-container form input {
-        margin-bottom: 14px;
-        height: 28px;
+    .perfil-text-container form input[type=text], input[type=number], input[type=submit], input[type=email], input[type=password], input[type=datetime-local] {
+        margin-bottom: 12px;
+        height: 24px;
         width: 220px;
+        font-size: 12px;
+    }
+
+    input[type=checkbox] {
+        box-sizing:border-box;
+        display: block;
+        margin: auto;
+        margin-bottom: 12px;
+        height: 34px;
+        width: 280px;
+        font-size: 12px;
     }
     
     .perfil-text-container select {
-        margin-bottom: 14px;
-        height: 28px;
+        margin-bottom: 12px;
+        height: 24px;
         width: 220px;
+        font-size: 12px;
+    }
+
+    .perfil-text-container .alter-button {
+        font-size: 12px;
+        margin-bottom: 20px;
     }
 }

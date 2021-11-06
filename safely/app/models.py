@@ -16,13 +16,20 @@ class Actividad(models.Model):
     ('3', "Visita"),
     )
 
+    estados = (
+        ('1', "Solicitado"),
+        ('2', "Pendiente"),
+        ('3', "Realizado"),
+        ('4', "Cancelado")
+    )
+
     id_actividad = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=250)
     descripcion = models.CharField(max_length=250)
-    tipo_act = models.CharField(max_length=1, choices=CHOICES)
-    fec_estimada = models.DateField()
-    fec_ida = models.DateField()
-    estado = models.CharField(max_length=1)
+    tipo_act = models.CharField('Tipo de actividad',max_length=1, choices=CHOICES)
+    fec_estimada = models.DateField('Fecha estimada',auto_now=False)
+    fec_ida = models.DateField('Fecha ida',auto_now=False,blank=True, null=True)
+    estado = models.CharField(max_length=1, choices=estados)
     cliente_id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='cliente_id_cli')
     id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof', blank=True, null=True)
     id_capacitacion = models.ForeignKey('Capacitacion', models.DO_NOTHING, db_column='id_capacitacion', blank=True, null=True)
@@ -44,12 +51,14 @@ class Administrador(models.Model):
         managed = False
         db_table = 'administrador'
 
+    def __str__(self):
+        return self.id_perfil.id_auth_user.username
 
 class Alerta(models.Model):
     id_alerta = models.AutoField(primary_key=True)
     fec_aviso = models.DateField()
     descripcion = models.CharField(max_length=300)
-    estado = models.FloatField()
+    estado = models.BooleanField()
     id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cli')
     id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof')
 
@@ -62,7 +71,7 @@ class Asesoria(models.Model):
     id_asesoria = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=250)
-    estado = models.FloatField()
+    estado = models.BooleanField()
     id_tipo_ase = models.ForeignKey('TipoAsesoria', models.DO_NOTHING, db_column='id_tipo_ase')
 
     class Meta:
@@ -77,7 +86,7 @@ class Capacitacion(models.Model):
     nombre = models.CharField(max_length=50)
     cant_asistentes = models.CharField(max_length=2)
     materiales = models.CharField(max_length=250)
-    estado = models.FloatField()
+    estado = models.BooleanField()
 
     class Meta:
         managed = False
@@ -109,6 +118,8 @@ class Cliente(models.Model):
         managed = False
         db_table = 'cliente'
 
+    def __str__(self):
+        return self.id_perfil.id_auth_user.username
 
 class ClienteContrato(models.Model):
     id = models.AutoField(primary_key=True)
@@ -129,7 +140,7 @@ class Contrato(models.Model):
     pago_mensual = models.BigIntegerField()
     pago_extra = models.BigIntegerField()
     total_pago = models.BigIntegerField()
-    estado = models.FloatField()
+    estado = models.BooleanField()
     id_plan = models.ForeignKey('Plan', models.DO_NOTHING, db_column='id_plan')
 
     class Meta:
@@ -154,8 +165,8 @@ class Mejoras(models.Model):
     id_mejora = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     propuesta = models.CharField(max_length=250)
-    aceptacion = models.FloatField()
-    estado = models.FloatField()
+    aceptacion = models.BooleanField()
+    estado = models.BooleanField()
     id_actividad = models.ForeignKey(Actividad, models.DO_NOTHING, db_column='id_actividad')
 
     class Meta:
@@ -184,14 +195,16 @@ class Perfil(models.Model):
         db_table = 'perfil'
 
     def __str__(self):
-        return self.rut
+        return self.id_auth_user.username
+
+
 
 class Plan(models.Model):
     id_plan = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=250)
     costo = models.BigIntegerField()
-    estado = models.FloatField()
+    estado = models.BooleanField()
     id_servicio = models.ForeignKey('Servicio', models.DO_NOTHING, db_column='id_servicio')
 
     class Meta:
@@ -209,6 +222,8 @@ class Profesional(models.Model):
         managed = False
         db_table = 'profesional'
 
+    def __str__(self):
+        return self.id_perfil.id_auth_user.username
 
 class Reporte(models.Model):
     id_reporte = models.AutoField(primary_key=True)
@@ -230,7 +245,7 @@ class Servicio(models.Model):
     id_servicio = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=250)
-    estado = models.FloatField()
+    estado = models.BooleanField()
 
     class Meta:
         managed = False
@@ -280,8 +295,8 @@ class User(models.Model):
 class Visita(models.Model):
     id_visita = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
-    is_extra = models.FloatField()
-    estado = models.FloatField()
+    is_extra = models.BooleanField()
+    estado = models.BooleanField()
 
     class Meta:
         managed = False

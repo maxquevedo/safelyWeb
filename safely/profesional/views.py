@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 
@@ -8,14 +9,24 @@ from django.http import Http404
 from app.models import *
 from app.forms import *
 
+from django.views.generic.list import ListView
+from django.utils.decorators import method_decorator
+
 
 # Create your views here.
 
 #INICIO PREFESIONAL
-@login_required
-def home_professional(request):
-    return render(request, 'profesional/home-profesional.html')
 
+#def home_professional(request):
+#    return render(request, 'profesional/home-profesional.html')
+@method_decorator(login_required, name='dispatch')
+class home_professional(ListView):
+    model = Actividad
+    template_name = 'profesional/home-profesional.html'
+
+    def get_queryset(self):
+        querySet = self.model.objects.filter(estado=1)
+        return querySet
 
 
 #MODIFICAR DATOS PROFESIONAL
@@ -290,9 +301,9 @@ def modificar_actividad(request,id_actividad):
     ACT = Actividad.objects.get(id_actividad=id_actividad)
 
     if request.method == 'GET':
-        form = ActividadForm(instance=ACT)
+        form = ActividadModForm(instance=ACT)
     else:
-        form = ActividadForm(request.POST, instance=ACT)
+        form = ActividadModForm(request.POST, instance=ACT)
         if form.is_valid():
             form.save()
             messages.success(request, "Modificado correctamente")
@@ -337,7 +348,6 @@ def crear_visita(request):
 @login_required
 def modificar_visita(request,id_visita):
     vis = Visita.objects.get(id_visita=id_visita)
-
     if request.method == 'GET':
         form = VisitaForm(instance=vis)
     else:

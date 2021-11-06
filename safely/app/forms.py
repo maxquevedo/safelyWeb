@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import fields
-from .models import Lista, Mejoras, Plan, Servicio,Asesoria,Capacitacion,Lista,Mejoras,TipoAsesoria,Actividad, Visita
+from django.forms.widgets import DateTimeInput
+from .models import Cliente, Lista, Mejoras, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,Mejoras,TipoAsesoria,Actividad, Visita
 
 
 
@@ -56,7 +57,7 @@ class TipoAsesoriaForm(forms.ModelForm):
 class AsesoriaModificar(forms.ModelForm):
     class Meta:
         model = Asesoria
-        fields = ['nombre', 'descripcion','id_tipo_ase']
+        fields = '__all__'
 ## Capacitacion 
 class CapacitacionForm(forms.ModelForm):
     class Meta:
@@ -84,7 +85,22 @@ class MejorasForm(forms.ModelForm):
         fields = '__all__'
 
 ## Actividad
+class DateTimeInput(forms.DateTimeInput):
+    input_type = 'date-local'
+
 class ActividadForm(forms.ModelForm):
+    class Meta:
+        model = Actividad
+        fields = '__all__'
+
+        widgets = {
+            
+            'fec_estimada': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+            'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+        }
+        
+
+class ActividadModForm(forms.ModelForm):
     class Meta:
         model = Actividad
         fields = '__all__'
@@ -93,4 +109,25 @@ class ActividadForm(forms.ModelForm):
 class VisitaForm(forms.ModelForm):
     class Meta:
         model = Visita
+        fields = '__all__'
+
+## CLIENTE
+
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = Cliente
+        fields = '__all__'
+
+## PROFESIONAL
+
+class ProfesionalForm(forms.ModelForm):
+    class Meta:
+        model = Profesional
+        fields = '__all__'
+
+## PERFIL
+
+class PerfilForm(forms.ModelForm):
+    class Meta:
+        model = Perfil
         fields = '__all__'

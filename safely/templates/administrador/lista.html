@@ -8,6 +8,9 @@
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
             <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a  href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
             <li><a href="#">Ver Actividades</a></li>
             <li><a href="#">Notificar Atrasos</a></li>
@@ -28,6 +31,7 @@
                             <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Correo</th>
+                            <th>Vigente</th>
                             <th class="table-action">Acción</th>
                         </tr>
                     </thead>
@@ -40,9 +44,26 @@
                             <td>{{entity.first_name}}</td>
                             <td>{{entity.last_name}}</td>
                             <td>{{entity.email}}</td>
+                            <td>
+                                {% if entity.is_active %}
+                                Sí
+                                {% else %}
+                                No
+                                {% endif %}
+                            </td>
                             <td class="table-action">
-                                <a href="{% url 'editar' entity.id %}" id="modificar">Modificar</a>
-                                <a href="{% url 'eliminar' entity.id %}" id="eliminar">Desactivar</a>
+                                <a href="{% url 'editar' entity.id %}">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                                {% if entity.is_active %}
+                                <a href="{% url 'eliminar' entity.id %}">
+                                    <div class = "vigente"><p>Desactivar</p></div>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'activar' entity.id %}">
+                                    <div class = "vigente"><p>Activar</p></div>
+                                </a>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}

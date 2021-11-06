@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}editar{% endblock %}
+{% block tittle %}Modificar{% endblock %}
 
 {% block body %}
 <div class="container-menu">
@@ -8,10 +8,10 @@
         <ul>
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
-            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a  href="{% url 'mantenedor' %}">Mantenedor</a></li>
             <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
-            <li><a  href="{% url 'infoProfesional' %}">info Profesional</a></li>
-            <li><a href="{% url 'infoCliente' %}">info Cliente</a></li>
+            <li><a class="active" href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
             <li><a href="#">Ver Actividades</a></li>
             <li><a href="#">Notificar Atrasos</a></li>
@@ -24,15 +24,10 @@
         <div class="login-container">
             <div class="signup-box">
                 <div class="perfil-text-container">
-                    <h2>Editar Plan</h2>
+                    <h2>MODIFICAR Profesional</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <h5>Nombre del Plan</h5>
-                        {{ form.nombre }}
-                        <h5>Descripción</h5>
-                        {{ form.descripcion }}
-                        <h5>Servicio agregado</h5>
-                        {{ form.id_servicio }}
+                        {{form}}
                         <input type="submit" value="Modificar" id="button" class="alter-button">
                     </form>
                 </div>

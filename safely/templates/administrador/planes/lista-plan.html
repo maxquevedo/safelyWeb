@@ -8,6 +8,9 @@
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
             <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a  href="{% url 'infoProfesional' %}">info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
             <li><a href="#">Ver Actividades</a></li>
             <li><a href="#">Notificar Atrasos</a></li>
@@ -36,11 +39,15 @@
                         <tr>
                             <td>{{entity.id_plan}}</td>
                             <td>{{entity.nombre}}</td>
-                            <td class="desc"><p>{{entity.descripcion}}</p></td>
+                            <td class="desc-act"><p>{{entity.descripcion}}</p></td>
                             <td>{{entity.id_servicio}}</td>
-                            <td>
-                                <a href="{% url 'editar-plan' entity.id_plan %}" id="modificar">Modificar</a>
-                                <a href="{% url 'eliminar-plan' entity.id_plan %}" id="eliminar">Eliminar</a>
+                            <td class="table-action">
+                                <a href="{% url 'editar-plan' entity.id_plan %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                                <a href="{% url 'eliminar-plan' entity.id_plan %}" id="eliminar">
+                                    <div class = "vigente"><p>Desactivar</p></div>
+                                </a>
                             </td>
                         </tr>
                         {% endfor %}

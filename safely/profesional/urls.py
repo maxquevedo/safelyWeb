@@ -3,7 +3,7 @@ from django.urls import path, include
 from profesional.views import *
 
 urlpatterns = [
-    path('profesional/', home_professional, name='home-prof'),
+    path('profesional/', home_professional.as_view(), name='home-prof'),
     path('profesional/datos/', datos_pro, name='datos-prof'),
 
     path('profesional/asesoria/', lista_ase, name='lista_ase'),
