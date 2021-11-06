@@ -703,13 +703,27 @@ input[type=checkbox] {
     justify-content: center;
     margin: auto;
     width: 320px;
+    height: 58px;
 }
 
-.desc p {
-    width: 96%;
+.lista desc p {
     height: 42px;
     text-align: justify;
-    margin-left: auto;
+    overflow: auto;
+}
+
+.lista .desc-act {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 250px;
+    height: 58px;
+}
+
+.lista .desc-act p {
+    height: 58px;
+    text-align: justify;
     overflow: auto;
 }
 
@@ -852,8 +866,17 @@ input[type=checkbox] {
         font-size: 14px;
     }
 
-    .desc p {
+    .lista .desc p {
         height: 40px;
+    }
+
+    .lista .desc-act {
+        width: 200px;
+        height: 42px;
+    }
+    
+    .lista .desc-act p {
+        height: 42px;
     }
 
     .lista .table-action {
@@ -957,8 +980,19 @@ input[type=checkbox] {
     .lista .desc {
         width: 200px;
     }
-    .desc p {
+
+    .lista.desc p {
         height: 36px;
+    }
+
+    .lista .desc-act {
+
+        width: 140px;
+        height: 38px;
+    }
+    
+    .lista .desc-act p {
+        height: 38px;
     }
 
     .lista td, .lista th {

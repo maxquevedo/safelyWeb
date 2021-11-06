@@ -319,9 +319,9 @@ def crear_profesional(request):
 def modificar_profesional(request,id_prof):
     pro = Profesional.objects.get(id_prof=id_prof)
     if request.method == 'GET':
-        form = ClienteForm(instance=pro)
+        form = ProfesionalForm(instance=pro)
     else:
-        form = ClienteForm(request.POST, instance=pro)
+        form = ProfesionalForm(request.POST, instance=pro)
         if form.is_valid():
             form.save()
             messages.success(request, "Modificado correctamente")
