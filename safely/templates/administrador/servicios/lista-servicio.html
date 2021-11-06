@@ -22,7 +22,7 @@
                 <h2>Lista de Servicios</h2>
                 <table class="table">
                     <thead class="thead-dark">
-                        <tr>
+                        <tr class="servicio">
                             <th>Identificador</th>
                             <th>Nombre</th>
                             <th>Descripción</th>
@@ -37,9 +37,13 @@
                             <td>{{entity.nombre}}</td>
                             <td class="desc"><p>{{entity.descripcion}}</p></td>
 
-                            <td>
-                                <a href="{% url 'editar-servicio' entity.id_servicio %}" id="modificar">Modificar</a>
-                                <a href="{% url 'eliminar-servicio' entity.id_servicio %}" id="eliminar">Eliminar</a>
+                            <td class="table-action">
+                                <a href="{% url 'editar-servicio' entity.id_servicio %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                                <a href="{% url 'eliminar-servicio' entity.id_servicio %}" id="eliminar">
+                                    <div class = "vigente"><p>Desactivar</p></div>
+                                </a>
                             </td>
                         </tr>
                         {% endfor %}

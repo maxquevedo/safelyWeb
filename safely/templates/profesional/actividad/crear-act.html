@@ -27,7 +27,30 @@
                     <h2>CREAR ACTIVIDAD</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{form}}
+                        {{form.nombre.label}}
+                        {{form.nombre}}
+                        {{form.descripcion.label}}
+                        {{form.descripcion}}
+                        {{form.tipo_act.label}}
+                        {{form.tipo_act}}
+                        {{form.fec_estimada.label}}
+                        {{form.fec_estimada}}
+                        {{form.fec_ida.label}}
+                        {{form.fec_ida}}
+                        {{form.estado.label}}
+                        {{form.estado}}
+                        Cliente
+                        {{form.cliente_id_cli}}
+                        Profesional
+                        {{form.id_prof}}
+
+                        {% for x,z in form.tipo_act.field.choices %}
+                            {% if x.data.selected == 'Capacitacion' %}
+                                hola
+                            {% else %}
+                                {{x}}
+                            {% endif %}
+                        {% endfor %}
                         <input type="submit" value="Registrar" id="button" class="alter-button">
                     </form>
                 </div>

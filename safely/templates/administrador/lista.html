@@ -28,6 +28,7 @@
                             <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Correo</th>
+                            <th>Vigente</th>
                             <th class="table-action">Acción</th>
                         </tr>
                     </thead>
@@ -40,9 +41,26 @@
                             <td>{{entity.first_name}}</td>
                             <td>{{entity.last_name}}</td>
                             <td>{{entity.email}}</td>
+                            <td>
+                                {% if entity.is_active %}
+                                Sí
+                                {% else %}
+                                No
+                                {% endif %}
+                            </td>
                             <td class="table-action">
-                                <a href="{% url 'editar' entity.id %}" id="modificar">Modificar</a>
-                                <a href="{% url 'eliminar' entity.id %}" id="eliminar">Desactivar</a>
+                                <a href="{% url 'editar' entity.id %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                                {% if entity.is_active %}
+                                <a href="{% url 'eliminar' entity.id %}" id="eliminar">
+                                    <div class = "vigente"><p>Desactivar</p></div>
+                                </a>
+                                {% else %}
+                                <a href="" id="eliminar">
+                                    <div class = "vigente"><p>Activar</p></div>
+                                </a>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}

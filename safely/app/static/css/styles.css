@@ -209,7 +209,7 @@ nav > ul > li > a {
     text-shadow: 0px 0px 16px rgba(0,0,0,0.02);
 }
 
-.perfil-text-container form input[type=text], input[type=number], input[type=submit], input[type=email], input[type=password] {
+.perfil-text-container form input[type=text], input[type=number], input[type=submit], input[type=email], input[type=password], input[type=datetime-local]{
     border:1px solid #dfdfdf;
     box-sizing:border-box;
     display: block;
@@ -438,7 +438,7 @@ input[type=checkbox] {
     padding: 26px 28px;
     text-decoration: none;
     transition: 0.2s;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .menu-vertical ul li {
@@ -658,39 +658,56 @@ input[type=checkbox] {
 }
 
 .lista table td a {
-    padding: 6px 10px;
-    border-radius: 6px;
     text-decoration: none;
     color: white;
+    display: inline-flex;
+    width: auto;
+}
+
+.lista table td a .modificar {
+    border-radius: 6px;
+    background-color: #1bbb35;
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    display: flex;
     transition: 0.2s;
 }
 
-.lista table td #eliminar{
+.lista table td a .vigente {
+    border-radius: 6px;
     background-color: crimson;
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    transition: 0.2s;
 }
 
-.lista table td #modificar{
-    background-color: #1bbb35;
+.lista table td a div p {
+    margin: auto;
 }
 
-.lista table td #eliminar:hover {
+
+.lista table td .vigente:hover {
     background-color: rgb(175, 16, 48);
 }
 
-.lista table td #modificar:hover {
+.lista table td .modificar:hover {
     background-color: #18ac30;
 }
 
-.desc {
+.lista .desc {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
+    width: 320px;
 }
 
 .desc p {
     width: 96%;
-    height: 52px;
+    height: 42px;
     text-align: justify;
     margin-left: auto;
     overflow: auto;
@@ -698,11 +715,14 @@ input[type=checkbox] {
 
 .lista td, .lista th {
     border: 1px solid #ddd;
-    width: 200px;
-    max-width: 200;
-    height: 52px;
+    width: 180px;
+    height: 42px;
+    font-size: 17px;
 }
 
+.lista .table-action {
+    width: 220px;
+}
 
 .lista tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -815,15 +835,25 @@ input[type=checkbox] {
         padding-bottom: 16px;
     }
 
-    .lista table td a {
-        padding: 4px 6px;
+    .lista table td a .modificar {
+        width: 70px;
+        height: 30px;
+    }
+    
+    .lista table td a .vigente {
+        width: 70px;
+        height: 30px;
     }
     
     .lista td, .lista th {
         border: 1px solid #ddd;
         width: 120px;
-        height: 40px;
+        height: 42px;
         font-size: 14px;
+    }
+
+    .desc p {
+        height: 40px;
     }
 
     .lista .table-action {
@@ -835,21 +865,21 @@ input[type=checkbox] {
     }
 
     .signup-box {
-        width: 420px;
+        width: 380px;
         height: auto;
     }
     
     .perfil-text-container > h2 {
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 30px;
+        padding-bottom: 30px;
         font-size: 34px;
         text-shadow: 0px 0px 16px rgba(0,0,0,0.02);
     }
     
-    .perfil-text-container form input[type=text], input[type=number], input[type=submit], input[type=email], input[type=password] {
+    .perfil-text-container form input[type=text], input[type=number], input[type=submit], input[type=email], input[type=password], input[type=datetime-local] {
         margin-bottom: 16px;
-        height: 28px;
-        width: 240px;
+        height: 36px;
+        width: 260px;
         font-size: 14px;
     }
 
@@ -865,14 +895,14 @@ input[type=checkbox] {
     
     .perfil-text-container select {
         margin-bottom: 16px;
-        height: 28px;
-        width: 240px;
+        height: 36px;
+        width: 260px;
         font-size: 14px;
     }
 
     .perfil-text-container .alter-button {
         font-size: 14px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 
     #myChart {
@@ -901,7 +931,7 @@ input[type=checkbox] {
 
     .menu-vertical li a {
         padding: 14px 20px;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .menu-vertical ul h2 {
@@ -914,15 +944,28 @@ input[type=checkbox] {
         width: 80%;
     }
 
-    .lista table td a {
-        padding: 4px 6px;
+    .lista table td a .modificar {
+        width: 60px;
+        height: 25px;
     }
     
+    .lista table td a .vigente {
+        width: 60px;
+        height: 25px;
+    }
+
+    .lista .desc {
+        width: 200px;
+    }
+    .desc p {
+        height: 36px;
+    }
+
     .lista td, .lista th {
         border: 1px solid #ddd;
         width: 100px;
         height: 38px;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .lista .table-action {
@@ -931,6 +974,7 @@ input[type=checkbox] {
 
     .page-item {
         padding: 6px 14px;
+        font-size: 12px;
     }
 
     .signup-box {
@@ -945,7 +989,7 @@ input[type=checkbox] {
         text-shadow: 0px 0px 16px rgba(0,0,0,0.02);
     }
     
-    .perfil-text-container form input[type=text], input[type=number], input[type=submit], input[type=email], input[type=password] {
+    .perfil-text-container form input[type=text], input[type=number], input[type=submit], input[type=email], input[type=password], input[type=datetime-local] {
         margin-bottom: 12px;
         height: 24px;
         width: 220px;
