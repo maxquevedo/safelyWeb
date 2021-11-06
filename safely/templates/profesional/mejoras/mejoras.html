@@ -42,13 +42,28 @@
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.id_mejora}}</td>
+                            <td class="table-id" >{{entity.id_mejora}}</td>
                             <td>{{entity.nombre}}</td>
-                            <td>{{entity.propuesta}}</td>
-                            <td>{{entity.aceptacion}}</td>
-                            <td>{{entity.estado}}</td>
-                            <td>{{entity.id_pac}}</td>
-                            <td><a href="{% url 'modificar_capa' entity.id_mejora %}" id="modificar">modificar</a></td>
+                            <td class="desc-act"><p>{{entity.propuesta}}</p></td>
+                            <td>
+                                {% if entity.aceptacion %}
+                                Aceptado
+                                {% else %}
+                                Rechazado
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if entity.estado %}
+                                Activo
+                                {% else %}
+                                Desactivado
+                                {% endif %}</td>
+                            <td>{{entity.id_actividad}}</td>
+                            <td class="table-action" >
+                                <a href="{% url 'modificar_capa' entity.id_mejora %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                            </td>
                         </tr>
                         {% endfor %}
                         {% endif %}

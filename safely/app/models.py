@@ -295,7 +295,7 @@ class User(models.Model):
 class Visita(models.Model):
     id_visita = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
-    is_extra = models.FloatField()
+    is_extra = models.BooleanField()
     estado = models.BooleanField()
 
     class Meta:

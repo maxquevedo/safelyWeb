@@ -10,8 +10,8 @@
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
             <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
-            <li><a href="{% url 'infoProfesional' %}">info Profesional</a></li>
-            <li><a class="active" href="{% url 'infoCliente' %}">info Cliente</a></li>
+            <li><a href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a class="active" href="{% url 'infoCliente' %}">Info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
             <li><a href="#">Ver Actividades</a></li>
             <li><a href="#">Notificar Atrasos</a></li>
@@ -30,10 +30,10 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID Cliente</th>
-                            <th>razon_social</th>
-                            <th>id perfil</th>
-                            <TH>ACCIÓN</TH>
+                            <th>Id Cliente</th>
+                            <th>Razón Social</th>
+                            <th>Perfil</th>
+                            <TH>Acción</TH>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,11 @@
                             <td>{{entity.id_cli}}</td>
                             <td>{{entity.razon_social}}</td>
                             <td>{{entity.id_perfil}}</td>
-                            <td><a href="{% url 'modificar_cliente' entity.id_cli %}" id="modificar">modificar</a></td>
+                            <td class="table-action">
+                                <a href="{% url 'modificar_cliente' entity.id_cli %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                            </td>
                         </tr>
                         {% endfor %}
                         {% endif %}
