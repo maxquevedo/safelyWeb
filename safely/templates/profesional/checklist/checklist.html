@@ -31,7 +31,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>ID CHECKLIST</th>
-                            <th>DESCRIPCION</th>
+                            <th>LISTA</th>
                             <th>ESTADO</th>
                             <th>RECOMENDACION</th>
                             <th>CLIENTE</th>
@@ -44,9 +44,9 @@
                         {% for entity in entity %}
                         <tr>
                             <td>{{entity.id_lista}}</td>
-                            <td>{{entity.descripcion}}</td>
+                            <td class="desc-act">{{entity.lista}}</td>
                             <td>
-                            {% if entity.is_valid %}
+                            {% if entity.verificacion %}
                                     Activo
                             {% else %}
                                     Desactivado
@@ -55,7 +55,11 @@
                             <td>{{entity.recomendacion}}</td>
                             <td>{{entity.id_cli}}</td>
                             <td>{{entity.id_prof}}</td>
-                            <td><a href="{% url 'modificar_ch' entity.id_lista %}" id="modificar">modificar</a></td>
+                            <td class="table-action">
+                                <a href="{% url 'modificar_ch' entity.id_lista %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                            </td>
                         </tr>
                         {% endfor %}
                         {% endif %}

@@ -42,9 +42,25 @@
                         <tr>
                             <td>{{entity.id_visita}}</td>
                             <td>{{entity.nombre}}</td>
-                            <td>{{entity.is_extra}}</td>
-                            <td>{{entity.estado}}</td>
-                            <td><a href="{% url 'modificar_visita' entity.id_visita %}" id="modificar">modificar</a></td>
+                            <td>
+                                {% if entity.is_extra %}
+                                Sí
+                                {% else %}
+                                No
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if entity.estado %}
+                                Activo
+                                {% else %}
+                                Desactivado
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'modificar_visita' entity.id_visita %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                            </td>
                         </tr>
                         {% endfor %}
                         {% endif %}
