@@ -9,6 +9,7 @@
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
             <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
             <li><a href="{% url 'infoProfesional' %}">Info Profesional</a></li>
             <li><a class="active" href="{% url 'infoCliente' %}">Info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
@@ -24,7 +25,7 @@
         <div class="login-container">
             <div class="signup-box">
                 <div class="perfil-text-container">
-                    <h2>CREAR Cliente</h2>
+                    <h2>Crear Cliente</h2>
                     <form action="" method="post">
                         {% csrf_token %}
                         {{form}}

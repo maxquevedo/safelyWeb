@@ -330,7 +330,7 @@ def modificar_profesional(request,id_prof):
 
 
 
-    #informacion de clientes PerfilForm
+#informacion de perfiles 
 
 
 @login_required
