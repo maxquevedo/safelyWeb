@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Mantenedor Plan{% endblock %}
+
+{% block body %}
+{% if perms.api.add_user %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a href="{% url 'home-adm' %}">Home</a></li>
+            <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoProfesional' %}">info Profesional</a></li>
+            <li><a class="active" href="{% url 'infoCliente' %}">info Cliente</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="#">Ver Actividades</a></li>
+            <li><a href="#">Notificar Atrasos</a></li>
+            <li><a href="#">Control de Pagos</a></li>
+            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>INFORMACION CLIENTES</h2>
+                <div class="botones-asesorias">
+                    <a class ="color-verde" href="{% url 'crear_cliente' %}">Crear cliente</a>
+                </div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID Cliente</th>
+                            <th>razon_social</th>
+                            <th>id perfil</th>
+                            <TH>ACCIÓN</TH>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.id_cli}}</td>
+                            <td>{{entity.razon_social}}</td>
+                            <td>{{entity.id_perfil}}</td>
+                            <td><a href="{% url 'modificar_cliente' entity.id_cli %}" id="modificar">modificar</a></td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endif %}
+{% endblock %}

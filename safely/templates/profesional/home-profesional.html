@@ -44,6 +44,8 @@
             },
             events: [
                 {% for Actividad in object_list %}
+                    {%if Actividad.tipo_act == '1' %}
+
                     {
                         title: '{{ Actividad.nombre }}',
                         start: '{{ Actividad.fec_ida|date:"Y-m-d" }}',
@@ -52,6 +54,34 @@
                         textColor: 'Black',
 
                     },
+
+                    {% elif Actividad.tipo_act == '2' %}
+
+                    {
+                        title: '{{ Actividad.nombre }}',
+                        start: '{{ Actividad.fec_ida|date:"Y-m-d" }}',
+                        borderColor: 'Black',
+                        backgroundColor: '#18ac30',
+                        textColor: 'Black',
+
+                    },
+
+                    {% elif Actividad.tipo_act == '3' %}
+
+                    {
+                        title: '{{ Actividad.nombre }}',
+                        start: '{{ Actividad.fec_ida|date:"Y-m-d" }}',
+                        borderColor: 'Black',
+                        backgroundColor: '#d44222',
+                        textColor: 'Black',
+
+                    },
+                    {% endif %}
+
+
+
+
+
                 {% endfor %}
             ],
 

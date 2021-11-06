@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import fields
 from django.forms.widgets import DateTimeInput
-from .models import Lista, Mejoras, Plan, Servicio,Asesoria,Capacitacion,Lista,Mejoras,TipoAsesoria,Actividad, Visita
+from .models import Cliente, Lista, Mejoras, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,Mejoras,TipoAsesoria,Actividad, Visita
 
 
 
@@ -86,7 +86,7 @@ class MejorasForm(forms.ModelForm):
 
 ## Actividad
 class DateTimeInput(forms.DateTimeInput):
-    input_type = 'datetime-local'
+    input_type = 'date-local'
 
 class ActividadForm(forms.ModelForm):
     class Meta:
@@ -95,13 +95,32 @@ class ActividadForm(forms.ModelForm):
 
         widgets = {
             
-            'fec_estimada': DateTimeInput(attrs={'class': 'form-control'}),
-            'fec_ida': DateTimeInput(attrs={'class': 'form-control'}),
+            'fec_estimada': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+            'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
         }
         
-      
+
+class ActividadModForm(forms.ModelForm):
+    class Meta:
+        model = Actividad
+        fields = '__all__'
+
 ## VISITA
 class VisitaForm(forms.ModelForm):
     class Meta:
         model = Visita
+        fields = '__all__'
+
+## CLIENTE
+
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = Cliente
+        fields = '__all__'
+
+## PROFESIONAL
+
+class ProfesionalForm(forms.ModelForm):
+    class Meta:
+        model = Profesional
         fields = '__all__'
