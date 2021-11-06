@@ -41,11 +41,13 @@
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.id_capacitacion}}</td>
+                            <td class="table-id" >{{entity.id_capacitacion}}</td>
                             <td>{{entity.nombre}}</td>
                             <td>{{entity.cant_asistentes}}</td>
                             <td>{{entity.materiales}}</td>
-                            <td><a href="{% url 'modificar_capa' entity.id_capacitacion %}" id="modificar">modificar</a></td>
+                            <td class="table-action" ><a href="{% url 'modificar_capa' entity.id_capacitacion %}" id="modificar">
+                                <div class = "modificar"><p>Modificar</p></div>
+                            </a></td>
                         </tr>
                         {% endfor %}
                         {% endif %}

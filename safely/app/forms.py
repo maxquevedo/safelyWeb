@@ -98,7 +98,6 @@ class ActividadForm(forms.ModelForm):
             'fec_estimada': DateTimeInput(attrs={'class': 'form-control'}),
             'fec_ida': DateTimeInput(attrs={'class': 'form-control'}),
         }
-        
       
 ## VISITA
 class VisitaForm(forms.ModelForm):
