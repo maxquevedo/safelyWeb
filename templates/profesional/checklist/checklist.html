@@ -1,39 +1,73 @@
-{% extends 'profesional/base-profesional.html' %}
+{% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Profesional{% endblock %}
+{% block tittle %}Profesional - Checklist{% endblock %}
 
 {% block body %}
 <div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a href="{% url 'home-prof' %}">Home</a></li>
+            <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
+            <li><a href="{% url 'vista_actividad' %}">Actividad</a></li>
+            <li><a href="{% url 'lista_ase' %}">Asesorías</a></li>
+            <li><a href="{% url 'lista_capa' %}">Capacitaciones</a></li>
+            <li><a href="{% url 'vista_mejoras' %}">Mejoras</a></li>
+            <li><a class="active-pro"  href="{% url 'lista_ch' %}">Checklist</a></li>
+            <li><a href="{% url 'vista_visita' %}">Visita</a></li>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
     <div class="info-perfiles">
-
-        <div class="container-mantenedor">
-            <div class="mantenedor-user">
-                <a href="{% url 'ingresar_ch' %}">
-                    <div class="acciones-mantenedor">
-                        <div class="desc-acc">
-                            <h3>INGRESAR CHECKLIST</h3>
-                        </div>
-                    </div>
-                </a>
-                <a href="{% url 'modificar_ch' %}">
-                <div class="acciones-mantenedor">
-                    <div class="desc-acc">
-                        <h3>MODIFICAR CHECKLIST</h3>
-
-                    </div>
+        <div class="container-lista">
+            <div class="lista">
+                <h2>Checklist</h2>
+                <div class="botones-asesorias">
+                    <a class ="color-verde" href="{% url 'crear_ch' %}">Crear Checklist</a>
+                    <a class ="color-azul" href="{% url 'ingresar_ch' %}">Ingresar Checklist</a>
                 </div>
-                </a>
-            </div>
-
-            <div class="mantenedor-user">
-                <a href="{% url 'crear_ch' %}">
-                    <div class="acciones-mantenedor">
-                        <div class="desc-acc">
-                            <h3>CREAR CHECKLIST</h3>
-                        </div>
-                    </div>
-                </a>
-                
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID CHECKLIST</th>
+                            <th>LISTA</th>
+                            <th>ESTADO</th>
+                            <th>RECOMENDACION</th>
+                            <th>CLIENTE</th>
+                            <th>PROFESIONAL</th>
+                            <TH>ACCIÓN</TH>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.id_lista}}</td>
+                            <td class="desc-act">{{entity.lista}}</td>
+                            <td>
+                            {% if entity.verificacion %}
+                                    Activo
+                            {% else %}
+                                    Desactivado
+                            {% endif %}
+                            </td>
+                            <td>{{entity.recomendacion}}</td>
+                            <td>{{entity.id_cli}}</td>
+                            <td>{{entity.id_prof}}</td>
+                            <td class="table-action">
+                                <a href="{% url 'modificar_ch' entity.id_lista %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
             </div>
         </div>
     </div>

@@ -9,13 +9,15 @@
     <div class="menu-vertical">
         <ul>
             <h2>{{user.get_full_name}}</h2>
-            <div class="profile-photo"></div>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
             <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a  href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
-            <li><a href="#">Ver actividades</a></li>
-            <li><a href="#">Notificar atrasos</a></li>
-            <li><a href="#">Control de pagos</a></li>
+            <li><a href="#">Ver Actividades</a></li>
+            <li><a href="#">Notificar Atrasos</a></li>
+            <li><a href="#">Control de Pagos</a></li>
             <li><a href="#">Accidentes</a></li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
@@ -23,60 +25,27 @@
     <div class="info-perfiles">
         <div class="container-mantenedor">
             <div class="mantenedor-user">
-                <a href="{% url 'signup' %}">
+                <a href="{% url 'mantenedor-usr' %}">
                     <div class="acciones-mantenedor">
                         <div class="desc-acc">
-                            <h3>Crear Usuario</h3>
-                            <p>Permite la creación de usuario dentro del sistema Safely.</p>
+                            <h3>Mantenedor Usuario</h3>
+                            <p>Permite la creación de los usuarios dentro del sistema, listar, modificar y desactivar.</p>
                         </div>
                     </div>
                 </a>
-                <a href="{% url 'listar' %}">
-                <div class="acciones-mantenedor">
-                    <div class="desc-acc">
-                        <h3>Listar Usuarios</h3>
-                        <p>Permite la visualización de los usuarios dentro del sistema Safely.</p>
-                        <p>Para borrar o modificar usuarios, debe ingresar aquí.</p>
-                    </div>
-                </div>
-                </a>
-            </div>
-            
-            <div class="mantenedor-user">
-                <a href="{% url 'agregar-plan' %}">
+                <a href="{% url 'mantenedor-servicio' %}">
                     <div class="acciones-mantenedor">
                         <div class="desc-acc">
-                            <h3>Crear Plan</h3>
-                            <p>Permite la creación de un plan dentro del sistema Safely.</p>
+                            <h3>Mantenedor Servicio</h3>
+                            <p>Permite la creación de los servicios dentro del sistema, listar, modificar y desactivar.</p>
                         </div>
                     </div>
                 </a>
-                <a href="{% url 'lista-plan' %}">
+                <a href="{% url 'mantenedor-plan' %}">
                 <div class="acciones-mantenedor">
                     <div class="desc-acc">
-                        <h3>Listar planes</h3>
-                        <p>Permite la visualización de los planes dentro del sistema Safely.</p>
-                        <p>Para borrar o modificar planes, debe ingresar aquí.</p>
-                    </div>
-                </div>
-                </a>
-            </div>
-
-            <div class="mantenedor-user">
-                <a href="{% url 'agregar-servicio' %}">
-                    <div class="acciones-mantenedor">
-                        <div class="desc-acc">
-                            <h3>Crear Servicio</h3>
-                            <p>Permite la creación de un servicio dentro del sistema Safely.</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="{% url 'lista-servicios' %}">
-                <div class="acciones-mantenedor">
-                    <div class="desc-acc">
-                        <h3>Listar Servicios</h3>
-                        <p>Permite la visualización de los servicios dentro del sistema Safely.</p>
-                        <p>Para borrar o modificar servicios, debe ingresar aquí.</p>
+                        <h3>Mantenedor Plan</h3>
+                        <p>Permite la creación de los planes dentro del sistema, listar, modificar y desactivar.</p>
                     </div>
                 </div>
                 </a>
