@@ -16,13 +16,20 @@ class Actividad(models.Model):
     ('3', "Visita"),
     )
 
+    estados = (
+        ('1', "Solicitado"),
+        ('2', "Pendiente"),
+        ('3', "Realizado"),
+        ('4', "Cancelado")
+    )
+
     id_actividad = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=250)
     descripcion = models.CharField(max_length=250)
     tipo_act = models.CharField('Tipo de actividad',max_length=1, choices=CHOICES)
-    fec_estimada = models.DateField('Fecha estimada',auto_now=False)
-    fec_ida = models.DateField('Fecha ida',auto_now=False,blank=True, null=True)
-    estado = models.BooleanField(max_length=1)
+    fec_estimada = models.DateTimeField('Fecha estimada',auto_now=False)
+    fec_ida = models.DateTimeField('Fecha ida',auto_now=False,blank=True, null=True)
+    estado = models.CharField(max_length=1, choices=estados)
     cliente_id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='cliente_id_cli')
     id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof', blank=True, null=True)
     id_capacitacion = models.ForeignKey('Capacitacion', models.DO_NOTHING, db_column='id_capacitacion', blank=True, null=True)
@@ -158,7 +165,7 @@ class Mejoras(models.Model):
     id_mejora = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     propuesta = models.CharField(max_length=250)
-    aceptacion = models.FloatField()
+    aceptacion = models.BooleanField()
     estado = models.BooleanField()
     id_actividad = models.ForeignKey(Actividad, models.DO_NOTHING, db_column='id_actividad')
 

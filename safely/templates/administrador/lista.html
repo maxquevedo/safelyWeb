@@ -51,15 +51,15 @@
                                 {% endif %}
                             </td>
                             <td class="table-action">
-                                <a href="{% url 'editar' entity.id %}" id="modificar">
+                                <a href="{% url 'editar' entity.id %}">
                                     <div class = "modificar"><p>Modificar</p></div>
                                 </a>
                                 {% if entity.is_active %}
-                                <a href="{% url 'eliminar' entity.id %}" id="eliminar">
+                                <a href="{% url 'eliminar' entity.id %}">
                                     <div class = "vigente"><p>Desactivar</p></div>
                                 </a>
                                 {% else %}
-                                <a href="" id="eliminar">
+                                <a href="{% url 'activar' entity.id %}">
                                     <div class = "vigente"><p>Activar</p></div>
                                 </a>
                                 {% endif %}

@@ -132,6 +132,19 @@ def UserDelete(request,id):
             messages.success(request, "Usuario desactivado correctamente")
     return redirect(to="listar")
 
+def UserActivate(request,id):
+    usuario = User.objects.get(id=id)
+    if request.method == 'POST':
+        form = UserActive(instance=usuario)
+    else:
+        form = UserActive(request.POST, instance=usuario)
+        if form.is_valid():
+            user = form.save()
+            user.is_active = True
+            user.save()
+            messages.success(request, "Usuario activado correctamente")
+    return redirect(to="listar")
+
 ##PLAN
 def PlanCreate(request):
     data = {
