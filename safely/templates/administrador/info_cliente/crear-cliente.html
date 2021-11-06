@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}editar{% endblock %}
+{% block tittle %}Crear asesoria{% endblock %}
 
 {% block body %}
 <div class="container-menu">
@@ -8,9 +8,9 @@
         <ul>
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
-            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
-            <li><a  href="{% url 'infoProfesional' %}">info Profesional</a></li>
-            <li><a href="{% url 'infoCliente' %}">info Cliente</a></li>
+            <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoProfesional' %}">info Profesional</a></li>
+            <li><a class="active" href="{% url 'infoCliente' %}">info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
             <li><a href="#">Ver Actividades</a></li>
             <li><a href="#">Notificar Atrasos</a></li>
@@ -19,27 +19,21 @@
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
     </div>
+    
     <div class="info-perfiles">
         <div class="login-container">
             <div class="signup-box">
                 <div class="perfil-text-container">
-                    <h2>Editar Usuario</h2>
+                    <h2>CREAR Cliente</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <h5>Usuario</h5>
-                        {{ form.username }}
-                        <h5>Nombre</h5>
-                        {{ form.first_name }}
-                        <h5>Apellido</h5>
-                        {{ form.last_name }}
-                        <h5>Correo</h5>
-                        {{ form.email }}
-                        {{ form.is_active }}
-                        <input type="submit" value="Modificar" id="button" class="alter-button">
+                        {{form}}
+                        <input type="submit" value="Registrar" id="button" class="alter-button">
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}

@@ -301,9 +301,9 @@ def modificar_actividad(request,id_actividad):
     ACT = Actividad.objects.get(id_actividad=id_actividad)
 
     if request.method == 'GET':
-        form = ActividadForm(instance=ACT)
+        form = ActividadModForm(instance=ACT)
     else:
-        form = ActividadForm(request.POST, instance=ACT)
+        form = ActividadModForm(request.POST, instance=ACT)
         if form.is_valid():
             form.save()
             messages.success(request, "Modificado correctamente")
@@ -348,7 +348,6 @@ def crear_visita(request):
 @login_required
 def modificar_visita(request,id_visita):
     vis = Visita.objects.get(id_visita=id_visita)
-
     if request.method == 'GET':
         form = VisitaForm(instance=vis)
     else:

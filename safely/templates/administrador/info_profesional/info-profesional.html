@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Servicio -LISTA{% endblock %}
+{% block tittle %}Mantenedor Plan{% endblock %}
+
 {% block body %}
+{% if perms.api.add_user %}
 <div class="container-menu">
     <div class="menu-vertical">
         <ul>
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
-            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
-            <li><a  href="{% url 'infoProfesional' %}">info Profesional</a></li>
+            <li><a  href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a class="active" href="{% url 'infoProfesional' %}">info Profesional</a></li>
             <li><a href="{% url 'infoCliente' %}">info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
             <li><a href="#">Ver Actividades</a></li>
@@ -19,37 +21,30 @@
         </ul>
     </div>
     <div class="info-perfiles">
-        <div class="container-lista">
+<div class="container-lista">
             <div class="lista">
-                <h2>Lista de Servicios</h2>
+                <h2>INFORMACION Profesionales</h2>
+                <div class="botones-asesorias">
+                    <a class ="color-verde" href="{% url 'crear_profesional' %}">Crear profesional</a>
+                </div>
                 <table class="table">
                     <thead class="thead-dark">
-                        <tr class="servicio">
-                            <th>Identificador</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Acción</th>
+                        <tr>
+                            <th>ID profesional</th>
+                            <th>id perfil</th>
+                            <TH>ACCIÓN</TH>
                         </tr>
                     </thead>
                     <tbody>
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.id_servicio}}</td>
-                            <td>{{entity.nombre}}</td>
-                            <td class="desc-act"><p>{{entity.descripcion}}</p></td>
-
-                            <td class="table-action">
-                                <a href="{% url 'editar-servicio' entity.id_servicio %}" id="modificar">
-                                    <div class = "modificar"><p>Modificar</p></div>
-                                </a>
-                                <a href="{% url 'eliminar-servicio' entity.id_servicio %}" id="eliminar">
-                                    <div class = "vigente"><p>Desactivar</p></div>
-                                </a>
-                            </td>
+                            <td>{{entity.id_prof}}</td>
+                            <td>{{entity.id_perfil}}</td>
+                            <td><a href="{% url 'modificar_profesional' entity.id_prof %}" id="modificar">modificar</a></td>
                         </tr>
                         {% endfor %}
-                        {%endif %}
+                        {% endif %}
                     </tbody>
                 </table>
                 <div class="num-pag">
@@ -57,7 +52,8 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-
+{% endif %}
 {% endblock %}

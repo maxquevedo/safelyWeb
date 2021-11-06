@@ -1,7 +1,11 @@
 from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import CustomUserCreationForm, UserActive,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm
+from .forms import (
+CustomUserCreationForm, UserActive,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm,
+ClienteForm,ProfesionalForm
+
+)
 from django.contrib.auth.forms import  AuthenticationForm
 from rest_framework import viewsets
 
@@ -235,3 +239,91 @@ def ServicioDelete(request,id):
     servicio.delete()
     messages.success(request, "Servicio eliminado correctamente")
     return redirect(to='lista-servicios')
+
+
+#informacion de clientes ClienteForm
+
+@login_required
+def infoCliente(request):
+    cli = Cliente.objects.all().order_by('id_cli')
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(cli, 5)
+        cli = paginator.page(page)
+    except:
+        raise Http404
+    context = {'entity': cli,
+                'paginator': paginator}   
+    return render(request, 'administrador/info_cliente/info-cliente.html',context)
+
+@login_required
+def crear_cliente(request):
+    data = {
+        'form': ClienteForm
+    }
+    if request.method == 'POST':
+        formulario = ClienteForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+            return redirect (to='infoCliente')
+        else:
+            data["form"] = formulario 
+    return render(request, 'administrador/info_cliente/crear-cliente.html',data )
+
+
+@login_required
+def modificar_cliente(request,id_cli):
+    cli = Cliente.objects.get(id_cli=id_cli)
+    if request.method == 'GET':
+        form = ClienteForm(instance=cli)
+    else:
+        form = ClienteForm(request.POST, instance=cli)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Modificado correctamente")
+        return redirect(to='infoCliente')
+    return render(request, 'administrador/info_cliente/modificar-cliente.html',{'form':form})
+
+#informacion de clientes ProfesionalForm
+@login_required
+def infoProfesional(request):
+    pro = Profesional.objects.all().order_by('id_prof')
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(pro, 5)
+        pro = paginator.page(page)
+    except:
+        raise Http404
+    context = {'entity': pro,
+                'paginator': paginator}   
+    return render(request, 'administrador/info_profesional/info-profesional.html',context)
+
+
+@login_required
+def crear_profesional(request):
+    data = {
+        'form': ProfesionalForm
+    }
+    if request.method == 'POST':
+        formulario = ProfesionalForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+            return redirect (to='infoProfesional')
+        else:
+            data["form"] = formulario 
+    return render(request, 'administrador/info_profesional/crear-profesional.html',data )
+
+@login_required
+def modificar_profesional(request,id_prof):
+    pro = Profesional.objects.get(id_prof=id_prof)
+    if request.method == 'GET':
+        form = ClienteForm(instance=pro)
+    else:
+        form = ClienteForm(request.POST, instance=pro)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Modificado correctamente")
+        return redirect(to='infoProfesional')
+    return render(request, 'administrador/info_profesional/modificar-profesional.html',{'form':form})
