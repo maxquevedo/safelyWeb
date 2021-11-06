@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import (
 CustomUserCreationForm, UserActive,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm,
-ClienteForm,ProfesionalForm
+ClienteForm,ProfesionalForm, PerfilForm
 
 )
 from django.contrib.auth.forms import  AuthenticationForm
@@ -327,3 +327,51 @@ def modificar_profesional(request,id_prof):
             messages.success(request, "Modificado correctamente")
         return redirect(to='infoProfesional')
     return render(request, 'administrador/info_profesional/modificar-profesional.html',{'form':form})
+
+
+
+    #informacion de clientes PerfilForm
+
+
+@login_required
+def infoPerfil(request):
+    pro = Perfil.objects.all().order_by('id_perfil')
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(pro, 5)
+        pro = paginator.page(page)
+    except:
+        raise Http404
+    context = {'entity': pro,
+                'paginator': paginator}   
+    return render(request, 'administrador/info_perfil/info-perfil.html',context)
+
+@login_required
+def crear_perfil(request):
+    data = {
+        'form': PerfilForm
+    }
+    if request.method == 'POST':
+        formulario = PerfilForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+            return redirect (to='infoPerfil')
+        else:
+            data["form"] = formulario 
+    return render(request, 'administrador/info_perfil/crear-perfil.html',data )
+
+
+@login_required
+def modificar_perfil(request,id_perfil):
+    pro = Perfil.objects.get(id_perfil=id_perfil)
+    if request.method == 'GET':
+        form = PerfilForm(instance=pro)
+    else:
+        form = PerfilForm(request.POST, instance=pro)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Modificado correctamente")
+        return redirect(to='infoPerfil')
+    return render(request, 'administrador/info_perfil/modificar-perfil.html',{'form':form})
+

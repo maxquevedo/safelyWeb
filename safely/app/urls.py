@@ -5,7 +5,9 @@ from .views import (UserActivate, maintainer_plan, maintainer_service, maintaine
 home_admin, maintainer, login_view,
 UserLista, UserEdit, UserDelete, login_filter, plan_lista,
 PlanEdit, PlanDelete, PlanCreate,ServicioCreate,Servicio_lista,ServicioEdit,ServicioDelete,
-infoCliente,crear_cliente,infoProfesional,modificar_cliente,crear_profesional,modificar_profesional
+infoCliente,crear_cliente,infoProfesional,modificar_cliente,crear_profesional,modificar_profesional,
+infoPerfil,crear_perfil,modificar_perfil
+
 )
 
 urlpatterns = [
@@ -23,6 +25,11 @@ urlpatterns = [
     path('administrador/mantenedor-profesional/', infoProfesional, name='infoProfesional'),
     path('administrador/mantenedor-profesional/crear', crear_profesional, name='crear_profesional'),
     path('administrador/mantenedor-profesional/modificar/<int:id_prof>/', modificar_profesional, name='modificar_profesional'),
+
+    path('administrador/mantenedor-perfil/', infoPerfil, name='infoPerfil'),
+    path('administrador/mantenedor-perfil/crear', crear_perfil, name='crear_perfil'),
+    path('administrador/mantenedor-perfil/modificar/<int:id_perfil>/', modificar_perfil, name='modificar_perfil'),
+
 
     path('login/', login_view, name='login'),
     path('administrador/usuario/lista-usuarios/', UserLista, name='listar'),

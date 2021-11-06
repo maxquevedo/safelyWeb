@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import fields
 from django.forms.widgets import DateTimeInput
-from .models import Cliente, Lista, Mejoras, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,Mejoras,TipoAsesoria,Actividad, Visita
+from .models import Cliente, Lista, Mejoras, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,Mejoras,TipoAsesoria,Actividad, Visita
 
 
 
@@ -123,4 +123,11 @@ class ClienteForm(forms.ModelForm):
 class ProfesionalForm(forms.ModelForm):
     class Meta:
         model = Profesional
+        fields = '__all__'
+
+## PERFIL
+
+class PerfilForm(forms.ModelForm):
+    class Meta:
+        model = Perfil
         fields = '__all__'
