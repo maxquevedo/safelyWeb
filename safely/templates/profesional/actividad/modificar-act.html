@@ -7,12 +7,21 @@
 
     <div class="info-perfiles">
         <div class="login-container">
-            <div class="signup-box">
-                <div class="perfil-text-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
                     <h2>MODIFICAR ACTIVIDAD</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{form}}
+                        <div class="crea-act-container">
+                            Nombre
+                            {{form.nombre}}
+                            Descripción
+                            {{form.descripcion}}
+                            Fecha estimada
+                            {{form.fec_estimada}}
+                            Fecha de ida
+                            {{form.fec_ida}}
+                        </div>
                         <input type="submit" value="Modificar" id="button" class="alter-button">
                     </form>
                 </div>

@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block js %}
+<script>
+    $(function() {
+        $('#id_tipo_act').change(function(){
+            $('.tipo').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
+{% endblock %}
 {% block tittle %}Crear Actividad{% endblock %}
 
 {% block body %}
@@ -22,13 +32,47 @@
     
     <div class="info-perfiles">
         <div class="login-container">
-            <div class="signup-box">
-                <div class="perfil-text-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
                     <h2>CREAR ACTIVIDAD</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{form}}
-                        <input type="submit" value="Registrar" id="button" class="alter-button">
+                        <div class="crea-act-container">
+                            Nombre
+                            {{form.nombre}}
+                            Descripción
+                            {{form.descripcion}}
+                            Tipo de Actividad
+                            <select id="id_tipo_act" name="tipo_act">
+                                {% for x, y in form.fields.tipo_act.choices %}
+                                    <option value="{{ x }}"{% if form.fields.tipo_act.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                            <diV id=1 class="tipo" style="display:none">
+                                Capacitación
+                                {{form.id_capacitacion}}
+                            </div>
+                            <diV id="2" class="tipo" style="display:none">
+                                Asesoría
+                                {{form.id_asesoria}}
+                            </div>
+                            <diV id="3" class="tipo" style="display:none">
+                                Visita
+                                {{form.id_visita}}
+                            </div>
+                            Fecha estimada
+                            {{form.fec_estimada}}</div>
+                        <div class="crea-act-container">
+                            Fecha de ida
+                            {{form.fec_ida}}
+                            Estado
+                            {{form.estado}}
+                            Cliente
+                            {{form.cliente_id_cli}}
+                            Profesional
+                            {{form.id_prof}}
+                            <input type="submit" value="Registrar" id="button" class="alter-button">
+                        </div>
                     </form>
                 </div>
             </div>

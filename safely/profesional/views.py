@@ -228,7 +228,7 @@ def modificar_ch(request,id_lista):
 
 @login_required
 def vista_mejoras(request):
-    me = Mejoras.objects.all().order_by('id_mejora')
+    me = Mejora.objects.all().order_by('id_mejora')
     page = request.GET.get('page', 1)
     try:
         paginator = Paginator(me, 5)
@@ -248,10 +248,10 @@ def revisar_me(request):
 @login_required
 def crear_me(request):
     data = {
-        'form': MejorasForm
+        'form': MejoraForm
     }
     if request.method == 'POST':
-        formulario = MejorasForm(data=request.POST)
+        formulario = MejoraForm(data=request.POST)
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Creado correctamente!")
@@ -298,18 +298,35 @@ def crear_actividad(request):
 
 @login_required
 def modificar_actividad(request,id_actividad):
-    ACT = Actividad.objects.get(id_actividad=id_actividad)
+    act = Actividad.objects.get(id_actividad=id_actividad)
 
     if request.method == 'GET':
-        form = ActividadModForm(instance=ACT)
+        form = ActividadModForm(instance=act)
     else:
-        form = ActividadModForm(request.POST, instance=ACT)
+        form = ActividadModForm(request.POST, instance=act)
         if form.is_valid():
             form.save()
-            messages.success(request, "Modificado correctamente")
+            messages.success(request, "Actividad modificada correctamente")
         return redirect(to='vista_actividad')
 
     return render(request, 'profesional/actividad/modificar-act.html',{'form':form})
+
+@login_required
+def estado_actividad(request,id_actividad):
+    act = Actividad.objects.get(id_actividad=id_actividad)
+
+    if request.method == 'GET':
+        form = ActividadEstadoForm(instance=act)
+    else:
+        form = ActividadEstadoForm(request.POST, instance=act)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Estado modificado correctamente")
+        return redirect(to='vista_actividad')
+
+    return render(request, 'profesional/actividad/estado-act.html',{'form':form})
+
+
 
 
 #######################################################################################################

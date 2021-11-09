@@ -14,7 +14,7 @@ from .models import ( Perfil,
 Administrador, Profesional, Cliente,
 Servicio, Plan, Contrato, 
 Alerta,
-Lista,Mejoras,
+Lista,Mejora,
 Reporte,TipoReporte,
 Actividad, Capacitacion,Asesoria,Visita
 )
@@ -328,10 +328,7 @@ def modificar_profesional(request,id_prof):
         return redirect(to='infoProfesional')
     return render(request, 'administrador/info_profesional/modificar-profesional.html',{'form':form})
 
-
-
 #informacion de perfiles 
-
 
 @login_required
 def infoPerfil(request):

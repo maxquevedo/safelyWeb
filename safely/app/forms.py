@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import fields
 from django.forms.widgets import DateTimeInput
-from .models import Cliente, Lista, Mejoras, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,Mejoras,TipoAsesoria,Actividad, Visita
+from .models import Cliente, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
 
 
 
@@ -78,10 +78,10 @@ class ListaModificar(forms.ModelForm):
     class Meta:
         model = Lista
         fields = '__all__'
-## Mejoras 
-class MejorasForm(forms.ModelForm):
+## Mejoras
+class MejoraForm(forms.ModelForm):
     class Meta:
-        model = Mejoras
+        model = Mejora
         fields = '__all__'
 
 ## Actividad
@@ -99,11 +99,15 @@ class ActividadForm(forms.ModelForm):
             'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
         }
         
+class ActividadEstadoForm(forms.ModelForm):
+    class Meta:
+        model = Actividad
+        fields = ['estado']
 
 class ActividadModForm(forms.ModelForm):
     class Meta:
         model = Actividad
-        fields = '__all__'
+        fields = ['nombre', 'descripcion', 'fec_estimada', 'fec_ida' ]
 
 ## VISITA
 class VisitaForm(forms.ModelForm):
@@ -130,4 +134,4 @@ class ProfesionalForm(forms.ModelForm):
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = '__all__'
+        fields = ['id_perfil', 'rut','telefono','direccion','tipo_perf','id_auth_user']

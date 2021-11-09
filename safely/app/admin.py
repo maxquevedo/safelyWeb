@@ -13,7 +13,7 @@ admin.site.register(Cliente)
 admin.site.register(ClienteContrato)
 admin.site.register(Contrato)
 admin.site.register(Lista)
-admin.site.register(Mejoras)
+admin.site.register(Mejora)
 
 admin.site.register(Perfil)
 

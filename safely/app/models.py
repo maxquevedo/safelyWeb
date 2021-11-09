@@ -45,14 +45,14 @@ class Actividad(models.Model):
 
 class Administrador(models.Model):
     id_admin = models.AutoField(primary_key=True)
-    id_perfil = models.ForeignKey('Perfil', models.DO_NOTHING, db_column='id_perfil')
+    id_perfil = models.OneToOneField('Perfil', models.DO_NOTHING, db_column='id_perfil')
 
     class Meta:
         managed = False
         db_table = 'administrador'
 
     def __str__(self):
-        return self.id_perfil.id_auth_user.username
+        return self.id_perfil.id_auth_user.first_name
 
 class Alerta(models.Model):
     id_alerta = models.AutoField(primary_key=True)
@@ -112,14 +112,14 @@ class Chat(models.Model):
 class Cliente(models.Model):
     id_cli = models.AutoField(primary_key=True)
     razon_social = models.CharField(max_length=50)
-    id_perfil = models.ForeignKey('Perfil', models.DO_NOTHING, db_column='id_perfil')
+    id_perfil = models.OneToOneField('Perfil', models.DO_NOTHING, db_column='id_perfil')
 
     class Meta:
         managed = False
         db_table = 'cliente'
 
     def __str__(self):
-        return self.id_perfil.id_auth_user.username
+        return self.id_perfil.id_auth_user.first_name
 
 class ClienteContrato(models.Model):
     id = models.AutoField(primary_key=True)
@@ -161,7 +161,7 @@ class Lista(models.Model):
         db_table = 'lista'
 
 
-class Mejoras(models.Model):
+class Mejora(models.Model):
     id_mejora = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     propuesta = models.CharField(max_length=250)
@@ -171,7 +171,7 @@ class Mejoras(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'mejoras'
+        db_table = 'mejora'
 
     def __str__(self):
         return self.nombre
@@ -216,14 +216,14 @@ class Plan(models.Model):
 
 class Profesional(models.Model):
     id_prof = models.AutoField(primary_key=True)
-    id_perfil = models.ForeignKey(Perfil, models.DO_NOTHING, db_column='id_perfil')
+    id_perfil = models.OneToOneField(Perfil, models.DO_NOTHING, db_column='id_perfil')
 
     class Meta:
         managed = False
         db_table = 'profesional'
 
     def __str__(self):
-        return self.id_perfil.id_auth_user.username
+        return self.id_perfil.id_auth_user.first_name
 
 class Reporte(models.Model):
     id_reporte = models.AutoField(primary_key=True)
