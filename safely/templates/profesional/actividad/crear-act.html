@@ -36,13 +36,14 @@
                 <div class="act-text-container">
                     <h2>CREAR ACTIVIDAD</h2>
                     <form action="" method="post">
-                        <div class="crea-act-container">{% csrf_token %}
+                        {% csrf_token %}
+                        <div class="crea-act-container">
                             Nombre
                             {{form.nombre}}
                             Descripción
                             {{form.descripcion}}
                             Tipo de Actividad
-                            <select id="id_tipo_act" name="tipo_ac">
+                            <select id="id_tipo_act" name="tipo_act">
                                 {% for x, y in form.fields.tipo_act.choices %}
                                     <option value="{{ x }}"{% if form.fields.tipo_act.value == x %} selected{% endif %}>{{ y }}</option>
                                 {% endfor %}
@@ -60,8 +61,7 @@
                                 {{form.id_visita}}
                             </div>
                             Fecha estimada
-                            {{form.fec_estimada}}
-                        </div>
+                            {{form.fec_estimada}}</div>
                         <div class="crea-act-container">
                             Fecha de ida
                             {{form.fec_ida}}

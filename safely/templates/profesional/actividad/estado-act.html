@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block js %}
+<script>
+    $(function() {
+        $('#id_tipo_act').change(function(){
+            $('.tipo').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
+{% endblock %}
+{% block tittle %}Modificar{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a href="{% url 'home-prof' %}">Home</a></li>
+            <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
+            <li><a class="active-pro" href="{% url 'vista_actividad' %}">Actividad</a></li>
+            <li><a href="{% url 'lista_ase' %}">Asesorías</a></li>
+            <li><a href="{% url 'lista_capa' %}">Capacitaciones</a></li>
+            <li><a href="{% url 'vista_mejoras' %}">Mejoras</a></li>
+            <li><a href="{% url 'lista_ch' %}">Checklist</a></li>
+            <li><a href="{% url 'vista_visita' %}">Visita</a></li>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="perfil-text-container">
+                    <h2>MODIFICAR ACTIVIDAD</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <h2>{{actividad.nombre}}</h2>
+                        <div class="">
+                            Estado
+                            {{form.estado}}
+                            <input type="submit" value="Registrar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -99,11 +99,15 @@ class ActividadForm(forms.ModelForm):
             'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
         }
         
+class ActividadEstadoForm(forms.ModelForm):
+    class Meta:
+        model = Actividad
+        fields = ['estado']
 
 class ActividadModForm(forms.ModelForm):
     class Meta:
         model = Actividad
-        fields = '__all__'
+        fields = ['nombre', 'descripcion', 'fec_estimada', 'fec_ida' ]
 
 ## VISITA
 class VisitaForm(forms.ModelForm):
