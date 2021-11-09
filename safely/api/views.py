@@ -1,12 +1,12 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from app.models import (Actividad,Administrador,Alerta,Asesoria,Capacitacion,Chat,Cliente,
-Contrato,ClienteContrato,Lista,Mejoras,Perfil,Plan,Profesional,Reporte,
+Contrato,ClienteContrato,Lista,Mejora,Perfil,Plan,Profesional,Reporte,
 Servicio,TipoAsesoria,TipoReporte,User,Visita
 )
 from .serializers import (ActividadSerializer,AdministradorSerializer,AlertaSerializer,AsesoriaSerializer,
 CapacitacionSerializer,ChatSerializer,ClienteSerializer,ContratoSerializer,ClienteContratoSerializer,
-ListaSerializer,MejorasSerializer,PerfilSerializer,PlanSerializer,ProfesionalSerializer,
+ListaSerializer,MejoraSerializer,PerfilSerializer,PlanSerializer,ProfesionalSerializer,
 ReporteSerializer,ServicioSerializer,TipoAsesoriaSerializer,TipoReporteSerializer,UserSerializer,
 VisitaSerializer
 )
@@ -386,30 +386,30 @@ def AlertaEliminar(request, pk):
 ##########
 ##########
 
-# MejorasSerializer
+# mejoraSerializer
 
 @api_view(['GET'])
-def MejorasLista(request):
-    act = Mejoras.objects.all()
-    serializer = MejorasSerializer(act, many=True)
+def MejoraLista(request):
+    act = Mejora.objects.all()
+    serializer = MejoraSerializer(act, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
-def MejorasDetalles(request,pk):
-    act = Mejoras.objects.get(id_mejora=pk)
-    serializer = MejorasSerializer(act, many=False)
+def MejoraDetalles(request,pk):
+    act = Mejora.objects.get(id_mejora=pk)
+    serializer = MejoraSerializer(act, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
-def MejorasCrear(request):
-    serializer = MejorasSerializer(data=request.data)
+def MejoraCrear(request):
+    serializer = MejoraSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
 
 @api_view(['PATCH'])
-def MejorasModificar(request,pk):
-    act = Mejoras.objects.get(id_mejora=pk)
+def MejoraModificar(request,pk):
+    act = Mejora.objects.get(id_mejora=pk)
     data = request.data
 
     act.id_mejora = data.get("id_mejora", act.id_mejora)
@@ -418,13 +418,13 @@ def MejorasModificar(request,pk):
     act.pac = data.get("pac", act.pac)
 
     act.save()
-    serializer = MejorasSerializer(act)
+    serializer = MejoraSerializer(act)
     return Response(serializer.data)
 
 
 @api_view(['DELETE'])
-def MejorasEliminar(request, pk):
-    act = Mejoras.objects.get(id_mejora=pk)
+def MejoraEliminar(request, pk):
+    act = Mejora.objects.get(id_mejora=pk)
     act.delete()
     return Response('Eliminado correctamente')
 

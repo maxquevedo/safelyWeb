@@ -27,7 +27,16 @@
                     <h2>MODIFICAR Perfil</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{form}}
+                        Rut
+                        {{form.rut}}
+                        Teléfono
+                        {{form.telefono}}
+                        Dirección
+                        {{form.direccion}}
+                        Tipo de perfil
+                        {{form.tipo_perf}}
+                        Usuario
+                        {{form.id_auth_user}}
                         <input type="submit" value="Modificar" id="button" class="alter-button">
                     </form>
                 </div>

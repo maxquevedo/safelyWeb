@@ -28,7 +28,12 @@
                     <h2>Crear Servicio</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{form}}
+                        Nombre
+                        {{form.nombre}}
+                        Descripción
+                        {{form.descripcion}}
+                        Estado
+                        {{form.estado}}
                         <input type="submit" value="Registrar" id="button" class="alter-button">
                     </form>
                 </div>

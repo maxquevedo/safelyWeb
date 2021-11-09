@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Inofrmacion perfiles{% endblock %}
+{% block tittle %}Información perfiles{% endblock %}
 
 {% block body %}
 {% if perms.api.add_user %}
@@ -31,11 +31,11 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Id PErfil</th>
+                            <th>Id Perfil</th>
                             <th>Rut</th>
-                            <th>Telefono</th>
+                            <th>Teléfono</th>
                             <th>Dirección</th>
-                            <th>Tipo de perfil</th>
+                            <th>Tipo de Perfil</th>
                             <th>Id Usuario</th>
                             <TH>Acción</TH>
                         </tr>
@@ -48,7 +48,15 @@
                             <td>{{entity.rut}}</td>
                             <td>{{entity.telefono}}</td>
                             <td>{{entity.direccion}}</td>
-                            <td>{{entity.tipo_perf}}</td>
+                            <td>
+                                {% if entity.tipo_perf == '1' %}
+                                Admin
+                                {% elif entity.tipo_perf == '2' %}
+                                Profesional
+                                {% elif  entity.tipo_perf == '3' %}
+                                Cliente
+                                {% endif %}
+                            </td>
                             <td>{{entity.id_auth_user}}</td>
 
                             <td class="table-action">

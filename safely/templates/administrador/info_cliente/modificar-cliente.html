@@ -27,7 +27,10 @@
                     <h2>MODIFICAR Cliente</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{form}}
+                        Razón Social
+                        {{form.razon_social}}
+                        Usuario
+                        {{form.id_perfil}}
                         <input type="submit" value="Modificar" id="button" class="alter-button">
                     </form>
                 </div>

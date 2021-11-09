@@ -28,7 +28,16 @@
                     <h2>Crear Plan</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{form}}
+                        Nombre
+                        {{form.nombre}}
+                        Descripción
+                        {{form.descripcion}}
+                        Costo
+                        {{form.costo}}
+                        Estado
+                        {{form.estado}}
+                        Servicio
+                        {{form.id_servicio}}
                         <input type="submit" value="Registrar" id="button" class="alter-button">
                     </form>
                 </div>
