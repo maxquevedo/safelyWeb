@@ -215,7 +215,7 @@ class Plan(models.Model):
         return self.nombre
 
 class Profesional(models.Model):
-    id_prof = models.AutoField(primary_key=True)
+    id_prof = models.IntegerField(primary_key=True)
     id_perfil = models.OneToOneField(Perfil, models.DO_NOTHING, db_column='id_perfil')
 
     class Meta:

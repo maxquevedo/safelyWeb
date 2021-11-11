@@ -270,11 +270,13 @@ def crear_me(request):
 
 @login_required
 def vista_actividad(request):
-    ACT = Actividad.objects.all().order_by('id_actividad')
+    usr = request.user
+    ACT = Actividad.objects.all().filter(id_prof=usr.id)
     page = request.GET.get('page', 1)
     try:
         paginator = Paginator(ACT, 5)
         ACT = paginator.page(page)
+        messages.success(request, usr)
     except:
         raise Http404
     context = {'entity': ACT,
