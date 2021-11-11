@@ -28,26 +28,46 @@ class PlanForm(forms.ModelForm):
         model = Plan
         fields = '__all__'
 
+        widgets = {
+            'descripcion': forms.Textarea
+        }
+
 class PlanUpdateForm(forms.ModelForm):
     class Meta:
         model = Plan
         fields = ['nombre', 'descripcion', 'id_servicio']
+
+        widgets = {
+            'descripcion': forms.Textarea
+        }
 ## Servicio 
 class ServicioForm(forms.ModelForm):
     class Meta:
         model = Servicio
         fields = '__all__'
+    
+        widgets = {
+            'descripcion': forms.Textarea
+        }
 
 class ServicioUpdateForm(forms.ModelForm):
     class Meta:
         model = Servicio
         fields = ['nombre', 'descripcion']
 
+        widgets = {
+            'descripcion': forms.Textarea
+        }
+
 ## ASESORIAS 
 class AsesoriaForm(forms.ModelForm):
     class Meta:
         model = Asesoria
         fields = '__all__'
+
+        widgets = {
+            'descripcion': forms.Textarea
+        }
 
 class TipoAsesoriaForm(forms.ModelForm):
     class Meta:
@@ -84,6 +104,10 @@ class MejoraForm(forms.ModelForm):
         model = Mejora
         fields = '__all__'
 
+        widgets = {
+            'propuesta': forms.Textarea
+        }
+
 ## Actividad
 class DateTimeInput(forms.DateTimeInput):
     input_type = 'date-local'
@@ -94,7 +118,6 @@ class ActividadForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            
             'fec_estimada': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
             'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
         }
