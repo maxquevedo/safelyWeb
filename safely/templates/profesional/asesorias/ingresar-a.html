@@ -24,7 +24,7 @@
         <div class="login-container">
             <div class="actividad-box">
                 <div class="act-text-container">
-                    <h2>INGRESAR ACTIVIDAD DE CAPACITACIÓN</h2>
+                    <h2>INGRESAR ACTIVIDAD DE ASESORÍA</h2>
                     <form action="" method="post">
                         {% csrf_token %}
                         <div class="crea-act-container">
@@ -33,8 +33,8 @@
                             Descripción
                             {{form.descripcion}}
                             {{form.tipo_act.as_hidden}}
-                            Capacitación
-                            {{form.id_capacitacion}}
+                            Asesoría
+                            {{form.id_asesoria}}
                             Fecha estimada
                             {{form.fec_estimada}}</div>
                         <div class="crea-act-container">

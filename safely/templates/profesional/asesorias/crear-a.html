@@ -27,8 +27,15 @@
                     <h2>CREAR ASESORIAS</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{form}}
-                        <input type="submit" value="Registrar" id="button" class="alter-button">
+                        Nombre: 
+                        {{form.nombre}}
+                        Descripción: 
+                        {{form.descripcion}}
+                        Estado: 
+                        {{form.estado}}
+                        Tipo de Asesoría: 
+                        {{form.id_tipo_ase}}
+                        <input type="submit" value="Crear" id="button" class="alter-button">
                     </form>
                 </div>
             </div>
