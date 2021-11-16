@@ -11,8 +11,8 @@ from django.db import models
 class Actividad(models.Model):
 
     CHOICES = (
-    ('1', "Capacitacion"),
-    ('2', "Asesoria"),
+    ('1', "Capacitación"),
+    ('2', "Asesoría"),
     ('3', "Visita"),
     )
 
@@ -119,7 +119,7 @@ class Cliente(models.Model):
         db_table = 'cliente'
 
     def __str__(self):
-        return self.id_perfil.id_auth_user.first_name
+        return self.razon_social
 
 class ClienteContrato(models.Model):
     id = models.AutoField(primary_key=True)

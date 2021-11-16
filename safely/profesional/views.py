@@ -79,7 +79,18 @@ def crear_ase(request):
 
 @login_required
 def ingresar_ase(request):
-    return render(request, 'profesional/asesorias/ingresar-a.html')
+    data = {
+        'form': IngresarAsesoria
+    }
+    if request.method == 'POST':
+        formulario = IngresarAsesoria(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+            return redirect (to='vista_actividad')
+        else:
+            data["form"] = formulario 
+    return render(request, 'profesional/asesorias/ingresar-a.html',data)
 
 @login_required
 def modificar_ase(request,id_asesoria):
@@ -146,8 +157,18 @@ def crear_capa(request):
 
 @login_required
 def ingresar_capa(request):
-
-    return render(request, 'profesional/capacitaciones/ingresar-c.html')
+    data = {
+        'form': IngresarCapacitacion
+    }
+    if request.method == 'POST':
+        formulario = IngresarCapacitacion(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+            return redirect (to='vista_actividad')
+        else:
+            data["form"] = formulario 
+    return render(request, 'profesional/capacitaciones/ingresar-c.html', data)
 
 @login_required
 def modificar_capa(request,id_capacitacion):
@@ -276,7 +297,6 @@ def vista_actividad(request):
     try:
         paginator = Paginator(ACT, 5)
         ACT = paginator.page(page)
-        messages.success(request, usr)
     except:
         raise Http404
     context = {'entity': ACT,
@@ -377,3 +397,17 @@ def modificar_visita(request,id_visita):
         return redirect(to='vista_visita')
 
     return render(request, 'profesional/visita/modificar-visita.html',{'form':form})
+
+def ingresar_visita(request):
+    data = {
+        'form': IngresarVisita
+    }
+    if request.method == 'POST':
+        formulario = IngresarVisita(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+            return redirect (to='vista_actividad')
+        else:
+            data["form"] = formulario
+    return render(request, 'profesional/visita/ingresar-visita.html',data)

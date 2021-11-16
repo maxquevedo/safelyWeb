@@ -78,6 +78,23 @@ class AsesoriaModificar(forms.ModelForm):
     class Meta:
         model = Asesoria
         fields = '__all__'
+        widgets = {
+            'descripcion': forms.Textarea
+        }
+
+class IngresarAsesoria(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(IngresarAsesoria, self).__init__(*args, **kwargs)
+        self.initial['tipo_act'] = '2'
+
+    class Meta:
+        model = Actividad
+        fields = '__all__'
+        widgets = {
+            'fec_estimada': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+            'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+        }
+
 ## Capacitacion 
 class CapacitacionForm(forms.ModelForm):
     class Meta:
@@ -88,6 +105,19 @@ class CapacitacionModificar(forms.ModelForm):
     class Meta:
         model = Capacitacion
         fields = ['nombre', 'cant_asistentes','materiales']
+
+class IngresarCapacitacion(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(IngresarCapacitacion, self).__init__(*args, **kwargs)
+        self.initial['tipo_act'] = '1'
+
+    class Meta:
+        model = Actividad
+        fields = '__all__'
+        widgets = {
+            'fec_estimada': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+            'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+        }
 ## Lista 
 class ListaForm(forms.ModelForm):
     class Meta:
@@ -137,6 +167,19 @@ class VisitaForm(forms.ModelForm):
     class Meta:
         model = Visita
         fields = '__all__'
+
+class IngresarVisita(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(IngresarVisita, self).__init__(*args, **kwargs)
+        self.initial['tipo_act'] = '3'
+
+    class Meta:
+        model = Actividad
+        fields = '__all__'
+        widgets = {
+            'fec_estimada': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+            'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+        }
 
 ## CLIENTE
 
