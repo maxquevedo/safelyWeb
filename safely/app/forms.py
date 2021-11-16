@@ -6,8 +6,6 @@ from django.forms.widgets import DateTimeInput
 from .models import Cliente, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
 
 
-
-
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User

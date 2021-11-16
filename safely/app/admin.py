@@ -10,7 +10,6 @@ admin.site.register(Asesoria)
 
 admin.site.register(Capacitacion)
 admin.site.register(Cliente)
-admin.site.register(ClienteContrato)
 admin.site.register(Contrato)
 admin.site.register(Lista)
 admin.site.register(Mejora)

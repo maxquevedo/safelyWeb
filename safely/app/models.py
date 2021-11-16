@@ -1,10 +1,3 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
 
@@ -27,10 +20,11 @@ class Actividad(models.Model):
     nombre = models.CharField(max_length=250)
     descripcion = models.CharField(max_length=250)
     tipo_act = models.CharField('Tipo de actividad',max_length=1, choices=CHOICES)
+    act_extra = models.BooleanField()
     fec_estimada = models.DateField('Fecha estimada',auto_now=False)
     fec_ida = models.DateField('Fecha ida',auto_now=False,blank=True, null=True)
     estado = models.CharField(max_length=1, choices=estados)
-    cliente_id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='cliente_id_cli')
+    id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cli')
     id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof', blank=True, null=True)
     id_capacitacion = models.ForeignKey('Capacitacion', models.DO_NOTHING, db_column='id_capacitacion', blank=True, null=True)
     id_asesoria = models.ForeignKey('Asesoria', models.DO_NOTHING, db_column='id_asesoria', blank=True, null=True)
@@ -81,6 +75,20 @@ class Asesoria(models.Model):
     def __str__(self):
         return self.nombre
 
+class Boleta(models.Model):
+    id_boleta = models.BigIntegerField(primary_key=True)
+    fec_emision_bol = models.DateField()
+    fec_pago = models.DateField()
+    fec_corte = models.DateField()
+    pago_mensual = models.BigIntegerField()
+    pagado = models.FloatField()
+    pago_extra = models.BigIntegerField()
+    id_contrato = models.ForeignKey('Contrato', models.DO_NOTHING, db_column='id_contrato')
+
+    class Meta:
+        managed = False
+        db_table = 'boleta'
+
 class Capacitacion(models.Model):
     id_capacitacion = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
@@ -121,45 +129,30 @@ class Cliente(models.Model):
     def __str__(self):
         return self.razon_social
 
-class ClienteContrato(models.Model):
-    id = models.AutoField(primary_key=True)
-    id_contrato = models.ForeignKey('Contrato', models.DO_NOTHING, db_column='id_contrato')
-    id_cli = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cli')
-
-    class Meta:
-        managed = False
-        db_table = 'cliente_contrato'
-
 
 class Contrato(models.Model):
-    id_contrato = models.AutoField(primary_key=True)
+    id_contrato = models.BigIntegerField(primary_key=True)
     fec_inicio = models.DateField()
     fec_termino = models.DateField()
-    fec_corte = models.DateField()
-    fec_pago = models.DateField()
-    pago_mensual = models.BigIntegerField()
-    pago_extra = models.BigIntegerField()
     total_pago = models.BigIntegerField()
-    estado = models.BooleanField()
+    estado = models.FloatField()
     id_plan = models.ForeignKey('Plan', models.DO_NOTHING, db_column='id_plan')
+    id_cli = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cli')
 
     class Meta:
         managed = False
         db_table = 'contrato'
 
-
 class Lista(models.Model):
-    id_lista = models.AutoField(primary_key=True)
+    id_lista = models.BigIntegerField(primary_key=True)
     lista = models.CharField(max_length=1000)
     verificacion = models.CharField(max_length=500)
     recomendacion = models.CharField(max_length=250)
-    id_cli = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cli')
-    id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof')
+    id_actividad = models.ForeignKey(Actividad, models.DO_NOTHING, db_column='id_actividad')
 
     class Meta:
         managed = False
         db_table = 'lista'
-
 
 class Mejora(models.Model):
     id_mejora = models.AutoField(primary_key=True)
@@ -295,7 +288,6 @@ class User(models.Model):
 class Visita(models.Model):
     id_visita = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
-    is_extra = models.BooleanField()
     estado = models.BooleanField()
 
     class Meta:
