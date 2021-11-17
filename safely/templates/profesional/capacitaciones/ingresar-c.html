@@ -28,25 +28,26 @@
                     <form action="" method="post">
                         {% csrf_token %}
                         <div class="crea-act-container">
-                            Nombre
+                            <p>Nombre</p>
                             {{form.nombre}}
-                            Descripción
+                            <p>Descripción</p>
                             {{form.descripcion}}
                             {{form.tipo_act.as_hidden}}
-                            Capacitación
+                            <p>Capacitación</p>
                             {{form.id_capacitacion}}
-                            Fecha estimada
+                            <p>Fecha estimada</p>
                             {{form.fec_estimada}}</div>
                         <div class="crea-act-container">
-                            Fecha de ida
+                            <p>Fecha de ida</p>
                             {{form.fec_ida}}
-                            Estado
+                            <p>Estado</p>
                             {{form.estado}}
-                            Cliente
-                            {{form.cliente_id_cli}}
-                            Profesional
+                            <p>Cliente</p>
+                            {{form.id_cli}}
+                            <p>Profesional</p>
                             {{form.id_prof}}
-                            <input type="submit" value="Registrar" id="button" class="alter-button">
+                            <p>Acción</p>
+                            <input type="submit" value="Ingresar" id="button" class="alter-button">
                         </div>
                     </form>
                 </div>

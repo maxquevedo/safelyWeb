@@ -23,22 +23,26 @@
     </div>
     <div class="info-perfiles">
         <div class="login-container">
-            <div class="signup-box">
-                <div class="perfil-text-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
                     <h2>Crear Plan</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        Nombre
-                        {{form.nombre}}
-                        Descripción
-                        {{form.descripcion}}
-                        Costo
-                        {{form.costo}}
-                        Estado
-                        {{form.estado}}
-                        Servicio
-                        {{form.id_servicio}}
-                        <input type="submit" value="Registrar" id="button" class="alter-button">
+                        <div class="crea-act-container">
+                            <p>Nombre</p>
+                            {{form.nombre}}
+                            <p>Descripción</p>
+                            {{form.descripcion}}
+                            <p>Costo</p>
+                            {{form.costo}}
+                        </div>
+                        <div class="crea-act-container">
+                            <p>Estado</p>
+                            {{form.estado}}
+                            <p>Servicio</p>
+                            {{form.id_servicio}}
+                            <input type="submit" value="Registrar" id="button" class="alter-button">
+                        </div>
                     </form>
                 </div>
             </div>

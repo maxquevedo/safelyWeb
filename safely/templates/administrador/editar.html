@@ -27,13 +27,13 @@
                     <h2>Editar Usuario</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <h5>Usuario</h5>
+                        <p>Usuario</p>
                         {{ form.username }}
-                        <h5>Nombre</h5>
+                        <p>Nombre</p>
                         {{ form.first_name }}
-                        <h5>Apellido</h5>
+                        <p>Apellido</p>
                         {{ form.last_name }}
-                        <h5>Correo</h5>
+                        <p>Correo</p>
                         {{ form.email }}
                         {{ form.is_active }}
                         <input type="submit" value="Modificar" id="button" class="alter-button">

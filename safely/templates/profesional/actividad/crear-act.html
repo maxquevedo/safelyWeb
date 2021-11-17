@@ -38,40 +38,41 @@
                     <form action="" method="post">
                         {% csrf_token %}
                         <div class="crea-act-container">
-                            Nombre
+                            <p>Nombre</p>
                             {{form.nombre}}
-                            Descripción
+                            <p>Descripción</p>
                             {{form.descripcion}}
-                            Tipo de Actividad
+                            <p>Tipo de Actividad</p>
                             <select id="id_tipo_act" name="tipo_act">
                                 {% for x, y in form.fields.tipo_act.choices %}
                                     <option value="{{ x }}"{% if form.fields.tipo_act.value == x %} selected{% endif %}>{{ y }}</option>
                                 {% endfor %}
                             </select>
                             <diV id=1 class="tipo" style="display:none">
-                                Capacitación
+                                <p>Capacitación</p>
                                 {{form.id_capacitacion}}
                             </div>
                             <diV id="2" class="tipo" style="display:none">
-                                Asesoría
+                                <p>Asesoría</p>
                                 {{form.id_asesoria}}
                             </div>
                             <diV id="3" class="tipo" style="display:none">
-                                Visita
+                                <p>Visita</p>
                                 {{form.id_visita}}
                             </div>
-                            Fecha estimada
+                            <p>Fecha estimada</p>
                             {{form.fec_estimada}}</div>
                         <div class="crea-act-container">
-                            Fecha de ida
+                            <p>Fecha de ida</p>
                             {{form.fec_ida}}
-                            Estado
+                            <p>Estado</p>
                             {{form.estado}}
-                            Cliente
-                            {{form.cliente_id_cli}}
-                            Profesional
+                            <p>Cliente</p>
+                            {{form.id_cli}}
+                            <p>Profesional</p>
                             {{form.id_prof}}
-                            <input type="submit" value="Registrar" id="button" class="alter-button">
+                            <p>Acción</p>
+                            <input type="submit" value="Crear" id="button" class="alter-button">
                         </div>
                     </form>
                 </div>
