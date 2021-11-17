@@ -15,6 +15,9 @@ document.getElementById("id_groups").removeAttribute("multiple");
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-adm' %}">Home</a></li>
             <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a  href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
             <li><a href="#">Ver Actividades</a></li>
             <li><a href="#">Notificar Atrasos</a></li>
@@ -25,19 +28,23 @@ document.getElementById("id_groups").removeAttribute("multiple");
     </div>
     <div class="info-perfiles">
         <div class="login-container">
-            <div class="signup-box">
-                <div class="perfil-text-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
                     <h2>Creación Usuario</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <input type="text" name="username" maxlength="150" autofocus required id="id_username" placeholder="Usuario">
-                        <input type="text" name="first_name" maxlength="30" id="id_first_name" placeholder="Nombre">
-                        <input type="text" name="last_name" maxlength="30" id="id_last_name" placeholder="Apellido">
-                        <input type="email" name="email" maxlength="254" id="id_email" placeholder="E-mail">
-                        <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
-                        <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
-                        {{form.groups}}
-                        <input type="submit" value="Registrar" id="button" class="alter-button">
+                        <div class="crea-act-container">
+                            <input type="text" name="username" maxlength="150" autofocus required id="id_username" placeholder="Usuario">
+                            <input type="text" name="first_name" maxlength="30" id="id_first_name" placeholder="Nombre">
+                            <input type="text" name="last_name" maxlength="30" id="id_last_name" placeholder="Apellido">
+                            <input type="email" name="email" maxlength="254" id="id_email" placeholder="E-mail">
+                        </div>
+                        <div class="crea-act-container">
+                            <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
+                            <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
+                            {{form.groups}}
+                            <input type="submit" value="Registrar" id="button" class="alter-button">
+                        </div>
                     </form>
                 </div>
             </div>

@@ -23,16 +23,16 @@
     </div>
     <div class="info-perfiles">
         <div class="login-container">
-            <div class="signup-box">
-                <div class="perfil-text-container">
+            <div class="admin-box">
+                <div class="admin-text">
                     <h2>Crear Servicio</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        Nombre
+                        <p>Nombre</p>
                         {{form.nombre}}
-                        Descripción
+                        <p>Descripción</p>
                         {{form.descripcion}}
-                        Estado
+                        <p>Estado</p>
                         {{form.estado}}
                         <input type="submit" value="Registrar" id="button" class="alter-button">
                     </form>
