@@ -38,8 +38,122 @@ class UserSerializer(serializers.ModelSerializer):
         }
         
 #Model actividad
-
 class ActividadSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Actividad
         fields = '__all__'
+
+#Model Administrador
+class AdministradorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Administrador
+        fields = '__all__'
+
+#Model Alerta
+class AlertaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Alerta
+        fields = '__all__'
+
+#Model Asesoria
+class AsesoriaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Asesoria
+        fields = '__all__'
+
+#Model Boleta
+class BoletaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Boleta
+        fields = '__all__'
+
+#Model Capacitacion
+class CapacitacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Capacitacion
+        fields = '__all__'
+
+
+#Model Chat
+class ChatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Chat
+        fields = '__all__'
+
+#Model Cliente
+class ClienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Cliente
+        fields = '__all__'
+
+#Model Contrato
+class ContratoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Contrato
+        fields = '__all__'
+
+
+#Model Lista
+class ListaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Lista
+        fields = '__all__'
+
+#Model Mejora
+class MejoraSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Mejora
+        fields = '__all__'
+
+#Model Perfil
+class PerfilSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Perfil
+        fields = '__all__'
+
+#Model Plan
+class PlanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Plan
+        fields = '__all__'
+
+
+#Model Profesional
+class ProfesionalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Profesional
+        fields = '__all__'
+
+
+#Model Reporte
+class ReporteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Reporte
+        fields = '__all__'
+
+
+#Model Servicio
+class ServicioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Servicio
+        fields = '__all__'
+
+
+#Model TipoAsesoria
+class TipoAsesoriaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.TipoAsesoria
+        fields = '__all__'
+
+#Model TipoReporte
+class TipoReporteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.TipoReporte
+        fields = '__all__'
+
+#Model Visita
+class VisitaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Visita
+        fields = '__all__'
+
