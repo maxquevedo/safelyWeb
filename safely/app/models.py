@@ -1,4 +1,80 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+
+
+"""
+class User(models.Model):
+    id = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=150)
+    password = models.CharField(max_length=150) 
+    first_name = models.CharField(max_length=150) 
+    last_name = models.CharField(max_length=150) 
+    email = models.CharField(max_length=150) 
+    is_active = models.BooleanField
+    class Meta:
+        managed = False
+        db_table = 'auth_user'
+
+    def __str__(self):
+        return self.username
+
+"""
+class Perfil(models.Model):
+    CHOICES = (
+    ('1', "Administrador"),
+    ('2', "Profesional"),
+    ('3', "Cliente"),
+
+    )
+    id_perfil = models.AutoField(primary_key=True)
+    rut = models.CharField(max_length=12)
+    telefono = models.BigIntegerField()
+    direccion = models.CharField(max_length=200)
+    tipo_perf = models.CharField(max_length=1, choices=CHOICES)
+    id_auth_user = models.OneToOneField(User, on_delete=models.PROTECT, related_name='profile',db_column='id_auth_user')
+
+    class Meta:
+        managed = False
+        db_table = 'perfil'
+
+    def __str__(self):
+        return self.id_auth_user.username
+
+
+class Cliente(models.Model):
+    id_cli = models.AutoField(primary_key=True)
+    razon_social = models.CharField(max_length=50)
+    id_perfil = models.OneToOneField(Perfil, models.DO_NOTHING, db_column='id_perfil',related_name='client')
+
+    class Meta:
+        managed = False
+        db_table = 'cliente'
+
+    def __str__(self):
+        return self.razon_social
+
+class Profesional(models.Model):
+    id_prof = models.IntegerField(primary_key=True)
+    id_perfil = models.OneToOneField(Perfil, models.DO_NOTHING, db_column='id_perfil',related_name='professional')
+
+    class Meta:
+        managed = False
+        db_table = 'profesional'
+
+    def __str__(self):
+        return self.id_perfil.id_auth_user.username
+
+class Administrador(models.Model):
+    id_admin = models.AutoField(primary_key=True)
+    id_perfil = models.OneToOneField(Perfil, models.DO_NOTHING, db_column='id_perfil',related_name='administrator')
+
+    class Meta:
+        managed = False
+        db_table = 'administrador'
+
+    def __str__(self):
+        return self.id_perfil.id_auth_user.username
 
 
 class Actividad(models.Model):
@@ -37,16 +113,6 @@ class Actividad(models.Model):
     def __str__(self):
         return self.nombre
 
-class Administrador(models.Model):
-    id_admin = models.AutoField(primary_key=True)
-    id_perfil = models.OneToOneField('Perfil', models.DO_NOTHING, db_column='id_perfil')
-
-    class Meta:
-        managed = False
-        db_table = 'administrador'
-
-    def __str__(self):
-        return self.id_perfil.id_auth_user.first_name
 
 class Alerta(models.Model):
     id_alerta = models.AutoField(primary_key=True)
@@ -117,18 +183,6 @@ class Chat(models.Model):
         db_table = 'chat'
 
 
-class Cliente(models.Model):
-    id_cli = models.AutoField(primary_key=True)
-    razon_social = models.CharField(max_length=50)
-    id_perfil = models.OneToOneField('Perfil', models.DO_NOTHING, db_column='id_perfil')
-
-    class Meta:
-        managed = False
-        db_table = 'cliente'
-
-    def __str__(self):
-        return self.razon_social
-
 
 class Contrato(models.Model):
     id_contrato = models.BigIntegerField(primary_key=True)
@@ -169,27 +223,6 @@ class Mejora(models.Model):
     def __str__(self):
         return self.nombre
 
-class Perfil(models.Model):
-    CHOICES = (
-    ('1', "Administrador"),
-    ('2', "Profesional"),
-    ('3', "Cliente"),
-
-    )
-    id_perfil = models.AutoField(primary_key=True)
-    rut = models.CharField(max_length=12)
-    telefono = models.BigIntegerField()
-    direccion = models.CharField(max_length=200)
-    tipo_perf = models.CharField(max_length=1, choices=CHOICES)
-    id_auth_user = models.OneToOneField('User', on_delete=models.PROTECT, db_column='id_auth_user')
-
-    class Meta:
-        managed = False
-        db_table = 'perfil'
-
-    def __str__(self):
-        return self.id_auth_user.username
-
 
 
 class Plan(models.Model):
@@ -207,16 +240,7 @@ class Plan(models.Model):
     def __str__(self):
         return self.nombre
 
-class Profesional(models.Model):
-    id_prof = models.IntegerField(primary_key=True)
-    id_perfil = models.OneToOneField(Perfil, models.DO_NOTHING, db_column='id_perfil')
 
-    class Meta:
-        managed = False
-        db_table = 'profesional'
-
-    def __str__(self):
-        return self.id_perfil.id_auth_user.first_name
 
 class Reporte(models.Model):
     id_reporte = models.AutoField(primary_key=True)
@@ -269,22 +293,6 @@ class TipoReporte(models.Model):
     def __str__(self):
         return self.nombre
 
-
-class User(models.Model):
-    id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=150)
-    password = models.CharField(max_length=150) 
-    first_name = models.CharField(max_length=150) 
-    last_name = models.CharField(max_length=150) 
-    email = models.CharField(max_length=150) 
-    is_active = models.BooleanField
-    class Meta:
-        managed = False
-        db_table = 'auth_user'
-
-    def __str__(self):
-        return self.username
-
 class Visita(models.Model):
     id_visita = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
@@ -296,3 +304,17 @@ class Visita(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+
+#Manera de asignar un usuario a un perfil cuando es registrado
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Perfil.objects.create(id_auth_user=instance)
+
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+#created_profile
+post_save.connect(create_user_profile, sender=User)
+#save_profile
+post_save.connect(save_user_profile, sender=User)
