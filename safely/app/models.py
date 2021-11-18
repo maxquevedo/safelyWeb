@@ -32,7 +32,7 @@ class Perfil(models.Model):
     telefono = models.BigIntegerField()
     direccion = models.CharField(max_length=200)
     tipo_perf = models.CharField(max_length=1, choices=CHOICES)
-    id_auth_user = models.OneToOneField(User, on_delete=models.PROTECT, related_name='profile',db_column='id_auth_user')
+    id_auth_user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',db_column='id_auth_user')
 
     class Meta:
         managed = False
@@ -307,6 +307,7 @@ class Visita(models.Model):
 
 
 
+"""
 #Manera de asignar un usuario a un perfil cuando es registrado
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -318,3 +319,5 @@ def save_user_profile(sender, instance, **kwargs):
 post_save.connect(create_user_profile, sender=User)
 #save_profile
 post_save.connect(save_user_profile, sender=User)
+
+"""

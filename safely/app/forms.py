@@ -198,4 +198,4 @@ class ProfesionalForm(forms.ModelForm):
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = ['id_perfil', 'rut','telefono','direccion','tipo_perf','id_auth_user']
+        fields = ['id_perfil', 'rut','telefono','direccion','tipo_perf']

@@ -22,6 +22,35 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
+from django.views import View
+
+from app import forms
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
+
+def ProfileView(request):
+    context = {'form': CustomUserCreationForm(),'form_p':PerfilForm()}
+
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data=request.POST)
+        formulario2 = PerfilForm(data=request.POST)
+
+        if formulario.is_valid() and formulario2.is_valid():
+            usuario = formulario.save()
+            group = request.POST.get('groups')
+            usuario.groups.add(group)
+
+            farm = formulario2.save(commit=False)    
+            farm.id_auth_user = usuario
+            farm.save() 
+            messages.success(request, 'Usuario creado correctamente')
+            return redirect(to="mantenedor")
+        context = {'form': CustomUserCreationForm(),'form_p':PerfilForm()}
+
+    return render(request, 'pruebas/profile.html', context)
+
 
 def home(request):
     return render(request, 'home.html')
