@@ -3,7 +3,7 @@
 {% block js %}
 <script>
     $(function() {
-        $('#id_groups').change(function(){
+        $('#id_tipo_act').change(function(){
             $('.tipo').hide();
             $('#' + $(this).val()).show();
         });
@@ -35,13 +35,12 @@
         <div class="login-container">
             <div class="actividad-box">
                 <div class="act-text-container">
-                    <h2>CREAR USUARIO</h2>
+                    <h2>CREAR usuario god</h2>
                     <form action="" method="post">
                         {% csrf_token %}
                         <div class="crea-act-container">
                             <p>Usuario</p>
                             {{form.username}}
-                            {{form.username.errors}}
                             <p>Nombre</p>
                             {{form.first_name}}
                             <p>Apellido</p>
@@ -52,9 +51,6 @@
                             <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
                             <p>Confirmar Contraseña</p>
                             <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
-
-                        </div>
-                        <div class="crea-act-container">
                             <p>Grupo</p>
                             <select id="id_groups" name="groups">
                                 {% for x, y in form.fields.groups.choices %}
@@ -67,8 +63,11 @@
                             <diV id="2" class="tipo" style="display:none">
                                 {{proform.as_p}}
                             </div>
+
+                        </div>
+                        <div class="crea-act-container">
                             <diV id="3" class="tipo" style="display:none">
-                                <p>Razón Social</p>
+                                <p>Cliente</p>
                                 {{cliform.razon_social}}
                             </div>
                             <p>Rut</p>

@@ -127,12 +127,12 @@
     }
 
     .actividad-box {
-        width: 580px;
+        width: 780px;
     }
 
     .crea-act-container ul {
         height: 28px;
-        width: 220px;
+        width: 290px;
         margin-bottom: 15px;
         font-size: 13px;
     }
@@ -150,7 +150,7 @@
     .act-text-container form select{
         margin-bottom: 15px;
         height: 30px;
-        width: 220px;
+        width: 290px;
         font-size: 13px;
     }
 

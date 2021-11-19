@@ -6,14 +6,14 @@ home_admin, maintainer, login_view,
 UserLista, UserEdit, UserDelete, login_filter, plan_lista,
 PlanEdit, PlanDelete, PlanCreate,ServicioCreate,Servicio_lista,ServicioEdit,ServicioDelete,
 infoCliente,crear_cliente,infoProfesional,modificar_cliente,crear_profesional,modificar_profesional,
-infoPerfil,crear_perfil,modificar_perfil,ProfileView
+infoPerfil,crear_perfil,modificar_perfil
 
 )
 
 
 
 urlpatterns = [
-    path('crearp/', ProfileView,name='crearp'),
+ 
     path('', home, name="home"),
     path('admin/', admin.site.urls),
     path('administrador/usuario/registro-usuario/', signup_view, name='signup'),

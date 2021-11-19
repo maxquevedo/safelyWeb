@@ -30,7 +30,7 @@ from django.dispatch import receiver
 
 
 
-def ProfileView(request):
+def signup_view(request):
     context = {'form': CustomUserCreationForm(),
     'form_p':PerfilForm(),
     'adminform':AdminForm(),
@@ -76,13 +76,13 @@ def ProfileView(request):
         'cliform': ClienteForm(),
         }
 
-    return render(request, 'pruebas/profile.html', context)
+    return render(request, 'registration/signup.html', context)
 
 
 def home(request):
     return render(request, 'home.html')
 
-def signup_view(request):
+"""def signup_view(request):
     data = {
         'form': CustomUserCreationForm()
     }
@@ -95,7 +95,7 @@ def signup_view(request):
             messages.success(request, 'Usuario creado correctamente')
             return redirect(to="mantenedor")
         data["form"] = formulario
-    return render(request, 'registration/signup.html', data)
+    return render(request, 'registration/signup.html', data)"""
     
 @login_required
 def home_professional(request):

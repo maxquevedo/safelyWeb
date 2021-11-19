@@ -104,13 +104,13 @@
     }
 
     .perfil-text-container textarea{
-        width: 260px;
+        width: 320px;
         font-size: 14px;
     }
 
     .crea-act-container ul {
         height: 42px;
-        width: 260px;
+        width: 320px;
     }
     
     .crea-act-container li{
@@ -123,10 +123,10 @@
     .act-text-container form input[type=email],
     .act-text-container form input[type=password], 
     .act-text-container form input[type=date], 
-    select{
+    .act-text-container form select{
         margin-bottom: 10px;
         height: 44px;
-        width: 260px;
+        width: 320px;
         font-size: 16px;
     }
 

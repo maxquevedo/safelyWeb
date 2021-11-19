@@ -123,7 +123,7 @@ textarea:focus, input:focus, select:focus{
     border:1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     margin: auto;
-    width: 700px;
+    width: 1000px;
     height: auto;
     align-content: center;
     align-items: center;
@@ -171,9 +171,9 @@ textarea:focus, input:focus, select:focus{
 }
 
 .act-text-container > h2 {
-    padding-bottom: 20px;
-    padding-top: 42px;
-    font-size: 40px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    font-size: 30px;
     text-shadow: 0px 0px 16px rgba(0,0,0,0.02);
 }
 
@@ -190,7 +190,7 @@ textarea:focus, input:focus, select:focus{
     margin: auto;
     margin-bottom: 10px;
     height: 44px;
-    width: 260px;
+    width: 370px;
     font-size: 16px;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     border-radius: 6px;

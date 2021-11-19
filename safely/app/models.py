@@ -44,7 +44,7 @@ class Perfil(models.Model):
 
 class Cliente(models.Model):
     id_cli = models.AutoField(primary_key=True)
-    razon_social = models.CharField(max_length=50)
+    razon_social = models.CharField(max_length=50, null=True, blank=True)
     id_perfil = models.OneToOneField(Perfil, models.DO_NOTHING, db_column='id_perfil',related_name='client')
 
     class Meta:
