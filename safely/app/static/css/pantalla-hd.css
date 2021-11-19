@@ -130,6 +130,17 @@
         width: 580px;
     }
 
+    .crea-act-container ul {
+        height: 28px;
+        width: 220px;
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
+    
+    .crea-act-container li{
+        margin: auto;
+    }
+
     .act-text-container form input[type=text], 
     .act-text-container form input[type=number], 
     .act-text-container form input[type=submit], 

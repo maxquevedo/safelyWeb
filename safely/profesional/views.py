@@ -311,6 +311,7 @@ def crear_actividad(request):
     if request.method == 'POST':
         formulario = ActividadForm(data=request.POST)
         if formulario.is_valid():
+            data["form"] = formulario 
             formulario.save()
             messages.success(request, "Creado correctamente!")
             return redirect (to='vista_actividad')

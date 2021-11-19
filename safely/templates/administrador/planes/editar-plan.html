@@ -29,6 +29,7 @@
                         {% csrf_token %}
                         <h5>Nombre del Plan</h5>
                         {{ form.nombre }}
+                        {{form.nombre.errors}}
                         <h5>Descripción</h5>
                         {{ form.descripcion }}
                         <h5>Servicio agregado</h5>

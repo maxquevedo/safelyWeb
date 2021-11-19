@@ -108,6 +108,15 @@
         font-size: 14px;
     }
 
+    .crea-act-container ul {
+        height: 42px;
+        width: 260px;
+    }
+    
+    .crea-act-container li{
+        margin: auto;
+    }
+
     .act-text-container form input[type=text], 
     .act-text-container form input[type=number], 
     .act-text-container form input[type=submit], 
@@ -115,7 +124,7 @@
     .act-text-container form input[type=password], 
     .act-text-container form input[type=date], 
     select{
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         height: 44px;
         width: 260px;
         font-size: 16px;
@@ -130,8 +139,8 @@
         box-sizing:border-box;
         display: block;
         margin: auto;
-        margin-bottom: 16px;
-        height: 38px;
+        margin-bottom: 10px;
+        height: 44px;
         width: 300px;
         font-size: 14px;
     }
@@ -187,5 +196,6 @@
 
     .admin-text input[type=checkbox] {
         width: 30px;
+        height: 44px;
     }
 }

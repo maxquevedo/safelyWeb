@@ -61,8 +61,15 @@
                                 {{form.id_visita}}
                             </div>
                             <p>Fecha estimada</p>
-                            {{form.fec_estimada}}</div>
+                            {{form.fec_estimada}}
+                            {% if form.fec_estimada.errors %}
+                            <p>Error</p>
+                            {% endif %}
+                            {{form.fec_estimada.errors}}
+                        </div>
                         <div class="crea-act-container">
+                            <p>Actividad extra</p>
+                            {{form.act_extra}}
                             <p>Fecha de ida</p>
                             {{form.fec_ida}}
                             <p>Estado</p>
