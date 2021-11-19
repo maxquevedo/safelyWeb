@@ -52,10 +52,10 @@ class Cliente(models.Model):
         db_table = 'cliente'
 
     def __str__(self):
-        return self.razon_social
+        return self.id_perfil.id_auth_user.username
 
 class Profesional(models.Model):
-    id_prof = models.IntegerField(primary_key=True)
+    id_prof = models.AutoField(primary_key=True)
     id_perfil = models.OneToOneField(Perfil, models.DO_NOTHING, db_column='id_perfil',related_name='professional')
 
     class Meta:

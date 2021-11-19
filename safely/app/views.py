@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import (
 CustomUserCreationForm, UserActive,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm,
-ClienteForm,ProfesionalForm, PerfilForm
+ClienteForm,ProfesionalForm, PerfilForm,AdminForm
 
 )
 from django.contrib.auth.forms import  AuthenticationForm
@@ -31,23 +31,50 @@ from django.dispatch import receiver
 
 
 def ProfileView(request):
-    context = {'form': CustomUserCreationForm(),'form_p':PerfilForm()}
+    context = {'form': CustomUserCreationForm(),
+    'form_p':PerfilForm(),
+    'adminform':AdminForm(),
+    'proform': ProfesionalForm(),
+    'cliform': ClienteForm(),
+    }
 
     if request.method == 'POST':
         formulario = CustomUserCreationForm(data=request.POST)
-        formulario2 = PerfilForm(data=request.POST)
+        formPerfil = PerfilForm(data=request.POST)
+        formAdm = AdminForm(data=request.POST)
+        formProf = ProfesionalForm(data=request.POST)
+        formCli = ClienteForm(data=request.POST)
 
-        if formulario.is_valid() and formulario2.is_valid():
+        if formulario.is_valid() and formPerfil.is_valid():
             usuario = formulario.save()
             group = request.POST.get('groups')
             usuario.groups.add(group)
 
-            farm = formulario2.save(commit=False)    
-            farm.id_auth_user = usuario
-            farm.save() 
+            perfil = formPerfil.save(commit=False)    
+            perfil.id_auth_user = usuario
+            perfil.save()
+            
+            if perfil.tipo_perf=='1':
+                admin = formAdm.save(commit=False)
+                admin.id_perfil = perfil
+                admin.save()
+            elif perfil.tipo_perf=='2':
+                prof = formProf.save(commit=False)
+                prof.id_perfil = perfil
+                prof.save()
+            elif perfil.tipo_perf=='3':
+                cli = formCli.save(commit=False)
+                cli.id_perfil =perfil
+                cli.save()
+
             messages.success(request, 'Usuario creado correctamente')
             return redirect(to="mantenedor")
-        context = {'form': CustomUserCreationForm(),'form_p':PerfilForm()}
+        context = {'form': CustomUserCreationForm(),
+        'form_p':PerfilForm(),
+        'adminform':AdminForm(),
+        'proform': ProfesionalForm(),
+        'cliform': ClienteForm(),
+        }
 
     return render(request, 'pruebas/profile.html', context)
 

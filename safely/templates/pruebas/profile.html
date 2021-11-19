@@ -1,6 +1,22 @@
 <form method="post">
     {% csrf_token %}
+    <h1>Formulario Usuario</h1>
     {{ form.as_p }} 
+    <h1>Formulario Perfil</h1>
     {{ form_p.as_p }}
+
+
+
+    <h1>Formulario administrador</h1>
+    {{adminform.as_p}}
+
+    <h1>Formulario profesional</h1>
+    {{proform.as_p}}
+
+    <h1>Formulario Cliente</h1>
+    {{cliform.as_p}}
+
+
+
     <button type="submit">Crear Usuario</button>
 </form>

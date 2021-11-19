@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import fields
 from django.forms.widgets import DateTimeInput
-from .models import Cliente, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
+from .models import Administrador, Cliente, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -20,6 +20,35 @@ class UserActive(forms.ModelForm):
     class Meta:
         model = User
         fields = ['is_active']
+
+## PERFIL
+
+class PerfilForm(forms.ModelForm):
+    class Meta:
+        model = Perfil
+        fields = ['id_perfil', 'rut','telefono','direccion','tipo_perf']
+
+# Administrador
+class AdminForm(forms.ModelForm):
+    class Meta:
+        model = Administrador
+        fields = []
+## PROFESIONAL
+
+class ProfesionalForm(forms.ModelForm):
+    class Meta:
+        model = Profesional
+        fields = []
+
+## CLIENTE
+
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = Cliente
+        fields = ['razon_social']
+
+
+
 ## Plan 
 class PlanForm(forms.ModelForm):
     class Meta:
@@ -179,23 +208,3 @@ class IngresarVisita(forms.ModelForm):
             'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
         }
 
-## CLIENTE
-
-class ClienteForm(forms.ModelForm):
-    class Meta:
-        model = Cliente
-        fields = '__all__'
-
-## PROFESIONAL
-
-class ProfesionalForm(forms.ModelForm):
-    class Meta:
-        model = Profesional
-        fields = '__all__'
-
-## PERFIL
-
-class PerfilForm(forms.ModelForm):
-    class Meta:
-        model = Perfil
-        fields = ['id_perfil', 'rut','telefono','direccion','tipo_perf']
