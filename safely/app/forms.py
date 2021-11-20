@@ -55,7 +55,7 @@ class ProfesionalForm(forms.ModelForm):
 ## CLIENTE
 
 class ClienteForm(forms.ModelForm):
-    razon_social = forms.CharField(min_length=5, max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 
+    razon_social = forms.CharField(min_length=5, max_length=25, required=False, widget=forms.TextInput(attrs={'class': 'form-control', 
                            'placeholder': 'Ej: Duoc UC'}))  
     class Meta:
         model = Cliente

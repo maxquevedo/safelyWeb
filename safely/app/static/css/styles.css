@@ -131,6 +131,7 @@ textarea:focus, input:focus, select:focus{
     display: flex;
     border-radius: 18px;
     border:1px solid #dfdfdf;
+    flex-wrap: wrap;
 }
 
 .act-text-container {
@@ -138,7 +139,7 @@ textarea:focus, input:focus, select:focus{
     width: 100%;
 }
 
-.act-text-container form {
+.act-columns {
     display: flex;
 }
 
@@ -146,6 +147,12 @@ textarea:focus, input:focus, select:focus{
     width: 50%;
     height: 100%;
     padding-bottom: 20px;
+}
+
+.crea-act-button {
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 10px;
 }
 
 .crea-act-container p {

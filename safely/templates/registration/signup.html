@@ -3,7 +3,7 @@
 {% block js %}
 <script>
     $(function() {
-        $('#id_groups').change(function(){
+        $('#id_tipo_perf').change(function(){
             $('.tipo').hide();
             $('#' + $(this).val()).show();
         });
@@ -38,48 +38,55 @@
                     <h2>CREAR USUARIO</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <div class="crea-act-container">
-                            <p>Usuario</p>
-                            {{form.username}}
-                            {{form.username.errors}}
-                            <p>Nombre</p>
-                            {{form.first_name}}
-                            <p>Apellido</p>
-                            {{form.last_name}}
-                            <p>Correo</p>
-                            {{form.email}}
-                            <p>Contraseña</p>
-                            <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
-                            <p>Confirmar Contraseña</p>
-                            <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
-
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Usuario</p>
+                                {{form.username}}
+                                {{form.username.errors}}
+                                <p>Nombre</p>
+                                {{form.first_name}}
+                                <p>Apellido</p>
+                                {{form.last_name}}
+                                <p>Correo</p>
+                                {{form.email}}
+                                <p>Contraseña</p>
+                                <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
+                                <p>Confirmar Contraseña</p>
+                                <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
+    
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Grupo</p>
+                                <select id="id_groups" name="groups">
+                                    {% for x, y in form.fields.groups.choices %}
+                                        <option value="{{ x }}"{% if form.fields.groups.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
+                                <p>Rut</p>
+                                {{form_p.rut}}
+                                <p>Teléfono</p>
+                                {{form_p.telefono}}
+                                <p>Dirección</p>
+                                {{form_p.direccion}}
+                                <p>Tipo Perfil</p>
+                                <select id="id_tipo_perf" name="tipo_perf">
+                                    {% for x, y in form.fields.groups.choices %}
+                                        <option value="{{ x }}"{% if form.fields.groups.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
+                                <diV id=1 class="tipo" style="display:none">
+                                    {{adminform.as_p}}
+                                </div>
+                                <diV id="2" class="tipo" style="display:none">
+                                    {{proform.as_p}}
+                                </div>
+                                <diV id="3" class="tipo" style="display:none">
+                                    <p>Razón Social</p>
+                                    {{cliform.razon_social}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="crea-act-container">
-                            <p>Grupo</p>
-                            <select id="id_groups" name="groups">
-                                {% for x, y in form.fields.groups.choices %}
-                                    <option value="{{ x }}"{% if form.fields.groups.value == x %} selected{% endif %}>{{ y }}</option>
-                                {% endfor %}
-                            </select>
-                            <diV id=1 class="tipo" style="display:none">
-                                {{adminform.as_p}}
-                            </div>
-                            <diV id="2" class="tipo" style="display:none">
-                                {{proform.as_p}}
-                            </div>
-                            <diV id="3" class="tipo" style="display:none">
-                                <p>Razón Social</p>
-                                {{cliform.razon_social}}
-                            </div>
-                            <p>Rut</p>
-                            {{form_p.rut}}
-                            <p>Teléfono</p>
-                            {{form_p.telefono}}
-                            <p>Dirección</p>
-                            {{form_p.direccion}}
-                            <p>Tipo Perfil</p>
-                            {{form_p.tipo_perf}}
-                            <p>Acción</p>
+                        <div class="crea-act-button">
                             <input type="submit" value="Crear" id="button" class="alter-button">
                         </div>
                     </form>
