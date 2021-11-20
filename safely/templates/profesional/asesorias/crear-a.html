@@ -27,20 +27,22 @@
                     <h2>CREAR ASESORIAS</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <div class="crea-act-container">
-                            <p>Nombre</p>
-                            {{form.nombre}}
-                            {{form.nombre.errors}}
-                            <p>Descripción</p>
-                            {{form.descripcion}}
-                        </div>
-                        <div class="crea-act-container">
-                            <p>Estado</p>
-                            {{form.estado}}
-                            <p>Tipo de Asesoría</p>
-                            {{form.id_tipo_ase}}
-                            <p>Acción</p>
-                            <input type="submit" value="Crear" id="button" class="alter-button">
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre</p>
+                                {{form.nombre}}
+                                {{form.nombre.errors}}
+                                <p>Descripción</p>
+                                {{form.descripcion}}
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Estado</p>
+                                {{form.estado}}
+                                <p>Tipo de Asesoría</p>
+                                {{form.id_tipo_ase}}
+                                <p>Acción</p>
+                                <input type="submit" value="Crear" id="button" class="alter-button">
+                            </div>
                         </div>
                     </form>
                 </div>
