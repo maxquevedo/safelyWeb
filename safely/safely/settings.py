@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'app',
     'cliente',
     'profesional',
-    'api'
+    'api',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -86,8 +87,8 @@ WSGI_APPLICATION = 'safely.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '192.168.0.7:1521/xe',
-        #'NAME': 'localhost:1521/xe',
+        #'NAME': '192.168.0.7:1521/xe',
+        'NAME': 'localhost:1521/xe',
         'USER': 'c##safely',
         'PASSWORD':'safely',
         'HOST': '',

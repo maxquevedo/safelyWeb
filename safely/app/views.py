@@ -24,10 +24,26 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from django.views import View
 
-from app import forms
+from app import filtersets
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+
+
+
+def user_filter(request):
+    
+    filtro = filtersets.UsertFilter(
+        request.GET,
+        queryset= User.objects.all()
+    )
+
+    context = {
+        'filtro': filtro
+    }
+
+
+    return render(request, 'pruebas/ekisde.html', context)
 
 
 def signup_view(request):
