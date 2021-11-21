@@ -26,20 +26,22 @@
                     <h2>CREAR MEJORA</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <div class="crea-act-container">
-                            <p>Nombre</p>
-                            {{form.nombre}}
-                            <p>Propuesta</p>
-                            {{form.propuesta}}
-                        </div>
-                        <div class="crea-act-container">
-                            <p>Aceptación</p>
-                            {{form.aceptacion}}
-                            <p>Estado</p>
-                            {{form.estado}}
-                            <p>Actividad</p>
-                            {{form.id_actividad}}
-                            <input type="submit" value="Registrar" id="button" class="alter-button">
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre</p>
+                                {{form.nombre}}
+                                <p>Propuesta</p>
+                                {{form.propuesta}}
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Aceptación</p>
+                                {{form.aceptacion}}
+                                <p>Estado</p>
+                                {{form.estado}}
+                                <p>Actividad</p>
+                                {{form.id_actividad}}
+                                <input type="submit" value="Registrar" id="button" class="alter-button">
+                            </div>
                         </div>
                     </form>
                 </div>

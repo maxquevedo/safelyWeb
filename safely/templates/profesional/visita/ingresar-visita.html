@@ -27,27 +27,29 @@
                     <h2>INGRESAR ACTIVIDAD DE VISITA</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <div class="crea-act-container">
-                            <p>Nombre</p>
-                            {{form.nombre}}
-                            <p>Descripción</p>
-                            {{form.descripcion}}
-                            {{form.tipo_act.as_hidden}}
-                            <p>Visita</p>
-                            {{form.id_visita}}
-                            <p>Fecha estimada</p>
-                            {{form.fec_estimada}}</div>
-                        <div class="crea-act-container">
-                            <p>Fecha de ida</p>
-                            {{form.fec_ida}}
-                            <p>Estado</p>
-                            {{form.estado}}
-                            <p>Cliente</p>
-                            {{form.id_cli}}
-                            <p>Profesional</p>
-                            {{form.id_prof}}
-                            <p>Acción</p>
-                            <input type="submit" value="Ingresar" id="button" class="alter-button">
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre</p>
+                                {{form.nombre}}
+                                <p>Descripción</p>
+                                {{form.descripcion}}
+                                {{form.tipo_act.as_hidden}}
+                                <p>Visita</p>
+                                {{form.id_visita}}
+                                <p>Fecha estimada</p>
+                                {{form.fec_estimada}}</div>
+                            <div class="crea-act-container">
+                                <p>Fecha de ida</p>
+                                {{form.fec_ida}}
+                                <p>Estado</p>
+                                {{form.estado}}
+                                <p>Cliente</p>
+                                {{form.id_cli}}
+                                <p>Profesional</p>
+                                {{form.id_prof}}
+                                <p>Acción</p>
+                                <input type="submit" value="Ingresar" id="button" class="alter-button">
+                            </div>
                         </div>
                     </form>
                 </div>
