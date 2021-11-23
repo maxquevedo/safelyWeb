@@ -97,7 +97,7 @@ class Actividad(models.Model):
     nombre = models.CharField(max_length=250)
     descripcion = models.CharField(max_length=250)
     tipo_act = models.CharField('Tipo de actividad',max_length=1, choices=CHOICES)
-    act_extra = models.BooleanField()
+    act_extra = models.BooleanField(blank=True, null=True)
     fec_estimada = models.DateField('Fecha estimada',auto_now=False)
     fec_ida = models.DateField('Fecha ida',auto_now=False,blank=True, null=True)
     estado = models.CharField(max_length=1, choices=estados)

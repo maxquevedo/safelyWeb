@@ -58,7 +58,7 @@
                                 Cancelado
                                 {% endif %}
                             </td>
-                            <td>{{entity.cliente_id_cli}}</td>
+                            <td>{{entity.id_cli.razon_social}}</td>
 
                             <td class="table-action" >
                                 <a href="{% url 'modificar_actividad' entity.id_actividad %}" id="modificar">
