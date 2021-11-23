@@ -610,9 +610,7 @@ input[type=checkbox] {
 .menu-vertical li a:hover:not(.active) {
     background-color: #dfdfdf;
 }
-.menu-vertical li a:hover:not(.active-cerrar) {
-    background-color: #c23737;
-}
+
 .menu-vertical ul h2 {
     margin: auto;
     text-align: center;
@@ -1068,4 +1066,24 @@ input[type=checkbox] {
     height: 44px;
     width: 44px;
     flex-direction: row;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #dfdfdf; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #999999; 
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #616161; 
 }

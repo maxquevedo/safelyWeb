@@ -40,6 +40,11 @@ class PerfilForm(forms.ModelForm):
         model = Perfil
         fields = ['id_perfil', 'rut','telefono','direccion','tipo_perf']
 
+class PerfilModificar(forms.ModelForm):
+    class Meta:
+        model = Perfil
+        fields = ['rut', 'telefono', 'direccion']
+
 # Administrador
 class AdminForm(forms.ModelForm):
     class Meta:

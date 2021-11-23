@@ -2,7 +2,7 @@ from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import (
-CustomUserCreationForm, PlanActive, ServicioActive, UserActive,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm,
+CustomUserCreationForm, PerfilModificar, PlanActive, ServicioActive, UserActive,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm,
 ClienteForm,ProfesionalForm, PerfilForm,AdminForm
 
 )
@@ -91,7 +91,7 @@ def signup_view(request):
                 cli.id_perfil =perfil
                 cli.save()
 
-            messages.success(request, 'Usuario creado correctamente')
+            messages.success(request, 'Usuario '+usuario.username+' creado correctamente')
             return redirect(to="mantenedor")
         context = {'form': CustomUserCreationForm(),
         'form_p':PerfilForm(),
@@ -195,7 +195,7 @@ def UserEdit(request,id):
         form = UserUpdateForm(request.POST, instance=usuario)
         if form.is_valid():
             form.save()
-            messages.success(request, "Usuario modificado correctamente")
+            messages.success(request, "Usuario "+usuario.username+" modificado correctamente")
         return redirect(to="listar")
     return render(request,'administrador/editar.html',{'form':form})
 
@@ -493,12 +493,12 @@ def crear_perfil(request):
 def modificar_perfil(request,id_perfil):
     pro = Perfil.objects.get(id_perfil=id_perfil)
     if request.method == 'GET':
-        form = PerfilForm(instance=pro)
+        form = PerfilModificar(instance=pro)
     else:
-        form = PerfilForm(request.POST, instance=pro)
+        form = PerfilModificar(request.POST, instance=pro)
         if form.is_valid():
             form.save()
-            messages.success(request, "Modificado correctamente")
+            messages.success(request,"Perfil de "+pro.id_auth_user.first_name+" "+pro.id_auth_user.last_name+" modificado correctamente!")
         return redirect(to='infoPerfil')
     return render(request, 'administrador/info_perfil/modificar-perfil.html',{'form':form})
 
