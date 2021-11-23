@@ -9,7 +9,7 @@ class UsertFilter(django_filters.FilterSet):
     username = django_filters.CharFilter(lookup_expr='iexact')
 
     class Meta:
-        model = User
+        model = User 
         fields = ['username','groups','first_name','email','is_active']
 
 class PerfilFilter(django_filters.FilterSet):

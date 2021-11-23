@@ -32,14 +32,22 @@ from django.dispatch import receiver
 
 
 def user_filter(request):
+    # https://www.youtube.com/watch?v=dkJ3uqkdCcY
+    #https://django-filter.readthedocs.io/en/stable/index.html
     
     filtro = filtersets.UsertFilter(
         request.GET,
         queryset= User.objects.all()
     )
 
+    PerfilF = filtersets.PerfilFilter(
+        request.GET,
+        queryset= Perfil.objects.all()
+    )
+
     context = {
-        'filtro': filtro
+        'filtro': filtro,
+        'PerfilF':PerfilF
     }
 
 
@@ -161,7 +169,7 @@ def login_filter(request):
     elif request.user.groups.filter(name="Profesional"):
         return redirect(to='home-prof')
     else:
-        return redirect(to='home')
+        return redirect(to='home-cliente')
 
 #mantenedor 
 @permission_required('app.view_user')

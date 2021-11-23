@@ -9,6 +9,7 @@
 <body>
 
     <form method="get">
+        <!---->
 
         <p><label for="id_is_active">Activo:</label> 
             <select name="is_active" id="id_is_active">
@@ -27,21 +28,33 @@
           </select>
         </p>
 
-        <p><label for="id_username">Nombre de usuario:</label> <input type="text" name="username" id="id_username"></p>
+        <p><label for="id_id_auth_user.username">Nombre de usuario:</label> <input type="text" name="id_auth_user.username" id="id_id_auth_user.username"></p>
+
+
             <p><label for="id_first_name">Nombre:</label> <input type="text" name="first_name" id="id_first_name"></p>
         
-        
-        <!--
-            {{filtro.form.as_p}}
+
             
-        -->
+        
+        <!-- {{filtro.form.as_p}} -->
+            
+            
+        
         <input type="submit" value="Presiona">
     </form>
+    <!-- 
     {% for user in filtro.qs %}
-    <h2>
-        {{user.username}} - {{user.first_name}} -{{user.last_name}} - {{user.email}}
-    </h2>
     
+    <h2>
+     {{user.username}} | {{user.first_name}} | {{user.last_name}} | {{user.email}}  | {{perfil.rut}}
+    </h2>
+        
+    {% endfor %}-->
+
+    {% for perfil in PerfilF.qs %}
+    <h3>
+        {{ perfil.rut }} -- {{ perfil.id_auth_user.username}}
+    </h3>
     {% endfor %}
 
     
