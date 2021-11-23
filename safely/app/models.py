@@ -37,6 +37,7 @@ class Perfil(models.Model):
     class Meta:
         managed = False
         db_table = 'perfil'
+        default_related_name = 'perfil'
 
     def __str__(self):
         return self.id_auth_user.username

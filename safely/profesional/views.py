@@ -291,8 +291,10 @@ def crear_me(request):
 
 @login_required
 def vista_actividad(request):
-    usr = request.user
-    ACT = Actividad.objects.all().filter(id_prof=usr.id)
+    id_usuario = request.user.id
+    pro = Profesional.objects.get(id_perfil=Perfil.objects.get(id_auth_user=id_usuario))
+    id_profesional = pro.id_prof
+    ACT = Actividad.objects.filter(id_prof=id_profesional)
     page = request.GET.get('page', 1)
     try:
         paginator = Paginator(ACT, 5)
