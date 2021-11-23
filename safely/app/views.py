@@ -2,7 +2,7 @@ from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import (
-CustomUserCreationForm, UserActive,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm,
+CustomUserCreationForm, PlanActive, ServicioActive, UserActive,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm,
 ClienteForm,ProfesionalForm, PerfilForm,AdminForm
 
 )
@@ -266,11 +266,36 @@ def PlanEdit(request,id_plan):
         return redirect(to='lista-plan')
     return render(request,'administrador/planes/editar-plan.html',{'form':form})
 
-def PlanDelete(request,id):
+"""def PlanDelete(request,id):
     plan = Plan.objects.get(id_plan=id)
     plan.delete()
     messages.success(request, "Plan eliminado correctamente")
-    return redirect(to='lista-plan')
+    return redirect(to='lista-plan')"""
+
+def PlanDelete(request,id):
+    plan = Plan.objects.get(id_plan=id)
+    plan.estado = 0
+    if request.method == 'POST':
+        form = PlanActive(instance=plan)
+    else:
+        form = PlanActive(request.POST, instance=plan)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Plan desactivado correctamente")
+    return redirect(to="lista-plan")
+
+def PlanActivate(request,id):
+    plan = Plan.objects.get(id_plan=id)
+    if request.method == 'POST':
+        form = PlanActive(instance=plan)
+    else:
+        form = PlanActive(request.POST, instance=plan)
+        if form.is_valid():
+            plan = form.save()
+            plan.estado = 1
+            plan.save()
+            messages.success(request, "Plan activado correctamente")
+    return redirect(to="lista-plan")
 
 ##SERVICIOS
 
@@ -314,11 +339,36 @@ def ServicioEdit(request,id_servicio):
         return redirect(to='lista-servicios')
     return render(request,'administrador/servicios/editar-servicio.html',{'form':form})
 
-def ServicioDelete(request,id):
+"""def ServicioDelete(request,id):
     servicio = Servicio.objects.get(id_servicio=id)
     servicio.delete()
     messages.success(request, "Servicio eliminado correctamente")
-    return redirect(to='lista-servicios')
+    return redirect(to='lista-servicios')"""
+
+def ServicioDelete(request,id):
+    serv = Servicio.objects.get(id_servicio=id)
+    serv.estado = 0
+    if request.method == 'POST':
+        form = ServicioActive(instance=serv)
+    else:
+        form = ServicioActive(request.POST, instance=serv)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Servicio desactivado correctamente")
+    return redirect(to="lista-servicios")
+
+def ServicioActivate(request,id):
+    serv = Servicio.objects.get(id_servicio=id)
+    if request.method == 'POST':
+        form = ServicioActive(instance=serv)
+    else:
+        form = ServicioActive(request.POST, instance=serv)
+        if form.is_valid():
+            serv = form.save()
+            serv.estado = 1
+            serv.save()
+            messages.success(request, "Servicio activado correctamente")
+    return redirect(to="lista-servicios")
 
 
 #informacion de clientes ClienteForm

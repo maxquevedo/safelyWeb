@@ -91,6 +91,11 @@ class PlanUpdateForm(forms.ModelForm):
         widgets = {
             'descripcion': forms.Textarea
         }
+
+class PlanActive(forms.ModelForm):
+    class Meta:
+        model = Plan
+        fields = ['estado']
 ## Servicio 
 class ServicioForm(forms.ModelForm):
     nombre = forms.CharField(min_length=4, max_length=20)
@@ -111,6 +116,11 @@ class ServicioUpdateForm(forms.ModelForm):
         widgets = {
             'descripcion': forms.Textarea
         }
+
+class ServicioActive(forms.ModelForm):
+    class Meta:
+        model = Servicio
+        fields = ['estado']
 
 ## ASESORIAS 
 class AsesoriaForm(forms.ModelForm):

@@ -3,14 +3,18 @@
 {% block js %}
 <script>
     $(function() {
-        $('#id_tipo_perf').change(function(){
+        $('#id_groups').change(function(){
             $('.tipo').hide();
             $('#' + $(this).val()).show();
+            var selValue = $("#id_groups").val();
+            $("#id_tipo_perf").val(selValue);
         });
     });
+
+    
 </script>
 {% endblock %}
-{% block tittle %}Crear Actividad{% endblock %}
+{% block tittle %}Crear Usuario{% endblock %}
 
 {% block body %}
 <div class="container-menu">
@@ -68,12 +72,7 @@
                                 {{form_p.telefono}}
                                 <p>Dirección</p>
                                 {{form_p.direccion}}
-                                <p>Tipo Perfil</p>
-                                <select id="id_tipo_perf" name="tipo_perf">
-                                    {% for x, y in form.fields.groups.choices %}
-                                        <option value="{{ x }}"{% if form.fields.groups.value == x %} selected{% endif %}>{{ y }}</option>
-                                    {% endfor %}
-                                </select>
+                                {{form_p.tipo_perf.as_hidden}}
                                 <diV id=1 class="tipo" style="display:none">
                                     {{adminform.as_p}}
                                 </div>

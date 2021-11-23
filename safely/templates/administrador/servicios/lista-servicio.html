@@ -29,6 +29,7 @@
                             <th>Identificador</th>
                             <th>Nombre</th>
                             <th>Descripción</th>
+                            <th>Estado</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -39,14 +40,26 @@
                             <td>{{entity.id_servicio}}</td>
                             <td>{{entity.nombre}}</td>
                             <td class="desc-act"><p>{{entity.descripcion}}</p></td>
-
+                            <td>{% if entity.estado %}
+                                Activo
+                                {% else %}
+                                Desactivado
+                                {% endif %}
+                            </td> 
                             <td class="table-action">
-                                <a href="{% url 'editar-servicio' entity.id_servicio %}" id="modificar">
+                                <a href="{% url 'editar-servicio' entity.id_servicio %}">
                                     <div class = "modificar"><p>Modificar</p></div>
                                 </a>
-                                <a href="{% url 'eliminar-servicio' entity.id_servicio %}" id="eliminar">
+
+                                {% if entity.estado %}
+                                <a href="{% url 'desactivar-servicio' entity.id_servicio %}">
                                     <div class = "vigente"><p>Desactivar</p></div>
                                 </a>
+                                {% else %}
+                                <a href="{% url 'activar-servicio' entity.id_servicio %}">
+                                    <div class = "vigente"><p>Activar</p></div>
+                                </a>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}
