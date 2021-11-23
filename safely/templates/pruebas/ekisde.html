@@ -1,91 +1,63 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block js %}
-<script>
-    $(function() {
-        $('#id_tipo_act').change(function(){
-            $('.tipo').hide();
-            $('#' + $(this).val()).show();
-        });
-    });
-</script>
-{% endblock %}
-{% block tittle %}Crear Actividad{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro</title>
+</head>
+<body>
 
-{% block body %}
-<div class="container-menu">
-    <div class="menu-vertical">
-        <ul>
-            <h2>{{user.get_full_name}}</h2>
-            <li><a href="{% url 'home-adm' %}">Home</a></li>
-            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
-            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
-            <li><a href="{% url 'infoProfesional' %}">Info Profesional</a></li>
-            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
-            <li><a href="#">Reportes</a></li>
-            <li><a href="#">Ver Actividades</a></li>
-            <li><a href="#">Notificar Atrasos</a></li>
-            <li><a href="#">Control de Pagos</a></li>
-            <li><a href="#">Accidentes</a></li>
-            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-        </ul>
-    </div>
+    <form method="get">
+        <!---->
+
+        <p><label for="id_is_active">Activo:</label> 
+            <select name="is_active" id="id_is_active">
+            <option value="unknown" selected="">Desconocido</option>
+            <option value="true">Sí</option>
+            <option value="false">No</option>
+          </select>
+        </p>
+
+        <p>
+            <label for="id_groups">Grupos:</label> 
+            <select name="groups" id="id_groups" multiple="">
+            <option value="1">Administrador</option>
+            <option value="2">Cliente</option>
+            <option value="3">Profesional</option>
+          </select>
+        </p>
+
+        <p><label for="id_id_auth_user.username">Nombre de usuario:</label> <input type="text" name="id_auth_user.username" id="id_id_auth_user.username"></p>
+
+
+            <p><label for="id_first_name">Nombre:</label> <input type="text" name="first_name" id="id_first_name"></p>
+        
+
+            
+        
+        <!-- {{filtro.form.as_p}} -->
+            
+            
+        
+        <input type="submit" value="Presiona">
+    </form>
+    <!-- 
+    {% for user in filtro.qs %}
     
-    <div class="info-perfiles">
-        <div class="login-container">
-            <div class="actividad-box">
-                <div class="act-text-container">
-                    <h2>CREAR usuario god</h2>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <div class="crea-act-container">
-                            <p>Usuario</p>
-                            {{form.username}}
-                            <p>Nombre</p>
-                            {{form.first_name}}
-                            <p>Apellido</p>
-                            {{form.last_name}}
-                            <p>Correo</p>
-                            {{form.email}}
-                            <p>Contraseña</p>
-                            <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
-                            <p>Confirmar Contraseña</p>
-                            <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
-                            <p>Grupo</p>
-                            <select id="id_groups" name="groups">
-                                {% for x, y in form.fields.groups.choices %}
-                                    <option value="{{ x }}"{% if form.fields.groups.value == x %} selected{% endif %}>{{ y }}</option>
-                                {% endfor %}
-                            </select>
-                            <diV id=1 class="tipo" style="display:none">
-                                {{adminform.as_p}}
-                            </div>
-                            <diV id="2" class="tipo" style="display:none">
-                                {{proform.as_p}}
-                            </div>
+    <h2>
+     {{user.username}} | {{user.first_name}} | {{user.last_name}} | {{user.email}}  | {{perfil.rut}}
+    </h2>
+        
+    {% endfor %}-->
 
-                        </div>
-                        <div class="crea-act-container">
-                            <diV id="3" class="tipo" style="display:none">
-                                <p>Cliente</p>
-                                {{cliform.razon_social}}
-                            </div>
-                            <p>Rut</p>
-                            {{form_p.rut}}
-                            <p>Teléfono</p>
-                            {{form_p.telefono}}
-                            <p>Dirección</p>
-                            {{form_p.direccion}}
-                            <p>Tipo Perfil</p>
-                            {{form_p.tipo_perf}}
-                            <p>Acción</p>
-                            <input type="submit" value="Crear" id="button" class="alter-button">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    {% for perfil in PerfilF.qs %}
+    <h3>
+        {{ perfil.rut }} -- {{ perfil.id_auth_user.username}}
+    </h3>
+    {% endfor %}
 
-{% endblock %}
+    
+    
+</body>
+</html>

@@ -24,10 +24,34 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from django.views import View
 
-from app import forms
+from app import filtersets
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+
+
+
+def user_filter(request):
+    # https://www.youtube.com/watch?v=dkJ3uqkdCcY
+    #https://django-filter.readthedocs.io/en/stable/index.html
+    
+    filtro = filtersets.UsertFilter(
+        request.GET,
+        queryset= User.objects.all()
+    )
+
+    PerfilF = filtersets.PerfilFilter(
+        request.GET,
+        queryset= Perfil.objects.all()
+    )
+
+    context = {
+        'filtro': filtro,
+        'PerfilF':PerfilF
+    }
+
+
+    return render(request, 'pruebas/ekisde.html', context)
 
 
 def signup_view(request):
@@ -145,7 +169,7 @@ def login_filter(request):
     elif request.user.groups.filter(name="Profesional"):
         return redirect(to='home-prof')
     else:
-        return redirect(to='home')
+        return redirect(to='home-cliente')
 
 #mantenedor 
 @permission_required('app.view_user')

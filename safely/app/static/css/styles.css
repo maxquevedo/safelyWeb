@@ -602,10 +602,17 @@ input[type=checkbox] {
     color: white;
 }
 
+.menu-vertical li a.active-cli {
+    background-color: #5E63F2;
+    color: black;
+}
+
 .menu-vertical li a:hover:not(.active) {
     background-color: #dfdfdf;
 }
-
+.menu-vertical li a:hover:not(.active-cerrar) {
+    background-color: #c23737;
+}
 .menu-vertical ul h2 {
     margin: auto;
     text-align: center;
