@@ -25,7 +25,7 @@ class home_professional(ListView):
     template_name = 'profesional/home-profesional.html'
 
     def get_queryset(self):
-        querySet = self.model.objects.filter(estado=2)
+        querySet = self.model.objects.all()
         return querySet
 
 
@@ -292,9 +292,14 @@ def crear_me(request):
 @login_required
 def vista_actividad(request):
     id_usuario = request.user.id
-    pro = Profesional.objects.get(id_perfil=Perfil.objects.get(id_auth_user=id_usuario))
-    id_profesional = pro.id_prof
-    ACT = Actividad.objects.filter(id_prof=id_profesional)
+
+    try:
+        pro = Profesional.objects.get(id_perfil=Perfil.objects.get(id_auth_user=id_usuario))
+        id_profesional = pro.id_prof
+        ACT = Actividad.objects.filter(id_prof=id_profesional)
+    except:
+        ACT = Actividad.objects.none()
+
     page = request.GET.get('page', 1)
     try:
         paginator = Paginator(ACT, 5)

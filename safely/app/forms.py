@@ -239,7 +239,6 @@ class DateTimeInput(forms.DateTimeInput):
 class ActividadForm(forms.ModelForm):
     nombre = forms.CharField(min_length=4, max_length=250)
 
-
     def clean_nombre(self):
         nombre = self.cleaned_data["nombre"]
         existe = Actividad.objects.filter(nombre__iexact=nombre).exists()
@@ -263,6 +262,7 @@ class ActividadForm(forms.ModelForm):
         widgets = {
             'fec_estimada': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Selecciona una fecha', 'type':'date'}),
             'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Selecciona una fecha', 'type':'date'}),
+            'act_extra': forms.CheckboxInput()
         }
         
 class ActividadEstadoForm(forms.ModelForm):
