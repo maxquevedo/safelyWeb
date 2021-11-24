@@ -1,32 +1,25 @@
+from app.forms import *
+from app.models import *
+
+from app import filtersets
+
+import cx_Oracle
+
 from django.http.response import Http404
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from .forms import (
-CustomUserCreationForm, PerfilModificar, PlanActive, ServicioActive, UserActive,UserUpdateForm, PlanUpdateForm, PlanForm,ServicioForm,ServicioUpdateForm,
-ClienteForm,ProfesionalForm, PerfilForm,AdminForm
+from django.contrib.auth import  login
 
-)
 from django.contrib.auth.forms import  AuthenticationForm
-from rest_framework import viewsets
 
-from django.contrib.auth.models import Group, User
-from .models import ( Perfil, 
-Administrador, Profesional, Cliente,
-Servicio, Plan, Contrato, 
-Alerta,
-Lista,Mejora,
-Reporte,TipoReporte,
-Actividad, Capacitacion,Asesoria,Visita
-)
+from django.contrib.auth.models import  User
+
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
-from django.views import View
 
-from app import filtersets
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from django.db import connection
+
 
 
 
@@ -96,7 +89,7 @@ def signup_view(request):
         context = {'form': CustomUserCreationForm(),
         'form_p':PerfilForm(),
         'adminform':AdminForm(),
-        'proform': ProfesionalForm(),
+        'proform':ProfesionalForm(),
         'cliform': ClienteForm(),
         }
 
@@ -502,3 +495,140 @@ def modificar_perfil(request,id_perfil):
         return redirect(to='infoPerfil')
     return render(request, 'administrador/info_perfil/modificar-perfil.html',{'form':form})
 
+
+"""
+Utilizando procedures
+"""
+
+def lista_actividades():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor() #Este llama
+    out_cur = django_cursor.connection.cursor() # este recive
+    cursor.callproc("sp_listar_actividades",[out_cur])
+    lista =[]
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def lista_capacitacion():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor() #Este llama
+    out_cur = django_cursor.connection.cursor() # este recive
+    cursor.callproc("sp_listar_capacitacion",[out_cur])
+    lista =[]
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def lista_asesoria():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor() #Este llama
+    out_cur = django_cursor.connection.cursor() # este recive
+    cursor.callproc("sp_listar_asesoria",[out_cur])
+    lista =[]
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def lista_visita():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor() #Este llama
+    out_cur = django_cursor.connection.cursor() # este recive
+    cursor.callproc("sp_listar_visita",[out_cur])
+    lista =[]
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def lista_cliente():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor() #Este llama
+    out_cur = django_cursor.connection.cursor() # este recive
+    cursor.callproc("sp_listar_cliente",[out_cur])
+    lista =[]
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+def lista_profesional():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor() #Este llama
+    out_cur = django_cursor.connection.cursor() # este recive
+    cursor.callproc("sp_listar_profesional",[out_cur])
+    lista =[]
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def guardar_actividad(nombre,descripcion,tipo_act,fec_estimada,estado,id_cli,id_prof):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor() #Este llama
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('sp_agregar_actividad_corta',[nombre,descripcion,tipo_act,fec_estimada,estado,id_cli,id_prof, salida])
+    return salida.getvalue()
+
+# actividades
+@login_required
+def actividades(request):
+
+    actividad = lista_actividades()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(actividad, 5)
+        actividad = paginator.page(page)
+    except:
+        raise Http404
+    context = {'entity': actividad,
+                'paginator': paginator,
+                }
+    return render(request, 'administrador/actividades/actividades_lista.html',context)
+
+
+
+
+@login_required
+def crear_actividad(request):
+    #print(request.user.username)
+
+    capacitacion = lista_capacitacion()
+    asesoria = lista_asesoria()
+    visita = lista_visita()
+    cliente = Cliente.objects.all()
+    profesional = Profesional.objects.all()
+    data = {
+                'capacitacion':capacitacion,
+                'asesoria':asesoria,
+                'visita':visita,
+                'cliente':cliente,
+                'profesional':profesional
+                }
+
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        descripcion =request.POST.get('descripcion')
+        tipo_act = request.POST.get('tipo_act')
+        fec_estimada = request.POST.get('fec_estimada')
+        estado = request.POST.get('estado')
+        id_cli = request.POST.get('id_cli')
+        id_prof = request.POST.get('id_prof')
+        salida = guardar_actividad(nombre,descripcion,tipo_act,fec_estimada,estado,id_cli,id_prof)
+        if salida == 1:
+            data['mensaje'] = 'Agregado Correctamente'
+        else:
+            data['mensaje'] = 'No se a podido guardar'
+    return render(request, 'administrador/actividades/crear.html',data)
+
+@login_required
+def actualizar_actividad(request,id_actividad):
+    act = Actividad.objects.get(id_actividad=id_actividad)
+
+    if request.method == 'GET':
+        form = ActualizarActividad(instance=act)
+    else:
+        form = ActualizarActividad(request.POST, instance=act)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Actividad modificada correctamente")
+        return redirect(to='actividades')
+
+    return render(request, 'administrador/actividades/actualizar.html',{'form':form})

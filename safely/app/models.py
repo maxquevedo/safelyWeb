@@ -80,13 +80,14 @@ class Administrador(models.Model):
 
 class Actividad(models.Model):
 
-    CHOICES = (
+    CHOICES_TYPE = (
     ('1', "Capacitación"),
     ('2', "Asesoría"),
     ('3', "Visita"),
+    ('4', "Asignar"),
     )
 
-    estados = (
+    STATUS_CHOICES = (
         ('1', "Solicitado"),
         ('2', "Pendiente"),
         ('3', "Realizado"),
@@ -96,11 +97,11 @@ class Actividad(models.Model):
     id_actividad = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=250)
     descripcion = models.CharField(max_length=250)
-    tipo_act = models.CharField('Tipo de actividad',max_length=1, choices=CHOICES)
+    tipo_act = models.CharField('Tipo de actividad',max_length=1, choices=CHOICES_TYPE)
     act_extra = models.BooleanField()
     fec_estimada = models.DateField('Fecha estimada',auto_now=False)
     fec_ida = models.DateField('Fecha ida',auto_now=False,blank=True, null=True)
-    estado = models.CharField(max_length=1, choices=estados)
+    estado = models.CharField(max_length=1, choices=STATUS_CHOICES)
     id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cli')
     id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof', blank=True, null=True)
     id_capacitacion = models.ForeignKey('Capacitacion', models.DO_NOTHING, db_column='id_capacitacion', blank=True, null=True)

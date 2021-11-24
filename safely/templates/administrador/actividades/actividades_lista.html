@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Adminsitrador - Actividad{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+    <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a class="active" href="{% url 'home-adm' %}">Home</a></li>
+            <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a  href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="#">Ver Actividades</a></li>
+            <li><a href="#">Notificar Atrasos</a></li>
+            <li><a href="#">Control de Pagos</a></li>
+            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+        
+    </div>
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>Listado de Actividad</h2>
+                <div class="botones-asesorias">
+                    <a class ="color-verde" href="{% url 'crear-activ' %}">Crear Actividad</a>
+                </div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID ACTIVIDAD 0 </th>
+                            <th>Nombre 1</th>
+                            <th>Descripcion 2</th>
+                            <th>tipo de actividad 3</th>
+                            <th>Estado 7 </th>
+                            <th>Cliente</th>
+                            <th>Profesional</th>
+                            <TH>ACCIÓN</TH>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td class="table-id">{{entity.0}}</td>
+
+                            <td>{{entity.1}}</td>
+
+                            <td ><p>{{entity.2}}</p></td>
+
+                            <td> {% if entity.3 == '1' %}
+                                Capacitación
+                                {% elif entity.3 == '2' %}
+                                Asesoría
+                                {% elif entity.3 == '3' %}
+                                Visita
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if entity.8 == '1' %}
+                                Solicitado
+                                {% elif entity.8 == '2' %}
+                                Pendiente
+                                {% elif entity.8 == '3' %}
+                                Realizado
+                                {% elif entity.8 == '4' %}
+                                Cancelado
+                                {% endif %}
+                            </td>
+
+                            <td>{{ entity.9 }}</td>
+
+                            <td>{{ entity.10 }}</td>
+
+                            <td class="table-action" >
+                                <a href="{% url 'actualizar_actividad' entity.0 %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                                <a href="{% url 'estado_actividad' entity.0 %}" id="Estado">
+                                    <div class = "modificar"><p>Estado</p></div>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

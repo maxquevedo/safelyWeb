@@ -6,6 +6,7 @@ from django.db.models import fields
 from django.forms.widgets import DateTimeInput
 from datetime import date
 from .models import Administrador, Cliente, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
+from app import models
 
 class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(min_length=5, max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 
@@ -274,6 +275,13 @@ class ActividadModForm(forms.ModelForm):
         model = Actividad
         fields = ['nombre', 'descripcion', 'fec_estimada', 'fec_ida' ]
 
+
+class ActualizarActividad(forms.Form):
+    class Meta:
+        models = Actividad
+        fields = ['nombre','descripcion','tipo_act','fec_estimada','estado','id_cli','id_prof']
+
+         
 ## VISITA
 class VisitaForm(forms.ModelForm):
     class Meta:
