@@ -13,6 +13,8 @@ from django.views.generic.list import ListView
 from django.utils.decorators import method_decorator
 
 
+
+
 # Create your views here.
 
 #INICIO PREFESIONAL
@@ -419,3 +421,24 @@ def ingresar_visita(request):
         else:
             data["form"] = formulario
     return render(request, 'profesional/visita/ingresar-visita.html',data)
+
+@login_required
+def cliente_asignado(request):
+    id_usuario = request.user.id
+
+    try:
+        pro = Profesional.objects.get(id_perfil=Perfil.objects.get(id_auth_user=id_usuario))
+        id_profesional = pro.id_prof
+        ACT = Actividad.objects.filter(id_prof=id_profesional)
+    except:
+        ACT = Actividad.objects.none()
+
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(ACT, 5)
+        ACT = paginator.page(page)
+    except:
+        raise Http404
+    context = {'entity': ACT,
+                'paginator': paginator}
+    return render(request, 'profesional/clientes.html', context)

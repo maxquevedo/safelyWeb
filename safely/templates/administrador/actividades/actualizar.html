@@ -4,18 +4,22 @@
 
 {% block body %}
 <div class="container-menu">
+
     <div class="info-perfiles">
         <div class="login-container">
             <div class="actividad-box">
                 <div class="act-text-container">
-                    <h2>MODIFICAR ACTIVIDAD</h2>
+                    <h3>Modificar formulario</h3>
+                    <br>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <div class="crea-act-container">
-                            {{form.as_p}}
-                        </div>
+                            {{form}}
+
+
                         <input type="submit" value="Modificar" id="button" class="alter-button">
+                        
                     </form>
+                    
                 </div>
             </div>
         </div>

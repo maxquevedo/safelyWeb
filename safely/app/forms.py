@@ -276,9 +276,10 @@ class ActividadModForm(forms.ModelForm):
         fields = ['nombre', 'descripcion', 'fec_estimada', 'fec_ida' ]
 
 
-class ActualizarActividad(forms.Form):
+class ActualizarActividad(forms.ModelForm):
+    fec_estimada = forms.DateField()
     class Meta:
-        models = Actividad
+        model = Actividad
         fields = ['nombre','descripcion','tipo_act','fec_estimada','estado','id_cli','id_prof']
 
          

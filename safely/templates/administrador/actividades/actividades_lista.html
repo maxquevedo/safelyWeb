@@ -57,10 +57,13 @@
                                 Asesoría
                                 {% elif entity.3 == '3' %}
                                 Visita
+                                {% elif entity.3 == '4' %}
+                                Asignado
                                 {% endif %}
                             </td>
 
                             <td>
+                                
                                 {% if entity.8 == '1' %}
                                 Solicitado
                                 {% elif entity.8 == '2' %}
@@ -79,9 +82,6 @@
                             <td class="table-action" >
                                 <a href="{% url 'actualizar_actividad' entity.0 %}" id="modificar">
                                     <div class = "modificar"><p>Modificar</p></div>
-                                </a>
-                                <a href="{% url 'estado_actividad' entity.0 %}" id="Estado">
-                                    <div class = "modificar"><p>Estado</p></div>
                                 </a>
                             </td>
                         </tr>

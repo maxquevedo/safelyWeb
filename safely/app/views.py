@@ -1,6 +1,6 @@
-from app.forms import *
-from app.models import *
 
+from .models import *
+from .forms import *
 from app import filtersets
 
 import cx_Oracle
@@ -631,4 +631,5 @@ def actualizar_actividad(request,id_actividad):
             messages.success(request, "Actividad modificada correctamente")
         return redirect(to='actividades')
 
-    return render(request, 'administrador/actividades/actualizar.html',{'form':form})
+    context = {'form':form}
+    return render(request, 'administrador/actividades/actualizar.html',context)

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Profesional - Actividad{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a href="{% url 'home-prof' %}">Home</a></li>
+            <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
+            <li><a class="active-pro" href="{% url 'vista_actividad' %}">Actividad</a></li>
+            <li><a href="{% url 'lista_ase' %}">Asesorías</a></li>
+            <li><a href="{% url 'lista_capa' %}">Capacitaciones</a></li>
+            <li><a href="{% url 'vista_mejoras' %}">Mejoras</a></li>
+            <li><a href="{% url 'lista_ch' %}">Checklist</a></li>
+            <li><a href="{% url 'vista_visita' %}">Visita</a></li>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>Clientes asignados</h2>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Fecha estimada</th>
+                            <th>Cliente</th>
+                            <th>tipo_act</th>
+                            <th>Estado </th>
+                            <th>Cambiar estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.nombre}}</td>
+                            <td class="desc-act"><p>{{entity.descripcion}}</p></td>
+                            <td>{{entity.fec_estimada}}</td>
+                            <td>{{entity.id_cli}}</td>
+                            <td>{% if entity.tipo_act == '1' %}
+                                Capacitación
+                                {% elif entity.tipo_act == '2' %}
+                                Asesoría
+                                {% elif entity.tipo_act == '3' %}
+                                Visita
+                                {% elif entity.tipo_act == '4' %}
+                                Asignado
+                                {% endif %}
+                            </td>
+                            <td>{% if entity.estado == '1' %}
+                                Solicitado
+                                {% elif entity.estado == '2' %}
+                                Pendiente
+                                {% elif entity.estado == '3' %}
+                                Realizado
+                                {% elif entity.estado == '4' %}
+                                Cancelado
+                                {% endif %}
+                            </td>
+
+                            <td class="table-action" >
+                                <a href="{% url 'estado_actividad' entity.id_actividad %}" id="Estado">
+                                    <div class = "modificar"><p>Estado</p></div>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
