@@ -140,4 +140,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
+# EMAIL https://docs.djangoproject.com/en/3.2/topics/email/#email-backends
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST ='smtp.gmail.com'
+EMAIL_USE_TLS=True
+EMAIL_PORT=587
+EMAIL_HOST_USER='safelyweb1@gmail.com'
+EMAIL_HOST_PASSWORD='Safelyweb1234'
 
+#send_mail('El asunto va aqui','Mensaje: Puto el que lo lea','safelyweb1@gmail.com',['matiasgallardo.do2@gmail.com'],fail_silently=False,)

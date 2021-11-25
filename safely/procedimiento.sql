@@ -54,3 +54,26 @@ begin
      when others then
      V_SALIDA:=0;
 end;
+
+--Lista TODOS los datos del usuario- perfil
+create or replace procedure sp_listar_usuario_perfil(perfil out SYS_REFCURSOR)
+is
+begin
+    open perfil for select a.id,a.last_login,a.username,a.first_name,a.last_name,a.email,a.is_active,a.date_joined,
+                            b.id_perfil,b.rut,b.telefono,b.direccion,b.tipo_perf from auth_user a full outer join perfil b
+                            on a.id = b.id_auth_user order by a.id;
+end;
+
+--Lista datos cliente-perfil-usuario
+create or replace procedure sp_listar_datos_cliente(cliente out SYS_REFCURSOR)
+is
+begin
+    open cliente for --Trea solo datos importantes de cliente
+select c.id ,c.username,c.first_name,c.last_name,c.email,
+b.id_perfil,b.rut, b.telefono,b.direccion,
+a.id_cli,a.razon_social
+from cliente a join perfil b 
+on a.id_perfil = b.id_perfil 
+join auth_user c 
+on b.id_auth_user = c.id;
+end;

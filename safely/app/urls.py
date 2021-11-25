@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from app import views
-
+from app import contrato
 
 urlpatterns = [
     path('filtro/',views.user_filter,name="user_filter"),
@@ -28,8 +28,6 @@ urlpatterns = [
     path('administrador/actividades/crear/', views.crear_actividad, name='crear-activ'),
     path('administrador/actividades/actualizar/<int:id_actividad>/', views.actualizar_actividad, name='actualizar_actividad'),
     
-
-
     path('login/', views.login_view, name='login'),
     path('administrador/usuario/lista-usuarios/', views.UserLista, name='listar'),
     path('administrador/usuario/editar/<int:id>/' ,views.UserEdit, name='editar'),
@@ -46,4 +44,8 @@ urlpatterns = [
     path('administrador/servicios/editar-servicio/<int:id_servicio>/', views.ServicioEdit, name='editar-servicio'),
     path('administrador/servicios/desactivar-servicio/<int:id>/', views.ServicioDelete, name='desactivar-servicio'),
     path('administrador/servicios/activar-servicio/<int:id>/', views.ServicioActivate, name='activar-servicio'),
+
+    path('administrador/contrato/crear',contrato.contratoCliente, name='contratoCliente'),
+    path('administrador/contrato/lista',contrato.listaContrato, name='listaContrato'),
 ]
+

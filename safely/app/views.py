@@ -365,8 +365,33 @@ def ServicioActivate(request,id):
 
 
 #informacion de clientes ClienteForm
+def cliente_datos():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor() #Este llama
+    out_cur = django_cursor.connection.cursor() # este recive
+    cursor.callproc("sp_listar_datos_cliente",[out_cur])
+    lista =[]
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
 
 @login_required
+def infoCliente(request):
+
+    cliente = cliente_datos()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(cliente, 5)
+        cliente = paginator.page(page)
+    except:
+        raise Http404
+    context = {'entity': cliente,
+                'paginator': paginator,
+                }
+    return render(request, 'administrador/info_cliente/info-cliente.html',context)
+    
+"""@login_required
 def infoCliente(request):
     cli = Cliente.objects.all().order_by('id_cli')
     page = request.GET.get('page', 1)
@@ -377,7 +402,7 @@ def infoCliente(request):
         raise Http404
     context = {'entity': cli,
                 'paginator': paginator}   
-    return render(request, 'administrador/info_cliente/info-cliente.html',context)
+    return render(request, 'administrador/info_cliente/info-cliente.html',context)"""
 
 @login_required
 def crear_cliente(request):
@@ -633,3 +658,5 @@ def actualizar_actividad(request,id_actividad):
 
     context = {'form':form}
     return render(request, 'administrador/actividades/actualizar.html',context)
+
+

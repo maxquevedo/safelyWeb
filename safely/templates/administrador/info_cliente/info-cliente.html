@@ -24,31 +24,32 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>INFORMACION CLIENTES</h2>
-                <div class="botones-asesorias">
-                    <a class ="color-verde" href="{% url 'crear_cliente' %}">Crear cliente</a>
-                </div>
+                <h2>INFORMACION DE TODOS CLIENTES</h2>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Id Cliente</th>
-                            <th>Razón Social</th>
-                            <th>Perfil</th>
-                            <TH>Acción</TH>
+                            <th>Identificador</th>
+                            <th>Nombre usuario</th>
+                            <th>Nombre apellido</th>
+                            <th>Correo</th>
+                            <th>Rut</th>
+                            <th>Telefono</th>
+                            <th>Direccion</th>
+                            <th>Razon Social</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.id_cli}}</td>
-                            <td>{{entity.razon_social}}</td>
-                            <td>{{entity.id_perfil}}</td>
-                            <td class="table-action">
-                                <a href="{% url 'modificar_cliente' entity.id_cli %}" id="modificar">
-                                    <div class = "modificar"><p>Modificar</p></div>
-                                </a>
-                            </td>
+                            <td>{{entity.9}}</td>
+                            <td>{{entity.1}}</td>
+                            <td>{{entity.2}} {{entity.3}}</td>
+                            <td>{{entity.4}}</td>
+                            <td>{{entity.6}}</td>
+                            <td>{{entity.7}}</td>
+                            <td>{{entity.8}}</td>
+                            <td>{{entity.10}}</td>
                         </tr>
                         {% endfor %}
                         {% endif %}

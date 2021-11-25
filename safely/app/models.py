@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 
 """
 class User(models.Model):
@@ -99,6 +99,7 @@ class Actividad(models.Model):
     descripcion = models.CharField(max_length=250)
     tipo_act = models.CharField('Tipo de actividad',max_length=1, choices=CHOICES_TYPE)
     act_extra = models.BooleanField()
+    fec_creacion = models.DateField(auto_now_add=True, blank=True)
     fec_estimada = models.DateField('Fecha estimada',auto_now=False)
     fec_ida = models.DateField('Fecha ida',auto_now=False,blank=True, null=True)
     estado = models.CharField(max_length=1, choices=STATUS_CHOICES)
@@ -187,11 +188,11 @@ class Chat(models.Model):
 
 
 class Contrato(models.Model):
-    id_contrato = models.BigIntegerField(primary_key=True)
+    id_contrato = models.AutoField(primary_key=True)
     fec_inicio = models.DateField()
     fec_termino = models.DateField()
     total_pago = models.BigIntegerField()
-    estado = models.FloatField()
+    estado = models.BooleanField()
     id_plan = models.ForeignKey('Plan', models.DO_NOTHING, db_column='id_plan')
     id_cli = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cli')
 

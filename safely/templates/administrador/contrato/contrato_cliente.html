@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block tittle %}Crear Actividad{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+
+    </div>
+    
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>CREAR ACTIVIDAD</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                
+                                {{form}}
+
+                                <input type="submit" value="Crear" id="button" class="alter-button">
+                            </div>
+                        </div>
+                    </form>
+                    {{mensaje}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.db.models import fields
 from django.forms.widgets import DateTimeInput
 from datetime import date
-from .models import Administrador, Cliente, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
+from .models import Administrador, Cliente, Contrato, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
 from app import models
 
 class CustomUserCreationForm(UserCreationForm):
@@ -302,3 +302,12 @@ class IngresarVisita(forms.ModelForm):
             'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
         }
 
+
+class ContratoForm(forms.ModelForm):
+    class Meta:
+        model = Contrato
+        fields= '__all__'
+        widgets = {
+            'fec_inicio': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
+            'fec_termino': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
+        }
