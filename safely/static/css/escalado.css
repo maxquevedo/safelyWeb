@@ -104,7 +104,7 @@
     }
 
     .perfil-text-container textarea{
-        width: 320px;
+        width: 260px;
         font-size: 14px;
     }
 
@@ -131,7 +131,7 @@
     }
 
     .act-text-container textarea{
-        width: 260px;
+        width: 320px;
         font-size: 14px;
     }
 
@@ -141,7 +141,7 @@
         margin: auto;
         margin-bottom: 10px;
         height: 44px;
-        width: 300px;
+        width: 320px;
         font-size: 14px;
     }
     
@@ -177,9 +177,16 @@
     .admin-text form input[type=submit], 
     .admin-text form input[type=email], 
     .admin-text form input[type=password]{
-        width: 400px;
+        width: 370px;
         font-size: 14px;
         margin-top: 15px;
+    }
+    
+    .admin-text .permisos select {
+        height: 250px;
+        width: 370px;
+        max-height: 100%;
+        margin-top: 10px;
     }
     
     .admin-text textarea{

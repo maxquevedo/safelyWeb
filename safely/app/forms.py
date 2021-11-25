@@ -1,12 +1,18 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Permission, User, Group
 from django.core.exceptions import ValidationError
 from django.db.models import fields
+from django.forms import widgets
 from django.forms.widgets import DateTimeInput
 from datetime import date
 from .models import Administrador, Cliente, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
 from app import models
+
+class GrupoForm(forms.ModelForm):
+    class Meta:
+        model = Group
+        fields = '__all__'
 
 class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(min_length=5, max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 

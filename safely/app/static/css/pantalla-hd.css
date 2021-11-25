@@ -203,6 +203,13 @@
         font-size: 12px;
         margin-top: 9px;
     }
+
+    .admin-text .permisos select {
+        height: 200px;
+        width: 260px;
+        max-height: 100%;
+        margin-top: 9px;
+    }
     
     .admin-text textarea{
         width: 260px;

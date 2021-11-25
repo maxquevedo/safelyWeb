@@ -1,4 +1,3 @@
-
 from .models import *
 from .forms import *
 from app import filtersets
@@ -20,7 +19,19 @@ from django.http import Http404
 
 from django.db import connection
 
-
+def crear_grupo(request):
+    data = {
+        'form': GrupoForm
+    }
+    if request.method == 'POST':
+        formulario = GrupoForm(data=request.POST)
+        if formulario.is_valid():
+            gru = formulario.save()
+            messages.success(request, "Grupo "+gru.name+" creado correctamente!")
+            return redirect (to='mantenedor')
+        else:
+            data["form"] = formulario 
+    return render(request, 'administrador/grupo.html',data )
 
 
 
