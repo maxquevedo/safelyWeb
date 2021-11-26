@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Registro{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a href="{% url 'home-adm' %}">Home</a></li>
+            <li><a class="active" href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a  href="{% url 'infoProfesional' %}">info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">info Cliente</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="#">Ver Actividades</a></li>
+            <li><a href="#">Notificar Atrasos</a></li>
+            <li><a href="#">Control de Pagos</a></li>
+            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="admin-box">
+                <div class="admin-text">
+                    <h2>Crear Grupo</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <p>Nombre de grupo</p>
+                        {{form.name}}
+                        <p>Selecciona permisos</p>
+                        <div class="permisos">{{form.permissions}}</div>
+                        <input type="submit" value="Crear" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

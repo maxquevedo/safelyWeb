@@ -1,4 +1,3 @@
-
 from .models import *
 from .forms import *
 from app import filtersets
@@ -20,14 +19,26 @@ from django.http import Http404
 
 from django.db import connection
 
-
+def crear_grupo(request):
+    data = {
+        'form': GrupoForm
+    }
+    if request.method == 'POST':
+        formulario = GrupoForm(data=request.POST)
+        if formulario.is_valid():
+            gru = formulario.save()
+            messages.success(request, "Grupo "+gru.name+" creado correctamente!")
+            return redirect (to='mantenedor')
+        else:
+            data["form"] = formulario 
+    return render(request, 'administrador/grupo.html',data )
 
 
 
 def user_filter(request):
     # https://www.youtube.com/watch?v=dkJ3uqkdCcY
     #https://django-filter.readthedocs.io/en/stable/index.html
-    
+    """
     filtro = filtersets.UsertFilter(
         request.GET,
         queryset= User.objects.all()
@@ -37,13 +48,32 @@ def user_filter(request):
         request.GET,
         queryset= Perfil.objects.all()
     )
-
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(PerfilF, 5)
+        PerfilF = paginator.page(page)
+    except:
+        raise Http404
     context = {
         'filtro': filtro,
-        'PerfilF':PerfilF
+        'entity':PerfilF,
+        'paginator': paginator
     }
+    """
 
+    filtro = filtersets.UsertFilter(
+        request.GET,
+        queryset= User.objects.all()
+    )
 
+    PerfilF = filtersets.PerfilFilter(
+        request.GET,
+        queryset= Perfil.objects.all()
+    )
+    context = {
+        'filtro': filtro,
+        'PerfilF':PerfilF,
+    }
     return render(request, 'pruebas/ekisde.html', context)
 
 

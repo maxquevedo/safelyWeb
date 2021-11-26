@@ -139,7 +139,7 @@ textarea:focus, input:focus, select:focus{
     width: 100%;
 }
 
-.act-text-container form {
+.act-columns {
     display: flex;
 }
 
@@ -150,9 +150,9 @@ textarea:focus, input:focus, select:focus{
 }
 
 .crea-act-button {
-
     flex-direction: column;
     width: 100%;
+    padding-bottom: 10px;
 }
 
 .crea-act-container p {
@@ -220,7 +220,7 @@ input[type=number] { -moz-appearance:textfield; }
     resize: none;
     display: block;
     margin: auto;
-    width: 260px;
+    width: 370px;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     border-radius: 6px;
     padding:8px;
@@ -600,6 +600,11 @@ input[type=checkbox] {
 .menu-vertical li a.active-pro {
     background-color: #edad24;
     color: white;
+}
+
+.menu-vertical li a.active-cli {
+    background-color: #5E63F2;
+    color: black;
 }
 
 .menu-vertical li a:hover:not(.active) {
@@ -1002,9 +1007,9 @@ input[type=checkbox] {
     box-sizing:border-box;
     display: block;
     margin: auto;
-    margin-bottom: 20px;
-    height: 44px;
-    width: 420px;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 370px;
     font-size: 16px;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     border-radius: 6px;
@@ -1012,6 +1017,13 @@ input[type=checkbox] {
     background-color: rgba(var(--b3f,250,250,250),1);
     border:1px solid #dfdfdf;
     margin-top: 15px;
+}
+
+.admin-text .permisos select {
+    height: 250px;
+    width: 370px;
+    max-height: 100%;
+    margin-top: 10px;
 }
 
 .admin-text textarea{
@@ -1061,4 +1073,24 @@ input[type=checkbox] {
     height: 44px;
     width: 44px;
     flex-direction: row;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #dfdfdf; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #999999; 
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #616161; 
 }

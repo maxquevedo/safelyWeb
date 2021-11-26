@@ -849,41 +849,29 @@ input[type=checkbox] {
     background-color: #18ac30;
 }
 
-.lista .desc {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    width: 320px;
-    height: 58px;
-}
-
-.lista desc p {
-    height: 42px;
-    text-align: justify;
-    overflow: auto;
-}
-
 .lista .desc-act {
     display: flex;
-    align-items: center;
-    justify-content: center;
     margin: auto;
-    width: 250px;
-    height: 58px;
+    width: 200px;
+    padding: 0px;
+    height: 44px;
 }
 
 .lista .desc-act p {
-    height: 58px;
+    width: 180px;
+    margin-left: auto;
+    padding-right: 10px;
+    height: 44px;
     text-align: justify;
     overflow: auto;
 }
 
 .lista td, .lista th {
     border: 1px solid #ddd;
-    width: 180px;
-    height: 42px;
+    width: auto;
+    height: 29px;
     font-size: 17px;
+    padding: 7px;
 }
 
 .lista .table-action {
@@ -964,6 +952,38 @@ input[type=checkbox] {
     color:  #ffff;
 }
 
+.botones-asesorias form p {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.botones-asesorias form input[type=text],
+.botones-asesorias form select{
+    border:1px solid #dfdfdf;
+    margin: auto;
+    height: 30px;
+    width: 200px;
+    font-size: 18px;
+    margin-right: 25px;
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
+    border-radius: 6px;
+    padding-left: 8px;
+    background-color: rgba(var(--b3f,250,250,250),1);
+    border:1px solid #dfdfdf;
+}
+
+.botones-asesorias form input[type=submit] {
+    height: 30px;
+    width: 120px;
+    font-size: 17px;
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
+    border-radius: 6px;
+    border: none;
+    color: white;
+}
+
 .color-verde {
     background-color: #18ac30;
 }
@@ -989,7 +1009,6 @@ input[type=checkbox] {
     align-content: center;
     align-items: center;
     text-align: center;
-    
     border-radius: 18px;
     border:1px solid #dfdfdf;
 }
@@ -1007,9 +1026,9 @@ input[type=checkbox] {
     box-sizing:border-box;
     display: block;
     margin: auto;
-    margin-bottom: 20px;
-    height: 44px;
-    width: 420px;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 370px;
     font-size: 16px;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
     border-radius: 6px;
@@ -1017,6 +1036,13 @@ input[type=checkbox] {
     background-color: rgba(var(--b3f,250,250,250),1);
     border:1px solid #dfdfdf;
     margin-top: 15px;
+}
+
+.admin-text .permisos select {
+    height: 250px;
+    width: 370px;
+    max-height: 100%;
+    margin-top: 10px;
 }
 
 .admin-text textarea{

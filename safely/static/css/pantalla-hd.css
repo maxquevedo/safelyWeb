@@ -155,7 +155,7 @@
     }
 
     .act-text-container textarea{
-        width: 220px;
+        width: 290px;
         font-size: 14px;
     }
 
@@ -201,6 +201,13 @@
         width: 260px;
         height: 32px;
         font-size: 12px;
+        margin-top: 9px;
+    }
+
+    .admin-text .permisos select {
+        height: 200px;
+        width: 260px;
+        max-height: 100%;
         margin-top: 9px;
     }
     
