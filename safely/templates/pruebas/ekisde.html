@@ -1,63 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filtro</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Información perfiles{% endblock %}
 
-    <form method="get">
-        <!---->
-
-        <p><label for="id_is_active">Activo:</label> 
-            <select name="is_active" id="id_is_active">
-            <option value="unknown" selected="">Desconocido</option>
-            <option value="true">Sí</option>
-            <option value="false">No</option>
-          </select>
-        </p>
-
-        <p>
-            <label for="id_groups">Grupos:</label> 
-            <select name="groups" id="id_groups" multiple="">
-            <option value="1">Administrador</option>
-            <option value="2">Cliente</option>
-            <option value="3">Profesional</option>
-          </select>
-        </p>
-
-        <p><label for="id_id_auth_user.username">Nombre de usuario:</label> <input type="text" name="id_auth_user.username" id="id_id_auth_user.username"></p>
-
-
-            <p><label for="id_first_name">Nombre:</label> <input type="text" name="first_name" id="id_first_name"></p>
-        
-
-            
-        
-        <!-- {{filtro.form.as_p}} -->
-            
-            
-        
-        <input type="submit" value="Presiona">
-    </form>
-    <!-- 
-    {% for user in filtro.qs %}
-    
-    <h2>
-     {{user.username}} | {{user.first_name}} | {{user.last_name}} | {{user.email}}  | {{perfil.rut}}
-    </h2>
-        
-    {% endfor %}-->
-
-    {% for perfil in PerfilF.qs %}
-    <h3>
-        {{ perfil.rut }} -- {{ perfil.id_auth_user.username}}
-    </h3>
-    {% endfor %}
-
-    
-    
-</body>
-</html>
+{% block body %}
+{% if perms.api.add_user %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a href="{% url 'home-adm' %}">Home</a></li>
+            <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a class="active" href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="#">Ver Actividades</a></li>
+            <li><a href="#">Notificar Atrasos</a></li>
+            <li><a href="#">Control de Pagos</a></li>
+            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>INFORMACIÓN PERFILES</h2>
+                <div class="botones-asesorias">
+                    <form method="get">
+                        <p>Rut: </p>{{PerfilF.form.rut}} 
+                        <p>Tipo de perfil: </p>{{PerfilF.form.tipo_perf}}
+                        <input class="color-verde" type="submit" value="Buscar">
+                    </form>
+                </div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Rut</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th>
+                            <th>Correo</th>
+                            <th>Tipo de Perfil</th>
+                            <th>Fecha Registro</th>
+                            <th>Ultima Sesión</th>
+                            <th>Activo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for perfil in PerfilF.qs %}
+                        <tr>
+                            <td>{{ perfil.rut }}</td>
+                            <td>{{ perfil.id_auth_user.username}}</td>
+                            <td>{{ perfil.id_auth_user.first_name}} {{ perfil.id_auth_user.last_name}}</td>
+                            <td class="fono">{{ perfil.telefono }}</td>
+                            <td>{{ perfil.direccion }}</td>
+                            <td>{{ perfil.id_auth_user.email }}</td>
+                            <td>
+                                {% if perfil.tipo_perf == '1' %}
+                                Admin
+                                {% elif perfil.tipo_perf == '2' %}
+                                Profesional
+                                {% elif  perfil.tipo_perf == '3' %}
+                                Cliente
+                                {% endif %}
+                            </td>
+                            <td>{{perfil.id_auth_user.date_joined}}</td>
+                            <td>{{perfil.id_auth_user.last_login}}</td>
+                            <td>{{perfil.id_auth_user.is_active}}</td>
+                        </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

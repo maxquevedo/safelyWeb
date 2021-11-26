@@ -38,7 +38,7 @@ def crear_grupo(request):
 def user_filter(request):
     # https://www.youtube.com/watch?v=dkJ3uqkdCcY
     #https://django-filter.readthedocs.io/en/stable/index.html
-    
+    """
     filtro = filtersets.UsertFilter(
         request.GET,
         queryset= User.objects.all()
@@ -48,13 +48,32 @@ def user_filter(request):
         request.GET,
         queryset= Perfil.objects.all()
     )
-
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(PerfilF, 5)
+        PerfilF = paginator.page(page)
+    except:
+        raise Http404
     context = {
         'filtro': filtro,
-        'PerfilF':PerfilF
+        'entity':PerfilF,
+        'paginator': paginator
     }
+    """
 
+    filtro = filtersets.UsertFilter(
+        request.GET,
+        queryset= User.objects.all()
+    )
 
+    PerfilF = filtersets.PerfilFilter(
+        request.GET,
+        queryset= Perfil.objects.all()
+    )
+    context = {
+        'filtro': filtro,
+        'PerfilF':PerfilF,
+    }
     return render(request, 'pruebas/ekisde.html', context)
 
 

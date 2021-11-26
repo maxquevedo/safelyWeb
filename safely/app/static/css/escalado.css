@@ -35,9 +35,10 @@
     
     .lista td, .lista th {
         border: 1px solid #ddd;
-        width: 120px;
-        height: 42px;
+        width: auto;
+        height: 29px;
         font-size: 14px;
+        padding: 4px;
     }
 
     .lista .desc p {
@@ -46,11 +47,12 @@
 
     .lista .desc-act {
         width: 200px;
-        height: 42px;
+        padding: 0px;
+        height: 44px;
     }
     
     .lista .desc-act p {
-        height: 42px;
+        height: 44px;
     }
 
     .lista .table-action {
@@ -204,5 +206,22 @@
     .admin-text input[type=checkbox] {
         width: 30px;
         height: 44px;
+    }
+
+    .botones-asesorias form p {
+        font-size: 14px;
+    }
+    
+    .botones-asesorias form input[type=text],
+    .botones-asesorias form select{
+        height: 27px;
+        width: 180px;
+        font-size: 14px;
+    }
+    
+    .botones-asesorias form input[type=submit] {
+        height: 27px;
+        width: 100px;
+        font-size: 13px;
     }
 }
