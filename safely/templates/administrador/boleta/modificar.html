@@ -1,7 +1,6 @@
-
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Registro{% endblock %}
+{% block tittle %}Actualizar{% endblock %}
 
 {% block body %}
 <div class="container-menu">
@@ -23,23 +22,20 @@
     </div>
     <div class="info-perfiles">
         <div class="login-container">
-            <div class="admin-box">
-                <div class="admin-text">
-                    <h2>Crear Servicio</h2>
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h3>Modificar formulario</h3>
+                    <br>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <p>Nombre</p>
-                        {{form.nombre}}
-                        <p>Descripción</p>
-                        {{form.descripcion}}
-                        <p>Estado</p>
-                        {{form.estado}}
-                        <input type="submit" value="Registrar" id="button" class="alter-button">
+                            {{form}}
+                        <input type="submit" value="Modificar" id="button" class="alter-button">
+                        
                     </form>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

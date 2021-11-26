@@ -24,20 +24,22 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Listado de Actividad</h2>
+                <h2>Listado de boletas</h2>
                 <div class="botones-asesorias">
-                    <a class ="color-verde" href="{% url 'crear-activ' %}">Crear Actividad</a>
+                    <a class ="color-verde" href="{% url 'creaBoleta' %}">Crear boleta</a>
                 </div>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID ACTIVIDAD 0 </th>
-                            <th>Nombre 1</th>
-                            <th>Descripcion 2</th>
-                            <th>tipo de actividad 3</th>
-                            <th>Estado 7 </th>
-                            <th>Cliente</th>
-                            <th>Profesional</th>
+                            <th>Boleta</th>
+                            <th>Emision boleta</th>
+                            <th>Fecha de pago</th>
+                            <th>Fecha de corte</th>
+                            <th>Pago mensual</th>
+                            <th>Estado</th>
+                            <th>Pagos extras</th>
+                            <th>url</th>
+                            <th>Contrato</th>          
                             <TH>ACCIÓN</TH>
                         </tr>
                     </thead>
@@ -45,42 +47,18 @@
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td class="table-id">{{entity.0}}</td>
-
-                            <td>{{entity.1}}</td>
-
-                            <td ><p>{{entity.2}}</p></td>
-
-                            <td> {% if entity.3 == '1' %}
-                                Capacitación
-                                {% elif entity.3 == '2' %}
-                                Asesoría
-                                {% elif entity.3 == '3' %}
-                                Visita
-                                {% elif entity.3 == '4' %}
-                                Asignado
-                                {% endif %}
-                            </td>
-
-                            <td>
-                                
-                                {% if entity.8 == '1' %}
-                                Solicitado
-                                {% elif entity.8 == '2' %}
-                                Pendiente
-                                {% elif entity.8 == '3' %}
-                                Realizado
-                                {% elif entity.8 == '4' %}
-                                Cancelado
-                                {% endif %}
-                            </td>
-
-                            <td>{{ entity.9 }}</td>
-
-                            <td>{{ entity.10 }}</td>
+                            <td class="table-id">{{entity.id_boleta}}</td>
+                            <td>{{entity.fec_emision_bol}}</td>
+                            <td ><p>{{entity.fec_pago}}</p></td>
+                            <td ><p>{{entity.fec_corte}}</p></td>
+                            <td ><p>{{entity.pago_mensual}}</p></td>
+                            <td ><p>{{entity.pagado}}</p></td>
+                            <td ><p>{{entity.pago_extra}}</p></td>
+                            <td ><p>{{entity.url}}</p></td>
+                            <td ><p>{{entity.id_contrato}}</p></td>
 
                             <td class="table-action" >
-                                <a href="{% url 'actualizar_actividad' entity.0 %}" id="modificar">
+                                <a href="{% url 'editarBoleta' entity.id_boleta %}" id="modificar">
                                     <div class = "modificar"><p>Modificar</p></div>
                                 </a>
                             </td>

@@ -1,3 +1,4 @@
+from django.conf.urls import url
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
@@ -145,17 +146,18 @@ class Asesoria(models.Model):
         return self.nombre
 
 class Boleta(models.Model):
-    id_boleta = models.BigIntegerField(primary_key=True)
+
+    id_boleta = models.AutoField(primary_key=True)
     fec_emision_bol = models.DateField()
     fec_pago = models.DateField()
     fec_corte = models.DateField()
     pago_mensual = models.BigIntegerField()
-    pagado = models.FloatField()
+    pagado = models.BooleanField()
     pago_extra = models.BigIntegerField()
+    url = models.URLField(max_length = 200, blank=True, null=True)
     id_contrato = models.ForeignKey('Contrato', models.DO_NOTHING, db_column='id_contrato')
 
     class Meta:
-        managed = False
         db_table = 'boleta'
 
 class Capacitacion(models.Model):
@@ -199,6 +201,9 @@ class Contrato(models.Model):
     class Meta:
         managed = False
         db_table = 'contrato'
+
+    def __str__(self):
+        return self.id_cli.razon_social
 
 class Lista(models.Model):
     id_lista = models.BigIntegerField(primary_key=True)

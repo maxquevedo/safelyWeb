@@ -36,5 +36,15 @@ def listaContrato(request):
                 'paginator': paginator}
     return render(request, 'administrador/contrato/contrato.html',context)
 
-
-
+@login_required
+def editarContrato(request,id_contrato):
+    contrato = Contrato.objects.get(id_contrato=id_contrato)
+    if request.method == 'GET':
+        form = ContratoForm(instance=contrato)
+    else:
+        form = ContratoForm(request.POST, instance=contrato)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "modificado correctamente")
+        return redirect(to='listaContrato')
+    return render(request,'administrador/contrato/editar.html',{'form':form})

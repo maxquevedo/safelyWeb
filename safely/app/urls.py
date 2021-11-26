@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from app import views
 from app import contrato
+from app import boleta
 
 urlpatterns = [
     path('filtro/',views.user_filter,name="user_filter"),
@@ -35,11 +36,13 @@ urlpatterns = [
     path('desactivar/<int:id>/' ,views.UserDelete, name='eliminar'),
     path('activar/<int:id>/' ,views.UserActivate, name='activar'),
     path('login-filter', views.login_filter, name='login-filter'),
+
     path('administrador/plan/agregar-plan/', views.PlanCreate, name='agregar-plan'),
     path('administrador/plan/planlista-planes/',views. plan_lista, name='lista-plan'),
     path('administrador/plan/planeditar-plan/<int:id_plan>/', views.PlanEdit, name='editar-plan'),
     path('administrador/plan/desactivar-plan/<int:id>/', views.PlanDelete, name='desactivar-plan'),
     path('administrador/plan/activar-plan/<int:id>/', views.PlanActivate, name='activar-plan'),
+
     path('administrador/servicios/agregar-servicio/', views.ServicioCreate, name='agregar-servicio'),
     path('administrador/servicios/lista-servicios/', views.Servicio_lista, name='lista-servicios'),
     path('administrador/servicios/editar-servicio/<int:id_servicio>/', views.ServicioEdit, name='editar-servicio'),
@@ -48,5 +51,10 @@ urlpatterns = [
 
     path('administrador/contrato/crear',contrato.contratoCliente, name='contratoCliente'),
     path('administrador/contrato/lista',contrato.listaContrato, name='listaContrato'),
+    path('administrador/contrato/editar/<int:id_contrato>/',contrato.editarContrato, name='editarContrato'),
+
+    path('administrador/boleta/crear/',boleta.creaBoleta, name='creaBoleta'),
+    path('administrador/boleta/lista/',boleta.listaBoletas, name='listaBoletas'),
+    path('administrador/boleta/editar/<int:id_boleta>/',boleta.editarBoleta, name='editarBoleta'),
 ]
 

@@ -5,13 +5,26 @@
 {% block body %}
 <div class="container-menu">
     <div class="menu-vertical">
-
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a class="active" href="{% url 'home-adm' %}">Home</a></li>
+            <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a  href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="{% url 'actividades' %}">Ver Actividades</a></li>
+            <li><a href="#">Notificar Atrasos</a></li>
+            <li><a href="{% url 'listaContrato' %}">Contratos</a></li>
+            <li><a href="{% url 'listaBoletas' %}">Boletas</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
 
     </div>
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Listado de Actividad</h2>
+                <h2>Listado de contratos</h2>
                 <div class="botones-asesorias">
                     <a class ="color-verde" href="{% url 'contratoCliente' %}">Crear nuevo contrato</a>
                 </div>
@@ -25,7 +38,6 @@
                             <th>Estado</th>
                             <th>Plan</th>
                             <th>Cliente</th>
-                            <th>Ver Cliente</th>
                             <TH>ACCIÓN</TH>
                         </tr>
                     </thead>
@@ -47,25 +59,8 @@
 
                             <td ><p>{{entity.id_cli}}</p></td>
                             
-
-
-                           
-<!-- <td>
-                                
-                                {% if entity.8 == '1' %}
-                                Solicitado
-                                {% elif entity.8 == '2' %}
-                                Pendiente
-                                {% elif entity.8 == '3' %}
-                                Realizado
-                                {% elif entity.8 == '4' %}
-                                Cancelado
-                                {% endif %}
-                            </td>-->
-                            
-
                             <td class="table-action" >
-                                <a href="" id="modificar">
+                                <a href="{% url 'editarContrato' entity.id_contrato %}" id="modificar">
                                     <div class = "modificar"><p>Modificar</p></div>
                                 </a>
                             </td>

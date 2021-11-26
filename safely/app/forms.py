@@ -6,7 +6,7 @@ from django.db.models import fields
 from django.forms import widgets
 from django.forms.widgets import DateTimeInput
 from datetime import date
-from .models import Administrador, Cliente, Contrato, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
+from .models import Administrador, Boleta, Cliente, Contrato, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
 from app import models
 
 class GrupoForm(forms.ModelForm):
@@ -316,4 +316,14 @@ class ContratoForm(forms.ModelForm):
         widgets = {
             'fec_inicio': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
             'fec_termino': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
+        }
+
+class BoletaForm(forms.ModelForm):
+    class Meta:
+        model = Boleta
+        fields= '__all__'
+        widgets = {
+            'fec_emision_bol': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
+            'fec_pago': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
+            'fec_corte': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
         }

@@ -7,16 +7,16 @@
     <div class="menu-vertical">
         <ul>
             <h2>{{user.get_full_name}}</h2>
-            <li><a href="{% url 'home-adm' %}">Home</a></li>
-            <li><a  href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a class="active" href="{% url 'home-adm' %}">Home</a></li>
+            <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
             <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
-            <li><a class="active" href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a  href="{% url 'infoProfesional' %}">Info Profesional</a></li>
             <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
             <li><a href="#">Reportes</a></li>
-            <li><a href="#">Ver Actividades</a></li>
+            <li><a href="{% url 'actividades' %}">Ver Actividades</a></li>
             <li><a href="#">Notificar Atrasos</a></li>
-            <li><a href="#">Control de Pagos</a></li>
-            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'listaContrato' %}">Contratos</a></li>
+            <li><a href="{% url 'listaBoletas' %}">Boletas</a></li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
     </div>

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block js %}
+<script>
+    $(function() {
+        $('#id_tipo_act').change(function(){
+            $('.tipo').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
+{% endblock %}
+{% block tittle %}Crear Actividad{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a class="active" href="{% url 'home-adm' %}">Home</a></li>
+            <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a  href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
+            <li><a href="#">Reportes</a></li>
+            <li><a href="{% url 'actividades' %}">Ver Actividades</a></li>
+            <li><a href="#">Notificar Atrasos</a></li>
+            <li><a href="{% url 'listaContrato' %}">Contratos</a></li>
+            <li><a href="{% url 'listaBoletas' %}">Boletas</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>Crear boleta para el cliente</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <label for="id_fec_emision_bol">Emision boleta:</label>
+                                <input type="date" name="fec_emision_bol" class="form-control" placeholder="Seleccionar Fecha" required="" id="id_fec_emision_bol">
+                                <label for="id_fec_pago">Fecha de  pago:</label>
+                                <input type="date" name="fec_pago" class="form-control" placeholder="Seleccionar Fecha" required="" id="id_fec_pago">
+                                <label for="id_fec_corte">Fecha de corte:</label>
+                                <input type="date" name="fec_corte" class="form-control" placeholder="Seleccionar Fecha" required="" id="id_fec_corte">
+                                <label for="id_pago_mensual">Pago mensual:</label>
+                                <input type="number" name="pago_mensual" min="-9223372036854775808" max="9223372036854775807" required="" id="id_pago_mensual">
+                                <label for="id_pagado">Estado:</label>
+                                <input type="checkbox" name="pagado" id="id_pagado">
+                                <label for="id_pago_extra">velores extras:</label>
+                                <input type="number" name="pago_extra" min="-9223372036854775808" max="9223372036854775807" required="" id="id_pago_extra">
+                                <label for="id_url">Url de pago:</label>
+                                <input type="url" name="url" maxlength="200" id="id_url">
+                                <label for="id_id_contrato">Contrato:</label>
+                                {{form.id_contrato}}
+                                
+                                <input type="submit" value="Crear" id="button" class="alter-button">
+                            </div>
+                        </div>
+                    </form>
+                    {{mensaje}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
