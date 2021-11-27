@@ -125,6 +125,7 @@
     .act-text-container form input[type=email],
     .act-text-container form input[type=password], 
     .act-text-container form input[type=date], 
+    .act-text-container form input[type=url], 
     .act-text-container form select{
         margin-bottom: 10px;
         height: 44px;

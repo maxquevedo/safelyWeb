@@ -31,7 +31,7 @@ def crear_grupo(request):
             return redirect (to='mantenedor')
         else:
             data["form"] = formulario 
-    return render(request, 'administrador/grupo.html',data )
+    return render(request, 'registration/group.html',data )
 
 
 

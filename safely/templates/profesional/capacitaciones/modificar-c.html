@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block tittle %}Modificar{% endblock %}
+{% block tittle %}Modificar Capacitación{% endblock %}
 
 {% block body %}
 <div class="container-menu">
-
+    {% include 'profesional/menu-prof/capacitaciones.html'%}
     <div class="info-perfiles">
         <div class="login-container">
             <div class="signup-box">
                 <div class="perfil-text-container">
-                    <h2>MODIFICAR CAPACITACION</h2>
+                    <h2>MODIFICAR CAPACITACIÓN</h2>
                     <form action="" method="post">
                         {% csrf_token %}
                         {{form}}
