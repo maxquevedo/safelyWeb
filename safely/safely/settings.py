@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.oracle',
         #'NAME': '192.168.0.7:1521/xe',
         'NAME': 'localhost:1521/xe',
-        'USER': 'c##safely',
+        'USER': 'c##safely3',
         'PASSWORD':'safely',
         'HOST': '',
         'PORT': '',

@@ -1,7 +1,7 @@
 create or replace procedure sp_listar_actividades(actividad out SYS_REFCURSOR)
 is
 begin
-    open actividad for select * from productos;
+    open actividad for select * from actividad;
 end;
 
 create or replace procedure sp_listar_capacitacion(capacitacion out SYS_REFCURSOR)

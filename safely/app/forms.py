@@ -327,3 +327,9 @@ class BoletaForm(forms.ModelForm):
             'fec_pago': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
             'fec_corte': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
         }
+
+class BoletaForm2(forms.ModelForm):
+    url = forms.URLField()
+    class Meta:
+        model = Boleta
+        fields= ['id_boleta','fec_emision_bol','fec_pago','fec_corte','pago_mensual','pagado','pago_extra','url','id_contrato']

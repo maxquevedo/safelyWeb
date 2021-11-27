@@ -157,6 +157,7 @@ class Boleta(models.Model):
     id_contrato = models.ForeignKey('Contrato', models.DO_NOTHING, db_column='id_contrato')
 
     class Meta:
+        managed = False
         db_table = 'boleta'
 
 class Capacitacion(models.Model):
