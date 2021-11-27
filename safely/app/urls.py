@@ -3,6 +3,7 @@ from django.urls import path
 from app import views
 from app import contrato
 from app import boleta
+from app import correo
 
 urlpatterns = [
     path('filtro/',views.user_filter,name="user_filter"),
@@ -56,5 +57,8 @@ urlpatterns = [
     path('administrador/boleta/crear/',boleta.creaBoleta, name='creaBoleta'),
     path('administrador/boleta/lista/',boleta.listaBoletas, name='listaBoletas'),
     path('administrador/boleta/editar/<int:id_boleta>/',boleta.editarBoleta, name='editarBoleta'),
+
+    path('administrador/correo/',correo.correo, name='correo'),
+    path('administrador/correo/test/<int:id_boleta>/',boleta.datosBoleta, name='datosBoleta'),
 ]
 

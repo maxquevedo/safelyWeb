@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Boleta{% endblock %}
+
+{% block body %}
+
+<style>
+
+
+p {
+  font: caption;
+  font-size: 20px;
+  padding: 5px;
+  font-family: monospace;
+}
+div.absolute {
+  position: relative;
+  top: 80px;
+
+  font-family: monospace;
+}
+h2{
+  font-family: monospace;
+  position: absolute;
+  top: 60%;
+  right: 50%;
+
+}
+</style>
+<div class="container-menu">
+    <div class="info-perfiles">
+        <div class="login-container">
+            <form action="" method="post"></form>
+            {% csrf_token %}
+                <div  class="act-text-container">
+
+                    <div style="float: left; height: 50%; width: 50%; " class="">
+                        <p style="font-size: 30px; padding: 4%;" >Hola {{form.id_contrato.id_cli.id_perfil.id_auth_user.first_name}} {{form.id_contrato.id_cli.id_perfil.id_auth_user.last_name}}</p>
+
+                        <p >
+                            Razón social: {{form.id_contrato.id_cli.razon_social}}
+                        </p>
+
+                        <p >
+                            Correo: {{form.id_contrato.id_cli.id_perfil.id_auth_user.email}}
+                        </p>
+                        <p >
+                            Rut: {{form.id_contrato.id_cli.id_perfil.rut}}
+                        </p>
+                        <p >
+                            Telefono: {{form.id_contrato.id_cli.id_perfil.telefono}}
+                        </p>
+                        <p >
+                            Direccion: {{form.id_contrato.id_cli.id_perfil.direccion}}
+
+                        </p>
+                        
+                    </div>
+
+                    <div style="float: right; height: 50%; width: 50%; " class="">
+                        <img  style="padding: 1%; float: right; " width="200" height="60" src="https://i.imgur.com/086cP82.png"></span>
+                        
+                        <div class="absolute">
+                            <p>SERVICIO</p>
+                            <p style="font-size: 20px;">
+                                Fecha emisión de la boleta: {{form.fec_emision_bol}}
+                            </p>
+                            <p style="font-size: 20px;">
+                                Fecha vencimiento: {{form.fec_pago}}
+                            </p>
+                            
+                            <p style="font-size: 20px;">
+                                Fecha corte del servicio: {{form.fec_corte}}
+                            </p>
+
+                            <p style="font-size: 20px;">
+                                Acceso al pago:
+                                <a href={{form.url}}>Pagar</a>
+                            </p>
+                            <p style="font-size: 20px;">
+                                Contrato numero: {{form.id_contrato}}
+                            </p>
+                        </div> 
+                    </div>
+                    <div class="crea-act-button">
+
+                        <h2>TOTAL PAGAR: {{form.pago_mensual}}</h2>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

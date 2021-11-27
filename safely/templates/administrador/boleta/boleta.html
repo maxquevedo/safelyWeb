@@ -39,7 +39,8 @@
                             <th>Estado</th>
                             <th>Pagos extras</th>
                             <th>url</th>
-                            <th>Contrato</th>          
+                            <th>Contrato</th>
+                            <th>Correo</th>       
                             <TH>ACCIÓN</TH>
                         </tr>
                     </thead>
@@ -56,12 +57,23 @@
                             <td ><p>{{entity.pago_extra}}</p></td>
                             <td ><p>{{entity.url}}</p></td>
                             <td ><p>{{entity.id_contrato}}</p></td>
+                            <td ><p>{{entity.id_contrato.id_cli.id_perfil.id_auth_user.email}}</p></td>
 
                             <td class="table-action" >
                                 <a href="{% url 'editarBoleta' entity.id_boleta %}" id="modificar">
                                     <div class = "modificar"><p>Modificar</p></div>
                                 </a>
+
+                                
+                                <a href="{% url 'datosBoleta' entity.id_boleta %}" id="modificar">
+                                    <div class = "modificar"><p>Enviar  </p></div>
+                                </a>
+
                             </td>
+
+                            
+                                
+                            
                         </tr>
                         {% endfor %}
                         {% endif %}
