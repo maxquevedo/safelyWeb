@@ -11,7 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('administrador/usuario/registro-usuario/', views.signup_view, name='signup'),
     path('administrador/', views.home_admin, name='home-adm'),
-    path('administrador/grupo/', views.crear_grupo, name='grupo'),
+    path('administrador/crear-grupo/', views.crear_grupo, name='crear-grupo'),
     path('administrador/mantenedor/', views.maintainer, name='mantenedor'),
     path('administrador/mantenedor-usuario/', views.maintainer_user, name='mantenedor-usr'),
     path('administrador/mantenedor-plan/', views.maintainer_plan, name='mantenedor-plan'),

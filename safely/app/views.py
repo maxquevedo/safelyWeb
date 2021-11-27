@@ -28,10 +28,10 @@ def crear_grupo(request):
         if formulario.is_valid():
             gru = formulario.save()
             messages.success(request, "Grupo "+gru.name+" creado correctamente!")
-            return redirect (to='mantenedor')
+            return redirect (to='mantenedor-usr')
         else:
             data["form"] = formulario 
-    return render(request, 'administrador/grupo.html',data )
+    return render(request, 'registration/group.html',data )
 
 
 
@@ -187,7 +187,7 @@ def login_view(request):
     return render(request,'registration/login.html',{'form':form})
 
 def login_filter(request):
-    if request.user.groups.filter(name="Administrador"):
+    if request.user.groups.filter(name="Administrador") or request.user.is_staff:
         return redirect(to='home-adm')
     elif request.user.groups.filter(name="Profesional"):
         return redirect(to='home-prof')

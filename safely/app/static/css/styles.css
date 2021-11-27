@@ -190,6 +190,7 @@ textarea:focus, input:focus, select:focus{
 .act-text-container form input[type=email], 
 .act-text-container form input[type=password], 
 .act-text-container form input[type=date], 
+.act-text-container form input[type=url], 
 .act-text-container form select{
     border:1px solid #dfdfdf;
     box-sizing:border-box;

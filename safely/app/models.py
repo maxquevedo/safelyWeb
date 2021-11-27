@@ -146,7 +146,6 @@ class Asesoria(models.Model):
         return self.nombre
 
 class Boleta(models.Model):
-
     id_boleta = models.AutoField(primary_key=True)
     fec_emision_bol = models.DateField()
     fec_pago = models.DateField()
