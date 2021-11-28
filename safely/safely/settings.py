@@ -148,4 +148,3 @@ EMAIL_PORT=587
 EMAIL_HOST_USER='safelyweb1@gmail.com'
 EMAIL_HOST_PASSWORD='Safelyweb1234'
 
-#send_mail('El asunto va aqui','Mensaje: Puto el que lo lea','safelyweb1@gmail.com',['matiasgallardo.do2@gmail.com'],fail_silently=False,)
