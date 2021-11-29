@@ -203,7 +203,7 @@ class Contrato(models.Model):
         db_table = 'contrato'
 
     def __str__(self):
-        return self.id_cli.razon_social
+        return self.id_cli.id_perfil.id_auth_user.first_name + ' ' + self.id_cli.id_perfil.id_auth_user.last_name
 
 class Lista(models.Model):
     id_lista = models.BigIntegerField(primary_key=True)

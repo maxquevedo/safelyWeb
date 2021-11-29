@@ -1,0 +1,3 @@
+create user c##safely identified by safely;
+grant connect, resource to c##safely;
+alter user c##safely default tablespace users quota unlimited on users;
