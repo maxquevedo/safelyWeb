@@ -18,9 +18,8 @@
                         <tr>
                             <th>ID VISITA</th>
                             <th>NOMBRE</th>
-                            <th>EXTRA</th>
                             <TH>ESTADO</TH>
-                             <TH>ACCION </TH>
+                            <TH>ACCIÓN</TH>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,13 +28,6 @@
                         <tr>
                             <td>{{entity.id_visita}}</td>
                             <td>{{entity.nombre}}</td>
-                            <td>
-                                {% if entity.is_extra %}
-                                Sí
-                                {% else %}
-                                No
-                                {% endif %}
-                            </td>
                             <td>
                                 {% if entity.estado %}
                                 Activo

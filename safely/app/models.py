@@ -54,7 +54,7 @@ class Cliente(models.Model):
         db_table = 'cliente'
 
     def __str__(self):
-        return self.id_perfil.id_auth_user.username
+        return self.razon_social
 
 class Profesional(models.Model):
     id_prof = models.AutoField(primary_key=True)
@@ -186,8 +186,6 @@ class Chat(models.Model):
     class Meta:
         managed = False
         db_table = 'chat'
-
-
 
 class Contrato(models.Model):
     id_contrato = models.AutoField(primary_key=True)

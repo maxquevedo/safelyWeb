@@ -810,6 +810,7 @@ input[type=checkbox] {
     overflow: hidden;
     text-align: center;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
+    margin: auto;
 }
 
 .lista table td a {
@@ -941,6 +942,7 @@ input[type=checkbox] {
     display: flex;
     height: 40px;
     padding-bottom: 30px;
+    width: 700px;
 }
 
 .botones-asesorias a {
@@ -949,10 +951,14 @@ input[type=checkbox] {
     text-decoration: none;
     margin: auto;
     height: 40px;
-    padding: 2px 20px;
+    padding: 2px 12px;
     align-items: center;
     justify-content: center;
     color:  #ffff;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    transition: 0.2s;
 }
 
 .botones-asesorias form p {
@@ -989,14 +995,35 @@ input[type=checkbox] {
 
 .color-verde {
     background-color: #18ac30;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 3px solid #18ac30;
+}
+
+.color-verde:hover {
+    background-color: #f2f2f2;
+    color: #1a1a1a;
 }
 
 .color-azul {
     background-color: #24a0ed;
+    border: 3px solid #24a0ed;
+}
+
+.color-azul:hover {
+    background-color: #f2f2f2;
+    color: #1a1a1a;
 }
 
 .color-amarillo {
     background-color: #edad24;
+    border: 3px solid #edad24;
+}
+
+.color-amarillo:hover {
+    background-color: #f2f2f2;
+    color: #1a1a1a;
 }
 
 .admin-box {
@@ -1099,6 +1126,7 @@ input[type=checkbox] {
 
 ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
 }
 
 /* Track */
