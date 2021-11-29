@@ -6,89 +6,99 @@
 
 <style>
 
-
-p {
-  font: caption;
-  font-size: 20px;
-  padding: 5px;
-  font-family: monospace;
+.container-email {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    color: #1a1a1a;
 }
-div.absolute {
-  position: relative;
-  top: 80px;
 
-  font-family: monospace;
+.container-email-logo {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    background-color: #fdfdfd;
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    position: absolute;
 }
-h2{
-  font-family: monospace;
-  position: absolute;
-  top: 60%;
-  right: 50%;
 
+.container-email-logo img {
+    width: 140px;
+    height: 50px;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 1%;
 }
+
+.container-email-datos-cli {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding-bottom: 9px;
+    width: 90%;
+    background-color: #fdfdfd;
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    border:1px solid #dfdfdf;
+}
+
+.container-email-datos-cli p {
+    padding-top: 9px;
+    margin-left: 20px;
+    width: 90%;
+}
+
+.container-email-datos-cli p a{
+    margin: auto;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container-email-datos-cli h2 {
+    padding-top: 9px;
+    margin: auto;
+}
+
+.edc-ultimo {
+    padding-bottom: 10px;
+}
+
 </style>
-<div class="container-menu">
-    <div class="info-perfiles">
-        <div class="login-container">
-            <form action="" method="post"></form>
-            {% csrf_token %}
-                <div  class="act-text-container">
-
-                    <div style="float: left; height: 50%; width: 50%; " class="">
-                        <p style="font-size: 30px; padding: 4%;" >Hola {{form.id_contrato.id_cli.id_perfil.id_auth_user.first_name}} {{form.id_contrato.id_cli.id_perfil.id_auth_user.last_name}}</p>
-
-                        <p >
-                            Razón social: {{form.id_contrato.id_cli.razon_social}}
-                        </p>
-
-                        <p >
-                            Correo: {{form.id_contrato.id_cli.id_perfil.id_auth_user.email}}
-                        </p>
-                        <p >
-                            Rut: {{form.id_contrato.id_cli.id_perfil.rut}}
-                        </p>
-                        <p >
-                            Telefono: {{form.id_contrato.id_cli.id_perfil.telefono}}
-                        </p>
-                        <p >
-                            Direccion: {{form.id_contrato.id_cli.id_perfil.direccion}}
-
-                        </p>
-                        
-                    </div>
-
-                    <div style="float: right; height: 50%; width: 50%; " class="">
-                        <img  style="padding: 1%; float: right; " width="200" height="60" src="https://i.imgur.com/086cP82.png"></span>
-                        
-                        <div class="absolute">
-                            <p>SERVICIO</p>
-                            <p style="font-size: 20px;">
-                                Fecha emisión de la boleta: {{form.fec_emision_bol}}
-                            </p>
-                            <p style="font-size: 20px;">
-                                Fecha vencimiento: {{form.fec_pago}}
-                            </p>
-                            
-                            <p style="font-size: 20px;">
-                                Fecha corte del servicio: {{form.fec_corte}}
-                            </p>
-
-                            <p style="font-size: 20px;">
-                                Acceso al pago:
-                                <a href={{form.url}}>Pagar</a>
-                            </p>
-                            <p style="font-size: 20px;">
-                                Contrato numero: {{form.id_contrato}}
-                            </p>
-                        </div> 
-                    </div>
-                    <div class="crea-act-button">
-
-                        <h2>TOTAL PAGAR: {{form.pago_mensual}}</h2>
-                    </div>
-                </div>
-            </form>
-        </div>
+<div class="container-email">
+    <!--<div class="container-email-logo">
+        <img src="https://i.imgur.com/086cP82.png">
+    </div>!-->
+    <form action="" method="post"></form>
+    {% csrf_token %}
+    <div class="container-email-datos-cli">
+        <h2>Boleta Electrónica Safely</h2>
     </div>
+    <div class="container-email-datos-cli">
+        <p>Nombre cliente: {{form.id_contrato.id_cli.id_perfil.id_auth_user.first_name}} {{form.id_contrato.id_cli.id_perfil.id_auth_user.last_name}}</p>
+        <p>Razón social: {{form.id_contrato.id_cli.razon_social}}</p>
+        <p>Correo: {{form.id_contrato.id_cli.id_perfil.id_auth_user.email}}</p>
+        <p>Rut: {{form.id_contrato.id_cli.id_perfil.rut}}</p>
+        <p>Teléfono: {{form.id_contrato.id_cli.id_perfil.telefono}}</p>
+        <p>Dirección: {{form.id_contrato.id_cli.id_perfil.direccion}}</p>
+    </div>
+    <div class="container-email-datos-cli">
+        <p>Plan: {{form.id_contrato.id_plan}}</p>
+    </div>
+    <div class="container-email-datos-cli">
+        <p>Contrato Número: {{form.id_contrato}}</p>
+        <p>Fecha de emisión: {{form.fec_emision_bol}}</p>
+        <p>Fecha de vencimiento: {{form.fec_pago}}</p>
+        <p>Fecha corte del plan: {{form.fec_corte}}</p>
+    </div>
+    <div class="container-email-datos-cli edc-utlimo">
+        <p>Total a Pagar: {{form.pago_mensual}} | <a href={{form.url}}>Pagar aquí</a></p>
+    </div>
+    </form>
 </div>
 {% endblock %}
