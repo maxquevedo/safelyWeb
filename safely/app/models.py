@@ -4,6 +4,8 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+
+
 """
 class User(models.Model):
     id = models.AutoField(primary_key=True)
@@ -120,7 +122,7 @@ class Actividad(models.Model):
 
 class Alerta(models.Model):
     id_alerta = models.AutoField(primary_key=True)
-    fec_aviso = models.DateField()
+    fec_aviso = models.DateField(auto_now_add=True, blank=True)
     descripcion = models.CharField(max_length=300)
     estado = models.BooleanField()
     id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cli')
@@ -129,6 +131,7 @@ class Alerta(models.Model):
     class Meta:
         managed = False
         db_table = 'alerta'
+
 
 
 class Asesoria(models.Model):
@@ -315,17 +318,3 @@ class Visita(models.Model):
 
 
 
-"""
-#Manera de asignar un usuario a un perfil cuando es registrado
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Perfil.objects.create(id_auth_user=instance)
-
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
-#created_profile
-post_save.connect(create_user_profile, sender=User)
-#save_profile
-post_save.connect(save_user_profile, sender=User)
-
-"""

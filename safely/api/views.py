@@ -1,6 +1,14 @@
 from django.db.models.query import QuerySet
 from rest_framework import viewsets
 
+from django.core.mail import EmailMessage
+from django.conf import settings
+
+from app.models import Alerta,Profesional
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
 """
 TokenAuthentication:
 
@@ -24,7 +32,7 @@ from rest_framework.settings import api_settings
 
 #SERIALIZADORES
 from api import serializers
-
+from .serializers import AlertaSerializer
 #MODELOS
 from app import models
 
@@ -56,12 +64,42 @@ class AdministradorViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
 
+
+
 #Alerta
 class AlertaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.AlertaSerializer
     queryset =  models.Alerta.objects.all()
     authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
+    def create(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            descrip = request.POST.get('descripcion')
+            profe = request.POST.get('id_prof')
+
+            profesional  = Profesional.objects.get(id_prof=profe)
+            email = profesional.id_perfil.id_auth_user.email
+            #print(profesional.id_perfil.id_auth_user.email)
+            send_email(descrip,email)
+        response = super(AlertaViewSet, self).create(request, *args, **kwargs)
+        return response
+
+#Envia correo al momento de crearse una alerta 
+def send_email(descrip,email):
+    email = EmailMessage(
+        'Alerta Safely',
+        descrip,
+        settings.EMAIL_HOST_USER,
+        [email],
+    )
+    #print(email)
+    email.send()
+
+
+
+        
+
+
 
 #Asesoria
 class AsesoriaViewSet(viewsets.ModelViewSet):

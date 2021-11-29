@@ -53,7 +53,7 @@ class AdministradorSerializer(serializers.ModelSerializer):
 class AlertaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Alerta
-        fields = '__all__'
+        fields = ['fec_aviso','descripcion','estado','id_cli','id_prof']
 
 #Model Asesoria
 class AsesoriaSerializer(serializers.ModelSerializer):
