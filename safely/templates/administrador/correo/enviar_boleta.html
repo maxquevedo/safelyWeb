@@ -3,101 +3,34 @@
 {% block tittle %}Boleta{% endblock %}
 
 {% block body %}
-
-<style>
-
-.container-email {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: #f0f0f0;
-    color: #1a1a1a;
-}
-
-.container-email-logo {
-    width: 100%;
-    height: 10vh;
-    display: flex;
-    background-color: #fdfdfd;
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
-    position: absolute;
-}
-
-.container-email-logo img {
-    width: 140px;
-    height: 50px;
-    margin-left: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 1%;
-}
-
-.container-email-datos-cli {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    padding-bottom: 9px;
-    width: 90%;
-    background-color: #fdfdfd;
-    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    border:1px solid #dfdfdf;
-}
-
-.container-email-datos-cli p {
-    padding-top: 9px;
-    margin-left: 20px;
-    width: 90%;
-}
-
-.container-email-datos-cli p a{
-    margin: auto;
-    color: #1a1a1a;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.container-email-datos-cli h2 {
-    padding-top: 9px;
-    margin: auto;
-}
-
-.edc-ultimo {
-    padding-bottom: 10px;
-}
-
-</style>
-<div class="container-email">
-    <!--<div class="container-email-logo">
-        <img src="https://i.imgur.com/086cP82.png">
-    </div>!-->
+<div class="container-email-logo" style="width: 100%;height: 58px;display: flex;background-color: #0f4a68;box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);border-top-left-radius:9px;border-top-right-radius:9px;border:1px solid #dfdfdf;box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;">
+    <img src="https://i.imgur.com/086cP82.png" style="width: 140px;height: 48px;margin:auto;">
+</div>
+<div class="container-email" style="width: 100%;height: auto;flex-direction: column;background-color: #f0f0f0;color: #1a1a1a; padding-bottom: 18px;border-bottom-left-radius:9px;border-bottom-right-radius:9px;;border:1px solid #dfdfdf;box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;">
     <form action="" method="post"></form>
     {% csrf_token %}
-    <div class="container-email-datos-cli">
-        <h2>Boleta Electrónica Safely</h2>
+    <div class="container-email-datos-cli" style="margin-left: auto;margin-right: auto;margin-top: 20px;padding-bottom: 9px;width: 90%;background-color: #fdfdfd;box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);border-radius: 8px;flex-direction: column;border:1px solid #dfdfdf;display:flex;">
+        <h2 style="padding-top: 9px;margin: auto;">Boleta Electrónica Safely</h2>
     </div>
-    <div class="container-email-datos-cli">
-        <p>Nombre cliente: {{form.id_contrato.id_cli.id_perfil.id_auth_user.first_name}} {{form.id_contrato.id_cli.id_perfil.id_auth_user.last_name}}</p>
-        <p>Razón social: {{form.id_contrato.id_cli.razon_social}}</p>
-        <p>Correo: {{form.id_contrato.id_cli.id_perfil.id_auth_user.email}}</p>
-        <p>Rut: {{form.id_contrato.id_cli.id_perfil.rut}}</p>
-        <p>Teléfono: {{form.id_contrato.id_cli.id_perfil.telefono}}</p>
-        <p>Dirección: {{form.id_contrato.id_cli.id_perfil.direccion}}</p>
+    <div class="container-email-datos-cli" style="margin-left: auto;margin-right: auto;margin-top: 20px;padding-bottom: 9px;width: 90%;background-color: #fdfdfd;box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);border-radius: 8px;flex-direction: column;border:1px solid #dfdfdf;">
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Nombre cliente: {{form.id_contrato.id_cli.id_perfil.id_auth_user.first_name}} {{form.id_contrato.id_cli.id_perfil.id_auth_user.last_name}}</p>
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Razón social: {{form.id_contrato.id_cli.razon_social}}</p>
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Correo: {{form.id_contrato.id_cli.id_perfil.id_auth_user.email}}</p>
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Rut: {{form.id_contrato.id_cli.id_perfil.rut}}</p>
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Teléfono: {{form.id_contrato.id_cli.id_perfil.telefono}}</p>
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Dirección: {{form.id_contrato.id_cli.id_perfil.direccion}}</p>
     </div>
-    <div class="container-email-datos-cli">
-        <p>Plan: {{form.id_contrato.id_plan}}</p>
+    <div class="container-email-datos-cli" style="margin-left: auto;margin-right: auto;margin-top: 20px;padding-bottom: 9px;width: 90%;background-color: #fdfdfd;box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);border-radius: 8px;flex-direction: column;border:1px solid #dfdfdf;">
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Plan: {{form.id_contrato.id_plan}}</p>
     </div>
-    <div class="container-email-datos-cli">
-        <p>Contrato Número: {{form.id_contrato}}</p>
-        <p>Fecha de emisión: {{form.fec_emision_bol}}</p>
-        <p>Fecha de vencimiento: {{form.fec_pago}}</p>
-        <p>Fecha corte del plan: {{form.fec_corte}}</p>
+    <div class="container-email-datos-cli" style="margin-left: auto;margin-right: auto;margin-top: 20px;padding-bottom: 9px;width: 90%;background-color: #fdfdfd;box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);border-radius: 8px;flex-direction: column;border:1px solid #dfdfdf;">
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Contrato Número: {{form.id_contrato}}</p>
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Fecha de emisión: {{form.fec_emision_bol}}</p>
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Fecha de vencimiento: {{form.fec_pago}}</p>
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Fecha corte del plan: {{form.fec_corte}}</p>
     </div>
-    <div class="container-email-datos-cli edc-utlimo">
-        <p>Total a Pagar: {{form.pago_mensual}} | <a href={{form.url}}>Pagar aquí</a></p>
+    <div class="container-email-datos-cli" style="margin-left: auto;margin-right: auto;margin-top: 20px;padding-bottom: 9px;width: 90%;background-color: #fdfdfd;box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.02);border-radius: 8px;flex-direction: column;border:1px solid #dfdfdf;padding-bottom: 10px;">
+        <p style="padding-top: 9px;margin-left: 20px;width: 90%;">Total a Pagar: {{form.pago_mensual}} | <a href={{form.url}} style="margin: auto;color: #1a1a1a;text-decoration: none;font-weight: bold;">Pagar aquí</a></p>
     </div>
     </form>
 </div>
