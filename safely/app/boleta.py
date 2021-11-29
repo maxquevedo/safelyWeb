@@ -1,4 +1,5 @@
 from django_filters.filters import Filter
+
 from .models import *
 from .forms import *
 from django.contrib import messages
@@ -39,22 +40,6 @@ def editarBoleta(request,id_boleta):
         return redirect(to='listaBoletas')
     return render(request,'administrador/boleta/modificar.html',{'form':form})
 
-
-
-
-def enviar_mail(email):
-    context ={'email':email}
-    template = get_template('administrador/correo/test.html')
-    content = template.render(context)
-    mail = EmailMultiAlternatives(
-        'Boleta Electronica Safely',
-        'Mensaje: Aqui va el mensaje jaja',
-        settings.EMAIL_HOST_USER,
-        [email]
-    )
-    mail.attach_alternative(content,'text/html')
-    mail.send()
-
 @login_required
 def listaBoletas(request):
     boleta = Boleta.objects.all().order_by('id_boleta')
@@ -66,17 +51,27 @@ def listaBoletas(request):
         raise Http404
     context = {'entity': boleta,
                 'paginator': paginator}
-    
-    if request.method == 'GET':
-        email = request.GET.get('mail')
-        enviar_mail(email)
-        print(email)
+
     return render(request, 'administrador/boleta/boleta.html',context)
 
 
 
 @login_required
-def datosBoleta(request,id_boleta):
+def datosBoleta(request, id_boleta):
     boleta = Boleta.objects.get(id_boleta=id_boleta)
+    print(boleta.id_contrato.id_cli.id_perfil.id_auth_user.email)
+
+
     context = {'form': boleta}
+    template = get_template('administrador/correo/enviar_boleta.html')
+    content = template.render(context)
+    mail = EmailMultiAlternatives(
+        'Boleta Electronica Safely',
+        'Mensaje: Aqui va el mensaje jaja',
+        settings.EMAIL_HOST_USER,
+        [boleta.id_contrato.id_cli.id_perfil.id_auth_user.email]
+    )
+    mail.attach_alternative(content,'text/html')
+    mail.send()
     return render(request,'administrador/correo/enviar_boleta.html',context)
+

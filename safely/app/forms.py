@@ -17,7 +17,7 @@ class GrupoForm(forms.ModelForm):
 class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(min_length=5, max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 
                            'placeholder': 'Ej: Leo.Barraza'}))
-    email = forms.CharField(min_length=5, max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 
+    email = forms.CharField(min_length=5, max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 
                            'placeholder': 'Ej: correo@ejemplo.cl'}))
 
     class Meta:
