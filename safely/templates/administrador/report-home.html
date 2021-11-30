@@ -6,38 +6,23 @@
 {% block body %}
 {% if perms.api.add_user %}
 <div class="container-menu">
-    <div class="menu-vertical">
-        <ul>
-            <h2>{{user.get_full_name}}</h2>
-            <li><a href="{% url 'home-adm' %}">Home</a></li>
-            <li><a  href="{% url 'mantenedor' %}">Mantenedor</a></li>
-            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
-            <li><a  href="{% url 'infoProfesional' %}">Info Profesional</a></li>
-            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
-            <li><a class="active" href="{% url 'reporte-lista' %}">Reportes</a></li>
-            <li><a href="#">Ver Actividades</a></li>
-            <li><a href="#">Notificar Atrasos</a></li>
-            <li><a href="#">Control de Pagos</a></li>
-            <li><a href="#">Accidentes</a></li>
-            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-        </ul>
-    </div>
+    {% include 'administrador/menu-admin/reportes.html'%}
     <div class="info-perfiles">
         <div class="container-mantenedor">
             <div class="mantenedor-user">
-                <a href="{% url 'Reporte-global-home' %}">
+                <a href="{% url 'reporte-global-home' %}">
                     <div class="acciones-mantenedor">
                         <div class="desc-acc">
-                            <h3>Reporte global</h3>
-                            <p>Se emite un reporte global mensual  de los datos adquiridos por el sistema Safely.</p>
+                            <h3>Reporte Global</h3>
+                            <p>Se emite un reporte global mensual de los datos adquiridos por el sistema Safely.</p>
                         </div>
                     </div>
                 </a>
-                <a href="{% url 'Reporte-cliente-home' %}">
+                <a href="{% url 'reporte-cliente-home' %}">
                 <div class="acciones-mantenedor">
                     <div class="desc-acc">
                         <h3>Reporte Cliente</h3>
-                        <p>PSe realiza en reporte para un cliente.</p>
+                        <p>Se realiza en reporte para un Cliente.</p>
                     </div>
                 </div>
                 </a>

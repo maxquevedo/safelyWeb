@@ -123,7 +123,7 @@
             <hr>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <H1>Safely </H1>
-            <H2>Informe de cliente</H2>
+            <H2>Informe de Cliente</H2>
             {% for cliente in cliente %}
             <h3> {{ cliente.id_perfil.id_auth_user.first_name }} {{ cliente.id_perfil.id_auth_user.last_name }}</h3>
             {% endfor %}
@@ -134,33 +134,33 @@
         </div>
         <div class="contenido">
        <br>
-       <h5 class = "Subtitulos">Detalles del cliente</h5>
+       <h5 class = "Subtitulos">Detalles del Cliente</h5>
        <div class="info_cliente">
             {% for cliente in cliente %}
             <h5>Nombre:  </h5><p> {{ cliente.id_perfil.id_auth_user.first_name }} {{ cliente.id_perfil.id_auth_user.last_name }}</p>
             <h5>Correo:  </h5> <p> {{ cliente.id_perfil.id_auth_user.email }} </p>
             <h5>Rut:  </h5> <p> {{ cliente.id_perfil.rut }} </p>
-            <h5>Telefono:  </h5> <p> {{ cliente.id_perfil.telefono }} </p>
+            <h5>Teléfono:  </h5> <p> {{ cliente.id_perfil.telefono }} </p>
             {% endfor %}
    
     <br>
        </div> 
-        <h5 class = "Subtitulos">Asesorías contratadas del cliente</h5>
+        <h5 class = "Subtitulos">Asesorías contratadas del Cliente</h5>
         
         {% for cliente in cliente %}
-        <P class="detalles"> Se muestra las asesorias que fueron contratadas por el cliente {{ cliente.id_perfil.id_auth_user.first_name }} {{ cliente.id_perfil.id_auth_user.last_name }}, mostrando su nombre y descripcion ademas en que actividad  esta relazionada esta asesoria y su respectiva
-            descripcion, y si esta actividad es una actividad es extra o no.
+        <P class="detalles">Se muestra las Asesorias que fueron contratadas por el cliente {{ cliente.id_perfil.id_auth_user.first_name }} {{ cliente.id_perfil.id_auth_user.last_name }}, mostrando su nombre y descripcion, además en que actividad esta relacionada esta asesoria y su respectiva
+            descripción y si esta actividad es extra o no.
         </P>
             {% endfor %}
           <table class="tablas">
             <thead>
-                <th>Nombre asesoría </th>
-                <th>Descripción asesoría</th>
-                <th>Tipo de asesoría</th>
-                <th>Fecha de ida</th>
-                <th>Actividad vinculada</th>
-                <th>Descripción  actividad</th>
-                <th >Es extra?</th>
+                <th>Nombre Asesoría </th>
+                <th>Descripción Asesoría</th>
+                <th>Tipo de Asesoría</th>
+                <th>Fecha de Ida</th>
+                <th>Actividad Vinculada</th>
+                <th>Descripción Actividad</th>
+                <th >Extra</th>
             </thead>
             <tbody>
                 {% for actividadA in actividadA %}
@@ -182,22 +182,22 @@
             </tbody>
           </table>
           <br>
-          <h5 class = "Subtitulos">Capacitaciones contratadas del cliente</h5>
+          <h5 class = "Subtitulos">Capacitaciones Contratadas del Cliente</h5>
           
         {% for cliente in cliente %}
-        <P class="detalles"> Se muestra las Capacitaciones que han sido contratadas por el cliente {{ cliente.id_perfil.id_auth_user.first_name }} {{ cliente.id_perfil.id_auth_user.last_name }},  mostrando su respectivo nombre, la cantidad de asistentes que va a tener la capacitacion
-            ,los materiales nesesarios para la capacitacion y la actividad en la que esta vinculada la capacitacion  con su descripcion, ademas de mostrar si la capacitacion es una actividad extra o no 
+        <P class="detalles"> Se muestra las Capacitaciones que han sido contratadas por el cliente {{ cliente.id_perfil.id_auth_user.first_name }} {{ cliente.id_perfil.id_auth_user.last_name }},  mostrando su respectivo nombre, la cantidad de asistentes que va a tener la capacitación
+            , los materiales nesesarios para la capacitación y la actividad en la que esta vinculada, con su descripción, ademas de mostrar si la capacitacion es extra o no.
       </P>
             {% endfor %}
           <table class="tablas">
             <thead>
-                <th>Nombre capacitación </th>
-                <th>Cantidad de asistentes</th>
-                <th>Materiales de la capacitación</th>
-                <th>Fecha de ida</th>
-                <th>Actividad vinculada</th>
-                <th>Descripción actividad</th>
-                <th>Es extra?</th>
+                <th>Nombre Capacitación </th>
+                <th>Cantidad de Asistentes</th>
+                <th>Materiales de la Capacitación</th>
+                <th>Fecha de Ida</th>
+                <th>Actividad Vinculada</th>
+                <th>Descripción Actividad</th>
+                <th>Extra</th>
             </thead>
             <tbody>
                 {% for actividadC in actividadC %}
@@ -219,19 +219,19 @@
           </table>
           <br>
    
-        <h5 class = "Subtitulos">Visitas a terreno del cliente</h5>
+        <h5 class = "Subtitulos">Visitas a Terreno</h5>
             {% for cliente in cliente %}
-            <P class="detalles"> Se muestran la visita a terreno que se realizaron al cliente {{ cliente.id_perfil.id_auth_user.first_name }} {{ cliente.id_perfil.id_auth_user.last_name }}, Mostrando su nombre la fecha en la que se realizo  y la actividad que esta vinculada y su respectiva
-                descripcion y si es una visita extra o no.
+            <P class="detalles"> Se muestran la visita a terreno que se realizaron al cliente {{ cliente.id_perfil.id_auth_user.first_name }} {{ cliente.id_perfil.id_auth_user.last_name }}, mostrando su nombre, la fecha en la que se realizó  y la actividad que esta vinculada y su respectiva
+                descripción y si es extra o no.
             </P> 
             {% endfor %}
         <table class="tablas">
           <thead>
               <th>Nombre Visita </th>
-              <th>Fecha de ida</th>
-              <th>Actividad vinculada</th>
-              <th>Descripcion  actividad</th>
-              <th>Es extra?</th>
+              <th>Fecha de Ida</th>
+              <th>Actividad Vinculada</th>
+              <th>Descripción Actividad</th>
+              <th>Extra</th>
           </thead>
           <tbody>
               {% for actividadV in actividadV %}
@@ -251,17 +251,17 @@
           </tbody>
         </table>
         <br>
-        <h5 class = "Subtitulos"> Accidentes laborales del cliente </h5>
+        <h5 class = "Subtitulos"> Accidentes Laborales del Cliente </h5>
         {% for cliente in cliente %}
         <P class="detalles"> Se muestran los accidentes laborales que a reportado el cliente {{ cliente.id_perfil.id_auth_user.first_name }} {{ cliente.id_perfil.id_auth_user.last_name }}, mostrando la fecha del accidente
-            la descripcion del accidente y el profesional que esta acargo del cliente.
+            , la descripción del accidente y el profesional que esta a cargo del cliente.
         </P> 
         {% endfor %}
         <table class="tablas">
           <thead>
-              <th>Fecha del accidente </th>
-              <th>Descripcion del accidente</th>
-              <th>Profesional a cargo</th>
+              <th>Fecha del Accidente </th>
+              <th>Descripcion del Accidente</th>
+              <th>Profesional a Cargo</th>
           </thead>
           <tbody>
               {% for alertas in alertas %}
@@ -273,10 +273,6 @@
               {% endfor %}
           </tbody>
         </table>
-      
-       
-        
         </div>
-        
     </body>
 </html>

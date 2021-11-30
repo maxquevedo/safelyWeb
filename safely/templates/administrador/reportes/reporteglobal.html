@@ -152,26 +152,26 @@
         <div class="portada">
             <hr>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <H1>Safely </H1>
+            <H1>Safely</H1>
             <H2>Informe Global</H2>
 
             <br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <hr>
         </div>
         
         <div class="contenido">
 
             <h2 class = "Subtitulos">Profesionales</h2>
-            <P class="detalles"> Se muestra los profesionales que actualmente esten trabajando en el sistema safely dando sus respectivos datos personales
+            <P class="detalles"> Se muestra los Profesionales que actualmente esten trabajando en el sistema safely dando sus respectivos datos personales.
             </P>
             <table class="tablas">
                 <thead>
                     <th>Rut</th>
                     <th>Nombre </th>
                     <th>Email</th>
-                    <th>Telefono</th>
-                    <th>Direccion</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
                     
                 </thead>
                 <tbody>
@@ -191,15 +191,15 @@
             </table >
             <br>
             <h2 class = "Subtitulos">Clientes</h2>
-            <P class="detalles"> Se muestra los Clientes  que actualmente estan ingresados en el sistema safely mostrando sus respectivos datos personales
+            <P class="detalles"> Se muestra los Clientes que actualmente estan ingresados en el sistema Safely, mostrando sus respectivos datos personales.
             </P>
             <table class="tablas">
                 <thead>
-                    <th>Nombre </th>
+                    <th>Nombre</th>
                     <th>Email</th>
                     <th>Rut</th>
-                    <th>Telefono</th>
-                    <th>Direccion</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
                     
                 </thead>
                 <tbody >
@@ -220,15 +220,15 @@
             <br>
 
             <h2 class = "Subtitulos">Administradores</h2>
-            <P class="detalles"> Se Muestran los administradores que actualmente estan trabajando en el sistema mostrando sus datos personales
+            <P class="detalles">Se Muestran los Administradores que actualmente estan trabajando en el sistema Safely, mostrando sus datos personales.
             </P>
             <table class="tablas">
                 <thead>
                     <th>Nombre </th>
                     <th>Email</th>
                     <th>Rut</th>
-                    <th>Telefono</th>
-                    <th>Direccion</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
                     
                 </thead>
                 <tbody >
@@ -248,19 +248,19 @@
             </table >
            <br>
             <h2 class = "Subtitulos">Actividades realizadas</h2>
-            <P class="detalles"> Se muestra las actividades realizadas durante el mes, mostrando su nombre, su descripcion la fecha de la actividad, que tipo de actividad es (Capacitación, asesoría o visita),el nombre del tipo de actividad , el cliente pidio esa actividad, el funcionario que esta a cargo de 
-                ver esa actividad y si la actividad es extra o no 
+            <P class="detalles"> Se muestra las Actividades realizadas durante el mes, indicando su nombre, su descripción, la fecha de la actividad, que tipo de actividad es (Capacitación, Asesoría o Visita),el nombre del tipo de actividad , el cliente pidio esa actividad, el funcionario que esta a cargo de 
+                ver esa actividad y si la actividad es extra o no.
             </P>
                 <table class="tablas" >
                     <thead>
-                        <th>Nombre </th>
+                        <th>Nombre</th>
                         <th>Descripción</th>
-                        <th>fecha </th>
-                        <th>Tipo de actividad</th>
-                        <th>Nombre tipo actividad actividad </th>
-                        <th>Cliente </th>
-                        <th>Profesional a cargo</th>
-                        <th>es extra?</th>
+                        <th>Fecha Ida</th>
+                        <th>Tipo de Actividad</th>
+                        <th>Nombre tipo actividad</th>
+                        <th>Cliente</th>
+                        <th>Profesional a Cargo</th>
+                        <th>Extra</th>
                     </thead>
                     <tbody>
                         {% for actividad in actividad %}
@@ -295,14 +295,13 @@
                    
                 </table >
                 <br>
-                <h2 class = "Subtitulos">Capacitaciones creadass</h2>
-                <P class="detalles"> Se Muestra las capacitaciones que fueron creadas durante el mes mostrando su nombre, la cantidad  de asistentes que van asistir a esa capacitacion y los materiales necesarios para la realizacion de dicha capacitación 
-                </P>
+                <h2 class = "Subtitulos">Capacitaciones Creadas</h2>
+                <p class="detalles">Se muestra las Capacitaciones que fueron creadas durante el mes, indicando su nombre, la cantidad de personas que van asistir y los materiales necesarios para la realizacion de dicha capacitación.</p>
                 <table class="tablas2" >
                     <thead>
-                        <th>Nombre capacitacion</th>
-                        <th> asistentes</th>
-                        <th >Materiales</th>
+                        <th>Nombre capacitación</th>
+                        <th>Cant. Asistentes</th>
+                        <th>Materiales</th>
                     </thead>
                     <tbody>
                         {% for capacitacion in capacitacion %}
@@ -315,14 +314,14 @@
                     </tbody>
                 </table>
                 <br>
-                <h2 class = "Subtitulos">Asesorías creadas</h2>
-                <P class="detalles"> Se las asesorias creadas durante el mes mostrando su nombre la descripción de esta y de que tipo de asesoria es.
+                <h2 class = "Subtitulos">Asesorías Creadas</h2>
+                <P class="detalles">Se muestran las Asesorias creadas durante el mes, indicando su nombre, su descripción y el tipo de asesoría.
                 </P>
                 <table class="tablas2">
                     <thead>
                     <th>Nombre</th>
                     <th>Descripción</th>
-                    <th>tipo de asesoría</th>
+                    <th>Tipo de asesoría</th>
                     </thead>
                     <tbody>
                         {% for asesoria in asesoria %}
@@ -336,8 +335,8 @@
 
                 </table>
                 <br>
-                <h2 class = "Subtitulos">Visitas realizadas</h2>
-                <P class="detalles"> Se muestran las visitas realizadas durante el mes mostrando el nombre asignado a la visita, fecha en la que se realizo la visita, el cliente a la que se le realizo la visita y el profesional que realizo la visita
+                <h2 class = "Subtitulos">Visitas Realizadas</h2>
+                <P class="detalles"> Se muestran las Visitas realizadas durante el mes, indicando el nombre asignado a la visita, fecha en la que se realizo la visita, el cliente a la que se le realizo la visita y el profesional que realizo la visita.
                 </P>
                 <table class="tablas2">
                     <thead>
@@ -359,18 +358,18 @@
 
                 </table>
                 <br>
-                <h2 class = "Subtitulos">Accidentes registrados</h2>
-                <P class="detalles"> Se muestran los accidentes que se realizaron durante el mes mostrando la cantidad de accidentes que se registraron, la fecha en la que se aviso el accidente,la descripcion de lo que sucedio en el accidente,
+                <h2 class = "Subtitulos">Accidentes Registrados</h2>
+                <P class="detalles"> Se muestran los Accidentes que se realizaron durante el mes, donde se presenta la cantidad de accidentes ocurridos, la fecha en la que se aviso el accidente, la descripción de lo que sucedió en el accidente,
                     el cliente al que le ocurrio el accidente y el profesional que se hizo cargo del accidente.
                 </P>
                 <p>Cantidad de accidentes registrados: {{ cuentaalerta }}</p>
                <h3>Detalles de los accidentes</h3>
                 <table class="tablas">
                     <thead>
-                        <th> Fecha de aviso </th>
-                        <th> Descripción</th>
-                        <th> Cliente asosiado</th>
-                        <th> Profesional a cargo</th>
+                        <th>Fecha de aviso </th>
+                        <th>Descripción</th>
+                        <th>Cliente Asociado</th>
+                        <th>Profesional a cargo</th>
                     </thead>
                     <tbody>
                         {% for alerta in alerta %}
@@ -385,13 +384,13 @@
                 </table>
                <br>
 
-                <h2 class = "Subtitulos">Servicios registrados</h2>
-                <P class="detalles"> Se muestra los servicios que actualmente estan en el sistema safely
+                <h2 class = "Subtitulos">Servicios Registrados</h2>
+                <P class="detalles">Se muestra los Servicios que actualmente estan en el sistema safely.
                 </P>
                 <table class="tablas">
                     <thead>
-                        <th>Nombre del servicio</th>
-                        <th >Descripcion del servicio</th>
+                        <th>Nombre del Servicio</th>
+                        <th >Descripción del Servicio</th>
                     </thead>
                     <tbody>
                         {%for servicio in servicio %}
@@ -404,15 +403,15 @@
                 </table>
                 <br>
 
-                <h2 class = "Subtitulos">Planes registrados</h2>
-                <P class="detalles"> Se muestra los planes que tiene disponible el sistema safely mostrando el nombre del plan, su descripcion, cuanto cuesta el plan y el servicio con el que esta asoiciado
+                <h2 class = "Subtitulos">Planes Registrados</h2>
+                <P class="detalles"> Se muestra los Planes que tiene disponible el sistema safely, indicando el nombre del plan, su descripción, cuanto cuesta el plan y el servicio con el que esta ligado.
                 </P>
                 <table class="tablas">
                     <thead>
-                        <th>Nombre del plan</th>
-                        <th>Descripcion del plan</th>
-                        <th>Costo</th>
-                        <th>servicio asociado</th>
+                        <th>Nombre del Plan</th>
+                        <th>Descripción del Plan</th>
+                        <th>Costo $</th>
+                        <th>Servicio asociado</th>
                     </thead>
                     <tbody>
                         {%for plan in plan %}
@@ -426,15 +425,15 @@
                     </tbody>
                 </table >
                 <br>
-                <h2 class = "Subtitulos">Mejoras realizadas</h2>
-                <P class="detalles"> Se muestra las mejoras realizadas  que se han realizado, mostrando la propuesta que se da a la mejora , si se acepto o no y a cual actividad se realizo dicha mejora
+                <h2 class = "Subtitulos">Mejoras Sugeridas</h2>
+                <P class="detalles"> Se muestra las mejoras que se han sugerido en las actividades, mostrando la propuesta, si se acepto o no y a cual actividad se realizo dicha mejora.
                 </P>
                 <table class="tablas">
                     <thead>
                         <th>Nombre<l/th>
                         <th>Propuesta </th>
-                        <th>Aceptacion</th>
-                        <th>Actividad asosiada</th>
+                        <th>Aceptación</th>
+                        <th>Actividad Asociada</th>
                     </thead>
                     <tbody>
                         {%for mejora in mejora %}

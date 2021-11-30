@@ -62,10 +62,10 @@ urlpatterns = [
     path('administrador/correo/',correo.correo, name='correo'),
     path('administrador/correo/test/<int:id_boleta>/',boleta.datosBoleta, name='datosBoleta'),
 
-    path('administrador/Report-home',ReporteHome.as_view(),name='reporte-lista'),
-    path('administrador/reportes/reporteCliHome',ReporteClienteListView.as_view(),name='Reporte-cliente-home'),
-    path('administrador/reportes/reporteglohome',ReporteGlobal,name='Reporte-global-home'),
-    path('administrador/reportes/reporteCliente/<id_cli>',ReporteCliente_render_pdf_view,name='reporteCliente'),
-    path('administrador/reportes/reporteglobal/<mes>',ReporteGlobal_pdf_view,name='reporteGlobal'),
+    path('administrador/reportes/home',ReporteHome.as_view(),name='reporte-lista'),
+    path('administrador/reportes/reporte-cliente-Home',ReporteClienteListView.as_view(),name='reporte-cliente-home'),
+    path('administrador/reportes/reporte-global-home',ReporteGlobal,name='reporte-global-home'),
+    path('administrador/reportes/reporte-cliente/<id_cli>',ReporteCliente_render_pdf_view,name='reporteCliente'),
+    path('administrador/reportes/reporte-global/<mes>',ReporteGlobal_pdf_view,name='reporteGlobal'),
 ]
 

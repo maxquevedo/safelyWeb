@@ -3,57 +3,42 @@
 {% block tittle %}Reporte cliente{% endblock %}
 
 {% block body %}
+
 <div class="container-menu">
-    <div class="menu-vertical">
-        <ul>
-            <h2>{{user.get_full_name}}</h2>
-            <li><a href="{% url 'home-adm' %}">Home</a></li>
-            <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
-            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
-            <li><a href="{% url 'infoProfesional' %}">Info Profesional</a></li>
-            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
-            <li><a  class="active"href="#">Reportes</a></li>
-            <li><a href="#">Ver Actividades</a></li>
-            <li><a href="#">Notificar Atrasos</a></li>
-            <li><a href="#">Control de Pagos</a></li>
-            <li><a href="#">Accidentes</a></li>
-            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-        </ul>
-    </div>
-    <div class="info-perfiles">
-        <div class="login-container">
-            <div class="signup-box">
-                <div class="perfil-text-container">
+    {% include 'administrador/menu-admin/reportes.html'%}
+        <div class="info-perfiles">
+            <div class="container-lista">
+                <div class="lista">
                     <table class="table">
                         <thead class="thead-dark">
                             
-                                <th>Id Cliente</th>
-                                <th>Razón Social</th>
-                                <th>Perfil</th>
-                                <th>Acción</th>
-                           
-                        </thead>
-                        <tbody>
-                           
-                            {% for Cliente in object_list %}
-                            <tr>
-                                <td>{{Cliente.id_cli}}</td>
-                                <td>{{Cliente}}</td>
-                                <td>{{Pdf}}</td>
-                                <td class="table-action">
-                                    <a href="{% url 'reporteCliente' Cliente.id_cli %}" id="modificar">
-                                        <div class = "modificar"><p>Crear pdf</p></div>
-                                    </a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                           
-                        </tbody>
+                            <th>Id Cliente</th>
+                            <th>Razón Social</th>
+                            <th>Acción</th>
+                       
+                    </thead>
+                    <tbody>
+                       
+                        {% for Cliente in object_list %}
+                        <tr>
+                            <td>{{Cliente.id_cli}}</td>
+                            <td>{{Cliente}}</td>
+                            <td class="table-action">{{Pdf}}
+                                <a href="{% url 'reporteCliente' Cliente.id_cli %}" id="modificar">
+                                    <div class = "modificar"><p>Crear pdf</p></div>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                       
+                    </tbody>
                     </table>
+                    <div class="num-pag">
+                        {% include 'paginator.html'%}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
 {% endblock %}
