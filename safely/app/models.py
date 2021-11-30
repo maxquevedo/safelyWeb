@@ -43,7 +43,7 @@ class Perfil(models.Model):
         default_related_name = 'perfil'
 
     def __str__(self):
-        return self.id_auth_user.username
+        return self.id_auth_user.first_name + ' ' + self.id_auth_user.last_name
 
 
 class Cliente(models.Model):
@@ -87,7 +87,6 @@ class Actividad(models.Model):
     ('1', "Capacitación"),
     ('2', "Asesoría"),
     ('3', "Visita"),
-    ('4', "Asignar"),
     )
 
     STATUS_CHOICES = (

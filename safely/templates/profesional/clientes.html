@@ -8,19 +8,16 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Clientes asignados</h2>
+                <h2>CLIENTES ASIGNADOS</h2>
 
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Fecha estimada</th>
-                            <th>Cliente</th>
-                            <th>Tipo Actividad</th>
-                            <th>Estado </th>
-                            <th>Cambiar estado</th>
+                            <th>Actividad Relacionada</th>
+                            <th>Descripción</th>
+                            <th>Fecha Ida</th>
+                            <th>Nombre del Cliente</th>
+                            <th>Razón Social</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,34 +26,14 @@
                         <tr>
                             <td>{{entity.nombre}}</td>
                             <td class="desc-act"><p>{{entity.descripcion}}</p></td>
-                            <td>{{entity.fec_estimada}}</td>
+                            <td>{% if entity.fec_ida%}
+                                {{entity.fec_ida}}
+                                {% else %}
+                                No se ha asignado
+                                {% endif %}
+                            </td>
+                            <td>{{entity.id_cli.id_perfil}}</td>
                             <td>{{entity.id_cli}}</td>
-                            <td>{% if entity.tipo_act == '1' %}
-                                Capacitación
-                                {% elif entity.tipo_act == '2' %}
-                                Asesoría
-                                {% elif entity.tipo_act == '3' %}
-                                Visita
-                                {% elif entity.tipo_act == '4' %}
-                                Asignado
-                                {% endif %}
-                            </td>
-                            <td>{% if entity.estado == '1' %}
-                                Solicitado
-                                {% elif entity.estado == '2' %}
-                                Pendiente
-                                {% elif entity.estado == '3' %}
-                                Realizado
-                                {% elif entity.estado == '4' %}
-                                Cancelado
-                                {% endif %}
-                            </td>
-
-                            <td class="table-action" >
-                                <a href="{% url 'estado_actividad' entity.id_actividad %}" id="Estado">
-                                    <div class = "modificar"><p>Estado</p></div>
-                                </a>
-                            </td>
                         </tr>
                         {% endfor %}
                         {% endif %}

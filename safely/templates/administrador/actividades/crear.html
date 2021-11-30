@@ -34,7 +34,6 @@
                                         <option value="1">Capacitación</option>
                                         <option value="2">Asesoría</option>
                                         <option value="3">Visita</option>
-                                        <option value="4">Asignar</option>
                                 </select>
                                 
                                 <p>Fecha estimada</p>
@@ -52,7 +51,7 @@
                                 <option value="3">Realizado</option>
                                 <option value="4">Cancelado</option>
 
-                            </select>
+                                </select>
                                 <p>Cliente</p>
                                 <select name="id_cli" required="" id="id_id_cli">
                                 <option value="" selected="">Seleccionar</option>
@@ -60,7 +59,7 @@
                                 <option value="{{ c.id_cli }}" >{{ c.id_perfil }}</option>
                                 {% endfor %}
 
-                            </select>
+                                </select>
                                 <p>Profesional</p>
                                 <select name="id_prof" id="id_id_prof">
                                 <option value="" selected="">Seleccionar</option>
@@ -68,7 +67,8 @@
                                 <option value="{{ p.id_prof }}" >{{p.id_perfil }}</option>
                                 {% endfor %}
 
-                            </select>
+                                </select>
+                                
                                 <p>Acción</p>
                                 <input type="submit" value="Crear" id="button" class="alter-button">
                             </div>
