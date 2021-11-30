@@ -56,7 +56,7 @@ class Cliente(models.Model):
         db_table = 'cliente'
 
     def __str__(self):
-        return self.id_perfil.id_auth_user.username
+        return self.razon_social
 
 class Profesional(models.Model):
     id_prof = models.AutoField(primary_key=True)
@@ -190,8 +190,6 @@ class Chat(models.Model):
         managed = False
         db_table = 'chat'
 
-
-
 class Contrato(models.Model):
     id_contrato = models.AutoField(primary_key=True)
     fec_inicio = models.DateField()
@@ -206,7 +204,7 @@ class Contrato(models.Model):
         db_table = 'contrato'
 
     def __str__(self):
-        return self.id_cli.razon_social
+        return self.id_cli.id_perfil.id_auth_user.first_name + ' ' + self.id_cli.id_perfil.id_auth_user.last_name
 
 class Lista(models.Model):
     id_lista = models.BigIntegerField(primary_key=True)

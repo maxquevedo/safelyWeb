@@ -8,21 +8,21 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Listado de contratos</h2>
+                <h2>LISTADO DE CONTRATOS</h2>
                 <div class="botones-asesorias">
                     <a class ="color-verde" href="{% url 'contratoCliente' %}">Crear nuevo contrato</a>
                 </div>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>contrato </th>
-                            <th>Fecha de comienzo</th>
-                            <th>Fecha de termino</th>
+                            <th>ID Contrato</th>
+                            <th>Fecha de Comienzo</th>
+                            <th>Fecha de Termino</th>
                             <th>Valor</th>
                             <th>Estado</th>
                             <th>Plan</th>
                             <th>Cliente</th>
-                            <TH>ACCIÓN</TH>
+                            <TH>Acción</TH>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,19 +30,17 @@
                         {% for entity in entity %}
                         <tr>
                             <td class="table-id">{{entity.id_contrato}}</td>
-
                             <td>{{entity.fec_inicio}}</td>
-
                             <td ><p>{{entity.fec_termino}}</p></td>
-
                             <td ><p>{{entity.total_pago}}</p></td>
-
-                            <td ><p>{{entity.estado}}</p></td>
-
+                            <td ><p>{% if entity.estado%}
+                                Activo
+                                {%else%}
+                                Inactivo
+                                {% endif %}
+                            </p></td>
                             <td ><p>{{entity.id_plan}}</p></td>
-
                             <td ><p>{{entity.id_cli}}</p></td>
-                            
                             <td class="table-action" >
                                 <a href="{% url 'editarContrato' entity.id_contrato %}" id="modificar">
                                     <div class = "modificar"><p>Modificar</p></div>

@@ -1,0 +1,15 @@
+Pasos instalación BDD Safely
+
+1) Ingresar como SYS as SYSDBA en oracle para crear usuario con el script
+que está en el archivo "0- Creación Usuario Oracle para Safely.txt"
+
+2) Iniciar sesión en c##safely y ejecutar el script del archivo
+"1- Base de datos Safely 2.0.sql"
+
+3) En el proyecto django, ejecutar comando en cmd "py manage.py migrate"
+
+4) En la sesión de c##safely en Oracle, ejecutar script de secuencias
+"3- Secuencias para Safely 2.0.sql"
+
+5) Como paso final, ejecutar script de procedimientos almacenados 
+"4- Procedimientos para Safely 2.0.sql"

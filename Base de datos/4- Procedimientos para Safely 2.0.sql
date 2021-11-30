@@ -3,37 +3,37 @@ is
 begin
     open actividad for select * from actividad;
 end;
-
+/
 create or replace procedure sp_listar_capacitacion(capacitacion out SYS_REFCURSOR)
 is
 begin
 open capacitacion for select * from capacitacion;
 end;
-
+/
 create or replace procedure sp_listar_asesoria(asesoria out SYS_REFCURSOR)
 is
 begin
 open asesoria for select * from asesoria;
 end;
-
+/
 create or replace procedure sp_listar_visita(visita out SYS_REFCURSOR)
 is
 begin
 open visita for select * from visita;
 end;
-
+/
 create or replace procedure sp_listar_cliente(cliente out SYS_REFCURSOR)
 is
 begin
     open cliente for select * from cliente;
 end;
-
+/
 create or replace procedure sp_listar_profesional(profesional out SYS_REFCURSOR)
 is
 begin
     open profesional for select * from profesional;
 end;
-
+/
 create or replace procedure sp_agregar_actividad_corta(
     V_NOMBRE    VARCHAR2,
     V_DESCRIPCION	VARCHAR2,
@@ -54,7 +54,7 @@ begin
      when others then
      V_SALIDA:=0;
 end;
-
+/
 --Lista TODOS los datos del usuario- perfil
 create or replace procedure sp_listar_usuario_perfil(perfil out SYS_REFCURSOR)
 is
@@ -63,7 +63,7 @@ begin
                             b.id_perfil,b.rut,b.telefono,b.direccion,b.tipo_perf from auth_user a full outer join perfil b
                             on a.id = b.id_auth_user order by a.id;
 end;
-
+/
 --Lista datos cliente-perfil-usuario
 create or replace procedure sp_listar_datos_cliente(cliente out SYS_REFCURSOR)
 is

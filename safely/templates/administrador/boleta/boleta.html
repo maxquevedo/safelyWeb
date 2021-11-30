@@ -8,7 +8,7 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Listado de boletas</h2>
+                <h2>LISTADO DE BOLETAS</h2>
                 <div class="botones-asesorias">
                     <a class ="color-verde" href="{% url 'creaBoleta' %}">Crear boleta</a>
                 </div>
@@ -16,14 +16,14 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>Boleta</th>
-                            <th>Emision boleta</th>
-                            <th>Fecha de pago</th>
-                            <th>Fecha de corte</th>
-                            <th>Pago mensual</th>
+                            <th>Emision Boleta</th>
+                            <th>Fecha de Pago</th>
+                            <th>Fecha de Corte</th>
+                            <th>Pago Mensual</th>
                             <th>Estado</th>
-                            <th>Pagos extras</th>
-                            <th>url</th>
-                            <th>Contrato</th>
+                            <th>Pagos Extras</th>
+                            <th>URL</th>
+                            <th>Cliente</th>
                             <th>Correo</th>       
                             <TH>ACCIÓN</TH>
                         </tr>
@@ -33,31 +33,29 @@
                         {% for entity in entity %}
                         <tr>
                             <td class="table-id">{{entity.id_boleta}}</td>
-                            <td>{{entity.fec_emision_bol}}</td>
-                            <td ><p>{{entity.fec_pago}}</p></td>
-                            <td ><p>{{entity.fec_corte}}</p></td>
-                            <td ><p>{{entity.pago_mensual}}</p></td>
-                            <td ><p>{{entity.pagado}}</p></td>
-                            <td ><p>{{entity.pago_extra}}</p></td>
-                            <td ><p>{{entity.url}}</p></td>
-                            <td ><p>{{entity.id_contrato}}</p></td>
-                            <td ><p>{{entity.id_contrato.id_cli.id_perfil.id_auth_user.email}}</p></td>
+                            <td style="width: 90px;">{{entity.fec_emision_bol}}</td>
+                            <td style="width: 90px;">{{entity.fec_pago}}</td>
+                            <td style="width: 90px;">{{entity.fec_corte}}</td>
+                            <td >$ {{entity.pago_mensual}}</td>
+                            <td >{% if entity.pagado %}
+                                Pagado
+                                {% else %}
+                                Sin pagar
+                                {% endif %}
+                            </p></td>
+                            <td >$ {{entity.pago_extra}}</td>
+                            <td ><p style="width: 120px;overflow: auto;padding-bottom: 8px;">{{entity.url}}</p></td>
+                            <td >{{entity.id_contrato}}</td>
+                            <td >{{entity.id_contrato.id_cli.id_perfil.id_auth_user.email}}</td>
 
                             <td class="table-action" >
                                 <a href="{% url 'editarBoleta' entity.id_boleta %}" id="modificar">
                                     <div class = "modificar"><p>Modificar</p></div>
                                 </a>
-
-                                
                                 <a href="{% url 'datosBoleta' entity.id_boleta %}" id="modificar">
                                     <div class = "modificar"><p>Enviar  </p></div>
                                 </a>
-
                             </td>
-
-                            
-                                
-                            
                         </tr>
                         {% endfor %}
                         {% endif %}

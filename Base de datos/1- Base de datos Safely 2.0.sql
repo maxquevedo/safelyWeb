@@ -64,7 +64,7 @@ CREATE TABLE boleta (
     pago_mensual    INTEGER NOT NULL,
     pagado          NUMBER NOT NULL,
     pago_extra      INTEGER NOT NULL,
-    url VARCHAR2(100) NOT NULL,
+    url             VARCHAR2(250) NOT NULL,
     id_contrato     INTEGER NOT NULL
 );
 
