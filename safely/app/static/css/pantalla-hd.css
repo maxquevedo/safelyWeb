@@ -110,7 +110,9 @@
     .perfil-text-container form  input[type=submit], 
     .perfil-text-container form  input[type=email], 
     .perfil-text-container form  input[type=password],
-    .perfil-text-container form  input[type=date] {
+    .perfil-text-container form input[type=date],
+    .perfil-text-container form  input[type=date],
+    .perfil-text-container form select {
         margin-bottom: 12px;
         height: 30px;
         width: 220px;

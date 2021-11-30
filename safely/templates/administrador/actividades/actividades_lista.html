@@ -9,20 +9,17 @@
         <div class="container-lista">
             <div class="lista">
                 <h2>LISTADO DE ACTIVIDADES</h2>
-                <div class="botones-asesorias">
-                    <a class ="color-verde" href="{% url 'crear-activ' %}">Crear Actividad</a>
-                </div>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID ACTIVIDAD 0 </th>
+                            <th>ID Actividad 0 </th>
                             <th>Nombre 1</th>
-                            <th>Descripcion 2</th>
-                            <th>tipo de actividad 3</th>
+                            <th>Descripción 2</th>
+                            <th>Tipo de Actividad 3</th>
                             <th>Estado 7 </th>
                             <th>Cliente</th>
                             <th>Profesional</th>
-                            <TH>ACCIÓN</TH>
+                            <TH>Acción</TH>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,8 +59,8 @@
                             <td>{{ entity.10 }}</td>
 
                             <td class="table-action" >
-                                <a href="{% url 'actualizar_actividad' entity.0 %}" id="modificar">
-                                    <div class = "modificar"><p>Modificar</p></div>
+                                <a href="{% url 'actualizar_actividad' entity.0 %}">
+                                    <div class = "modificar" style="width: 140px;"><p>Asignar Profesional</p></div>
                                 </a>
                             </td>
                         </tr>

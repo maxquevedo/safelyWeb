@@ -7,19 +7,21 @@
     {% include 'administrador/menu-admin/ver-actividades.html'%}
     <div class="info-perfiles">
         <div class="login-container">
-            <div class="actividad-box">
-                <div class="act-text-container">
-                    <h3>Modificar formulario</h3>
-                    <br>
+            <div class="signup-box" style="width: 580px;"">
+                <div class="perfil-text-container" >
+                    <h2 >ASIGNAR PROFESIONAL</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                            {{form}}
-
-
+                        <p>Fecha de Ida</p>
+                            {{form.fec_ida}}
+                        <p>Profesional</p>
+                        <select id="id_prof" name="id_id_porf" multiple style="height: 200px;">
+                            {% for x, y in form.fields.id_prof.choices %}
+                                <option value="{{ x }}"{% if form.fields.id_prof.value == x %} selected{% endif %}>{{ y }}</option>
+                            {% endfor %}
+                        </select>
                         <input type="submit" value="Modificar" id="button" class="alter-button">
-                        
                     </form>
-                    
                 </div>
             </div>
         </div>
