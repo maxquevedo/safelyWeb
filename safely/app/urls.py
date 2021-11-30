@@ -4,6 +4,7 @@ from app import views
 from app import contrato
 from app import boleta
 from app import correo
+from .reporte import ReporteClienteListView,ReporteHome,ReporteGlobal,ReporteCliente_render_pdf_view,ReporteGlobal_pdf_view
 
 urlpatterns = [
     path('filtro/',views.user_filter,name="user_filter"),
@@ -60,5 +61,11 @@ urlpatterns = [
 
     path('administrador/correo/',correo.correo, name='correo'),
     path('administrador/correo/test/<int:id_boleta>/',boleta.datosBoleta, name='datosBoleta'),
+
+    path('administrador/Report-home',ReporteHome.as_view(),name='reporte-lista'),
+    path('administrador/reportes/reporteCliHome',ReporteClienteListView.as_view(),name='Reporte-cliente-home'),
+    path('administrador/reportes/reporteglohome',ReporteGlobal,name='Reporte-global-home'),
+    path('administrador/reportes/reporteCliente/<id_cli>',ReporteCliente_render_pdf_view,name='reporteCliente'),
+    path('administrador/reportes/reporteglobal/<mes>',ReporteGlobal_pdf_view,name='reporteGlobal'),
 ]
 

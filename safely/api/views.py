@@ -97,10 +97,6 @@ def send_email(descrip,email):
 
 
 
-        
-
-
-
 #Asesoria
 class AsesoriaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.AsesoriaSerializer

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Reporte cliente{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a href="{% url 'home-adm' %}">Home</a></li>
+            <li><a href="{% url 'mantenedor' %}">Mantenedor</a></li>
+            <li><a href="{% url 'infoPerfil' %}">Info Perfiles</a></li>
+            <li><a href="{% url 'infoProfesional' %}">Info Profesional</a></li>
+            <li><a href="{% url 'infoCliente' %}">Info Cliente</a></li>
+            <li><a  class="active"href="#">Reportes</a></li>
+            <li><a href="#">Ver Actividades</a></li>
+            <li><a href="#">Notificar Atrasos</a></li>
+            <li><a href="#">Control de Pagos</a></li>
+            <li><a href="#">Accidentes</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="perfil-text-container">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <!--  <form action="" method="Post">
+                           
+                               
+                                <select name="Meses" id="Meses" >
+                                    <option value="1">Enero</option>
+                                    <option value="2">Febrero</option>
+                                    <option value="3">Marzo</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Mayo</option>
+                                    <option value="6">Junio</option>
+                                    <option value="7">julio</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Septiembre</option>
+                                    <option value="10">Octubre</option>
+                                    <option value="11">Noviembre</option>
+                                    <option value="12">Diciembre</option>
+                                </select>
+                                <a href="" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                            </form>-->
+                            <thead>    
+                                <tr>
+                                    <h2>Seleccione un mes</h2>
+                                    <th>Mes</th>
+                                    <th>Acción</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                <tr><td>Enero </td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 1 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td></tr>
+                                <tr><td>Febrero </td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 2 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr><td>Marzo</td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 3 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr><td>Abril </td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 4 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr><td>Mayo </td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 5 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr><td>Junio </td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 6 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr><td>Julio </td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 7 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>Agosto </td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 8 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>Septiembre</td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 9 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>Octubre</td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 10 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>Noviembre</td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 11 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>Diciembre</td> <td class="table-action">
+                                    <a href="{% url 'reporteGlobal' 12 %}" id="modificar">
+                                        <div class = "modificar"><p>Crear pdf</p></div>
+                                    </a>
+                                </td>
+                                </tr>
+                            </tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
