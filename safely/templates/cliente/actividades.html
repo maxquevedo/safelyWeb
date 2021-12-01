@@ -11,18 +11,62 @@
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-cliente' %}">Home</a></li>
             <li><a href="{% url 'perfil-cliente' %}">Cambiar informacion</a></li>
-            <li><a href="{% url 'contrato-cliente' %}">contratar servicio</a></li>
             <li><a href="{% url 'boleta-cliente' %}">pagar y ver boletas</a></li>
             <li><a class="active-cli"href="{% url 'actividades-cliente' %}">Actividades</a></li>
-            <li><a href="{% url 'accidentes-cliente' %}">reportar accidente </a></li>
-            <li><a href="{% url 'lista-cliente' %}">ver checklist</a></li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
     </div>
 
-    <h2>
-        Hola Cliente
-    </h2>
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>ACTIVIDADES PROGRAMADAS</h2>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID ACTIVIDAD</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Fecha estimada</th>
+
+                            <th>Estado </th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td class="table-id">{{entity.id_actividad}}</td>
+                            <td>{{entity.nombre}}</td>
+                            <td class="desc-act"><p>{{entity.descripcion}}</p></td>
+                            <td>{{entity.fec_estimada}}</td>
+
+                            <td>{% if entity.estado == '1' %}
+                                Solicitado
+                                {% elif entity.estado == '2' %}
+                                Pendiente
+                                {% elif entity.estado == '3' %}
+                                Realizado
+                                {% elif entity.estado == '4' %}
+                                Cancelado
+                                {% endif %}
+                            </td>
+
+
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 {% endblock %}

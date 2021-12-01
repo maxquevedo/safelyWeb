@@ -11,25 +11,68 @@
             <h2>{{user.get_full_name}}</h2>
             <li><a href="{% url 'home-cliente' %}">Home</a></li>
             <li><a href="{% url 'perfil-cliente' %}">Cambiar informacion</a></li>
-            <li><a href="{% url 'contrato-cliente' %}">contratar servicio</a></li>
             <li><a class="active-cli"href="{% url 'boleta-cliente' %}">pagar y ver boletas</a></li>
             <li><a href="{% url 'actividades-cliente' %}">Actividades</a></li>
-            <li><a href="{% url 'accidentes-cliente' %}">reportar accidente </a></li>
-            <li><a href="{% url 'lista-cliente' %}">ver checklist</a></li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
     </div>
 
-    <h2>
-        Hola Cliente
-    </h2>
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>BOLETAS</h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Boleta</th>
+                            <th>Emision Boleta</th>
+                            <th>Fecha de Pago</th>
+                            <th>Fecha de Corte</th>
+                            <th>Pago Mensual</th>
+                            <th>Estado</th>
+                            <th>Pagos Extras</th>
+                            <th>URL</th>
+                            <th>Cliente</th>
+                            <th>Correo</th>       
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td class="table-id">{{entity.id_boleta}}</td>
+                            <td style="width: 90px;">{{entity.fec_emision_bol}}</td>
+                            <td style="width: 90px;">{{entity.fec_pago}}</td>
+                            <td style="width: 90px;">{{entity.fec_corte}}</td>
+                            <td >$ {{entity.pago_mensual}}</td>
+                            <td >{% if entity.pagado %}
+                                Pagado
+                                {% else %}
+                                Sin pagar
+                                {% endif %}
+                            </p></td>
+                            <td >$ {{entity.pago_extra}}</td>
+                            <td > <a style="width: 120px;overflow: auto;padding-bottom: 8px; color: #1870A8;" href="{{entity.url}}"> Pagar Aqui </a> </td>
+                            
+                            <td >{{entity.id_contrato}}</td>
+                            <td >{{entity.id_contrato.id_cli.id_perfil.id_auth_user.email}}</td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 {% endblock %}
 {% block js %}
 <script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'js/locales-all.js' %}"></script>
-
-
 {% endblock %}
+
 
