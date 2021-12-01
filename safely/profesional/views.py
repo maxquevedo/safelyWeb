@@ -27,21 +27,35 @@ class home_professional(ListView):
     template_name = 'profesional/home-profesional.html'
 
     def get_queryset(self):
-        querySet = self.model.objects.all()
+        user = self.request.user
+        perfil = Perfil.objects.get(id_auth_user = user.id)
+        profesional = Profesional.objects.get(id_perfil = perfil.id_perfil)
+        actividad= Actividad.objects.all().filter(id_prof = profesional.id_prof)
+        print(actividad)
+        querySet = actividad
         return querySet
 
 
 #MODIFICAR DATOS PROFESIONAL
 @login_required
 def datos_pro(request):
+    id_user = request.user.id
+    usuario = Perfil.objects.get(id_auth_user = id_user)
+    perfil = Perfil.objects.get(id_perfil=usuario.id_perfil)
+
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
+        form_p = PerfilModificar(request.POST, instance=perfil)
         if u_form.is_valid():
             u_form.save()
+        if form_p.is_valid():
+            form_p.save()
     else:
         u_form = UserUpdateForm(instance=request.user)
+        form_p = PerfilModificar( instance=perfil)
     context = {
         'u_form': u_form,
+        'form_p':form_p,
     }
     return render(request,'profesional/datos-pro.html',context)
 

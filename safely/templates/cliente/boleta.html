@@ -52,7 +52,8 @@
                                 {% endif %}
                             </p></td>
                             <td >$ {{entity.pago_extra}}</td>
-                            <td ><p style="width: 120px;overflow: auto;padding-bottom: 8px;">{{entity.url}}</p></td>
+                            <td > <a style="width: 120px;overflow: auto;padding-bottom: 8px; color: #1870A8;" href="{{entity.url}}"> Pagar Aqui </a> </td>
+                            
                             <td >{{entity.id_contrato}}</td>
                             <td >{{entity.id_contrato.id_cli.id_perfil.id_auth_user.email}}</td>
                         </tr>

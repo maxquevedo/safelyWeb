@@ -6,22 +6,40 @@
 <div class="container-menu">
     {% include 'profesional/menu-prof/datos-personales.html'%}
     <div class="info-perfiles">
-        <div class="info-box-perfiles">
-            <div class="info-titulos">
-                <h3>Usuario</h3>
-                <h3>Nombre</h3>
-                <h3>Apellido</h3>
-                <h3>Correo</h3>
-            </div>
-            <div class="resultados-info">
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                        {{ u_form.username }}
-                        {{ u_form.first_name }}
-                        {{ u_form.last_name }}
-                        {{ u_form.email }}
-                        <input type="submit" value="Modificar" id="button" class="alter-button">
-                </form>
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>Modificar perfil</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre Usuario</p>
+                                {{u_form.username}}
+                                <p>Nombre</p>
+                                {{u_form.first_name}}
+                                <p>Apellido</p>
+                                {{u_form.last_name}}
+                                <p>Corre</p>
+                                {{u_form.email}}
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Rut</p>
+                                {{form_p.rut}}
+                                <p>Telefono</p>
+                                {{form_p.telefono}}
+                                <p>Direccion</p>
+                                {{form_p.direccion}}
+    
+                                {{form_c}}
+    
+                            </div>
+                        </div>
+                        <div class="crea-act-button">
+                            <input type="submit" value="Crear" id="button" class="alter-button">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
