@@ -192,57 +192,57 @@ def modificar_capa(request,id_capacitacion):
 #######################################################################################################
 ## CHECKLIST
 #######################################################################################################
+def ver_check_cli(request):
+    id_usuario = request.user.id
 
-@login_required
-def lista_ch(request):
-    CH = Lista.objects.all().order_by('id_lista')
+    try:
+        pro = Profesional.objects.get(id_perfil=Perfil.objects.get(id_auth_user=id_usuario))
+        act = Actividad.objects.filter(id_prof=pro.id_prof)
+        actcheck = ActCheck.objects.filter(id_actividad__in = act)
+    except:
+        actcheck = ActCheck.objects.none()
+
     page = request.GET.get('page', 1)
     try:
-        paginator = Paginator(CH, 5)
-        CH = paginator.page(page)
+        paginator = Paginator(actcheck, 5)
+        actcheck = paginator.page(page)
     except:
         raise Http404
-
-    context = {'entity': CH,
+    context = {'entity': actcheck,
                 'paginator': paginator}
-    return render(request, 'profesional/checklist/checklist.html', context)
+    return render(request, 'profesional/checklist/home-check.html',context)
 
+def ver_checklist(request, id_act_check):
+    id_usuario = request.user.id
 
-@login_required
-def crear_ch(request):
+    try:
+        checklist = Checklist.objects.filter(id_act_check=id_act_check)
+    except:
+        checklist = Checklist.objects.none()
+
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(checklist, 5)
+        checklist = paginator.page(page)
+    except:
+        raise Http404
+    context = {'entity': checklist,
+                'paginator': paginator}
+    return render(request, 'profesional/checklist/checklist.html',context)
+
+def añadir_columna_checklist(request):
     data = {
-        'form': ListaForm
+        'form': ChecklistForm
     }
     if request.method == 'POST':
-        formulario = ListaForm(data=request.POST)
+        formulario = ChecklistForm(data=request.POST)
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Creado correctamente!")
-            return redirect (to='lista_ch')
+            return redirect (to='home-check')
         else:
             data["form"] = formulario 
-    return render(request, 'profesional/checklist/crear-ch.html',data)
-
-@login_required
-def ingresar_ch(request):
-
-    return render(request, 'profesional/checklist/ingresar-ch.html')
-
-@login_required
-def modificar_ch(request,id_lista):
-    lis = Lista.objects.get(id_lista=id_lista)
-
-    if request.method == 'GET':
-        form = ListaForm(instance=lis)
-    else:
-        form = ListaForm(request.POST, instance=lis)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Modificado correctamente")
-        return redirect(to='lista_ch')
-
-    return render(request, 'profesional/checklist/modificar-ch.html',{'form':form})
-
+    return render(request, 'profesional/checklist/crear-columna-check.html',data )
 ##
 #######################################################################################################
 ## MEJORAS
@@ -358,12 +358,8 @@ def estado_actividad(request,id_actividad):
 
     return render(request, 'profesional/actividad/estado-act.html',{'form':form})
 
-
-
-
 #######################################################################################################
 ## VISITA
-
 #######################################################################################################
 @login_required
 def vista_visita(request):
@@ -392,7 +388,6 @@ def crear_visita(request):
         else:
             data["form"] = formulario 
     return render(request, 'profesional/visita/crear-vista.html',data )
-
 
 @login_required
 def modificar_visita(request,id_visita):

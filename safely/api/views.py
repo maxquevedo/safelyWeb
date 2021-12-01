@@ -138,14 +138,6 @@ class ContratoViewSet(viewsets.ModelViewSet):
     queryset =  models.Contrato.objects.all()
     authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
-
-#Lista
-class ListaViewSet(viewsets.ModelViewSet):
-    serializer_class = serializers.ListaSerializer
-    queryset =  models.Lista.objects.all()
-    authentication_classes = (TokenAuthentication,)
-    #permission_classes = (IsAuthenticated,)
-
 #Mejora
 class MejoraViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.MejoraSerializer

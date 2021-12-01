@@ -92,13 +92,6 @@ class ContratoSerializer(serializers.ModelSerializer):
         model = models.Contrato
         fields = '__all__'
 
-
-#Model Lista
-class ListaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Lista
-        fields = '__all__'
-
 #Model Mejora
 class MejoraSerializer(serializers.ModelSerializer):
     class Meta:

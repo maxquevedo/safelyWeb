@@ -80,6 +80,16 @@ class Administrador(models.Model):
     def __str__(self):
         return self.id_perfil.id_auth_user.username
 
+class ActCheck(models.Model):
+    id_act_check = models.BigIntegerField(primary_key=True)
+    id_actividad = models.OneToOneField('Actividad', models.DO_NOTHING, db_column='id_actividad')
+
+    class Meta:
+        managed = False
+        db_table = 'act_check'
+
+    def __str__(self):
+        return self.id_actividad.nombre
 
 class Actividad(models.Model):
 
@@ -118,6 +128,19 @@ class Actividad(models.Model):
     def __str__(self):
         return self.nombre
 
+class Checklist(models.Model):
+    id_check = models.BigIntegerField(primary_key=True)
+    nombre = models.CharField(max_length=1000)
+    verificacion = models.BooleanField()
+    fec_creado = models.DateField(auto_now_add=True, blank=True)
+    id_act_check = models.ForeignKey(ActCheck, models.DO_NOTHING, db_column='id_act_check')
+
+    class Meta:
+        managed = False
+        db_table = 'checklist'
+
+    def __str__(self):
+        return self.nombre
 
 class Alerta(models.Model):
     id_alerta = models.AutoField(primary_key=True)
@@ -205,17 +228,6 @@ class Contrato(models.Model):
     def __str__(self):
         return self.id_cli.id_perfil.id_auth_user.first_name + ' ' + self.id_cli.id_perfil.id_auth_user.last_name
 
-class Lista(models.Model):
-    id_lista = models.BigIntegerField(primary_key=True)
-    lista = models.CharField(max_length=1000)
-    verificacion = models.CharField(max_length=500)
-    recomendacion = models.CharField(max_length=250)
-    id_actividad = models.ForeignKey(Actividad, models.DO_NOTHING, db_column='id_actividad')
-
-    class Meta:
-        managed = False
-        db_table = 'lista'
-
 class Mejora(models.Model):
     id_mejora = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
@@ -248,8 +260,6 @@ class Plan(models.Model):
     def __str__(self):
         return self.nombre
 
-
-
 class Reporte(models.Model):
     id_reporte = models.AutoField(primary_key=True)
     cant_asesoria = models.BigIntegerField()
@@ -264,7 +274,6 @@ class Reporte(models.Model):
     class Meta:
         managed = False
         db_table = 'reporte'
-
 
 class Servicio(models.Model):
     id_servicio = models.AutoField(primary_key=True)
@@ -312,6 +321,3 @@ class Visita(models.Model):
 
     def __str__(self):
         return self.nombre
-
-
-

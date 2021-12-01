@@ -2,6 +2,9 @@ from django.contrib import admin
 
 from app.models import *
 
+admin.site.register(ActCheck)
+admin.site.register(Checklist)
+
 admin.site.register(Actividad)
 admin.site.register(Administrador)
 admin.site.register(Alerta)
@@ -11,7 +14,6 @@ admin.site.register(Asesoria)
 admin.site.register(Capacitacion)
 admin.site.register(Cliente)
 admin.site.register(Contrato)
-admin.site.register(Lista)
 admin.site.register(Mejora)
 
 admin.site.register(Perfil)

@@ -17,15 +17,11 @@ urlpatterns = [
     path('profesional/capacitaciones/ingresar', ingresar_capa, name='ingresar_capa'),
     path('profesional/capacitaciones/modificar/<int:id_capacitacion>/', modificar_capa, name='modificar_capa'),
 
-    path('profesional/checklist/', lista_ch, name='lista_ch'),
-    path('profesional/checklist/crear', crear_ch, name='crear_ch'),
-    path('profesional/checklist/ingresar', ingresar_ch, name='ingresar_ch'),
-    path('profesional/checklist/modificar/<int:id_lista>/', modificar_ch, name='modificar_ch'),
-
     path('profesional/mejoras/', vista_mejoras, name='vista_mejoras'),
     path('profesional/mejoras/crear', crear_me, name='crear_me'),
     path('profesional/mejoras/ingresar', crear_me, name='crear_me'),
 
+    path('profesional/actividad/crear/', crear_actividad, name='crear_actividad'),
     path('profesional/actividad/', vista_actividad, name='vista_actividad'),
     path('profesional/actividad/modificar/<int:id_actividad>/', modificar_actividad, name='modificar_actividad'),
     path('profesional/actividad/estado/<int:id_actividad>/', estado_actividad, name='estado_actividad'),
@@ -36,4 +32,7 @@ urlpatterns = [
     path('profesional/visita/ingresar/', ingresar_visita, name='ingresar_visita'),
     path('profesional/cliente/asignado/', cliente_asignado, name='cliente_asignado'),
 
+    path('profesional/checklist/home/',ver_check_cli, name='home-check'),
+    path('profesional/checklist/<int:id_act_check>/',ver_checklist, name='checklist'),
+    path('profesional/checklist/crear/',añadir_columna_checklist, name='crear-checklist'),
 ]

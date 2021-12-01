@@ -189,6 +189,26 @@ CREATE SEQUENCE prof_seq
     
 ALTER TABLE profesional MODIFY (id_prof DEFAULT prof_seq.NEXTVAL);
 
+--ACT-CHECK--
+
+CREATE SEQUENCE act_check_seq
+    START WITH     1
+    INCREMENT BY   1
+    NOCACHE
+    NOCYCLE;
+    
+ALTER TABLE act_check MODIFY (id_act_check DEFAULT act_check_seq.NEXTVAL);
+
+--CHECKLIST--
+
+CREATE SEQUENCE checklist_seq
+    START WITH     1
+    INCREMENT BY   1
+    NOCACHE
+    NOCYCLE;
+    
+ALTER TABLE checklist MODIFY (id_check DEFAULT checklist_seq.NEXTVAL);
+
 -- Altera tabla perfil para añadir fk de auth_user
 ALTER TABLE PERFIL 
 DROP CONSTRAINT PERFIL_USUARIOP_FK;

@@ -6,8 +6,8 @@ from django.db.models import fields
 from django.forms import widgets
 from django.forms.widgets import DateTimeInput
 from datetime import date
-from .models import Administrador, Boleta, Cliente, Contrato, Lista, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,Lista,TipoAsesoria,Actividad, Visita
-from app import models
+from .models import Administrador, Boleta, Cliente, Contrato, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,TipoAsesoria,Actividad, Visita, Checklist
+
 
 class GrupoForm(forms.ModelForm):
     class Meta:
@@ -218,16 +218,6 @@ class IngresarCapacitacion(forms.ModelForm):
             'fec_estimada': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
             'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
         }
-## Lista 
-class ListaForm(forms.ModelForm):
-    class Meta:
-        model = Lista
-        fields = '__all__'
-
-class ListaModificar(forms.ModelForm):
-    class Meta:
-        model = Lista
-        fields = '__all__'
 ## Mejoras
 class MejoraForm(forms.ModelForm):
     class Meta:
@@ -289,8 +279,6 @@ class ActualizarActividad(forms.ModelForm):
         widgets = {
             'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Selecciona una fecha', 'type':'date'}),
         }
-
-         
 ## VISITA
 class VisitaForm(forms.ModelForm):
     class Meta:
@@ -309,7 +297,6 @@ class IngresarVisita(forms.ModelForm):
             'fec_estimada': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
             'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
         }
-
 
 class ContratoForm(forms.ModelForm):
     class Meta:
@@ -335,3 +322,9 @@ class BoletaForm2(forms.ModelForm):
     class Meta:
         model = Boleta
         fields= ['id_boleta','fec_emision_bol','fec_pago','fec_corte','pago_mensual','pagado','pago_extra','url','id_contrato']
+
+class ChecklistForm(forms.ModelForm):
+
+    class Meta:
+        model = Checklist
+        fields = '__all__'

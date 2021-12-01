@@ -1,5 +1,5 @@
 -- Generado por Oracle SQL Developer Data Modeler 21.2.0.183.1957
---   en:        2021-11-24 20:11:50 CLST
+--   en:        2021-11-30 22:19:03 CLST
 --   sitio:      Oracle Database 21c
 --   tipo:      Oracle Database 21c
 
@@ -8,6 +8,13 @@
 -- predefined type, no DDL - MDSYS.SDO_GEOMETRY
 
 -- predefined type, no DDL - XMLTYPE
+
+CREATE TABLE act_check (
+    id_act_check INTEGER NOT NULL,
+    id_actividad INTEGER NOT NULL
+);
+
+ALTER TABLE act_check ADD CONSTRAINT act_check_pk PRIMARY KEY ( id_act_check );
 
 CREATE TABLE actividad (
     id_actividad    INTEGER NOT NULL,
@@ -64,7 +71,6 @@ CREATE TABLE boleta (
     pago_mensual    INTEGER NOT NULL,
     pagado          NUMBER NOT NULL,
     pago_extra      INTEGER NOT NULL,
-    url             VARCHAR2(250) NOT NULL,
     id_contrato     INTEGER NOT NULL
 );
 
@@ -80,17 +86,15 @@ CREATE TABLE capacitacion (
 
 ALTER TABLE capacitacion ADD CONSTRAINT capacitacion_pk PRIMARY KEY ( id_capacitacion );
 
-CREATE TABLE chat (
-    id_chat     INTEGER NOT NULL,
-    mensaje     VARCHAR2(500) NOT NULL,
-    fec_mensaje TIMESTAMP NOT NULL,
-    enviado_por VARCHAR2(30) NOT NULL,
-    cabecera    VARCHAR2(50) NOT NULL,
-    id_prof     INTEGER NOT NULL,
-    id_cli      INTEGER NOT NULL
+CREATE TABLE checklist (
+    id_check     INTEGER NOT NULL,
+    nombre       VARCHAR2(1000) NOT NULL,
+    verificacion VARCHAR2(500) NOT NULL,
+    fec_creado   DATE NOT NULL,
+    id_act_check INTEGER NOT NULL
 );
 
-ALTER TABLE chat ADD CONSTRAINT chat_pk PRIMARY KEY ( id_chat );
+ALTER TABLE checklist ADD CONSTRAINT lista_pk PRIMARY KEY ( id_check );
 
 CREATE TABLE cliente (
     id_cli       INTEGER NOT NULL,
@@ -111,16 +115,6 @@ CREATE TABLE contrato (
 );
 
 ALTER TABLE contrato ADD CONSTRAINT contrato_pk PRIMARY KEY ( id_contrato );
-
-CREATE TABLE lista (
-    id_lista      INTEGER NOT NULL,
-    lista         VARCHAR2(1000) NOT NULL,
-    verificacion  VARCHAR2(500) NOT NULL,
-    recomendacion VARCHAR2(250) NOT NULL,
-    id_actividad  INTEGER NOT NULL
-);
-
-ALTER TABLE lista ADD CONSTRAINT lista_pk PRIMARY KEY ( id_lista );
 
 CREATE TABLE mejora (
     id_mejora    INTEGER NOT NULL,
@@ -162,20 +156,6 @@ CREATE TABLE profesional (
 
 ALTER TABLE profesional ADD CONSTRAINT profesional_pk PRIMARY KEY ( id_prof );
 
-CREATE TABLE reporte (
-    id_reporte      INTEGER NOT NULL,
-    cant_asesoria   INTEGER NOT NULL,
-    cant_llamadas   INTEGER NOT NULL,
-    cant_visitas    INTEGER NOT NULL,
-    cant_accidentes INTEGER NOT NULL,
-    cant_multas     INTEGER NOT NULL,
-    fec_emision     DATE NOT NULL,
-    id_tipo_reporte INTEGER NOT NULL,
-    id_actividad    INTEGER NOT NULL
-);
-
-ALTER TABLE reporte ADD CONSTRAINT reporte_pk PRIMARY KEY ( id_reporte );
-
 CREATE TABLE servicio (
     id_servicio INTEGER NOT NULL,
     nombre      VARCHAR2(20) NOT NULL,
@@ -192,13 +172,6 @@ CREATE TABLE tipo_asesoria (
 
 ALTER TABLE tipo_asesoria ADD CONSTRAINT tipo_asesoria_pk PRIMARY KEY ( id_tipo_ase );
 
-CREATE TABLE tipo_reporte (
-    id_tipo_reporte INTEGER NOT NULL,
-    nombre          VARCHAR2(50) NOT NULL
-);
-
-ALTER TABLE tipo_reporte ADD CONSTRAINT tipo_reporte_pk PRIMARY KEY ( id_tipo_reporte );
-
 CREATE TABLE usuariop (
     id INTEGER NOT NULL
 );
@@ -212,6 +185,10 @@ CREATE TABLE visita (
 );
 
 ALTER TABLE visita ADD CONSTRAINT visita_pk PRIMARY KEY ( id_visita );
+
+ALTER TABLE act_check
+    ADD CONSTRAINT act_check_actividad_fk FOREIGN KEY ( id_actividad )
+        REFERENCES actividad ( id_actividad );
 
 ALTER TABLE actividad
     ADD CONSTRAINT actividad_asesoria_fk FOREIGN KEY ( id_asesoria )
@@ -253,13 +230,9 @@ ALTER TABLE boleta
     ADD CONSTRAINT boleta_contrato_fk FOREIGN KEY ( id_contrato )
         REFERENCES contrato ( id_contrato );
 
-ALTER TABLE chat
-    ADD CONSTRAINT chat_cliente_fk FOREIGN KEY ( id_cli )
-        REFERENCES cliente ( id_cli );
-
-ALTER TABLE chat
-    ADD CONSTRAINT chat_profesional_fk FOREIGN KEY ( id_prof )
-        REFERENCES profesional ( id_prof );
+ALTER TABLE checklist
+    ADD CONSTRAINT checklist_act_check_fk FOREIGN KEY ( id_act_check )
+        REFERENCES act_check ( id_act_check );
 
 ALTER TABLE cliente
     ADD CONSTRAINT cliente_perfil_fk FOREIGN KEY ( id_perfil )
@@ -272,10 +245,6 @@ ALTER TABLE contrato
 ALTER TABLE contrato
     ADD CONSTRAINT contrato_plan_fk FOREIGN KEY ( id_plan )
         REFERENCES plan ( id_plan );
-
-ALTER TABLE lista
-    ADD CONSTRAINT lista_actividad_fk FOREIGN KEY ( id_actividad )
-        REFERENCES actividad ( id_actividad );
 
 ALTER TABLE mejora
     ADD CONSTRAINT mejoras_actividad_fk FOREIGN KEY ( id_actividad )
@@ -293,21 +262,13 @@ ALTER TABLE profesional
     ADD CONSTRAINT profesional_perfil_fk FOREIGN KEY ( id_perfil )
         REFERENCES perfil ( id_perfil );
 
-ALTER TABLE reporte
-    ADD CONSTRAINT reporte_actividad_fk FOREIGN KEY ( id_actividad )
-        REFERENCES actividad ( id_actividad );
-
-ALTER TABLE reporte
-    ADD CONSTRAINT reporte_tipo_reporte_fk FOREIGN KEY ( id_tipo_reporte )
-        REFERENCES tipo_reporte ( id_tipo_reporte );
-
 
 
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 
--- CREATE TABLE                            20
+-- CREATE TABLE                            18
 -- CREATE INDEX                             0
--- ALTER TABLE                             42
+-- ALTER TABLE                             37
 -- CREATE VIEW                              0
 -- ALTER VIEW                               0
 -- CREATE PACKAGE                           0

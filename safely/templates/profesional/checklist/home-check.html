@@ -8,21 +8,24 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Checklists</h2>
-                <a href="{% url 'crear-checklist' %}">a</a>
+                <h2>HOME - Checklists</h2>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Nombre</th>
-                            <th>Verificación</th>
+                            <th>  ID  </th>
+                            <th>Actividad</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% if entity %}
                         {% for entity in entity %}
                         <tr>
-                            <td>{{entity.nombre}}</td>
-                            <td>{{entity.verificacion}}</td>
+                            <td>{{entity.id_act_check}}</td>
+                            <td>{{entity.id_actividad}}</td>
+                            <td class="table-action" ><a href="{% url 'checklist' entity.id_act_check %}" id="modificar">
+                                <div class = "modificar"><p>Ver</p></div>
+                            </a></td>
                         </tr>
                         {% endfor %}
                         {% endif %}
