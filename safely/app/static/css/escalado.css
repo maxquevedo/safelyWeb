@@ -97,7 +97,8 @@
     .perfil-text-container form input[type=number], 
     .perfil-text-container form input[type=submit], 
     .perfil-text-container form input[type=email], 
-    .perfil-text-container form input[type=password], 
+    .perfil-text-container form input[type=password],
+    .perfil-text-container form input[type=date],
     .perfil-text-container form input[type=date] {
         margin-bottom: 16px;
         height: 40px;

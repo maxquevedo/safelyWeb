@@ -27,7 +27,6 @@ urlpatterns = [
     path('profesional/mejoras/ingresar', crear_me, name='crear_me'),
 
     path('profesional/actividad/', vista_actividad, name='vista_actividad'),
-    path('profesional/actividad/crear', crear_actividad, name='crear_actividad'),
     path('profesional/actividad/modificar/<int:id_actividad>/', modificar_actividad, name='modificar_actividad'),
     path('profesional/actividad/estado/<int:id_actividad>/', estado_actividad, name='estado_actividad'),
 

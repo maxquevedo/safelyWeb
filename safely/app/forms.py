@@ -283,10 +283,12 @@ class ActividadModForm(forms.ModelForm):
 
 
 class ActualizarActividad(forms.ModelForm):
-    fec_estimada = forms.DateField()
     class Meta:
         model = Actividad
-        fields = ['nombre','descripcion','tipo_act','fec_estimada','estado','id_cli','id_prof']
+        fields = ['fec_ida','id_prof']
+        widgets = {
+            'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Selecciona una fecha', 'type':'date'}),
+        }
 
          
 ## VISITA

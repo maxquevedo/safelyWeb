@@ -349,6 +349,7 @@ input[type=number] { -moz-appearance:textfield; }
 .perfil-text-container form input[type=number], 
 .perfil-text-container form input[type=submit], 
 .perfil-text-container form input[type=email], 
+.perfil-text-container form input[type=date],
 .perfil-text-container form input[type=password]{
     border:1px solid #dfdfdf;
     box-sizing:border-box;

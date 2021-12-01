@@ -33,7 +33,11 @@
                             <td>{{entity.nombre}}</td>
                             <td class="desc-act"><p>{{entity.descripcion}}</p></td>
                             <td>{{entity.fec_estimada}}</td>
-                            <td>{{entity.fec_ida}}</td>
+                            <td>{% if entity.fec_ida%}
+                                {{entity.fec_ida}}
+                                {% else %}
+                                No se ha asignado
+                                {% endif %}</td>
                             <td>{% if entity.estado == '1' %}
                                 Solicitado
                                 {% elif entity.estado == '2' %}

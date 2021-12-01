@@ -10,15 +10,11 @@
         <div class="container-lista">
             <div class="lista">
                 <h2>INFORMACIÓN DE PROFESIONALES</h2>
-                <div class="botones-asesorias">
-                    <a class ="color-verde" href="{% url 'crear_profesional' %}">Crear profesional</a>
-                </div>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID profesional</th>
-                            <th>id perfil</th>
-                            <TH>ACCIÓN</TH>
+                            <th>PERFIL</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,11 +23,6 @@
                         <tr>
                             <td>{{entity.id_prof}}</td>
                             <td>{{entity.id_perfil}}</td>
-                            <td class="table-action">
-                                <a href="{% url 'modificar_profesional' entity.id_prof %}" id="modificar">
-                                    <div class = "modificar"><p>Modificar</p></div>
-                                </a>
-                            </td>
                         </tr>
                         {% endfor %}
                         {% endif %}
