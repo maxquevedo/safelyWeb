@@ -4,25 +4,6 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-
-
-"""
-class User(models.Model):
-    id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=150)
-    password = models.CharField(max_length=150) 
-    first_name = models.CharField(max_length=150) 
-    last_name = models.CharField(max_length=150) 
-    email = models.CharField(max_length=150) 
-    is_active = models.BooleanField
-    class Meta:
-        managed = False
-        db_table = 'auth_user'
-
-    def __str__(self):
-        return self.username
-
-"""
 class Perfil(models.Model):
     CHOICES = (
     ('1', "Administrador"),
@@ -44,7 +25,6 @@ class Perfil(models.Model):
 
     def __str__(self):
         return self.id_auth_user.first_name + ' ' + self.id_auth_user.last_name
-
 
 class Cliente(models.Model):
     id_cli = models.AutoField(primary_key=True)
@@ -153,7 +133,29 @@ class Alerta(models.Model):
     class Meta:
         managed = False
         db_table = 'alerta'
+        
+    """def create(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            descrip = request.POST.get('descripcion')
+            profe = request.POST.get('id_prof')
 
+            profesional  = Profesional.objects.get(id_prof=profe)
+            email = profesional.id_perfil.id_auth_user.email
+            #print(profesional.id_perfil.id_auth_user.email)
+            send_email(descrip,email)
+        response = super(AlertaViewSet, self).create(request, *args, **kwargs)
+        return response
+
+#Envia correo al momento de crearse una alerta 
+def send_email(descrip,email):
+    email = EmailMessage(
+        'Alerta Safely',
+        descrip,
+        settings.EMAIL_HOST_USER,
+        [email],
+    )
+    #print(email)
+    email.send()"""
 
 
 class Asesoria(models.Model):
@@ -198,19 +200,6 @@ class Capacitacion(models.Model):
 
     def __str__(self):
         return self.nombre
-
-class Chat(models.Model):
-    id_chat = models.AutoField(primary_key=True)
-    mensaje = models.CharField(max_length=500)
-    fec_mensaje = models.DateTimeField()
-    enviado_por = models.CharField(max_length=30)
-    cabecera = models.CharField(max_length=50)
-    id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof')
-    id_cli = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cli')
-
-    class Meta:
-        managed = False
-        db_table = 'chat'
 
 class Contrato(models.Model):
     id_contrato = models.AutoField(primary_key=True)

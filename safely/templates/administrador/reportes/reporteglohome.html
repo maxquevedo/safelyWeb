@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Reporte cliente{% endblock %}
+
+{% block body %}
+<style>
+    .perfil-text-container .container-meses{
+        width: 100%;
+        height: auto;
+        display: flex;
+        padding-bottom: 20px;
+        color: #1a1a1a;
+    }
+
+    .container-mes {
+        margin: auto;
+        flex-direction: column;
+    }
+
+    .container-mes p {
+        padding: 3px;
+    }
+
+    .container-mes a {
+        text-decoration: none;
+
+    }
+</style>
+<div class="container-menu">
+    {% include 'administrador/menu-admin/reportes.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="perfil-text-container">
+                    <h2>REPORTE GLOBAL</h2>
+                    <div class="container-meses">
+                        <div class="container-mes">
+                            <h3>Mes</h3>
+                            <p>Enero</p>
+                            <p>Febrero</p>
+                            <p>Marzo</p>
+                            <p>Abril</p>
+                            <p>Mayo</p>
+                            <p>Junio</p>
+                            <p>Julio</p>
+                            <p>Agosto</p>
+                            <p>Septiembre</p>
+                            <p>Octubre</p>
+                            <p>Noviembre</p>
+                            <p>Diciembre</p>
+                        </div>
+                        <div class="container-mes">
+                            <h3>Acción</h3>
+                            <p><a href="{% url 'reporteGlobal' 1 %}">Crear PDF</a></p>
+                            <p><a href="{% url 'reporteGlobal' 2 %}">Crear PDF</a></p>
+                            <p><a href="{% url 'reporteGlobal' 3 %}">Crear PDF</a></p>
+                            <p><a href="{% url 'reporteGlobal' 4 %}">Crear PDF</a></p>
+                            <p><a href="{% url 'reporteGlobal' 5 %}">Crear PDF</a></p>
+                            <p><a href="{% url 'reporteGlobal' 6 %}">Crear PDF</a></p>
+                            <p><a href="{% url 'reporteGlobal' 7 %}">Crear PDF</a></p>
+                            <p><a href="{% url 'reporteGlobal' 8 %}">Crear PDF</a></p>
+                            <p><a href="{% url 'reporteGlobal' 9 %}">Crear PDF</a></p>
+                            <p><a href="{% url 'reporteGlobal' 10 %}">Crear PDF</a</p>
+                            <p><a href="{% url 'reporteGlobal' 11 %}">Crear PDF</a</p>
+                            <p><a href="{% url 'reporteGlobal' 12 %}">Crear PDF</a</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} 

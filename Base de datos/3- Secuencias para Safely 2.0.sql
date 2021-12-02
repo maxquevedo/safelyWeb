@@ -40,16 +40,6 @@ CREATE SEQUENCE capacitacion_seq
     
 ALTER TABLE capacitacion MODIFY (id_capacitacion DEFAULT capacitacion_seq.NEXTVAL);
 
---Chat--
-
-CREATE SEQUENCE chat_seq
-    START WITH     1
-    INCREMENT BY   1
-    NOCACHE
-    NOCYCLE;
-    
-ALTER TABLE chat MODIFY (id_chat DEFAULT chat_seq.NEXTVAL);
-
 --Contrato--
 
 CREATE SEQUENCE contrato_seq
@@ -60,15 +50,6 @@ CREATE SEQUENCE contrato_seq
     
 ALTER TABLE contrato MODIFY (id_contrato DEFAULT contrato_seq.NEXTVAL);
 
---Lista --
-
-CREATE SEQUENCE lista_seq
-    START WITH     1
-    INCREMENT BY   1
-    NOCACHE
-    NOCYCLE;
-    
-ALTER TABLE lista MODIFY (id_lista DEFAULT lista_seq.NEXTVAL);
 
 --Mejoras --
 
@@ -90,16 +71,6 @@ CREATE SEQUENCE plan_seq
     
 ALTER TABLE plan MODIFY (id_plan DEFAULT plan_seq.NEXTVAL);
 
---Reporte --
-
-CREATE SEQUENCE reporte_seq
-    START WITH     1
-    INCREMENT BY   1
-    NOCACHE
-    NOCYCLE;
-    
-ALTER TABLE reporte MODIFY (id_reporte DEFAULT reporte_seq.NEXTVAL);
-
 --Servicio--
 
 CREATE SEQUENCE servicio_seq
@@ -119,16 +90,6 @@ CREATE SEQUENCE tipo_ase_seq
     NOCYCLE;
 
 ALTER TABLE tipo_asesoria MODIFY (id_tipo_ase DEFAULT tipo_ase_seq.NEXTVAL);
-
---tipo_reporte--
-
-CREATE SEQUENCE tipo_rep_seq
-    START WITH     1
-    INCREMENT BY   1
-    NOCACHE
-    NOCYCLE;
-    
-ALTER TABLE tipo_reporte MODIFY (id_tipo_reporte DEFAULT tipo_rep_seq.NEXTVAL);
 
 --Visita--
 

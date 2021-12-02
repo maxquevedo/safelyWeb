@@ -74,11 +74,6 @@ class CapacitacionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-#Model Chat
-class ChatSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Chat
-        fields = '__all__'
 
 #Model Cliente
 class ClienteSerializer(serializers.ModelSerializer):

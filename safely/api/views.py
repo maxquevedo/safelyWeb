@@ -72,30 +72,7 @@ class AlertaViewSet(viewsets.ModelViewSet):
     queryset =  models.Alerta.objects.all()
     authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
-    def create(self, request, *args, **kwargs):
-        if request.method == 'POST':
-            descrip = request.POST.get('descripcion')
-            profe = request.POST.get('id_prof')
-
-            profesional  = Profesional.objects.get(id_prof=profe)
-            email = profesional.id_perfil.id_auth_user.email
-            #print(profesional.id_perfil.id_auth_user.email)
-            send_email(descrip,email)
-        response = super(AlertaViewSet, self).create(request, *args, **kwargs)
-        return response
-
-#Envia correo al momento de crearse una alerta 
-def send_email(descrip,email):
-    email = EmailMessage(
-        'Alerta Safely',
-        descrip,
-        settings.EMAIL_HOST_USER,
-        [email],
-    )
-    #print(email)
-    email.send()
-
-
+    
 
 #Asesoria
 class AsesoriaViewSet(viewsets.ModelViewSet):
@@ -118,12 +95,6 @@ class CapacitacionViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
 
-#Chat
-class ChatViewSet(viewsets.ModelViewSet):
-    serializer_class = serializers.ChatSerializer
-    queryset =  models.Chat.objects.all()
-    authentication_classes = (TokenAuthentication,)
-    #permission_classes = (IsAuthenticated,)
 
 #Cliente
 class ClienteViewSet(viewsets.ModelViewSet):
@@ -138,6 +109,7 @@ class ContratoViewSet(viewsets.ModelViewSet):
     queryset =  models.Contrato.objects.all()
     authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
+
 #Mejora
 class MejoraViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.MejoraSerializer

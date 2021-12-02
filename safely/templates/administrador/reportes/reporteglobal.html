@@ -1,0 +1,457 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>Reporte Global</title>
+    {% load static %}
+    <link href="{% static 'css/reporte.css' %}" rel="stylesheet" type="text/css" media="all" />
+    {% block css %}
+    <style>
+        .datos{
+            font-size: 15px;
+            padding-bottom: -5px;
+            padding-top: -5px;
+        }
+        .linea{
+            margin-top: 750px;
+        }
+
+        .portada{
+            text-align: center;
+            margin-left: 50%;
+            margin-Top: 50%;
+        }
+        .portada h1{
+            font-size: 40px;
+            padding-bottom: -50px;
+        }
+        .portada h2{
+            font-size: 30px;
+            padding-bottom: -40px;
+        }
+        .portada h3{
+            font-size: 20px;
+            padding-bottom: -30px;
+        }
+        .portada h4{
+            font-size: 15px;
+        }
+        .Subtitulos{
+            font-size: 20px;
+              line-height: 1.5;
+              margin-top: 10px;
+
+        }
+        .detalles{
+            text-align: justify;
+            text-transform: capitalize;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .contenido{
+            margin-top: 50%;
+
+        }
+
+        .Intro h3{
+            text-align: center;
+            font-size: 25px;
+        }
+        .Intro p{
+            text-align: justify;
+            font-size: 15px;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+        .tablas {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .tablas thead  th{
+            text-align: center;
+            border-bottom: 1px solid white;
+            border-top: 1px solid white;
+            border-right: 0.5px solid white;
+            border-left: 0.5px solid white;
+            padding-top: 4px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            background-color: #46a7ab;
+            color: white;
+
+        }
+        .tablas thead tr {
+            margin-bottom: 0;
+            padding-bottom: 0 ;
+        }
+        .tablas tbody tr td{
+            text-align: center;
+            border-bottom: 1px solid white;
+            border-top: 1px solid white;
+            padding-top: 4px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            padding-left: 1px;
+            background-color: #ebfffd;
+
+
+        }
+        .tablas2 {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .tablas2 thead  th{
+            text-align: center;
+            border-bottom: 1px solid white;
+            border-top: 1px solid white;
+            border-right: 0.5px solid white;
+            border-left: 0.5px solid white;
+            padding-top: 4px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            background-color: #46a7ab;
+            color: white;
+
+        }
+        .tablas2 thead tr {
+            margin-bottom: 0;
+            padding-bottom: 0 ;
+        }
+        .tablas2 tbody tr td{
+            text-align: center;
+            border-bottom: 1px solid white;
+            border-top: 1px solid white;
+            padding-top: 4px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+
+            background-color: #ebfffd;
+
+
+        }
+        .detalles{
+            text-align: justify;
+            font-size: 15px;
+            line-height: 1.5;
+            text-indent: 50px;
+        }
+
+        .Subtitulos{
+            font-size: 20px;
+              line-height: 1.5;
+              margin-top: 10px;
+
+        }
+
+    </style>
+    {% endblock %}
+    </head>
+    <body>
+        <div class="portada">
+            <hr>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <H1>Safely</H1>
+            <H2>Informe Global</H2>
+
+            <br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <hr>
+        </div>
+
+        <div class="contenido">
+
+            <h2 class = "Subtitulos">Profesionales</h2>
+            <P class="detalles"> Se muestra los Profesionales que actualmente esten trabajando en el sistema safely dando sus respectivos datos personales.
+            </P>
+            <table class="tablas">
+                <thead>
+                    <th>Rut</th>
+                    <th>Nombre </th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+
+                </thead>
+                <tbody>
+
+                    {% for profesional in profesional %}
+
+                    <tr>
+                        <td>{{ profesional.rut }}</td>
+                        <td>{{ profesional.id_auth_user.first_name }} {{ profesional.id_auth_user.last_name }}</td>
+                        <td>{{ profesional.id_auth_user.email}}</td>
+                        <td>{{ profesional.telefono }}</td>
+                        <td>{{ profesional.direccion }}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table >
+            <br>
+            <h2 class = "Subtitulos">Clientes</h2>
+            <P class="detalles"> Se muestra los Clientes que actualmente estan ingresados en el sistema Safely, mostrando sus respectivos datos personales.
+            </P>
+            <table class="tablas">
+                <thead>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Rut</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+
+                </thead>
+                <tbody >
+
+                    {% for cliente in cliente %}
+
+                    <tr>
+                        <td>{{ cliente.id_auth_user.first_name }} {{ profesional.id_auth_user.last_name }}</td>
+                        <td>{{ cliente.id_auth_user.email}}</td>
+                        <td>{{ cliente.rut }}</td>
+                        <td>{{ cliente.telefono }}</td>
+                        <td>{{ cliente.direccion }}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table >
+            <br>
+
+            <h2 class = "Subtitulos">Administradores</h2>
+            <P class="detalles">Se Muestran los Administradores que actualmente estan trabajando en el sistema Safely, mostrando sus datos personales.
+            </P>
+            <table class="tablas">
+                <thead>
+                    <th>Nombre </th>
+                    <th>Email</th>
+                    <th>Rut</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+
+                </thead>
+                <tbody >
+
+                    {% for admin in admin %}
+
+                    <tr>
+                        <td>{{ admin.id_auth_user.first_name }} {{ profesional.id_auth_user.last_name }}</td>
+                        <td>{{ admin.id_auth_user.email}}</td>
+                        <td>{{ admin.rut }}</td>
+                        <td>{{ admin.telefono }}</td>
+                        <td>{{ admin.direccion }}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table >
+           <br>
+            <h2 class = "Subtitulos">Actividades realizadas</h2>
+            <P class="detalles"> Se muestra las Actividades realizadas durante el mes, indicando su nombre, su descripción, la fecha de la actividad, que tipo de actividad es (Capacitación, Asesoría o Visita),el nombre del tipo de actividad , el cliente pidio esa actividad, el funcionario que esta a cargo de 
+                ver esa actividad y si la actividad es extra o no.
+            </P>
+                <table class="tablas" >
+                    <thead>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Fecha Ida</th>
+                        <th>Tipo de Actividad</th>
+                        <th>Nombre tipo actividad</th>
+                        <th>Cliente</th>
+                        <th>Profesional a Cargo</th>
+                        <th>Extra</th>
+                    </thead>
+                    <tbody>
+                        {% for actividad in actividad %}
+                        <tr>
+                            <td>{{ actividad.nombre }}</td>
+                            <td style="text-align: left;">{{ actividad.descripcion}}</td>
+                            <td>{{ actividad.fec_ida}}</td>
+                            {% if actividad.tipo_act == "1" %}
+                            <td>capacitación</td>
+                            {% elif actividad.tipo_act == "2" %}
+                            <td>Asesoría</td>
+                            {% elif actividad.tipo_act == "3" %}
+                            <td>Visita</td>
+                            {% endif %}
+                            {% if actividad.tipo_act == "1" %}
+                            <td>{{ actividad.id_capacitacion}}</td>
+                            {% elif actividad.tipo_act == "2" %}
+                            <td>{{ actividad.id_asesoria}}</td>
+                            {% elif actividad.tipo_act == "3" %}
+                            <td>{{ actividad.id_visita}}</td>
+                            {% endif %}
+                            <td>{{ actividad.id_cli.id_perfil.id_auth_user.first_name }} {{ actividad.id_cli.id_perfil.id_auth_user.last_name }}</td>
+                            <td>{{ actividad.id_prof.id_perfil.id_auth_user.first_name }} {{ actividad.id_prof.id_perfil.id_auth_user.last_name }}</td>
+                            {% if actividad.act_extra == True %}
+                            <td style="border-right: 1px solid white;">Si</td>
+                            {% else %}
+                            <td style="border-right: 1px solid white;">No</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table >
+                <br>
+                <h2 class = "Subtitulos">Capacitaciones Creadas</h2>
+                <p class="detalles">Se muestra las Capacitaciones que fueron creadas durante el mes, indicando su nombre, la cantidad de personas que van asistir y los materiales necesarios para la realizacion de dicha capacitación.</p>
+                <table class="tablas2" >
+                    <thead>
+                        <th>Nombre capacitación</th>
+                        <th>Cant. Asistentes</th>
+                        <th>Materiales</th>
+                    </thead>
+                    <tbody>
+                        {% for capacitacion in capacitacion %}
+                        <tr>
+                            <td>{{ capacitacion.id_capacitacion.nombre }}</td>
+                            <td>{{ capacitacion.id_capacitacion.cant_asistentes }}</td>
+                            <td style="text-align: left;">{{ capacitacion.id_capacitacion.materiales }}</td>
+                        </tr>
+                        {% endfor%}
+                    </tbody>
+                </table>
+                <br>
+                <h2 class = "Subtitulos">Asesorías Creadas</h2>
+                <P class="detalles">Se muestran las Asesorias creadas durante el mes, indicando su nombre, su descripción y el tipo de asesoría.
+                </P>
+                <table class="tablas2">
+                    <thead>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Tipo de asesoría</th>
+                    </thead>
+                    <tbody>
+                        {% for asesoria in asesoria %}
+                        <tr>
+                            <td>{{ asesoria.id_asesoria.nombre }}</td>
+                            <td style="text-align: left;" >{{ asesoria.id_asesoria.descripcion }}</td>
+                            <td>{{ asesoria.id_asesoria.id_tipo_ase }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+                <br>
+                <h2 class = "Subtitulos">Visitas Realizadas</h2>
+                <P class="detalles"> Se muestran las Visitas realizadas durante el mes, indicando el nombre asignado a la visita, fecha en la que se realizo la visita, el cliente a la que se le realizo la visita y el profesional que realizo la visita.
+                </P>
+                <table class="tablas2">
+                    <thead>
+                    <th>Nombre</th>
+                    <th>Fecha visita</th>
+                    <th>Cliente</th>
+                    <th>Profesional</th>
+                    </thead>
+                    <tbody>
+                        {% for visita in visita %}
+                        <tr>
+                            <td>{{ visita.id_visita.nombre }}</td>
+                            <td>{{ visita.fec_ida }}</td>
+                            <td>{{ visita.id_cli.id_perfil.id_auth_user.first_name }} {{ visita.id_cli.id_perfil.id_auth_user.last_name }}</td>
+                            <td>{{ visita.id_prof.id_perfil.id_auth_user.first_name }} {{ visita.id_prof.id_perfil.id_auth_user.last_name }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+                <br>
+                <h2 class = "Subtitulos">Accidentes Registrados</h2>
+                <P class="detalles"> Se muestran los Accidentes que se realizaron durante el mes, donde se presenta la cantidad de accidentes ocurridos, la fecha en la que se aviso el accidente, la descripción de lo que sucedió en el accidente,
+                    el cliente al que le ocurrio el accidente y el profesional que se hizo cargo del accidente.
+                </P>
+                <p>Cantidad de accidentes registrados: {{ cuentaalerta }}</p>
+               <h3>Detalles de los accidentes</h3>
+                <table class="tablas">
+                    <thead>
+                        <th>Fecha de aviso </th>
+                        <th>Descripción</th>
+                        <th>Cliente Asociado</th>
+                        <th>Profesional a cargo</th>
+                    </thead>
+                    <tbody>
+                        {% for alerta in alerta %}
+                        <tr>
+                            <td>{{ alerta.fec_aviso }}</td>
+                            <td style="text-align: left;" >{{ alerta.descripcion }}</td>
+                            <td>{{ alerta.id_cli }}</td>
+                            <td>{{ alerta.id_prof }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+               <br>
+
+                <h2 class = "Subtitulos">Servicios Registrados</h2>
+                <P class="detalles">Se muestra los Servicios que actualmente estan en el sistema safely.
+                </P>
+                <table class="tablas">
+                    <thead>
+                        <th>Nombre del Servicio</th>
+                        <th >Descripción del Servicio</th>
+                    </thead>
+                    <tbody>
+                        {%for servicio in servicio %}
+                        <tr>
+                            <td>{{ servicio.nombre }}</td>
+                            <td style="text-align: left;">{{ servicio.descripcion }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+
+                <h2 class = "Subtitulos">Planes Registrados</h2>
+                <P class="detalles"> Se muestra los Planes que tiene disponible el sistema safely, indicando el nombre del plan, su descripción, cuanto cuesta el plan y el servicio con el que esta ligado.
+                </P>
+                <table class="tablas">
+                    <thead>
+                        <th>Nombre del Plan</th>
+                        <th>Descripción del Plan</th>
+                        <th>Costo $</th>
+                        <th>Servicio asociado</th>
+                    </thead>
+                    <tbody>
+                        {%for plan in plan %}
+                        <tr>
+                            <td>{{ plan.nombre }}</td>
+                            <td style="text-align: left;">{{ plan.descripcion }}</td>
+                            <td>${{ plan.costo }}</td>
+                            <td>{{ plan.id_servicio }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table >
+                <br>
+                <h2 class = "Subtitulos">Mejoras Sugeridas</h2>
+                <P class="detalles"> Se muestra las mejoras que se han sugerido en las actividades, mostrando la propuesta, si se acepto o no y a cual actividad se realizo dicha mejora.
+                </P>
+                <table class="tablas">
+                    <thead>
+                        <th>Nombre<l/th>
+                        <th>Propuesta </th>
+                        <th>Aceptación</th>
+                        <th>Actividad Asociada</th>
+                    </thead>
+                    <tbody>
+                        {%for mejora in mejora %}
+                        <tr>
+                            <td>{{ mejora.nombre }}</td>
+                            <td style="text-align: left;">{{ mejora.propuesta }}</td>
+                            {% if mejora.aceptacion == True %}
+                            <td>Aceptado</td>
+                            {% else %}
+                            <td>Rechazado</td>
+                            {% endif %}
+
+                            <td>{{ mejora.id_actividad }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+
+    </body>
+</html> 
