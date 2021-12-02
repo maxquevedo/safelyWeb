@@ -61,15 +61,16 @@ class Administrador(models.Model):
         return self.id_perfil.id_auth_user.username
 
 class ActCheck(models.Model):
-    id_act_check = models.BigIntegerField(primary_key=True)
-    id_actividad = models.OneToOneField('Actividad', models.DO_NOTHING, db_column='id_actividad')
+    id_act_check = models.AutoField(primary_key=True)
+    id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof', blank=True, null=True)
+    id_cli = models.OneToOneField('Cliente', models.DO_NOTHING, db_column='id_cli')
 
     class Meta:
         managed = False
         db_table = 'act_check'
 
     def __str__(self):
-        return self.id_actividad.nombre
+        return self.id_cli.razon_social
 
 class Actividad(models.Model):
 
@@ -109,7 +110,7 @@ class Actividad(models.Model):
         return self.nombre
 
 class Checklist(models.Model):
-    id_check = models.BigIntegerField(primary_key=True)
+    id_check = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=1000)
     verificacion = models.BooleanField()
     fec_creado = models.DateField(auto_now_add=True, blank=True)

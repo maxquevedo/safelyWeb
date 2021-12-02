@@ -211,8 +211,8 @@ def ver_check_cli(request):
 
     try:
         pro = Profesional.objects.get(id_perfil=Perfil.objects.get(id_auth_user=id_usuario))
-        act = Actividad.objects.filter(id_prof=pro.id_prof)
-        actcheck = ActCheck.objects.filter(id_actividad__in = act)
+
+        actcheck = ActCheck.objects.filter(id_prof = pro)
     except:
         actcheck = ActCheck.objects.none()
 
@@ -230,7 +230,7 @@ def ver_checklist(request, id_act_check):
     id_usuario = request.user.id
 
     try:
-        checklist = Checklist.objects.filter(id_act_check=id_act_check)
+        checklist = Checklist.objects.filter(id_act_check=id_act_check).order_by('id_check')
     except:
         checklist = Checklist.objects.none()
 
@@ -244,12 +244,12 @@ def ver_checklist(request, id_act_check):
                 'paginator': paginator}
     return render(request, 'profesional/checklist/checklist.html',context)
 
-def añadir_columna_checklist(request):
+def añadir_columna_checklist(request, id_act_check):
     data = {
-        'form': ChecklistForm
+        'form': ChecklistForm(initial={'id_act_check': id_act_check})
     }
     if request.method == 'POST':
-        formulario = ChecklistForm(data=request.POST)
+        formulario = ChecklistForm(data=request.POST, initial={'id_act_check': id_act_check})
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Creado correctamente!")
