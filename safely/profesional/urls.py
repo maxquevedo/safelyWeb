@@ -35,5 +35,7 @@ urlpatterns = [
 
     path('profesional/checklist/home/',ver_check_cli, name='home-check'),
     path('profesional/checklist/<int:id_act_check>/',ver_checklist, name='checklist'),
-    path('profesional/checklist/crear/',añadir_columna_checklist, name='crear-checklist'),
+    path('profesional/checklist/crear/<id_act_check>/',añadir_item_check, name='crear-checklist'),
+    path('profesional/checklist/verificar/<int:id_check>/',verificar_check, name='verificar-checklist'),
+    path('profesional/checklist/desverificar/<int:id_check>/',desverificar_check, name='desverificar-checklist'),
 ]

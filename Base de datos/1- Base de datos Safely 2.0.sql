@@ -1,5 +1,5 @@
 -- Generado por Oracle SQL Developer Data Modeler 21.2.0.183.1957
---   en:        2021-11-30 22:19:03 CLST
+--   en:        2021-12-02 17:10:40 CLST
 --   sitio:      Oracle Database 21c
 --   tipo:      Oracle Database 21c
 
@@ -11,7 +11,8 @@
 
 CREATE TABLE act_check (
     id_act_check INTEGER NOT NULL,
-    id_actividad INTEGER NOT NULL
+    id_prof      INTEGER,
+    id_cli       INTEGER NOT NULL
 );
 
 ALTER TABLE act_check ADD CONSTRAINT act_check_pk PRIMARY KEY ( id_act_check );
@@ -187,8 +188,12 @@ CREATE TABLE visita (
 ALTER TABLE visita ADD CONSTRAINT visita_pk PRIMARY KEY ( id_visita );
 
 ALTER TABLE act_check
-    ADD CONSTRAINT act_check_actividad_fk FOREIGN KEY ( id_actividad )
-        REFERENCES actividad ( id_actividad );
+    ADD CONSTRAINT act_check_cliente_fk FOREIGN KEY ( id_cli )
+        REFERENCES cliente ( id_cli );
+
+ALTER TABLE act_check
+    ADD CONSTRAINT act_check_profesional_fk FOREIGN KEY ( id_prof )
+        REFERENCES profesional ( id_prof );
 
 ALTER TABLE actividad
     ADD CONSTRAINT actividad_asesoria_fk FOREIGN KEY ( id_asesoria )
@@ -268,7 +273,7 @@ ALTER TABLE profesional
 -- 
 -- CREATE TABLE                            18
 -- CREATE INDEX                             0
--- ALTER TABLE                             37
+-- ALTER TABLE                             38
 -- CREATE VIEW                              0
 -- ALTER VIEW                               0
 -- CREATE PACKAGE                           0

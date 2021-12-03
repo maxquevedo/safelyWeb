@@ -9,12 +9,13 @@
         <div class="container-lista">
             <div class="lista">
                 <h2>Checklists</h2>
-                <a href="{% url 'crear-checklist' %}">a</a>
+
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Nombre</th>
-                            <th>Verificación</th>
+                            <th>Item por verificar</th>
+                            <th>Estado</th>
+                            <th>Verificar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,7 +23,25 @@
                         {% for entity in entity %}
                         <tr>
                             <td>{{entity.nombre}}</td>
-                            <td>{{entity.verificacion}}</td>
+                            <td>
+                                {% if entity.verificacion %}
+                                ✔️
+                                {% else %}
+                                ❌
+                                {% endif %}
+                            </td>
+                            <td class="table-action">
+                                {% if entity.verificacion %}
+                                <a href="{% url 'desverificar-checklist' entity.id_check %}" id="modificar">
+                                    <div class = "vigente" style="width: 90px;"><p>Desverificar</p></div>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'verificar-checklist' entity.id_check %}" id="modificar">
+                                    <div class = "modificar" style="width: 90px;"><p>Verificar</p></div>
+                                </a>
+                                {% endif %}
+
+                            </td>
                         </tr>
                         {% endfor %}
                         {% endif %}

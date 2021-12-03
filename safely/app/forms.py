@@ -324,7 +324,11 @@ class BoletaForm2(forms.ModelForm):
         fields= ['id_boleta','fec_emision_bol','fec_pago','fec_corte','pago_mensual','pagado','pago_extra','url','id_contrato']
 
 class ChecklistForm(forms.ModelForm):
-
     class Meta:
         model = Checklist
         fields = '__all__'
+
+class ChecklistVerificador(forms.ModelForm):
+    class Meta:
+        model = Checklist
+        fields = ['verificacion']
