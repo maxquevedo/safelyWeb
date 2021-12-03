@@ -1,4 +1,5 @@
 from django.db.models import query
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 
@@ -236,7 +237,7 @@ def ver_checklist(request, id_act_check):
 
     page = request.GET.get('page', 1)
     try:
-        paginator = Paginator(checklist, 5)
+        paginator = Paginator(checklist, 10)
         checklist = paginator.page(page)
     except:
         raise Http404
@@ -244,7 +245,7 @@ def ver_checklist(request, id_act_check):
                 'paginator': paginator}
     return render(request, 'profesional/checklist/checklist.html',context)
 
-def añadir_columna_checklist(request, id_act_check):
+def añadir_item_check(request, id_act_check):
     data = {
         'form': ChecklistForm(initial={'id_act_check': id_act_check})
     }
@@ -256,7 +257,30 @@ def añadir_columna_checklist(request, id_act_check):
             return redirect (to='home-check')
         else:
             data["form"] = formulario 
-    return render(request, 'profesional/checklist/crear-columna-check.html',data )
+    return render(request, 'profesional/checklist/crear-ITEM.html',data )
+
+def desverificar_check(request, id_check):
+    check = Checklist.objects.get(id_check=id_check)
+    check.verificacion = 0
+    if request.method == 'POST':
+        form = ChecklistVerificador(instance=check)
+    else:
+        form = ChecklistVerificador(request.POST, instance=check)
+        if form.is_valid():
+            form.save()
+    return HttpResponseRedirect('/profesional/checklist/%i/' % check.id_act_check.id_act_check)
+
+def verificar_check(request, id_check):
+    check = Checklist.objects.get(id_check=id_check)
+    if request.method == 'POST':
+        form = ChecklistVerificador(instance=check)
+    else:
+        form = ChecklistVerificador(request.POST, instance=check)
+        if form.is_valid():
+            check = form.save()
+            check.verificacion = True
+            check.save()
+    return HttpResponseRedirect('/profesional/checklist/%i/' % check.id_act_check.id_act_check)
 ##
 #######################################################################################################
 ## MEJORAS
