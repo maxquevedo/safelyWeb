@@ -36,8 +36,6 @@ def ReporteCliente_render_pdf_view(requiest,*args,**kwargs):
                 'actividadC':actividadCapacitacion,
                 'cliente':cliente,
                 'alertas':alertas
-
-    
     }
     
     

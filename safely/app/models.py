@@ -133,29 +133,7 @@ class Alerta(models.Model):
     class Meta:
         managed = False
         db_table = 'alerta'
-        
-    """def create(self, request, *args, **kwargs):
-        if request.method == 'POST':
-            descrip = request.POST.get('descripcion')
-            profe = request.POST.get('id_prof')
 
-            profesional  = Profesional.objects.get(id_prof=profe)
-            email = profesional.id_perfil.id_auth_user.email
-            #print(profesional.id_perfil.id_auth_user.email)
-            send_email(descrip,email)
-        response = super(AlertaViewSet, self).create(request, *args, **kwargs)
-        return response
-
-#Envia correo al momento de crearse una alerta 
-def send_email(descrip,email):
-    email = EmailMessage(
-        'Alerta Safely',
-        descrip,
-        settings.EMAIL_HOST_USER,
-        [email],
-    )
-    #print(email)
-    email.send()"""
 
 
 class Asesoria(models.Model):
