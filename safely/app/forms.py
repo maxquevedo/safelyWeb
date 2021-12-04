@@ -37,12 +37,19 @@ class UserActive(forms.ModelForm):
 ## PERFIL
 
 class PerfilForm(forms.ModelForm):
+    CHOICES = (
+    ('1', "Administrador"),
+    ('2', "Profesional"),
+    ('3', "Cliente"),
+    )
     rut = forms.CharField(min_length=5, max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 
                            'placeholder': 'Ej: 19.999.999-9'}))
     telefono = forms.CharField(min_length=5, max_length=25, widget=forms.TextInput(attrs={'class': 'form-control', 
                            'placeholder': 'Ej: 569123456'}))
     direccion = forms.CharField(min_length=5, max_length=250, widget=forms.TextInput(attrs={'class': 'form-control', 
                            'placeholder': 'Ej: mi calle # 12365'}))
+
+    tipo_perf = forms.ChoiceField(choices=CHOICES)
     class Meta:
         model = Perfil
         fields = ['id_perfil', 'rut','telefono','direccion','tipo_perf']

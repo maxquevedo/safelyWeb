@@ -69,7 +69,7 @@ class AdministradorViewSet(viewsets.ModelViewSet):
 #Alerta
 class AlertaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.AlertaSerializer
-    queryset =  models.Alerta.objects.all()
+    queryset =  models.Alerta.objects.all().order_by('id_alerta')
     authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
     def create(self, request, *args, **kwargs):
@@ -195,4 +195,17 @@ class VisitaViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
 
+
+#checklist
+class ChecklistViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.ChecklistSerializers
+    queryset =  models.Checklist.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    #permission_classes = (IsAuthenticated,)
+
+class ActCheckViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.ActCheckSerializers
+    queryset =  models.ActCheck.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    #permission_classes = (IsAuthenticated,)
 

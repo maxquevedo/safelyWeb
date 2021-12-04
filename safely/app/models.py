@@ -9,7 +9,6 @@ class Perfil(models.Model):
     ('1', "Administrador"),
     ('2', "Profesional"),
     ('3', "Cliente"),
-
     )
     id_perfil = models.AutoField(primary_key=True)
     rut = models.CharField(max_length=12)
@@ -134,6 +133,8 @@ class Alerta(models.Model):
     class Meta:
         managed = False
         db_table = 'alerta'
+
+    #def calculo(sefl)
 
 
 

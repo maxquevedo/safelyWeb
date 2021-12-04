@@ -90,7 +90,7 @@ ALTER TABLE capacitacion ADD CONSTRAINT capacitacion_pk PRIMARY KEY ( id_capacit
 CREATE TABLE checklist (
     id_check     INTEGER NOT NULL,
     nombre       VARCHAR2(1000) NOT NULL,
-    verificacion VARCHAR2(500) NOT NULL,
+    verificacion NUMBER NOT NULL,
     fec_creado   DATE NOT NULL,
     id_act_check INTEGER NOT NULL
 );

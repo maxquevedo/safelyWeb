@@ -145,3 +145,13 @@ class VisitaSerializer(serializers.ModelSerializer):
         model = models.Visita
         fields = '__all__'
 
+class ChecklistSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = models.Checklist
+        fields = '__all__'
+
+class ActCheckSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = models.ActCheck
+        fields = '__all__'
+

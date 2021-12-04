@@ -129,22 +129,9 @@ def signup_view(request):
 def home(request):
     return render(request, 'home.html')
 
-"""def signup_view(request):
-    data = {
-        'form': CustomUserCreationForm()
-    }
-    if request.method == 'POST':
-        formulario = CustomUserCreationForm(data=request.POST)
-        if formulario.is_valid():
-            usuario = formulario.save()
-            group = request.POST.get('groups')
-            usuario.groups.add(group)
-            messages.success(request, 'Usuario creado correctamente')
-            return redirect(to="mantenedor")
-        data["form"] = formulario
-    return render(request, 'registration/signup.html', data)"""
+
     
-@login_required
+"""@login_required
 def home_professional(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -156,7 +143,7 @@ def home_professional(request):
         'u_form': u_form,
     }
 
-    return render(request, 'profesional/home-profesional.html', context)
+    return render(request, 'profesional/home-profesional.html', context)"""
 
 def home_admin(request):
     usuario = User.objects.all().order_by('id')
@@ -212,15 +199,19 @@ def UserLista(request):
 @permission_required('app.change_user')
 def UserEdit(request,id):
     usuario = User.objects.get(id=id)
+   
     if request.method == 'GET':
-        form = UserUpdateForm(instance=usuario)
+        form = UserUpdateForm(instance=usuario)   
     else:
         form = UserUpdateForm(request.POST, instance=usuario)
         if form.is_valid():
             form.save()
             messages.success(request, "Usuario "+usuario.username+" modificado correctamente")
         return redirect(to="listar")
-    return render(request,'administrador/editar.html',{'form':form})
+    context = {
+            'form':form,
+        }  
+    return render(request,'administrador/editar.html', context)
 
 @permission_required('app.delete_user')
 def UserDelete(request,id):
@@ -289,11 +280,6 @@ def PlanEdit(request,id_plan):
         return redirect(to='lista-plan')
     return render(request,'administrador/planes/editar-plan.html',{'form':form})
 
-"""def PlanDelete(request,id):
-    plan = Plan.objects.get(id_plan=id)
-    plan.delete()
-    messages.success(request, "Plan eliminado correctamente")
-    return redirect(to='lista-plan')"""
 
 def PlanDelete(request,id):
     plan = Plan.objects.get(id_plan=id)
@@ -362,11 +348,7 @@ def ServicioEdit(request,id_servicio):
         return redirect(to='lista-servicios')
     return render(request,'administrador/servicios/editar-servicio.html',{'form':form})
 
-"""def ServicioDelete(request,id):
-    servicio = Servicio.objects.get(id_servicio=id)
-    servicio.delete()
-    messages.success(request, "Servicio eliminado correctamente")
-    return redirect(to='lista-servicios')"""
+
 
 def ServicioDelete(request,id):
     serv = Servicio.objects.get(id_servicio=id)
@@ -421,47 +403,6 @@ def infoCliente(request):
                 }
     return render(request, 'administrador/info_cliente/info-cliente.html',context)
     
-"""@login_required
-def infoCliente(request):
-    cli = Cliente.objects.all().order_by('id_cli')
-    page = request.GET.get('page', 1)
-    try:
-        paginator = Paginator(cli, 5)
-        cli = paginator.page(page)
-    except:
-        raise Http404
-    context = {'entity': cli,
-                'paginator': paginator}   
-    return render(request, 'administrador/info_cliente/info-cliente.html',context)"""
-
-@login_required
-def crear_cliente(request):
-    data = {
-        'form': ClienteForm
-    }
-    if request.method == 'POST':
-        formulario = ClienteForm(data=request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            messages.success(request, "Creado correctamente!")
-            return redirect (to='infoCliente')
-        else:
-            data["form"] = formulario 
-    return render(request, 'administrador/info_cliente/crear-cliente.html',data )
-
-
-@login_required
-def modificar_cliente(request,id_cli):
-    cli = Cliente.objects.get(id_cli=id_cli)
-    if request.method == 'GET':
-        form = ClienteForm(instance=cli)
-    else:
-        form = ClienteForm(request.POST, instance=cli)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Modificado correctamente")
-        return redirect(to='infoCliente')
-    return render(request, 'administrador/info_cliente/modificar-cliente.html',{'form':form})
 
 #informacion de clientes ProfesionalForm
 @login_required
@@ -478,38 +419,11 @@ def infoProfesional(request):
     return render(request, 'administrador/info_profesional/info-profesional.html',context)
 
 
-@login_required
-def crear_profesional(request):
-    data = {
-        'form': ProfesionalForm
-    }
-    if request.method == 'POST':
-        formulario = ProfesionalForm(data=request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            messages.success(request, "Creado correctamente!")
-            return redirect (to='infoProfesional')
-        else:
-            data["form"] = formulario 
-    return render(request, 'administrador/info_profesional/crear-profesional.html',data )
-
-@login_required
-def modificar_profesional(request,id_prof):
-    pro = Profesional.objects.get(id_prof=id_prof)
-    if request.method == 'GET':
-        form = ProfesionalForm(instance=pro)
-    else:
-        form = ProfesionalForm(request.POST, instance=pro)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Modificado correctamente")
-        return redirect(to='infoProfesional')
-    return render(request, 'administrador/info_profesional/modificar-profesional.html',{'form':form})
-
 #informacion de perfiles 
 
 @login_required
 def infoPerfil(request):
+
     pro = Perfil.objects.all().order_by('id_perfil')
     page = request.GET.get('page', 1)
     try:
@@ -521,34 +435,25 @@ def infoPerfil(request):
                 'paginator': paginator}   
     return render(request, 'administrador/info_perfil/info-perfil.html',context)
 
-@login_required
-def crear_perfil(request):
-    data = {
-        'form': PerfilForm
-    }
-    if request.method == 'POST':
-        formulario = PerfilForm(data=request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            messages.success(request, "Creado correctamente!")
-            return redirect (to='infoPerfil')
-        else:
-            data["form"] = formulario 
-    return render(request, 'administrador/info_perfil/crear-perfil.html',data )
-
 
 @login_required
 def modificar_perfil(request,id_perfil):
-    pro = Perfil.objects.get(id_perfil=id_perfil)
+    perfil = Perfil.objects.get(id_perfil=id_perfil)
+
+
     if request.method == 'GET':
-        form = PerfilModificar(instance=pro)
+        form = PerfilForm(instance=perfil)
     else:
-        form = PerfilModificar(request.POST, instance=pro)
+        form = PerfilForm(request.POST, instance=perfil)
         if form.is_valid():
             form.save()
-            messages.success(request,"Perfil de "+pro.id_auth_user.first_name+" "+pro.id_auth_user.last_name+" modificado correctamente!")
+            messages.success(request,"Perfil de "+perfil.id_auth_user.first_name+" "+perfil.id_auth_user.last_name+" modificado correctamente!")
         return redirect(to='infoPerfil')
-    return render(request, 'administrador/info_perfil/modificar-perfil.html',{'form':form})
+    context = {
+        'form':form
+
+    }
+    return render(request, 'administrador/info_perfil/modificar-perfil.html',context)
 
 
 """

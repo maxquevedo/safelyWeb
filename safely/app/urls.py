@@ -17,15 +17,11 @@ urlpatterns = [
     path('administrador/mantenedor-usuario/', views.maintainer_user, name='mantenedor-usr'),
     path('administrador/mantenedor-plan/', views.maintainer_plan, name='mantenedor-plan'),
     path('administrador/mantenedor-servicio/', views.maintainer_service, name='mantenedor-servicio'),
-    path('administrador/mantenedor-cliente/', views.infoCliente, name='infoCliente'),
-    path('administrador/mantenedor-cliente/crear', views.crear_cliente, name='crear_cliente'),
-    path('administrador/mantenedor-cliente/modificar/<int:id_cli>/', views.modificar_cliente, name='modificar_cliente'),
-    path('administrador/mantenedor-profesional/', views.infoProfesional, name='infoProfesional'),
-    path('administrador/mantenedor-profesional/crear', views.crear_profesional, name='crear_profesional'),
-    path('administrador/mantenedor-profesional/modificar/<int:id_prof>/', views.modificar_profesional, name='modificar_profesional'),
 
-    path('administrador/mantenedor-perfil/', views.infoPerfil, name='infoPerfil'),
-    path('administrador/mantenedor-perfil/crear', views.crear_perfil, name='crear_perfil'),
+    path('administrador/clientes/', views.infoCliente, name='infoCliente'),
+    path('administrador/profesionales/', views.infoProfesional, name='infoProfesional'),
+
+    path('administrador/perfiles/', views.infoPerfil, name='infoPerfil'),
     path('administrador/mantenedor-perfil/modificar/<int:id_perfil>/', views.modificar_perfil, name='modificar_perfil'),
 
     path('administrador/actividades/lista/', views.actividades, name='actividades'),
