@@ -5,6 +5,7 @@ from app import contrato
 from app import boleta
 from app import correo
 from .reporte import ReporteClienteListView,ReporteHome,ReporteGlobal,ReporteCliente_render_pdf_view,ReporteGlobal_pdf_view
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('filtro/',views.user_filter,name="user_filter"),
@@ -63,5 +64,11 @@ urlpatterns = [
     path('administrador/reportes/reporte-global-home',ReporteGlobal,name='reporte-global-home'),
     path('administrador/reportes/reporte-cliente/<id_cli>',ReporteCliente_render_pdf_view,name='reporteCliente'),
     path('administrador/reportes/reporte-global/<mes>',ReporteGlobal_pdf_view,name='reporteGlobal'),
+
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html'), name='reset_password'),
+    path('reset_password/sent', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name="password_reset_done"),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
+
 ]
 
