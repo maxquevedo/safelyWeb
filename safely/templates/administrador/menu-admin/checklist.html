@@ -3,14 +3,14 @@
         <h2>{{user.get_full_name}}</h2>
         <li><a href="{% url 'home-adm' %}">Inicio</a></li>
         <li><a href="{% url 'mantenedor' %}">Mantenedores</a></li>
-        <li><a class="active" href="{% url 'infoPerfil' %}">Información Perfiles</a></li>
+        <li><a href="{% url 'infoPerfil' %}">Información Perfiles</a></li>
         <li><a href="{% url 'infoProfesional' %}">Información Profesional</a></li>
         <li><a href="{% url 'infoCliente' %}">Información Cliente</a></li>
         <li><a href="{% url 'reporte-lista' %}">Reportes</a></li>
         <li><a href="{% url 'actividades' %}">Actividades</a></li>
         <li><a href="{% url 'listaContrato' %}">Contratos</a></li>
         <li><a href="{% url 'listaBoletas' %}">Boletas</a></li>
-        <li><a href="{% url 'listaCheck' %}">Checklist</a></li>
+        <li><a class="active" href="{% url 'listaCheck' %}">Checklist</a></li>
         <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
     </ul>
 </div>

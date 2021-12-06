@@ -131,19 +131,6 @@ def home(request):
 
 
     
-"""@login_required
-def home_professional(request):
-    if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        if u_form.is_valid():
-            u_form.save()
-    else:
-        u_form = UserUpdateForm(instance=request.user)
-    context = {
-        'u_form': u_form,
-    }
-
-    return render(request, 'profesional/home-profesional.html', context)"""
 
 def home_admin(request):
     usuario = User.objects.all().order_by('id')
@@ -424,22 +411,23 @@ def infoProfesional(request):
 @login_required
 def infoPerfil(request):
 
-    pro = Perfil.objects.all().order_by('id_perfil')
+    PerfilF = filtersets.PerfilFilter(request.GET,queryset= Perfil.objects.all())
     page = request.GET.get('page', 1)
     try:
-        paginator = Paginator(pro, 5)
-        pro = paginator.page(page)
+        paginator = Paginator(PerfilF, 5)
+        PerfilF = paginator.page(page)
     except:
-        raise Http404
-    context = {'entity': pro,
-                'paginator': paginator}   
-    return render(request, 'administrador/info_perfil/info-perfil.html',context)
+        """raise Http404"""
+    context = {
+        'entity':PerfilF,
+        'paginator': paginator
+    }
+    return render(request, 'administrador/info_perfil/info-perfil.html', context)
 
 
 @login_required
 def modificar_perfil(request,id_perfil):
     perfil = Perfil.objects.get(id_perfil=id_perfil)
-
 
     if request.method == 'GET':
         form = PerfilForm(instance=perfil)
@@ -574,6 +562,7 @@ def crear_actividad(request):
         salida = guardar_actividad(nombre,descripcion,tipo_act,fec_estimada,estado,id_cli,id_prof)
         if salida == 1:
             data['mensaje'] = 'Agregado Correctamente'
+            return redirect(to='actividades')
         else:
             data['mensaje'] = 'No se a podido guardar'
     return render(request, 'administrador/actividades/crear.html',data)
@@ -595,3 +584,42 @@ def actualizar_actividad(request,id_actividad):
     return render(request, 'administrador/actividades/actualizar.html',context)
 
 
+def checklist(request):
+    data = {
+        'form': listaForm
+    }
+
+    if request.method == 'POST':
+        formulario = listaForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Creado correctamente!")
+        else:
+            data["form"] = formulario       
+    return render(request, 'administrador/checklist/checklist.html', data)
+
+
+def listaCheck(request):
+    lista = ActCheck.objects.all().order_by('id_act_check')
+    page = request.GET.get('page', 1)
+    try:
+        paginator = Paginator(lista, 5)
+        lista = paginator.page(page)
+    except:
+        raise Http404
+
+    context = {'entity': lista,
+                'paginator': paginator}
+    return render(request, 'administrador/checklist/listado.html', context)
+
+def modificaCheck(request,id_act_check):
+    lista = ActCheck.objects.get(id_act_check=id_act_check)
+    if request.method == 'GET':
+        form = listaForm(instance=lista)
+    else:
+        form = listaForm(request.POST, instance=lista)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Modificado correctamente")
+        return redirect(to='listaCheck')
+    return render(request,'administrador/checklist/modificar.html',{'form':form})

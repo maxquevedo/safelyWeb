@@ -37,7 +37,7 @@ urlpatterns = [
     path('login-filter', views.login_filter, name='login-filter'),
 
     path('administrador/plan/agregar-plan/', views.PlanCreate, name='agregar-plan'),
-    path('administrador/plan/planlista-planes/',views. plan_lista, name='lista-plan'),
+    path('administrador/plan/planlista-planes/',views.plan_lista, name='lista-plan'),
     path('administrador/plan/planeditar-plan/<int:id_plan>/', views.PlanEdit, name='editar-plan'),
     path('administrador/plan/desactivar-plan/<int:id>/', views.PlanDelete, name='desactivar-plan'),
     path('administrador/plan/activar-plan/<int:id>/', views.PlanActivate, name='activar-plan'),
@@ -69,6 +69,10 @@ urlpatterns = [
     path('reset_password/sent', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name="password_reset_done"),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
+
+    path('administrador/checklist/',views.checklist,name='checklist'),
+    path('administrador/checklist/lista/',views.listaCheck,name='listaCheck'),
+    path('administrador/checklist/modificar/<int:id_act_check>/',views.modificaCheck,name='modificaCheck'),
 
 ]
 

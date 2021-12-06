@@ -302,9 +302,17 @@ def vista_mejoras(request):
 
 
 @login_required
-def revisar_me(request):
-
-    return render(request, 'profesional/mejoras/revisar-me.html')
+def modificar_me(request,id_mejora):
+    mejora = Mejora.objects.get(id_mejora=id_mejora)
+    if request.method == 'GET':
+        form = MejoraForm(instance=mejora)
+    else:
+        form = MejoraForm(request.POST, instance=mejora)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Modificado correctamente")
+        return redirect(to='vista_mejoras')
+    return render(request, 'profesional/mejoras/modificar.html',{'form':form})
 
 @login_required
 def crear_me(request):

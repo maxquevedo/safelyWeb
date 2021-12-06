@@ -9,46 +9,56 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>INFORMACIÓN PERFILES</h2>
+                <h2>Información perfiles</h2>
+                <div class="botones-asesorias">
+                    <form method="get">
+                        <p>Rut: </p>{{entity.form.rut}} 
+                        <p>Tipo de perfil: </p>{{entity.form.tipo_perf}}
+                        <input class="color-verde" type="submit" value="Buscar">
+                    </form>
+                </div>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Id Perfil</th>
                             <th>Rut</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
                             <th>Teléfono</th>
                             <th>Dirección</th>
+                            <th>Correo</th>
                             <th>Tipo de Perfil</th>
-                            <th>Nombre de usuario</th>
-                            <TH>Acción</TH>
+                            <th>Fecha Registro</th>
+                            <th>Ultima Sesión</th>
+                            <th>Activo</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% if entity %}
-                        {% for entity in entity %}
+                        {% for perfil in entity.qs %}
                         <tr>
-                            <td>{{entity.id_perfil}}</td>
-                            <td>{{entity.rut}}</td>
-                            <td>{{entity.telefono}}</td>
-                            <td>{{entity.direccion}}</td>
+                            <td>{{ perfil.rut }}</td>
+                            <td >
+                                <a href="{% url 'modificar_perfil' perfil.id_auth_user.id %}"style="color: #18ac30;">
+                                    {{ perfil.id_auth_user.username}}
+                                </a>
+                            </td>
+                            <td>{{ perfil.id_auth_user.first_name}} {{ perfil.id_auth_user.last_name}}</td>
+                            <td class="fono">{{ perfil.telefono }}</td>
+                            <td>{{ perfil.direccion }}</td>
+                            <td>{{ perfil.id_auth_user.email }}</td>
                             <td>
-                                {% if entity.tipo_perf == '1' %}
+                                {% if perfil.tipo_perf == '1' %}
                                 Admin
-                                {% elif entity.tipo_perf == '2' %}
+                                {% elif perfil.tipo_perf == '2' %}
                                 Profesional
-                                {% elif  entity.tipo_perf == '3' %}
+                                {% elif  perfil.tipo_perf == '3' %}
                                 Cliente
                                 {% endif %}
                             </td>
-                            <td>{{entity.id_auth_user}}</td>
-
-                            <td class="table-action">
-                                <a href="{% url 'modificar_perfil' entity.id_perfil %}" id="modificar">
-                                    <div class = "modificar"><p>Modificar</p></div>
-                                </a>
-                            </td>
+                            <td>{{perfil.id_auth_user.date_joined}}</td>
+                            <td>{{perfil.id_auth_user.last_login}}</td>
+                            <td>{{perfil.id_auth_user.is_active}}</td>
                         </tr>
-                        {% endfor %}
-                        {% endif %}
+                        {% endfor %} 
                     </tbody>
                 </table>
                 <div class="num-pag">
@@ -56,7 +66,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 {% endif %}

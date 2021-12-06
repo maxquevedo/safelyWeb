@@ -20,12 +20,13 @@ urlpatterns = [
     path('profesional/mejoras/', vista_mejoras, name='vista_mejoras'),
     path('profesional/mejoras/crear', crear_me, name='crear_me'),
     path('profesional/mejoras/ingresar', crear_me, name='crear_me'),
+    path('profesional/mejoras/modificar/<int:id_mejora>/', modificar_me, name='modificar_me'),
 
     path('profesional/actividad/crear/', crear_actividad, name='crear_actividad'),
     path('profesional/actividad/', vista_actividad, name='vista_actividad'),
     path('profesional/actividad/modificar/<int:id_actividad>/', modificar_actividad, name='modificar_actividad'),
     path('profesional/actividad/estado/<int:id_actividad>/', estado_actividad, name='estado_actividad'),
-    path('profesional/actividad/crear/', crear_actividad, name='crear_actividad'),
+
 
     path('profesional/visita/', vista_visita, name='vista_visita'),
     path('profesional/visita/crear', crear_visita, name='crear_visita'),

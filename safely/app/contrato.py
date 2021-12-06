@@ -18,7 +18,7 @@ def contratoCliente(request):
         if formulario.is_valid():
             formulario.save()
             messages.success(request, " creado correctamente!")
-            return redirect (to='home-adm')
+            return redirect (to='listaContrato')
         else:
             context["form"] = formulario  
     return render(request, 'administrador/contrato/contrato_cliente.html',context)

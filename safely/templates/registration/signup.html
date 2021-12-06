@@ -62,6 +62,7 @@
                             <div class="crea-act-container">
                                 <p>Grupo</p>
                                 <select id="id_groups" name="groups">
+                                    <option value="">Seleccione grupo</option>
                                     {% for x, y in form.fields.groups.choices %}
                                         <option value="{{ x }}"{% if form.fields.groups.value == x %} selected{% endif %}>{{ y }}</option>
                                     {% endfor %}

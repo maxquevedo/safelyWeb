@@ -9,12 +9,16 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>INFORMACIÓN DE PROFESIONALES</h2>
+                <h2>Información Profesionales</h2>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID profesional</th>
-                            <th>PERFIL</th>
+                            <th>Rut</th>
+                            <th>telefon</th>
+                            <th>Direccion</th>
+                            <th>Usuario</th>
+                            <th>Correo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,7 +26,11 @@
                         {% for entity in entity %}
                         <tr>
                             <td>{{entity.id_prof}}</td>
-                            <td>{{entity.id_perfil}}</td>
+                            <td>{{entity.id_perfil.rut}}</td>
+                            <td>{{entity.id_perfil.telefono}}</td>
+                            <td>{{entity.id_perfil.direccion}}</td>
+                            <td>{{entity.id_perfil.id_auth_user.username}}</td>
+                            <td>{{entity.id_perfil.id_auth_user.email}}</td>
                         </tr>
                         {% endfor %}
                         {% endif %}

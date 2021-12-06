@@ -6,7 +6,7 @@ from django.db.models import fields
 from django.forms import widgets
 from django.forms.widgets import DateTimeInput
 from datetime import date
-from .models import Administrador, Boleta, Cliente, Contrato, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,TipoAsesoria,Actividad, Visita, Checklist
+from .models import ActCheck, Administrador, Boleta, Cliente, Contrato, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,TipoAsesoria,Actividad, Visita, Checklist
 
 
 class GrupoForm(forms.ModelForm):
@@ -105,7 +105,7 @@ class PlanUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Plan
-        fields = ['nombre', 'descripcion', 'id_servicio']
+        fields = ['nombre', 'descripcion','costo', 'id_servicio']
 
         widgets = {
             'descripcion': forms.Textarea
@@ -339,3 +339,8 @@ class ChecklistVerificador(forms.ModelForm):
     class Meta:
         model = Checklist
         fields = ['verificacion']
+
+class listaForm(forms.ModelForm):
+    class Meta:
+        model = ActCheck
+        fields = '__all__'
