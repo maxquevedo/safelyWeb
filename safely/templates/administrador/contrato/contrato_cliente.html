@@ -6,30 +6,32 @@
 {% block body %}
 <div class="container-menu">
     {% include 'administrador/menu-admin/contratos.html'%}
-    
     <div class="info-perfiles">
         <div class="login-container">
-            <div class="actividad-box">
-                <div class="act-text-container">
-                    <h2>Crear nuevo contrato</h2>
+            <div class="signup-box">
+                <div class="perfil-text-container">
+                    <h2>CREAR NUEVO CONTRATO</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <div class="act-columns">
-                            <div class="crea-act-container">
-                                <h4>Fecha inicio</h4>
-                                {{form.fec_inicio}}
-                                <h4>Fecha termino</h4>
-                                {{form.fec_termino}}
-                                <h4>Valor</h4>
-                                {{form.total_pago}}
-                                <h4>Seleccionar plan</h4>
-                                {{form.id_plan}}
-                                <h4> Cliente</h4>
-                                {{form.id_cli}}
-
-                                <input type="submit" value="Crear" id="button" class="alter-button">
-                            </div>
-                        </div>
+                        <h4>Fecha inicio</h4>
+                        {{form.fec_inicio}}
+                        <h4>Fecha termino</h4>
+                        {{form.fec_termino}}
+                        <h4>Valor</h4>
+                        {{form.total_pago}}
+                        <h4>Seleccionar plan</h4>
+                        <select name="id_plan" id="id_id_plan" multiple style="height: 70px;">
+                            {% for x, y in form.fields.id_plan.choices %}
+                                <option value="{{ x }}"{% if form.fields.id_plan.value == x %} selected{% endif %}>{{ y }}</option>
+                            {% endfor %}
+                        </select>
+                        <h4>Cliente</h4>
+                        <select name="id_cli" id="id_id_cli" multiple style="height: 70px;">
+                            {% for x, y in form.fields.id_cli.choices %}
+                                <option value="{{ x }}"{% if form.fields.id_cli.value == x %} selected{% endif %}>{{ y }}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Crear" id="button" class="alter-button">
                     </form>
                     {{mensaje}}
                 </div>
@@ -37,5 +39,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}

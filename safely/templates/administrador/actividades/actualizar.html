@@ -15,7 +15,7 @@
                         <p>Fecha de Ida</p>
                             {{form.fec_ida}}
                         <p>Profesional</p>
-                        <select id="id_prof" name="id_id_porf" multiple style="height: 200px;">
+                        <select name="id_prof" id="id_id_prof" multiple style="height: 200px;">
                             {% for x, y in form.fields.id_prof.choices %}
                                 <option value="{{ x }}"{% if form.fields.id_prof.value == x %} selected{% endif %}>{{ y }}</option>
                             {% endfor %}
