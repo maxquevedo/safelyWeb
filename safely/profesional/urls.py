@@ -34,7 +34,7 @@ urlpatterns = [
     path('profesional/visita/ingresar/', ingresar_visita, name='ingresar_visita'),
     path('profesional/cliente/asignado/', cliente_asignado, name='cliente_asignado'),
 
-    path('profesional/checklist/home/',ver_check_cli, name='home-check'),
+    path('profesional/checklist/',ver_check_cli, name='home-check'),
     path('profesional/checklist/<int:id_clicheck>/',ver_checklist, name='checklist'),
     path('profesional/checklist/crear/<id_clicheck>/',añadir_item_check, name='crear-checklist'),
     path('profesional/checklist/verificar/<int:id_check>/',verificar_check, name='verificar-checklist'),

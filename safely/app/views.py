@@ -536,8 +536,6 @@ def actividades(request):
 
 @login_required
 def crear_actividad(request):
-    #print(request.user.username)
-
     capacitacion = lista_capacitacion()
     asesoria = lista_asesoria()
     visita = lista_visita()
@@ -594,8 +592,10 @@ def checklist(request):
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Creado correctamente!")
+            return redirect(to='listaCheck') 
         else:
-            data["form"] = formulario       
+            data["form"] = formulario    
+      
     return render(request, 'administrador/checklist/checklist.html', data)
 
 
