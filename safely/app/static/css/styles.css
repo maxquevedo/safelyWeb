@@ -517,12 +517,13 @@ input[type=checkbox] {
     display: flex;
     align-items: center;
     margin: auto;
+    height: 20%;
 }
 
 .titulo h3 {
-    padding-top: 80px;
-    padding-bottom: 50px;
-    margin: auto;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
     font-size: 35px;
     font-weight: bold;
@@ -531,7 +532,7 @@ input[type=checkbox] {
 .contenedor-cartas {
     display: flex;
     align-items: center;
-    height: auto;
+    height: 80%;
     width: 90%;
     margin: auto;
 }
@@ -539,20 +540,24 @@ input[type=checkbox] {
 .carta {
     background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.03));
     border-radius: 18px;
-    border:1px solid #dfdfdf;
+    border:3px solid #dfdfdf;
     align-items: center;
     justify-content: center;
     margin: auto;
     height: 350px;
     width: 25%;
     transition: 0.2s;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 .carta:hover{
     border: 3px solid #24a0ed;
-    height: 380px;
-    width: 26%;
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.04);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 .carta p {
@@ -777,7 +782,7 @@ input[type=checkbox] {
 .acciones-mantenedor {
     background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.03));
     border-radius: 18px;
-    border:1px solid #dfdfdf;
+    border:3px solid #dfdfdf;
     align-items: center;
     justify-content: center;
     margin: auto;
@@ -792,7 +797,7 @@ input[type=checkbox] {
 .acciones-mantenedor:hover{
     box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.03);
     cursor: pointer;
-    border: 2px solid #24a0ed;
+    border: 3px solid #24a0ed;
 }
 
 .desc-acc p {
