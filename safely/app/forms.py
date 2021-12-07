@@ -6,7 +6,7 @@ from django.db.models import fields
 from django.forms import widgets
 from django.forms.widgets import DateTimeInput
 from datetime import date
-from .models import ActCheck, Administrador, Boleta, Cliente, Contrato, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,TipoAsesoria,Actividad, Visita, Checklist
+from .models import Administrador, Boleta, CliCheckPro, Cliente, Contrato, Mejora, Perfil, Plan, Profesional, Servicio,Asesoria,Capacitacion,TipoAsesoria,Actividad, Visita, Checklist
 
 
 class GrupoForm(forms.ModelForm):
@@ -352,5 +352,5 @@ class ChecklistVerificador(forms.ModelForm):
 
 class listaForm(forms.ModelForm):
     class Meta:
-        model = ActCheck
+        model = CliCheckPro
         fields = '__all__'

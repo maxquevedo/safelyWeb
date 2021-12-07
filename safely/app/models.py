@@ -59,14 +59,14 @@ class Administrador(models.Model):
     def __str__(self):
         return self.id_perfil.id_auth_user.username
 
-class ActCheck(models.Model):
-    id_act_check = models.AutoField(primary_key=True)
+class CliCheckPro(models.Model):
+    id_clicheck = models.AutoField(primary_key=True)
     id_prof = models.ForeignKey('Profesional', models.DO_NOTHING, db_column='id_prof', blank=True, null=True)
     id_cli = models.OneToOneField('Cliente', models.DO_NOTHING, db_column='id_cli')
 
     class Meta:
         managed = False
-        db_table = 'act_check'
+        db_table = 'cli_check_pro'
 
     def __str__(self):
         return self.id_cli.razon_social
@@ -113,7 +113,7 @@ class Checklist(models.Model):
     nombre = models.CharField(max_length=1000)
     verificacion = models.BooleanField()
     fec_creado = models.DateField(auto_now_add=True, blank=True)
-    id_act_check = models.ForeignKey(ActCheck, models.DO_NOTHING, db_column='id_act_check')
+    id_clicheck = models.ForeignKey(CliCheckPro, models.DO_NOTHING, db_column='id_clicheck')
 
     class Meta:
         managed = False

@@ -1,5 +1,5 @@
 -- Generado por Oracle SQL Developer Data Modeler 21.2.0.183.1957
---   en:        2021-12-02 17:10:40 CLST
+--   en:        2021-12-06 22:03:37 CLST
 --   sitio:      Oracle Database 21c
 --   tipo:      Oracle Database 21c
 
@@ -8,14 +8,6 @@
 -- predefined type, no DDL - MDSYS.SDO_GEOMETRY
 
 -- predefined type, no DDL - XMLTYPE
-
-CREATE TABLE act_check (
-    id_act_check INTEGER NOT NULL,
-    id_prof      INTEGER,
-    id_cli       INTEGER NOT NULL
-);
-
-ALTER TABLE act_check ADD CONSTRAINT act_check_pk PRIMARY KEY ( id_act_check );
 
 CREATE TABLE actividad (
     id_actividad    INTEGER NOT NULL,
@@ -72,6 +64,7 @@ CREATE TABLE boleta (
     pago_mensual    INTEGER NOT NULL,
     pagado          NUMBER NOT NULL,
     pago_extra      INTEGER NOT NULL,
+    url             VARCHAR2(250) NOT NULL,
     id_contrato     INTEGER NOT NULL
 );
 
@@ -92,10 +85,18 @@ CREATE TABLE checklist (
     nombre       VARCHAR2(1000) NOT NULL,
     verificacion NUMBER NOT NULL,
     fec_creado   DATE NOT NULL,
-    id_act_check INTEGER NOT NULL
+    id_clicheck  INTEGER NOT NULL
 );
 
 ALTER TABLE checklist ADD CONSTRAINT lista_pk PRIMARY KEY ( id_check );
+
+CREATE TABLE cli_check_pro (
+    id_clicheck INTEGER NOT NULL,
+    id_prof     INTEGER,
+    id_cli      INTEGER NOT NULL
+);
+
+ALTER TABLE cli_check_pro ADD CONSTRAINT cli_check_pk PRIMARY KEY ( id_clicheck );
 
 CREATE TABLE cliente (
     id_cli       INTEGER NOT NULL,
@@ -187,11 +188,11 @@ CREATE TABLE visita (
 
 ALTER TABLE visita ADD CONSTRAINT visita_pk PRIMARY KEY ( id_visita );
 
-ALTER TABLE act_check
+ALTER TABLE cli_check_pro
     ADD CONSTRAINT act_check_cliente_fk FOREIGN KEY ( id_cli )
         REFERENCES cliente ( id_cli );
 
-ALTER TABLE act_check
+ALTER TABLE cli_check_pro
     ADD CONSTRAINT act_check_profesional_fk FOREIGN KEY ( id_prof )
         REFERENCES profesional ( id_prof );
 
@@ -236,8 +237,8 @@ ALTER TABLE boleta
         REFERENCES contrato ( id_contrato );
 
 ALTER TABLE checklist
-    ADD CONSTRAINT checklist_act_check_fk FOREIGN KEY ( id_act_check )
-        REFERENCES act_check ( id_act_check );
+    ADD CONSTRAINT checklist_act_check_fk FOREIGN KEY ( id_clicheck )
+        REFERENCES cli_check_pro ( id_clicheck );
 
 ALTER TABLE cliente
     ADD CONSTRAINT cliente_perfil_fk FOREIGN KEY ( id_perfil )

@@ -600,7 +600,7 @@ def checklist(request):
 
 
 def listaCheck(request):
-    lista = ActCheck.objects.all().order_by('id_act_check')
+    lista = CliCheckPro.objects.all().order_by('id_clicheck')
     page = request.GET.get('page', 1)
     try:
         paginator = Paginator(lista, 5)
@@ -612,8 +612,8 @@ def listaCheck(request):
                 'paginator': paginator}
     return render(request, 'administrador/checklist/listado.html', context)
 
-def modificaCheck(request,id_act_check):
-    lista = ActCheck.objects.get(id_act_check=id_act_check)
+def modificaCheck(request,id_clicheck):
+    lista = CliCheckPro.objects.get(id_clicheck=id_clicheck)
     if request.method == 'GET':
         form = listaForm(instance=lista)
     else:

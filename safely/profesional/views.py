@@ -213,25 +213,25 @@ def ver_check_cli(request):
     try:
         pro = Profesional.objects.get(id_perfil=Perfil.objects.get(id_auth_user=id_usuario))
 
-        actcheck = ActCheck.objects.filter(id_prof = pro)
+        clicheck = CliCheckPro.objects.filter(id_prof = pro)
     except:
-        actcheck = ActCheck.objects.none()
+        clicheck = CliCheckPro.objects.none()
 
     page = request.GET.get('page', 1)
     try:
-        paginator = Paginator(actcheck, 5)
-        actcheck = paginator.page(page)
+        paginator = Paginator(clicheck, 5)
+        clicheck = paginator.page(page)
     except:
         raise Http404
-    context = {'entity': actcheck,
+    context = {'entity': clicheck,
                 'paginator': paginator}
     return render(request, 'profesional/checklist/home-check.html',context)
 
-def ver_checklist(request, id_act_check):
+def ver_checklist(request, id_clicheck):
     id_usuario = request.user.id
 
     try:
-        checklist = Checklist.objects.filter(id_act_check=id_act_check).order_by('id_check')
+        checklist = Checklist.objects.filter(id_clicheck=id_clicheck).order_by('id_check')
     except:
         checklist = Checklist.objects.none()
 
@@ -245,12 +245,12 @@ def ver_checklist(request, id_act_check):
                 'paginator': paginator}
     return render(request, 'profesional/checklist/checklist.html',context)
 
-def añadir_item_check(request, id_act_check):
+def añadir_item_check(request, id_clicheck):
     data = {
-        'form': ChecklistForm(initial={'id_act_check': id_act_check})
+        'form': ChecklistForm(initial={'id_clicheck': id_clicheck})
     }
     if request.method == 'POST':
-        formulario = ChecklistForm(data=request.POST, initial={'id_act_check': id_act_check})
+        formulario = ChecklistForm(data=request.POST, initial={'id_clicheck': id_clicheck})
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Creado correctamente!")
@@ -268,7 +268,7 @@ def desverificar_check(request, id_check):
         form = ChecklistVerificador(request.POST, instance=check)
         if form.is_valid():
             form.save()
-    return HttpResponseRedirect('/profesional/checklist/%i/' % check.id_act_check.id_act_check)
+    return HttpResponseRedirect('/profesional/checklist/%i/' % check.id_clicheck.id_clicheck)
 
 def verificar_check(request, id_check):
     check = Checklist.objects.get(id_check=id_check)
@@ -280,7 +280,7 @@ def verificar_check(request, id_check):
             check = form.save()
             check.verificacion = True
             check.save()
-    return HttpResponseRedirect('/profesional/checklist/%i/' % check.id_act_check.id_act_check)
+    return HttpResponseRedirect('/profesional/checklist/%i/' % check.id_clicheck.id_clicheck)
 ##
 #######################################################################################################
 ## MEJORAS

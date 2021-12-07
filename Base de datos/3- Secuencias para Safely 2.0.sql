@@ -152,13 +152,13 @@ ALTER TABLE profesional MODIFY (id_prof DEFAULT prof_seq.NEXTVAL);
 
 --ACT-CHECK--
 
-CREATE SEQUENCE act_check_seq
+CREATE SEQUENCE cli_check_pro_seq
     START WITH     1
     INCREMENT BY   1
     NOCACHE
     NOCYCLE;
     
-ALTER TABLE act_check MODIFY (id_act_check DEFAULT act_check_seq.NEXTVAL);
+ALTER TABLE cli_check_pro MODIFY (id_clicheck DEFAULT cli_check_pro_seq.NEXTVAL);
 
 --CHECKLIST--
 

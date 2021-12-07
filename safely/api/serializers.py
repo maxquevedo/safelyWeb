@@ -150,8 +150,8 @@ class ChecklistSerializers(serializers.ModelSerializer):
         model = models.Checklist
         fields = '__all__'
 
-class ActCheckSerializers(serializers.ModelSerializer):
+class CliCheckProSerializers(serializers.ModelSerializer):
     class Meta:
-        model = models.ActCheck
+        model = models.CliCheckPro
         fields = '__all__'
 

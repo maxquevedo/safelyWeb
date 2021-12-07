@@ -203,9 +203,9 @@ class ChecklistViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
 
-class ActCheckViewSet(viewsets.ModelViewSet):
-    serializer_class = serializers.ActCheckSerializers
-    queryset =  models.ActCheck.objects.all()
+class CliCheckProViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.CliCheckProSerializers
+    queryset =  models.CliCheckPro.objects.all()
     authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
 

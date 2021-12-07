@@ -25,7 +25,7 @@ router.register('tipoasesoria',views.TipoAsesoriaViewSet)
 router.register('tiporeporte',views.TipoReporteViewSet)
 router.register('visita',views.VisitaViewSet)
 router.register('checklist',views.ChecklistViewSet)
-router.register('checkact',views.ActCheckViewSet)
+router.register('clicheck',views.CliCheckProViewSet)
 
 
 urlpatterns = [
