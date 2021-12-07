@@ -18,22 +18,24 @@
 
     <div class="info-perfiles">
         <div class="login-container">
-            <div class="actividad-box">
-                <div class="act-text-container">
+            <div class="admin-box">
+                <div class="admin-text">
                     <h2>Asignar Checklist</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        <div class="act-columns">
-                            <div class="crea-act-container">
-                                Profesional
-                               {{form.id_prof}}
-                               Cliente
-                               {{form.id_cli}}
-                                
-                                <p>Acción</p>
-                                <input type="submit" value="Crear" id="button" class="alter-button">
-                            </div>
-                        </div>
+                        <p style="width: 80%;margin: auto;padding-bottom: 10px;">Profesional</p>
+                        <select id="id_id_prof" name="id_prof" multiple style="width: 300px; height: 100px; font-size: 14px;">
+                        {% for x, y in form.fields.id_prof.choices %}
+                            <option value="{{ x }}"{% if form.fields.id_prof.value == x %} selected{% endif %}>{{ y }}</option>
+                        {% endfor %}
+                        </select>
+                        <p style="width: 80%;margin: auto;padding-bottom: 10px;">Cliente</p>
+                        <select id="id_id_cli" name="id_cli" multiple style="width: 300px; height: 100px; font-size: 14px;">
+                        {% for x, y in form.fields.id_cli.choices %}
+                            <option value="{{ x }}"{% if form.fields.id_cli.value == x %} selected{% endif %}>{{ y }}</option>
+                        {% endfor %}
+                        </select>
+                        <input type="submit" value="Crear" id="button" class="alter-button">
                     </form>
                     {{mensaje}}
                 </div>

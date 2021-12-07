@@ -60,13 +60,22 @@
                                 {{form.fec_ida}}
                                 <p>Estado</p>
                                 {{form.estado}}
-                                <p>Cliente</p>
-                                {{form.id_cli}}
-                                <p>Profesional</p>
-                                {{form.id_prof}}
-                                <p>Acción</p>
-                                <input type="submit" value="Crear" id="button" class="alter-button">
+                                <p style="width: 80%;margin: auto;padding-bottom: 10px;">Cliente</p>
+                                <select id="id_id_cli" name="id_cli" multiple>
+                                {% for x, y in form.fields.id_cli.choices %}
+                                    <option value="{{ x }}"{% if form.fields.id_cli.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                                </select>
+                                <p style="width: 80%;margin: auto;padding-bottom: 10px;">Profesional</p>
+                                <select id="id_id_prof" name="id_prof" multiple >
+                                {% for x, y in form.fields.id_prof.choices %}
+                                    <option value="{{ x }}"{% if form.fields.id_prof.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                                </select>
                             </div>
+                        </div>
+                        <div class="crea-act-button">
+                            <input type="submit" value="Crear" id="button" class="alter-button">
                         </div>
                     </form>
                 </div>

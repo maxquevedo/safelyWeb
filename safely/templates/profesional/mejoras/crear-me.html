@@ -21,12 +21,14 @@
                                 {{form.propuesta}}
                             </div>
                             <div class="crea-act-container">
-                                <p>Aceptación</p>
-                                {{form.aceptacion}}
-                                <p>Estado</p>
-                                {{form.estado}}
+                                <div style="visibility: hidden;height: 0px;">{{form.aceptacion}}</div>  
+                                <div style="visibility: hidden;height: 0px;">{{form.estado}}</div>
                                 <p>Actividad</p>
-                                {{form.id_actividad}}
+                                <select id="id_id_actividad" name="id_actividad" multiple class="select-grande">
+                                    {% for x, y in form.fields.id_actividad.choices %}
+                                        <option value="{{ x }}"{% if form.fields.id_actividad.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
                                 <input type="submit" value="Registrar" id="button" class="alter-button">
                             </div>
                         </div>

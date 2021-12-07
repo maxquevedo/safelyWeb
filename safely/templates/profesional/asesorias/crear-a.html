@@ -21,11 +21,13 @@
                                 {{form.descripcion}}
                             </div>
                             <div class="crea-act-container">
-                                <p>Estado</p>
-                                {{form.estado}}
+                                <p style="visibility: hidden; height: 0px;">{{form.estado}}</p>
                                 <p>Tipo de Asesoría</p>
-                                {{form.id_tipo_ase}}
-                                <p>Acción</p>
+                                <select id="id_id_tipo_ase" name="id_tipo_ase" class="select-grande" multiple >
+                                    {% for x, y in form.fields.id_tipo_ase.choices %}
+                                        <option value="{{ x }}"{% if form.fields.id_tipo_ase.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
                                 <input type="submit" value="Crear" id="button" class="alter-button">
                             </div>
                         </div>

@@ -143,15 +143,17 @@ class ServicioActive(forms.ModelForm):
 
 ## ASESORIAS 
 class AsesoriaForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(AsesoriaForm, self).__init__(*args, **kwargs)
+        self.initial['estado'] = '1'
     nombre = forms.CharField(min_length=4, max_length=250)
-
 
     def clean_nombre(self):
         nombre = self.cleaned_data["nombre"]
         existe = Asesoria.objects.filter(nombre__iexact=nombre).exists()
 
         if existe:
-            raise ValidationError("⚠️ Ya existe esa actividad⚠️")
+            raise ValidationError("⚠️ Ya existe esa Asesoría ⚠️")
         return nombre
 
     class Meta:
@@ -227,6 +229,10 @@ class IngresarCapacitacion(forms.ModelForm):
         }
 ## Mejoras
 class MejoraForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(MejoraForm, self).__init__(*args, **kwargs)
+        self.initial['estado'] = '1'
+
     class Meta:
         model = Mejora
         fields = '__all__'
@@ -288,6 +294,10 @@ class ActualizarActividad(forms.ModelForm):
         }
 ## VISITA
 class VisitaForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(VisitaForm, self).__init__(*args, **kwargs)
+        self.initial['estado'] = '1'
+
     class Meta:
         model = Visita
         fields = '__all__'

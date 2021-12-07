@@ -11,9 +11,9 @@
     <ul>
         <h2>{{user.get_full_name}}</h2>
         <li><a href="{% url 'home-cliente' %}">Home</a></li>
-        <li><a class="active-cli" href="{% url 'perfil-cliente' %}">Cambiar informacion</a></li>
+        <li><a class="active-cli" href="{% url 'perfil-cliente' %}">Cambiar Información</a></li>
 
-        <li><a href="{% url 'boleta-cliente' %}">pagar y ver boletas</a></li>
+        <li><a href="{% url 'boleta-cliente' %}">Pagar y ver Boletas</a></li>
         <li><a href="{% url 'actividades-cliente' %}">Actividades</a></li>
 
         <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
@@ -23,7 +23,7 @@
     <div class="login-container">
         <div class="actividad-box">
             <div class="act-text-container">
-                <h2>Modificar perfil</h2>
+                <h2>MODIFICAR PERFIL</h2>
                 <form action="" method="post">
                     {% csrf_token %}
                     <div class="act-columns">

@@ -140,10 +140,10 @@
     }
 
     .crea-act-container ul {
-        height: 28px;
-        width: 290px;
+        height: 25px;
+        width: 200px;
         margin-bottom: 15px;
-        font-size: 13px;
+        font-size: 11px;
     }
     
     .crea-act-container li{
@@ -171,6 +171,10 @@
 
     .crea-act-container .alter-button {
         width: 220px;
+    }
+
+    .crea-act-container .select-grande {
+        height: 170px;
     }
 
     input[type=checkbox] {

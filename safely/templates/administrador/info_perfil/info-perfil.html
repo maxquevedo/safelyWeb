@@ -9,7 +9,7 @@
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
-                <h2>Información perfiles</h2>
+                <h2>INFORMACIÓN PERFILES</h2>
                 <div class="botones-asesorias">
                     <form method="get">
                         <p>Rut: </p>{{entity.form.rut}} 
@@ -28,7 +28,7 @@
                             <th>Correo</th>
                             <th>Tipo de Perfil</th>
                             <th>Fecha Registro</th>
-                            <th>Ultima Sesión</th>
+                            <th>Última Sesión</th>
                             <th>Activo</th>
                         </tr>
                     </thead>
@@ -37,7 +37,7 @@
                         <tr>
                             <td>{{ perfil.rut }}</td>
                             <td >
-                                <a href="{% url 'modificar_perfil' perfil.id_auth_user.id %}"style="color: #18ac30;">
+                                <a href="{% url 'modificar_perfil' perfil.id_perfil %}"style="color: #18ac30;">
                                     {{ perfil.id_auth_user.username}}
                                 </a>
                             </td>
@@ -54,9 +54,14 @@
                                 Cliente
                                 {% endif %}
                             </td>
-                            <td>{{perfil.id_auth_user.date_joined}}</td>
-                            <td>{{perfil.id_auth_user.last_login}}</td>
-                            <td>{{perfil.id_auth_user.is_active}}</td>
+                            <td style="width: 30px;">{{perfil.id_auth_user.date_joined}}</td>
+                            <td style="width: 30px;">{{perfil.id_auth_user.last_login}}</td>
+                            <td>{% if perfil.id_auth_user.is_active %}
+                                Activo
+                                {% else %}
+                                Inactivo
+                                {% endif %}
+                            </td>
                         </tr>
                         {% endfor %} 
                     </tbody>
