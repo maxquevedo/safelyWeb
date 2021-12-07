@@ -20,9 +20,14 @@
         <div class="login-container">
             <div class="admin-box">
                 <div class="admin-text">
-                    <h2>Asignar Checklist</h2>
+                    <h2>ASIGNAR CHECKLIST</h2>
                     <form action="" method="post">
                         {% csrf_token %}
+                        {% if form.errors %}
+                        <div class="error-mensaje">
+                            <p>Este cliente ya tiene un checklists, selecciona otro</p>
+                        </div>
+                        {% endif %}
                         <p style="width: 80%;margin: auto;padding-bottom: 10px;">Profesional</p>
                         <select id="id_id_prof" name="id_prof" multiple style="width: 300px; height: 100px; font-size: 14px;">
                         {% for x, y in form.fields.id_prof.choices %}
