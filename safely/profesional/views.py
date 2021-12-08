@@ -344,7 +344,7 @@ def vista_actividad(request):
     try:
         pro = Profesional.objects.get(id_perfil=Perfil.objects.get(id_auth_user=id_usuario))
         id_profesional = pro.id_prof
-        ACT = Actividad.objects.filter(id_prof=id_profesional)
+        ACT = Actividad.objects.filter(id_prof=id_profesional).order_by('id_actividad')
     except:
         ACT = Actividad.objects.none()
 
