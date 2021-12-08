@@ -14,6 +14,8 @@ from django.template.loader import get_template
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 
+from datetime import date
+
 @login_required
 def creaBoleta(request):
     context = {'form':BoletaForm()}
@@ -42,26 +44,20 @@ def editarBoleta(request,id_boleta):
 
 @login_required
 def listaBoletas(request):
-    boleta = Boleta.objects.all().order_by('id_boleta')
+    boleta = Boleta.objects.all().order_by('pagado') 
     page = request.GET.get('page', 1)
     try:
         paginator = Paginator(boleta, 5)
-        boleta = paginator.page(page)
+        boleta = paginator.page(page)  
     except:
         raise Http404
     context = {'entity': boleta,
                 'paginator': paginator}
-
     return render(request, 'administrador/boleta/boleta.html',context)
-
-
 
 @login_required
 def datosBoleta(request, id_boleta):
     boleta = Boleta.objects.get(id_boleta=id_boleta)
-    print(boleta.id_contrato.id_cli.id_perfil.id_auth_user.email)
-
-
     context = {'form': boleta}
     template = get_template('administrador/correo/enviar_boleta.html')
     content = template.render(context)

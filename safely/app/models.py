@@ -2,7 +2,8 @@ from django.conf.urls import url
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from django.utils import timezone
+from datetime import date
+from django.contrib import messages
 
 class Perfil(models.Model):
     CHOICES = (
@@ -11,7 +12,7 @@ class Perfil(models.Model):
     ('3', "Cliente"),
     )
     id_perfil = models.AutoField(primary_key=True)
-    rut = models.CharField(max_length=12)
+    rut = models.CharField(max_length=12, unique=True)
     telefono = models.BigIntegerField()
     direccion = models.CharField(max_length=200)
     tipo_perf = models.CharField(max_length=1, choices=CHOICES)
@@ -163,6 +164,9 @@ class Boleta(models.Model):
     url = models.URLField(max_length = 200, blank=True, null=True)
     id_contrato = models.ForeignKey('Contrato', models.DO_NOTHING, db_column='id_contrato')
 
+    def atrasos(self):
+        return self.fec_pago == date.today()
+            
     class Meta:
         managed = False
         db_table = 'boleta'
