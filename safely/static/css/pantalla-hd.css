@@ -47,20 +47,23 @@
     }
 
     .lista .desc-act {
-
-        width: 140px;
-        height: 38px;
+        width: 130px;
+        height: 33px;
     }
     
     .lista .desc-act p {
-        height: 38px;
+        height: 33px;
+        padding-right: 6px;
+        width: 115px;
+        margin-left: auto;
     }
 
     .lista td, .lista th {
         border: 1px solid #ddd;
-        width: 100px;
-        height: 38px;
+        width: auto;
+    
         font-size: 11px;
+        padding: 2px;
     }
 
     .lista .table-action {
@@ -107,7 +110,9 @@
     .perfil-text-container form  input[type=submit], 
     .perfil-text-container form  input[type=email], 
     .perfil-text-container form  input[type=password],
-    .perfil-text-container form  input[type=date] {
+    .perfil-text-container form input[type=date],
+    .perfil-text-container form  input[type=date],
+    .perfil-text-container form select {
         margin-bottom: 12px;
         height: 30px;
         width: 220px;
@@ -119,22 +124,26 @@
         font-size: 14px;
     }
 
+    .act-text-container p {
+        font-size: 12px;
+    }
+
     .act-text-container > h2 {
-        padding-bottom: 20px;
-        padding-top: 20px;
-        font-size: 34px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-size: 28px;
         text-shadow: 0px 0px 16px rgba(0,0,0,0.02);
     }
 
     .actividad-box {
-        width: 780px;
+        width: 600px;
     }
 
     .crea-act-container ul {
-        height: 28px;
-        width: 290px;
+        height: 25px;
+        width: 200px;
         margin-bottom: 15px;
-        font-size: 13px;
+        font-size: 11px;
     }
     
     .crea-act-container li{
@@ -147,20 +156,25 @@
     .act-text-container form input[type=email], 
     .act-text-container form input[type=password], 
     .act-text-container form input[type=date], 
+    .act-text-container form input[type=url], 
     .act-text-container form select{
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         height: 30px;
-        width: 290px;
-        font-size: 13px;
+        width: 200px;
+        font-size: 11px;
     }
 
     .act-text-container textarea{
-        width: 290px;
-        font-size: 14px;
+        width: 200px;
+        font-size: 11px;
     }
 
     .crea-act-container .alter-button {
         width: 220px;
+    }
+
+    .crea-act-container .select-grande {
+        height: 170px;
     }
 
     input[type=checkbox] {
@@ -169,19 +183,19 @@
         margin: auto;
         margin-bottom: 12px;
         height: 34px;
-        width: 280px;
-        font-size: 12px;
+        width: 200px;
+        font-size: 11px;
     }
     
     .perfil-text-container select {
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         height: 24px;
-        width: 220px;
-        font-size: 12px;
+        width: 200px;
+        font-size: 11px;
     }
 
     .perfil-text-container .alter-button {
-        font-size: 12px;
+        font-size: 11px;
         margin-bottom: 20px;
     }
 
@@ -231,5 +245,27 @@
         padding-bottom: 18px;
         padding-top: 38px;
         font-size: 32px;
+    }
+
+    .botones-asesorias form p {
+        font-size: 12px;
+    }
+    
+    .botones-asesorias form input[type=text],
+    .botones-asesorias form select{
+        height: 24px;
+        width: 150px;
+        font-size: 12px;
+    }
+    
+    .botones-asesorias form input[type=submit] {
+        height: 24px;
+        width: 80px;
+        font-size: 12px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
     }
 }

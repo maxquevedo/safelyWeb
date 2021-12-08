@@ -430,9 +430,9 @@ def modificar_perfil(request,id_perfil):
     perfil = Perfil.objects.get(id_perfil=id_perfil)
 
     if request.method == 'GET':
-        form = PerfilForm(instance=perfil)
+        form = PerfilModificar(instance=perfil)
     else:
-        form = PerfilForm(request.POST, instance=perfil)
+        form = PerfilModificar(request.POST, instance=perfil)
         if form.is_valid():
             form.save()
             messages.success(request,"Perfil de "+perfil.id_auth_user.first_name+" "+perfil.id_auth_user.last_name+" modificado correctamente!")

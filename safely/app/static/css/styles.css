@@ -14,6 +14,15 @@ body {
     -moz-osx-font-smoothing: grayscale;
     font-smooth: subpixel-antialiased;
 }
+
+.menu-horizontal {
+    visibility: hidden;
+}
+
+.menu-horizontal div {
+    width: 50%;
+}
+
 /*NAV INICIO*/
 header {
     position: fixed;
@@ -36,6 +45,13 @@ header div {
 .sl {
     margin-left: 20px;
     text-transform: uppercase;
+}
+
+.menu {
+    width: 25px;
+    position: absolute;
+    left: 12.5px;
+    display: none;
 }
 
 nav {
@@ -768,7 +784,7 @@ input[type=checkbox] {
 
 .mantenedor-user {
     width: 100%;
-    height: 280px;
+    height: auto;
     margin: auto;
     display: flex;
 }
@@ -1183,4 +1199,113 @@ input[type=checkbox] {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #616161; 
+}
+
+@media (max-width:950px) {
+    .menu {
+        display: block;
+    }
+
+    .menu-horizontal  {
+        flex-direction: column;
+        overflow: hidden;
+        height: 60px;
+        transition: all 0.84s;
+        visibility: visible;
+    }
+
+    .menu-horizontal  > div {
+        width: 100%;
+    }
+
+    header  {
+        flex-direction: column;
+        overflow: hidden;
+        height: 60px;
+        transition: all 0.84s;
+        visibility: visible;
+    }
+
+    header  > div {
+        width: 100%;
+    }
+
+    .menu-horizontal .logo-container {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        width: 100%;
+        height: 60px;  
+    }
+
+    .sl {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        height: 60px;
+        font-weight: bold;
+    }
+    
+    nav {
+        justify-content: center;
+    }
+    
+    nav > ul {
+        margin: auto;
+        padding: 0;
+        width: 250px;
+        list-style-type: none;
+        display: block;
+    }
+    
+    nav > ul > li {
+        width: 100%;
+        display: flex;
+        margin: auto;
+        height: 40px;
+        text-align: center;
+        justify-content: flex-start;
+        border-bottom:2px solid rgba(255,255,255,.1);
+    }
+
+     nav > ul > li:last-child {
+        border-bottom: none;
+    }
+    
+    nav > ul > li > a {
+        color: white;
+        text-decoration: none;
+        width: 100%;
+        margin: auto;
+    }
+
+    .menu-vertical{
+        visibility: hidden;
+        width: 0%;
+    }
+
+    .menu-vertical ul{
+        width: 0%;
+    }
+
+    .info-perfiles {
+        width: 100%;
+    }
+
+    .container-mantenedor {
+        width: 100%;
+        height: 100vh;
+        margin: auto;
+        display:flex;
+        flex-direction: column;
+    }
+    
+    .mantenedor-user {
+        flex-direction: column;
+    }
+
+    .acciones-mantenedor {
+        margin-top: 20px;
+    }
 }

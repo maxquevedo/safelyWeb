@@ -1,14 +1,3 @@
--- Generado por Oracle SQL Developer Data Modeler 21.2.0.183.1957
---   en:        2021-12-06 22:03:37 CLST
---   sitio:      Oracle Database 21c
---   tipo:      Oracle Database 21c
-
-
-
--- predefined type, no DDL - MDSYS.SDO_GEOMETRY
-
--- predefined type, no DDL - XMLTYPE
-
 CREATE TABLE actividad (
     id_actividad    INTEGER NOT NULL,
     nombre          VARCHAR2(250) NOT NULL,
@@ -64,7 +53,7 @@ CREATE TABLE boleta (
     pago_mensual    INTEGER NOT NULL,
     pagado          NUMBER NOT NULL,
     pago_extra      INTEGER NOT NULL,
-    url             VARCHAR2(250) NOT NULL,
+    url             VARCHAR2(250),
     id_contrato     INTEGER NOT NULL
 );
 
@@ -130,15 +119,17 @@ CREATE TABLE mejora (
 ALTER TABLE mejora ADD CONSTRAINT mejoras_pk PRIMARY KEY ( id_mejora );
 
 CREATE TABLE perfil (
-    id_perfil   INTEGER NOT NULL,
-    rut         VARCHAR2(12),
-    telefono    INTEGER,
-    direccion   VARCHAR2(200),
-    tipo_perf   CHAR(1),
-    usuariop_id INTEGER NOT NULL
+    id_perfil INTEGER NOT NULL,
+    rut       VARCHAR2(12) NOT NULL,
+    telefono  INTEGER NOT NULL,
+    direccion VARCHAR2(200) NOT NULL,
+    tipo_perf CHAR(1) NOT NULL,
+    id_auth_user INTEGER NOT NULL
 );
 
 ALTER TABLE perfil ADD CONSTRAINT perfil_pk PRIMARY KEY ( id_perfil );
+
+ALTER TABLE perfil ADD CONSTRAINT perfil__un UNIQUE ( rut );
 
 CREATE TABLE plan (
     id_plan     INTEGER NOT NULL,
@@ -173,12 +164,6 @@ CREATE TABLE tipo_asesoria (
 );
 
 ALTER TABLE tipo_asesoria ADD CONSTRAINT tipo_asesoria_pk PRIMARY KEY ( id_tipo_ase );
-
-CREATE TABLE usuariop (
-    id INTEGER NOT NULL
-);
-
-ALTER TABLE usuariop ADD CONSTRAINT usuariop_pk PRIMARY KEY ( id );
 
 CREATE TABLE visita (
     id_visita INTEGER NOT NULL,
@@ -256,10 +241,6 @@ ALTER TABLE mejora
     ADD CONSTRAINT mejoras_actividad_fk FOREIGN KEY ( id_actividad )
         REFERENCES actividad ( id_actividad );
 
-ALTER TABLE perfil
-    ADD CONSTRAINT perfil_usuariop_fk FOREIGN KEY ( usuariop_id )
-        REFERENCES usuariop ( id );
-
 ALTER TABLE plan
     ADD CONSTRAINT plan_servicio_fk FOREIGN KEY ( id_servicio )
         REFERENCES servicio ( id_servicio );
@@ -272,9 +253,9 @@ ALTER TABLE profesional
 
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 
--- CREATE TABLE                            18
+-- CREATE TABLE                            17
 -- CREATE INDEX                             0
--- ALTER TABLE                             38
+-- ALTER TABLE                             37
 -- CREATE VIEW                              0
 -- ALTER VIEW                               0
 -- CREATE PACKAGE                           0
