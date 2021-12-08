@@ -12,7 +12,12 @@
                     <h2>MODIFICAR ASESORÍA</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{form}}
+                        <P>Nombre</P>
+                        {{form.nombre}}
+                        <p>Descripción</p>
+                        {{form.descripcion}}
+                        <p>Tipo asesoria</p>
+                        {{form.id_tipo_ase}}
                         <input type="submit" value="Modificar" id="button" class="alter-button">
                     </form>
                 </div>

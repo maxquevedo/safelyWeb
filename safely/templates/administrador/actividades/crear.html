@@ -53,10 +53,10 @@
 
                                 </select>
                                 <p>Cliente</p>
-                                <select name="id_cli" required="" id="id_id_cli">
+                                <select  name="id_cli" required="" id="id_id_cli">
                                 <option value="" selected="">Seleccionar</option>
                                 {% for c in cliente %}
-                                <option value="{{ c.id_cli }}" >{{ c.id_perfil }}</option>
+                                <option  value="{{ c.id_cli }}" >{{ c.id_perfil }}</option>
                                 {% endfor %}
 
                                 </select>

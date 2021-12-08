@@ -3,12 +3,52 @@
 {% block tittle %}Adminsitrador - Actividad{% endblock %}
 
 {% block body %}
+<style>
+    .alert {
+      padding: 20px;
+      background-color: #f44336;
+      color: white;
+      opacity: 1;
+      transition: opacity 0.6s;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .closebtn:hover {
+      color: black;
+    }
+</style>
 <div class="container-menu">
     {% include 'administrador/menu-admin/boletas.html'%}
     <div class="info-perfiles">
         <div class="container-lista">
             <div class="lista">
+                <div class="alert">
+                    <span class="closebtn">&times;</span>  
+                    <strong>Las boletas N°:</strong>
+                  {% for entity in entity %}
+                    {% if entity.atrasos == True and entity.pagado == False %}
+                         {{entity.id_boleta}}, 
+                    {% endif %}
+                    
+                {% endfor %}
+                    <strong>no han sido pagadas </strong>
+
+                </div>
+
+
                 <h2>LISTADO DE BOLETAS</h2>
+                
+                
                 <div class="botones-asesorias">
                     <a class ="color-verde" href="{% url 'creaBoleta' %}">Crear boleta</a>
                 </div>
@@ -68,4 +108,16 @@
         </div>
     </div>
 </div>
+<script>
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+    
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+      }
+    }
+</script>
 {% endblock %}

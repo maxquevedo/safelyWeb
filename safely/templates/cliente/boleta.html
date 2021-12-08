@@ -21,6 +21,7 @@
         <div class="container-lista">
             <div class="lista">
                 <h2>BOLETAS</h2>
+                
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -32,7 +33,6 @@
                             <th>Estado</th>
                             <th>Pagos Extras</th>
                             <th>URL</th>
-                            <th>Cliente</th>
                             <th>Correo</th>       
                         </tr>
                     </thead>
@@ -54,7 +54,6 @@
                             <td >$ {{entity.pago_extra}}</td>
                             <td > <a style="width: 120px;overflow: auto;padding-bottom: 8px; color: #1870A8;" href="{{entity.url}}"> Pagar Aqui </a> </td>
                             
-                            <td >{{entity.id_contrato}}</td>
                             <td >{{entity.id_contrato.id_cli.id_perfil.id_auth_user.email}}</td>
                         </tr>
                         {% endfor %}

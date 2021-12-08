@@ -12,6 +12,7 @@ from app.models import *
 from django.views.generic.list import ListView
 from django.utils.decorators import method_decorator
 
+from datetime import date
 
 @method_decorator(login_required, name='dispatch')
 class home_cliente(ListView):
@@ -22,7 +23,6 @@ class home_cliente(ListView):
         perfil = Perfil.objects.get(id_auth_user = user.id)
         cliente = Cliente.objects.get(id_perfil = perfil.id_perfil)
         actividad= Actividad.objects.all().filter(id_cli = cliente.id_cli)
-        print(actividad)
         querySet = actividad
         return querySet
 
@@ -85,7 +85,7 @@ def boleta(request):
     contr=Contrato.objects.all().filter(id_cli = id_cliente) # recibe todos los contratos con ese cliente 
 
     try:
-        bol = Boleta.objects.filter(id_contrato__in = contr) # todos los contratos(del cliente) listan sus boletas
+        bol = Boleta.objects.filter(id_contrato__in = contr) # todos los contratos(del cliente) listan sus boletas    
     except:
         bol = Boleta.objects.none()
     page = request.GET.get('page', 1)
@@ -94,9 +94,13 @@ def boleta(request):
         bol = paginator.page(page)
     except:
         raise Http404
+
+
     context = {'entity': bol,
                 'paginator': paginator}  
+
     return render(request, 'cliente/boleta.html',context)
+
 def lista(request):
     return render(request, 'cliente/lista.html')
 
