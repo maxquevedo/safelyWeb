@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Adminsitrador - Actividad{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/ver-actividades.html'%}
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>LISTADO DE ACTIVIDADES</h2>
+                <div class="botones-asesorias">
+                    <a class ="color-verde" href="{% url 'crear-activ' %}">Crear nueva actividad</a>
+                </div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID Actividad</th>
+                            <th>Nombre </th>
+                            <th>Descripción </th>
+                            <th>Tipo de Actividad </th>
+                            <th>Estado  </th>
+                            <th>Cliente</th>
+                            <th>Profesional</th>
+                            <TH>Acción</TH>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td class="table-id">{{entity.0}}</td>
+
+                            <td>{{entity.1}}</td>
+
+                            <td class="desc-act"><p>{{entity.2}}</p></td>
+
+                            <td> {% if entity.3 == '1' %}
+                                Capacitación
+                                {% elif entity.3 == '2' %}
+                                Asesoría
+                                {% elif entity.3 == '3' %}
+                                Visita
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                
+                                {% if entity.8 == '1' %}
+                                Solicitado
+                                {% elif entity.8 == '2' %}
+                                Pendiente
+                                {% elif entity.8 == '3' %}
+                                Realizado
+                                {% elif entity.8 == '4' %}
+                                Cancelado
+                                {% endif %}
+                            </td>
+
+                            <td>{{ entity.9 }}</td>
+
+                            <td>{{ entity.10 }}</td>
+
+                            <td class="table-action" >
+                                <a href="{% url 'actualizar_actividad' entity.0 %}">
+                                    <div class = "modificar" style="width: 140px;"><p>Asignar Profesional</p></div>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

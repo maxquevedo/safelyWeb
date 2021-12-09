@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block js %}
+<script>
+    $(function() {
+        $('#id_tipo_act').change(function(){
+            $('.tipo').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
+{% endblock %}
+{% block tittle %}Crear Actividad{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/actividad.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>CREAR ACTIVIDAD</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre</p>
+                                {{form.nombre}}
+                                <p>Descripción</p>
+                                {{form.descripcion}}
+                                <p>Tipo de Actividad</p>
+                                <select id="id_tipo_act" name="tipo_act">
+                                    {% for x, y in form.fields.tipo_act.choices %}
+                                        <option value="{{ x }}"{% if form.fields.tipo_act.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
+                                <diV id=1 class="tipo" style="display:none">
+                                    <p>Capacitación</p>
+                                    {{form.id_capacitacion}}
+                                </div>
+                                <diV id="2" class="tipo" style="display:none">
+                                    <p>Asesoría</p>
+                                    {{form.id_asesoria}}
+                                </div>
+                                <diV id="3" class="tipo" style="display:none">
+                                    <p>Visita</p>
+                                    {{form.id_visita}}
+                                </div>
+                                <p>Fecha estimada</p>
+                                {{form.fec_estimada}}
+                                {% if form.fec_estimada.errors %}
+                                <p>Error</p>
+                                {% endif %}
+                                {{form.fec_estimada.errors}}
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Actividad extra</p>
+                                {{form.act_extra}}
+                                <p>Fecha de ida</p>
+                                {{form.fec_ida}}
+                                <p>Estado</p>
+                                {{form.estado}}
+                                <p style="width: 80%;margin: auto;padding-bottom: 10px;">Cliente</p>
+                                <select id="id_id_cli" name="id_cli" multiple>
+                                {% for x, y in form.fields.id_cli.choices %}
+                                    <option value="{{ x }}"{% if form.fields.id_cli.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                                </select>
+                                <p style="width: 80%;margin: auto;padding-bottom: 10px;">Profesional</p>
+                                <select id="id_id_prof" name="id_prof" multiple >
+                                {% for x, y in form.fields.id_prof.choices %}
+                                    <option value="{{ x }}"{% if form.fields.id_prof.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="crea-act-button">
+                            <input type="submit" value="Crear" id="button" class="alter-button">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Registro{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/mantenedor.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="admin-box">
+                <div class="admin-text">
+                    <h2>Crear Grupo</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <p>Nombre de grupo</p>
+                        {{form.name}}
+                        <p>Selecciona permisos</p>
+                        <div class="permisos">{{form.permissions}}</div>
+                        <input type="submit" value="Crear" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

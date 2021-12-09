@@ -1,0 +1,3 @@
+Ejecutar:
+py manage.py migrate
+

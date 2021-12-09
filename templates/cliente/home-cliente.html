@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Cliente{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/main.css'  %}">
+{% endblock  %}
+{% block body %}
+<div class="container-menu">
+    <div class="menu-vertical">
+        <ul>
+            <h2>{{user.get_full_name}}</h2>
+            <li><a class="active-cli"href="{% url 'home-cliente' %}">Home</a></li>
+            <li><a href="{% url 'perfil-cliente' %}">Cambiar Información</a></li>
+            <li><a href="{% url 'boleta-cliente' %}">Pagar y ver Boletas</a></li>
+            <li><a href="{% url 'actividades-cliente' %}">Actividades</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <div id="calendar" class="info-perfiles" style="padding: 30px;"></div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/locales-all.js' %}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        var calendarUI = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarUI,{
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+            },
+            events: [
+                {% for Actividad in object_list %}
+                    {% if Actividad.tipo_act == '1' %}
+                    {
+                        title: '{{ Actividad.nombre }}',
+                        start: '{{ Actividad.fec_estimada|date:"Y-m-d" }}',
+                        borderColor: 'Black',
+                        backgroundColor: '#24a0ed',
+                        textColor: 'Black',
+
+                    },
+                    {% elif Actividad.tipo_act == '2' %}
+                    {
+                        title: '{{ Actividad.nombre }}',
+                        start: '{{ Actividad.fec_estimada|date:"Y-m-d" }}',
+                        borderColor: 'Black',
+                        backgroundColor: '#edad24',
+                        textColor: 'Black',
+                    },
+                    {% elif Actividad.tipo_act == '3' %}
+                    {
+                        title: '{{ Actividad.nombre }}',
+                        start: '{{ Actividad.fec_estimada|date:"Y-m-d" }}',
+                        borderColor: 'Black',
+                        backgroundColor: '#18ac30',
+                        textColor: 'Black',
+                    },
+                    {% endif %}
+                {% endfor %}
+            ],
+        });
+        calendar.render();
+        calendar.setOption('locale','es');
+    });
+</script>
+{% endblock %}
+

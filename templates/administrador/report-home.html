@@ -1,0 +1,34 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Reportes{% endblock %}
+
+{% block body %}
+{% if perms.api.add_user %}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/reportes.html'%}
+    <div class="info-perfiles">
+        <div class="container-mantenedor">
+            <div class="mantenedor-user">
+                <a href="{% url 'reporte-global-home' %}">
+                    <div class="acciones-mantenedor">
+                        <div class="desc-acc">
+                            <h3>Reporte Global</h3>
+                            <p>Se emite un reporte global mensual de los datos adquiridos por el sistema Safely.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'reporte-cliente-home' %}">
+                <div class="acciones-mantenedor">
+                    <div class="desc-acc">
+                        <h3>Reporte Cliente</h3>
+                        <p>Se realiza en reporte para un Cliente.</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

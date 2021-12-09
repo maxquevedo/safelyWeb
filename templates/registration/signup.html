@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block js %}
+<script>
+    $(function() {
+        $('#id_groups').change(function(){
+            $('.tipo').hide();
+            $('#' + $(this).val()).show();
+            var selValue = $("#id_groups").val();
+            $("#id_tipo_perf").val(selValue);
+        });
+    });
+
+    
+</script>
+{% endblock %}
+{% block tittle %}Crear Usuario{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/mantenedor.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>CREAR USUARIO</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Usuario</p>
+                                {{form.username}}
+                                {{form.username.errors}}
+                                <p>Nombre</p>
+                                {{form.first_name}}
+                                <p>Apellido</p>
+                                {{form.last_name}}
+                                <p>Correo</p>
+                                {{form.email}}
+                                <p>Contraseña</p>
+                                <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
+                                <p>Confirmar Contraseña</p>
+                                <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
+    
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Grupo</p>
+                                <select id="id_groups" name="groups">
+                                    <option value="">Seleccione grupo</option>
+                                    {% for x, y in form.fields.groups.choices %}
+                                        <option value="{{ x }}"{% if form.fields.groups.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
+                                <p>Rut</p>
+                                {{form_p.rut}}
+                                <p>Teléfono</p>
+                                {{form_p.telefono}}
+                                <p>Dirección</p>
+                                {{form_p.direccion}}
+                                {{form_p.tipo_perf.as_hidden}}
+                                <diV id=1 class="tipo" style="display:none">
+                                    {{adminform.as_p}}
+                                </div>
+                                <diV id="2" class="tipo" style="display:none">
+                                    {{proform.as_p}}
+                                </div>
+                                <diV id="3" class="tipo" style="display:none">
+                                    <p>Razón Social</p>
+                                    {{cliform.razon_social}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="crea-act-button">
+                            <input type="submit" value="Crear" id="button" class="alter-button">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

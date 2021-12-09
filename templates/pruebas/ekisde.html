@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Información perfiles{% endblock %}
+
+{% block body %}
+{% if perms.api.add_user %}
+<div class="container-menu">
+    
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>INFORMACIÓN PERFILES</h2>
+                <div class="botones-asesorias">
+                    <form method="get">
+                        <p>Rut: </p>{{PerfilF.form.rut}} 
+                        <p>Tipo de perfil: </p>{{PerfilF.form.tipo_perf}}
+                        <input class="color-verde" type="submit" value="Buscar">
+                    </form>
+                </div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Rut</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th>
+                            <th>Correo</th>
+                            <th>Tipo de Perfil</th>
+                            <th>Fecha Registro</th>
+                            <th>Ultima Sesión</th>
+                            <th>Activo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for perfil in PerfilF.qs %}
+                        <tr>
+                            <td>{{ perfil.rut }}</td>
+                            <td>{{ perfil.id_auth_user.username}}</td>
+                            <td>{{ perfil.id_auth_user.first_name}} {{ perfil.id_auth_user.last_name}}</td>
+                            <td class="fono">{{ perfil.telefono }}</td>
+                            <td>{{ perfil.direccion }}</td>
+                            <td>{{ perfil.id_auth_user.email }}</td>
+                            <td>
+                                {% if perfil.tipo_perf == '1' %}
+                                Admin
+                                {% elif perfil.tipo_perf == '2' %}
+                                Profesional
+                                {% elif  perfil.tipo_perf == '3' %}
+                                Cliente
+                                {% endif %}
+                            </td>
+                            <td>{{perfil.id_auth_user.date_joined}}</td>
+                            <td>{{perfil.id_auth_user.last_login}}</td>
+                            <td>{{perfil.id_auth_user.is_active}}</td>
+                        </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block js %}
+<script>
+    $(function() {
+        $('#id_tipo_act').change(function(){
+            $('.tipo').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
+{% endblock %}
+{% block tittle %}Crear Actividad{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/ver-actividades.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>CREAR ACTIVIDAD</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre</p>
+                                <input type="text" name="nombre" maxlength="250" minlength="4" required="" id="id_nombre">
+                                <p>Descripción</p>
+                                <input type="text" name="descripcion" maxlength="250" required="" id="id_descripcion">
+                                <p>Tipo de Actividad</p>
+                                <select id="id_tipo_act" name="tipo_act">
+                                        <option value="">Seleccionar</option>
+                                        <option value="1">Capacitación</option>
+                                        <option value="2">Asesoría</option>
+                                        <option value="3">Visita</option>
+                                </select>
+                                
+                                <p>Fecha estimada</p>
+                                <input type="date" name="fec_estimada" class="form-control" placeholder="Selecciona una fecha" required="" id="id_fec_estimada">
+                            </div>
+
+
+                            <div class="crea-act-container">
+
+                                <p>Estado</p>
+                                <select name="estado" required="" id="id_estado">
+                                <option value="" selected="">Seleccionar</option>
+                                <option value="1">Solicitado</option>
+                                <option value="2">Pendiente</option>
+                                <option value="3">Realizado</option>
+                                <option value="4">Cancelado</option>
+
+                                </select>
+                                <p>Cliente</p>
+                                <select  name="id_cli" required="" id="id_id_cli">
+                                <option value="" selected="">Seleccionar</option>
+                                {% for c in cliente %}
+                                <option  value="{{ c.id_cli }}" >{{ c.id_perfil }}</option>
+                                {% endfor %}
+
+                                </select>
+                                <p>Profesional</p>
+                                <select name="id_prof" id="id_id_prof">
+                                <option value="" selected="">Seleccionar</option>
+                                {% for p in profesional %}
+                                <option value="{{ p.id_prof }}" >{{p.id_perfil }}</option>
+                                {% endfor %}
+
+                                </select>
+                                
+                                <p>Acción</p>
+                                <input type="submit" value="Crear" id="button" class="alter-button">
+                            </div>
+                        </div>
+                    </form>
+                    {{mensaje}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

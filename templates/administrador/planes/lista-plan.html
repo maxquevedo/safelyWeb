@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Planes -LISTA{% endblock %}
+{% block body %}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/mantenedor.html'%}
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>Lista de Planes</h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Identificador</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Costo</th>
+                            <th>Servicios</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.id_plan}}</td>
+                            <td>{{entity.nombre}}</td>
+                            <td class="desc-act"><p>{{entity.descripcion}}</p></td>
+                            <td>{{entity.costo}}</td>
+                            <td>{{entity.id_servicio}}</td>
+                            <td>{% if entity.estado %}
+                                Activo
+                                {% else %}
+                                Desactivado
+                                {% endif %}</td>
+                            <td class="table-action">
+                                <a href="{% url 'editar-plan' entity.id_plan %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                                {% if entity.estado %}
+                                <a href="{% url 'desactivar-plan' entity.id_plan %}">
+                                    <div class = "vigente"><p>Desactivar</p></div>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'activar-plan' entity.id_plan %}">
+                                    <div class = "vigente"><p>Activar</p></div>
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {%endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

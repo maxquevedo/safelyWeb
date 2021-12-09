@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Boleta{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h3>Modificar formulario</h3>
+                    <br>
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                            <label for="id_fec_emision_bol">Fecha emisión de boletas</label>
+                            {{form.fec_emision_bol}}
+                            <label for="id_fec_pago">Fec pago:</label>
+                            {{form.fec_pago}}
+                            <label for="id_fec_corte">Fec corte:</label>
+                            {{form.fec_corte}}
+
+                            <label for="id_pago_mensual">Pago mensual:</label>
+                            {{form.pago_mensual}}
+                            
+                            <label for="id_pago_extra">Pago extra:</label>
+                            {{form.pago_extra}}
+                            <label for="id_url">Url:</label>
+                            {{form.url}}
+                            <label for="id_id_contrato">Id contrato:</label>
+                            {{form.id_contrato}}
+  
+                        
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

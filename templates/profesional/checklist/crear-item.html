@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Crear Visita{% endblock %}
+
+{% block body %}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/checklist.html'%}
+    
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="perfil-text-container">
+                    <h2>CREAR ITEM</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <p style="margin-bottom: 10px;">Item por Verificar</p>
+                        {{form.nombre}}
+                        <div style="visibility: hidden; height: 0px;">{{form.verificacion}}</div>
+                        <div style="visibility: hidden; height: 0px;">{{form.id_clicheck}}</div>
+
+                        <input type="submit" value="Registrar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
