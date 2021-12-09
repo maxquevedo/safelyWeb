@@ -43,7 +43,7 @@
 {% block tittle %}Home{% endblock %}
 
 {% block body %}
-{% if user.is_staff %}
+{% include 'administrador/menu-horizontal.html'%}
 <div class="container-menu">
     {% include 'administrador/menu-admin/home.html'%}
     <div class="info-perfiles">
@@ -52,5 +52,4 @@
         </div>
     </div>
 </div>
-{% endif %}
 {% endblock %}

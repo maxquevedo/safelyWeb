@@ -1,0 +1,18 @@
+{% load static %}
+<header id="header" class="menu-horizontal">
+    <div class="logo-container">
+        <img src="{% static 'img/menuiconwhite.png' %}" alt="menu" class="menu" id="menu">
+        <h2 class="sl">Safely</h2>
+    </div>
+    <div>
+        <nav id="nav">
+            <ul>
+                <li><a href="{% url 'home-cliente' %}">Home</a></li>
+                <li><a href="{% url 'perfil-cliente' %}">Cambiar Información</a></li>
+                <li><a href="{% url 'boleta-cliente' %}">Pagar y ver Boletas</a></li>
+                <li><a href="{% url 'actividades-cliente' %}">Actividades</a></li>
+                <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
