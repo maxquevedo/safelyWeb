@@ -460,6 +460,8 @@ def modificar_perfil(request,id_perfil):
         if form.is_valid():
             form.save()
             messages.success(request,"Perfil de "+perfil.id_auth_user.first_name+" "+perfil.id_auth_user.last_name+" modificado correctamente!")
+        else:
+            messages.error(request, "Ha ingresado un rut ya registrado, no se han guardado cambios.")
         return redirect(to='infoPerfil')
     context = {
         'form':form
