@@ -166,12 +166,12 @@
                 {% for actividadA in actividadA %}
                 <tr>
 
-                    <td style="border-left: 1px solid white;">{{ actividadA.id_asesoria.nombre }}</td>
-                    <td style="text-align: left;">{{ actividadA.id_asesoria.descripcion }}</td>
-                    <td>{{ actividadA.id_asesoria.id_tipo_ase }}</td>
-                    <td>{{ actividadA.fec_ida }}</td>
-                    <td>{{ actividadA.nombre }}</td>
-                    <td style="text-align: left;">{{ actividadA.descripcion }}</td>
+                    <td style="border-left: 1px solid white;"> {{ actividadA.id_asesoria.nombre }} </td>
+                    <td style="text-align: left;"> {{ actividadA.id_asesoria.descripcion }} </td>
+                    <td> {{ actividadA.id_asesoria.id_tipo_ase }} </td>
+                    <td> {{ actividadA.fec_ida }} </td>
+                    <td> {{ actividadA.nombre }} </td>
+                    <td style="text-align: left;"> {{ actividadA.descripcion }} </td>
                     {% if actividadA.act_extra == True %}
                     <td style="border-right: 1px solid white;">Si</td>
                     {% else %}
@@ -202,12 +202,12 @@
             <tbody>
                 {% for actividadC in actividadC %}
                 <tr>
-                    <td style="border-left: 1px solid white;">{{ actividadC.id_capacitacion.nombre }}</td>
-                    <td>{{ actividadC.id_capacitacion.cant_asistentes }}</td>
-                    <td style="text-align: left;">{{ actividadC.id_capacitacion.materiales }}</td>
-                    <td>{{ actividadC.fec_ida }}</td>
-                    <td>{{ actividadC.nombre }}</td>
-                    <td style="text-align: left;">{{ actividadC.descripcion }}</td>
+                    <td style="border-left: 1px solid white;"> {{ actividadC.id_capacitacion.nombre }} </td>
+                    <td> {{ actividadC.id_capacitacion.cant_asistentes }} </td>
+                    <td style="text-align: left;"> {{ actividadC.id_capacitacion.materiales }} </td>
+                    <td> {{ actividadC.fec_ida }} </td>
+                    <td> {{ actividadC.nombre }} </td>
+                    <td style="text-align: left;"> {{ actividadC.descripcion }} </td>
                     {% if actividadC.act_extra == True %}
                     <td style="border-right: 1px solid white;">Si</td>
                     {% else %}
@@ -237,10 +237,10 @@
               {% for actividadV in actividadV %}
               <tr>
 
-                  <td style="border-left: 1px solid white;">{{ actividadV.id_visita.nombre }}</td>
-                  <td>{{ actividadV.fec_ida }}</td>
+                  <td style="border-left: 1px solid white;"> {{ actividadV.id_visita.nombre }} </td>
+                  <td> {{ actividadV.fec_ida }} </td>
                   <td>{{ actividadV.nombre }}</td>
-                  <td>{{ actividadV.descripcion }}</td>
+                  <td> {{ actividadV.descripcion }} </td>
                   {% if actividadV.act_extra == True %}
                   <td style="border-right: 1px solid white;" >Si</td>
                   {% else %}
@@ -266,9 +266,9 @@
           <tbody>
               {% for alertas in alertas %}
               <tr>
-                  <td style="border-left: 1px solid white;">{{ alertas.fec_aviso }}</td>
-                  <td style="text-align: left;">{{ alertas.descripcion }}</td>
-                  <td style="border-right: 1px solid white;">{{ alertas.id_prof.id_perfil.id_auth_user.first_name }} {{ alertas.id_prof.id_perfil.id_auth_user.last_name }}</td>
+                  <td style="border-left: 1px solid white;"> {{ alertas.fec_aviso }} </td>
+                  <td style="text-align: left;"> {{ alertas.descripcion }} </td>
+                  <td style="border-right: 1px solid white;"> {{ alertas.id_prof.id_perfil.id_auth_user.first_name }} {{ alertas.id_prof.id_perfil.id_auth_user.last_name }} </td>
               </tr>
               {% endfor %}
           </tbody>

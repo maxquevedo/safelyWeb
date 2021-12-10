@@ -25,15 +25,26 @@
     <script src="{% static 'js/smooth.js' %}"></script>
     <script src="{% static 'js/menu-horizontal.js' %}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     {% if messages %}
         {% for m in messages %}
-            <script>
-                Swal.fire({
-                    "title": "Felicitaciones",
-                    "text": "{{m}}",
-                    "icon": "success"
-                })
-            </script>
+            {% if m.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <script>
+                    Swal.fire({
+                        "title": "Error",
+                        "text": "{{m}}",
+                        "icon": "error"
+                    })
+                </script>
+            {% else %}
+                <script>
+                    Swal.fire({
+                        "title": "Felicitaciones",
+                        "text": "{{m}}",
+                        "icon": "success"
+                    })
+                </script>
+            {% endif %}
         {% endfor %}
     {% endif %}
     {% block js %}

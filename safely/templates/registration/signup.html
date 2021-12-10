@@ -8,7 +8,15 @@
             $('#' + $(this).val()).show();
             var selValue = $("#id_groups").val();
             $("#id_tipo_perf").val(selValue);
+            if($("#id_groups").val() == 1){
+                console.log("Hello world!");
+                $("#id_is_staff").prop('checked', true);
+            }
+            else {
+                $("#id_is_staff").prop('checked', false);
+            }
         });
+
     });
 
     
@@ -17,6 +25,7 @@
 {% block tittle %}Crear Usuario{% endblock %}
 
 {% block body %}
+{% include 'administrador/menu-horizontal.html'%}
 <div class="container-menu">
     {% include 'administrador/menu-admin/mantenedor.html'%}
     <div class="info-perfiles">
@@ -41,7 +50,7 @@
                                 <input type="password" name="password1" required id="id_password1" placeholder="Contraseña">
                                 <p>Confirmar Contraseña</p>
                                 <input type="password" name="password2" required id="id_password2" placeholder="Confirmar contraseña">
-    
+                                <div style="height: 0px;visibility: hidden;">{{form.is_staff}}</div>
                             </div>
                             <div class="crea-act-container">
                                 <p>Grupo</p>

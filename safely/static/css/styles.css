@@ -14,6 +14,15 @@ body {
     -moz-osx-font-smoothing: grayscale;
     font-smooth: subpixel-antialiased;
 }
+
+.menu-horizontal {
+    visibility: hidden;
+}
+
+.menu-horizontal div {
+    width: 50%;
+}
+
 /*NAV INICIO*/
 header {
     position: fixed;
@@ -513,13 +522,71 @@ input[type=checkbox] {
 /*Foto home final*/
 /*planes inicio*/
 
-.contenedor-precios {
+.contenedor-empresa {
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    background-color: #1a1a1a;
+    color: #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    text-shadow: 0px 0px 16px rgba(0,0,0,1);
+}
+
+
+.contenedor-caja{
+    width: 70%;
+    height: 70%;
+    background-color: #e5e5e5;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    margin-top: 20px;
+    display: flex;
+    text-shadow: 0px 0px 16px rgba(0,0,0,1);
+    box-shadow: 0px 0px 16px rgba(0,0,0,1);
+    border-radius: 8px;
+}
+
+.foto-caja {
+    background-image: url('../img/img-2.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 43%;
+    height: 100%;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.texto-caja {
+    width: 57%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    color: #1a1a1a;
+    text-shadow: 2px 0px 20px rgba(0,0,0,0.3);
+}
+
+.texto-caja h3 {
+    font-size: 40px;
+    margin: auto;
+    height: 20px;
+}
+
+.texto-caja p {
+    margin: auto;
+    width: 80%;
+}
+
+.contenedor-planes {
     width: 100%;
     height: 100vh;
     align-items: center;
 }
 
-.contenedor-precios .titulo {
+.titulo {
     width: 100%;
     display: flex;
     align-items: center;
@@ -775,7 +842,7 @@ input[type=checkbox] {
 
 .mantenedor-user {
     width: 100%;
-    height: 280px;
+    height: auto;
     margin: auto;
     display: flex;
 }
@@ -1192,26 +1259,36 @@ input[type=checkbox] {
     background: #616161; 
 }
 
-
-
 @media (max-width:950px) {
     .menu {
         display: block;
     }
 
-    /*header*/
-    header {
+    .menu-horizontal  {
         flex-direction: column;
         overflow: hidden;
         height: 60px;
         transition: all 0.84s;
+        visibility: visible;
     }
 
-    header > div {
+    .menu-horizontal  > div {
         width: 100%;
     }
 
-    header .logo-container {
+    header  {
+        flex-direction: column;
+        overflow: hidden;
+        height: 60px;
+        transition: all 0.84s;
+        visibility: visible;
+    }
+
+    header  > div {
+        width: 100%;
+    }
+
+    .menu-horizontal .logo-container {
         justify-content: center;
         align-items: center;
         display: flex;
@@ -1244,13 +1321,13 @@ input[type=checkbox] {
         width: 100%;
         display: flex;
         margin: auto;
-        height: 60px;
+        height: 40px;
         text-align: center;
         justify-content: flex-start;
         border-bottom:2px solid rgba(255,255,255,.1);
     }
 
-    nav > ul > li:nth-child(4) {
+     nav > ul > li:last-child {
         border-bottom: none;
     }
     
@@ -1272,5 +1349,21 @@ input[type=checkbox] {
 
     .info-perfiles {
         width: 100%;
+    }
+
+    .container-mantenedor {
+        width: 100%;
+        height: 100vh;
+        margin: auto;
+        display:flex;
+        flex-direction: column;
+    }
+    
+    .mantenedor-user {
+        flex-direction: column;
+    }
+
+    .acciones-mantenedor {
+        margin-top: 20px;
     }
 }

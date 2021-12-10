@@ -3,6 +3,7 @@
 {% block tittle %}Profesional - Asesorías{% endblock %}
 
 {% block body %}
+{% include 'profesional/menu-horizontal.html'%}
 <div class="container-menu">
     {% include 'profesional/menu-prof/asesorias.html'%}
     <div class="info-perfiles">
@@ -21,6 +22,7 @@
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Tipo de Asesoría</th>
+                            <th>Estado</th>
                             <TH>Acción</TH>
                         </tr>
                     </thead>
@@ -32,9 +34,26 @@
                             <td>{{entity.nombre}}</td>
                             <td class="desc-act"><p>{{entity.descripcion}}</p></td>
                             <td>{{entity.id_tipo_ase}}</td>
-                            <td class="table-action" ><a href="{% url 'modificar_ase' entity.id_asesoria %}" id="modificar">
-                                <div class = "modificar"><p>Modificar</p></div>
-                            </a></td>
+                            <td>{% if entity.estado %}
+                                Activo
+                                {% else %}
+                                Inactivo
+                                {% endif %}
+                            </td>
+                            <td class="table-action" >
+                                <a href="{% url 'modificar_ase' entity.id_asesoria %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                                {% if entity.estado == 1 %}
+                                <a href="{% url 'desactivar-ase' entity.id_asesoria %}">
+                                    <div class = "vigente"><p>Desactivar</p></div>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'activar-ase' entity.id_asesoria %}" >
+                                    <div class = "modificar"><p>Activar</p></div>
+                                </a>
+                                {% endif %}
+                            </td>
                         </tr>
                         {% endfor %}
                         {% endif %}

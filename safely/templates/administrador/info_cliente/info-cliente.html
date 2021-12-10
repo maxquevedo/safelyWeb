@@ -3,7 +3,8 @@
 {% block tittle %}Informacion clientes {% endblock %}
 
 {% block body %}
-{% if perms.api.add_user %}
+{% include 'administrador/menu-horizontal.html'%}
+
 <div class="container-menu">
     {% include 'administrador/menu-admin/info-cliente.html'%}
     <div class="info-perfiles">
@@ -48,5 +49,5 @@
 
     </div>
 </div>
-{% endif %}
+
 {% endblock %}

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block tittle %}Información perfiles{% endblock %}
-
 {% block body %}
-{% if perms.api.add_user %}
+{% include 'administrador/menu-horizontal.html'%}
+
 <div class="container-menu">
     {% include 'administrador/menu-admin/info-perfiles.html'%}
     <div class="info-perfiles">
@@ -73,5 +73,5 @@
         </div>
     </div>
 </div>
-{% endif %}
+
 {% endblock %}

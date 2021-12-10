@@ -3,17 +3,38 @@
 {% block tittle %}Modificar Capacitación{% endblock %}
 
 {% block body %}
+{% include 'profesional/menu-horizontal.html'%}
 <div class="container-menu">
     {% include 'profesional/menu-prof/mejoras.html'%}
+
     <div class="info-perfiles">
         <div class="login-container">
-            <div class="signup-box">
-                <div class="perfil-text-container">
-                    <h2>MODIFICAR </h2>
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>MODIFICAR MEJORA</h2>
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{form}}
-                        <input type="submit" value="Modificar" id="button" class="alter-button">
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre</p>
+                                {{form.nombre}}
+                                <p>Propuesta</p>
+                                {{form.propuesta}}
+                                <p>Aceptación</p>
+                                {{form.aceptacion}}
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Estado</p>
+                                {{form.estado}}
+                                <p>Actividad</p>
+                                <select name="id_actividad" required="" id="id_id_actividad" multiple class="select-grande">
+                                    {% for x, y in form.fields.id_actividad.choices %}
+                                        <option value="{{ x }}"{% if form.fields.id_actividad.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
+                                <input type="submit" value="Modificar" id="button" class="alter-button">
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -7,9 +7,9 @@ from django.core.paginator import Paginator
 from django.http.response import Http404
 from django.contrib.auth.decorators import login_required
 from django.db import connection
+from app.views import staff_member_required
 
-
-@login_required
+@staff_member_required
 def contratoCliente(request):
     context = {'form':ContratoForm()}
 
@@ -23,7 +23,7 @@ def contratoCliente(request):
             context["form"] = formulario  
     return render(request, 'administrador/contrato/contrato_cliente.html',context)
 
-@login_required
+@staff_member_required
 def listaContrato(request):
     contrato = Contrato.objects.all().order_by('id_contrato')
     page = request.GET.get('page', 1)
@@ -36,7 +36,7 @@ def listaContrato(request):
                 'paginator': paginator}
     return render(request, 'administrador/contrato/contrato.html',context)
 
-@login_required
+@staff_member_required
 def editarContrato(request,id_contrato):
     contrato = Contrato.objects.get(id_contrato=id_contrato)
     if request.method == 'GET':

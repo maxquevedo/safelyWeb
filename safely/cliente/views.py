@@ -14,7 +14,9 @@ from django.utils.decorators import method_decorator
 
 from datetime import date
 
-@method_decorator(login_required, name='dispatch')
+from app.views import groups_only
+
+@method_decorator(groups_only('Cliente'), name='dispatch')
 class home_cliente(ListView):
     template_name = 'cliente/home-cliente.html'
 
@@ -27,7 +29,7 @@ class home_cliente(ListView):
         return querySet
 
 
-@login_required
+@groups_only('Cliente')
 def datosUser(request):
     id_user = request.user.id
     usuario = Perfil.objects.get(id_auth_user = id_user)
@@ -56,7 +58,7 @@ def datosUser(request):
     }
     return render(request,'cliente/perfil.html',context)
 
-
+@groups_only('Cliente')
 def actividades(request):
     id_usuario = request.user.id
     cli = Cliente.objects.get(id_perfil=Perfil.objects.get(id_auth_user=id_usuario))
@@ -77,7 +79,7 @@ def actividades(request):
     return render(request, 'cliente/actividades.html', context)
 
 
-@login_required
+@groups_only('Cliente')
 def boleta(request):
     id_usuario = request.user.id
     cli = Cliente.objects.get(id_perfil=Perfil.objects.get(id_auth_user=id_usuario))
@@ -100,7 +102,7 @@ def boleta(request):
                 'paginator': paginator}  
 
     return render(request, 'cliente/boleta.html',context)
-
+@groups_only('Cliente')
 def lista(request):
     return render(request, 'cliente/lista.html')
 

@@ -11,6 +11,8 @@ urlpatterns = [
     path('profesional/asesoria/crear-tipo', crear_tipo_ase, name='crear_tipo_ase'),
     path('profesional/asesoria/ingresar', ingresar_ase, name='ingresar_ase'),
     path('profesional/asesoria/modificar/<int:id_asesoria>/', modificar_ase, name='modificar_ase'),
+    path('profesional/asesoria/desactivar-asesoria/<int:id_asesoria>/', DesactivarAse, name='desactivar-ase'),
+    path('profesional/asesoria/activar-asesoria/<int:id_asesoria>/', ActivarAse, name='activar-ase'),
 
     path('profesional/capacitaciones/', lista_capa, name='lista_capa'),
     path('profesional/capacitaciones/crear', crear_capa, name='crear_capa'),

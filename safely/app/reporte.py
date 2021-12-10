@@ -8,19 +8,24 @@ from django.shortcuts import render
 
 from django.views.generic import ListView
 from .models import *
+from app.views import groups_only, staff_member_required
+from django.utils.decorators import method_decorator
 
+@method_decorator(staff_member_required,name='dispatch')
 class ReporteClienteListView(ListView):
     model = Cliente
     template_name ='administrador/reportes/reporteCliHome.html'
 
+@staff_member_required
 def ReporteGlobal(request):
-    
     return render(request,'administrador/reportes/reporteglohome.html')
 
+@method_decorator(staff_member_required,name='dispatch')
 class ReporteHome(ListView):
     model = Cliente
     template_name ='administrador/report-home.html'
 
+@groups_only('Administrador','Cliente')
 def ReporteCliente_render_pdf_view(requiest,*args,**kwargs):
     id_cli = kwargs.get('id_cli')
     actividadAsesoria = Actividad.objects.filter(id_cli=id_cli, tipo_act= 2)
@@ -60,6 +65,7 @@ def ReporteCliente_render_pdf_view(requiest,*args,**kwargs):
     return response
     
 #Administrador, Profesional, Cliente,Servicio, Plan, Contrato, Alerta,Lista,Mejora,Reporte,TipoReporte,Actividad, Capacitacion,Asesoria,Visita
+@staff_member_required
 def ReporteGlobal_pdf_view(request,*args,**kwargs):
     mes =  kwargs.get('mes')
     capacitacion =Actividad.objects.filter(fec_ida__month=mes, tipo_act= 1)
