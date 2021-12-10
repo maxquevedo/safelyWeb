@@ -269,3 +269,63 @@
         height: 8px;
     }
 }
+
+@media (max-width:950px) {
+    .container-lista {
+        width: 100%;
+    }
+
+    .botones-asesorias {
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        display: flex;
+        height: 40px;
+        padding-bottom: 30px;
+        width: auto;
+    }
+
+    .botones-asesorias a {
+        border-radius: 5px;
+        height: 35px;
+        padding: 2px 2px;
+        font-size: 12px;
+    }
+    .info-perfiles{
+        background-color: bisque;
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .first-text-container h2 {
+        font-size: 100px;
+    }
+
+    .contenedor-planes {
+        height: auto;
+    }
+
+    .foto-caja {
+        visibility: hidden;
+        width: 0px;
+    }
+    .texto-caja {
+        height: 70%;
+    }
+    .texto-caja p {
+        width: 100%;
+    }
+    .contenedor-cartas {
+        flex-direction: column;
+    }
+
+    .carta {
+        height: 320px;
+        width: 80%;
+        margin-top: 20px;
+    }
+
+    .carta:last-child {
+        margin-bottom: 20px;
+    }
+}
