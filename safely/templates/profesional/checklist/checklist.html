@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Profesional - Checklist{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/checklist.html'%}
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>CHECKLISTS</h2>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Item por Verificar</th>
+                            <th>Estado</th>
+                            <th>Verificar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.nombre}}</td>
+                            <td>
+                                {% if entity.verificacion %}
+                                ✔️
+                                {% else %}
+                                ❌
+                                {% endif %}
+                            </td>
+                            <td class="table-action">
+                                {% if entity.verificacion %}
+                                <a href="{% url 'desverificar-checklist' entity.id_check %}" id="modificar">
+                                    <div class = "vigente" style="width: 90px;"><p>Rechazar</p></div>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'verificar-checklist' entity.id_check %}" id="modificar">
+                                    <div class = "modificar" style="width: 90px;"><p>Aceptar</p></div>
+                                </a>
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

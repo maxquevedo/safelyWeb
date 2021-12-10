@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Profesional - Checklist{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/checklist.html'%}
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>CHECKLISTS</h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>  ID  </th>
+                            <th>Profesional</th>
+                            <th>Cliente</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.id_clicheck}}</td>
+                            <td>{{entity.id_prof}}</td>
+                            <td>{{entity.id_cli}}</td>
+                            <td class="table-action" style="width: 230px;">
+                                <a href="{% url 'checklist' entity.id_clicheck %}" id="modificar">
+                                    <div class = "modificar"><p>Ver</p></div>
+                                </a>
+                                <a href="{% url 'crear-checklist' entity.id_clicheck %}" id="modificar">
+                                    <div class = "modificar" style="width: 130px;"><p>Añadir Item</p></div>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

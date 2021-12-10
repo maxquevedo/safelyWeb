@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Modificar{% endblock %}
+
+{% block body %}
+{% include 'administrador/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/info-profesional.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="perfil-text-container">
+                    <h2>MODIFICAR PROFESIONAL</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form}}
+                        <input type="submit" value="Modificar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

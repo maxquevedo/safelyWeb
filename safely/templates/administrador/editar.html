@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}editar{% endblock %}
+
+{% block body %}
+{% include 'administrador/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/mantenedor.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="perfil-text-container">
+                    <h2>Editar Usuario</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <p>Usuario</p>
+                        {{ form.username }}
+                        <p>Nombre</p>
+                        {{ form.first_name }}
+                        <p>Apellido</p>
+                        {{ form.last_name }}
+                        <p>Correo</p>
+                        {{ form.email }}
+                        {{ form.is_active }}
+                        <input type="submit" value="Modificar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

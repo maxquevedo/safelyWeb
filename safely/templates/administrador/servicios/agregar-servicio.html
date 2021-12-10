@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Registro{% endblock %}
+
+{% block body %}
+{% include 'administrador/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/mantenedor.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="admin-box">
+                <div class="admin-text">
+                    <h2>Crear Servicio</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <p>Nombre</p>
+                        {{form.nombre}}
+                        <p>Descripción</p>
+                        {{form.descripcion}}
+                        <p>Estado</p>
+                        {{form.estado}}
+                        <input type="submit" value="Registrar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

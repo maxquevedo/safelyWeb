@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}editar{% endblock %}
+
+{% block body %}
+{% include 'administrador/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/checklist.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="perfil-text-container">
+                    <h2>Designar profesional </h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <h5>Cambiar profesional</h5>
+                        {{form.id_prof}}
+                        <h5>Cliente</h5>
+                        {{form.id_cli}}
+                        <input type="submit" value="Modificar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

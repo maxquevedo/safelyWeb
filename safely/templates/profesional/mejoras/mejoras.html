@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Profesional - Mejoras{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/mejoras.html'%}
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>MEJORAS</h2>
+                <div class="botones-asesorias">
+                    <a class ="color-verde" href="{% url 'crear_me' %}">Crear mejora</a>
+                </div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Id Mejora</th>
+                            <th>Nombre</th>
+                            <th>Propuesta</th>
+                            <th>Aceptación</th>
+                            <TH>Estado</TH>
+                            <TH>Actividad</TH>
+                            <TH>Acción</TH>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td class="table-id" >{{entity.id_mejora}}</td>
+                            <td>{{entity.nombre}}</td>
+                            <td class="desc-act"><p>{{entity.propuesta}}</p></td>
+                            <td>
+                                {% if entity.aceptacion %}
+                                Aceptado
+                                {% else %}
+                                Rechazado
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if entity.estado %}
+                                Activo
+                                {% else %}
+                                Desactivado
+                                {% endif %}</td>
+                            <td>{{entity.id_actividad}}</td>
+                            <td class="table-action" >
+                                <a href="{% url 'modificar_me' entity.id_mejora %}" id="modificar">
+                                    <div class = "modificar"><p>Modificar</p></div>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

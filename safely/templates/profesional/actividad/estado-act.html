@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block js %}
+<script>
+    $(function() {
+        $('#id_tipo_act').change(function(){
+            $('.tipo').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
+{% endblock %}
+{% block tittle %}Modificar Actividad{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/actividad.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="perfil-text-container">
+                    <h2>MODIFICAR ACTIVIDAD</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <h2>{{actividad.nombre}}</h2>
+                        <div class="">
+                            Estado
+                            {{form.estado}}
+                            <input type="submit" value="Registrar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

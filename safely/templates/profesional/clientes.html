@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Profesional - Actividad{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/clientes.html'%}
+    <div class="info-perfiles">
+        <div class="container-lista">
+            <div class="lista">
+                <h2>CLIENTES ASIGNADOS</h2>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Actividad Relacionada</th>
+                            <th>Descripción</th>
+                            <th>Fecha Ida</th>
+                            <th>Nombre del Cliente</th>
+                            <th>Razón Social</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if entity %}
+                        {% for entity in entity %}
+                        <tr>
+                            <td>{{entity.nombre}}</td>
+                            <td class="desc-act"><p>{{entity.descripcion}}</p></td>
+                            <td>{% if entity.fec_ida%}
+                                {{entity.fec_ida}}
+                                {% else %}
+                                <p>No se ha asignado</p>
+                                <p>fecha de ida</p>
+                                {% endif %}
+                            </td>
+                            <td>{{entity.id_cli.id_perfil}}</td>
+                            <td>{{entity.id_cli}}</td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                <div class="num-pag">
+                    {% include 'paginator.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Crear Asesoría{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/asesorias.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>CREAR ASESORIAS</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre</p>
+                                {{form.nombre}}
+                                {{form.nombre.errors}}
+                                <p>Descripción</p>
+                                {{form.descripcion}}
+                            </div>
+                            <div class="crea-act-container">
+                                <p style="visibility: hidden; height: 0px;">{{form.estado}}</p>
+                                <p>Tipo de Asesoría</p>
+                                <select id="id_id_tipo_ase" name="id_tipo_ase" class="select-grande" multiple >
+                                    {% for x, y in form.fields.id_tipo_ase.choices %}
+                                        <option value="{{ x }}"{% if form.fields.id_tipo_ase.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
+                                <input type="submit" value="Crear" id="button" class="alter-button">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

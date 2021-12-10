@@ -1,0 +1,23 @@
+{% load static %}
+<header id="header" class="menu-horizontal">
+    <div class="logo-container">
+        <img src="{% static 'img/menuiconwhite.png' %}" alt="menu" class="menu" id="menu">
+        <h2 class="sl">Safely</h2>
+    </div>
+    <div>
+        <nav id="nav">
+            <ul>
+                <li><a href="{% url 'home-prof' %}">Home</a></li>
+                <li><a href="{% url 'datos-prof' %}">Datos Personales</a></li>
+                <li><a href="{% url 'vista_actividad' %}">Actividad</a></li>
+                <li><a href="{% url 'lista_ase' %}">Asesorías</a></li>
+                <li><a href="{% url 'lista_capa' %}">Capacitaciones</a></li>
+                <li><a href="{% url 'vista_mejoras' %}">Mejoras</a></li>
+                <li><a href="{% url 'home-check' %}">Checklist</a></li>
+                <li><a href="{% url 'vista_visita' %}">Visita</a></li>
+                <li><a href="{% url 'cliente_asignado' %}">Clientes</a></li>
+                <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>

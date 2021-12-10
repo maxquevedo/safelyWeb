@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Modificar Asesorías{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/asesorias.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="perfil-text-container">
+                    <h2>MODIFICAR ASESORÍA</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <P>Nombre</P>
+                        {{form.nombre}}
+                        <p>Descripción</p>
+                        {{form.descripcion}}
+                        <p>Tipo asesoria</p>
+                        {{form.id_tipo_ase}}
+                        <input type="submit" value="Modificar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

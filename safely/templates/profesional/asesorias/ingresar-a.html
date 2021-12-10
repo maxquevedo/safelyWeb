@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Ingresar Asesoría{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/asesorias.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>INGRESAR ACTIVIDAD DE ASESORÍA</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre</p>
+                                {{form.nombre}}
+                                <p>Descripción</p>
+                                {{form.descripcion}}
+                                {{form.tipo_act.as_hidden}}
+                                <p>Asesoría</p>
+                                {{form.id_asesoria}}
+                                <p>Fecha estimada</p>
+                                {{form.fec_estimada}}
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Fecha de ida</p>
+                                {{form.fec_ida}}
+                                <p>Estado</p>
+                                {{form.estado}}
+                                <p style="width: 80%;margin: auto;padding-bottom: 10px;">Cliente</p>
+                                <select id="id_id_cli" name="id_cli" multiple>
+                                {% for x, y in form.fields.id_cli.choices %}
+                                    <option value="{{ x }}"{% if form.fields.id_cli.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                                </select>
+                                <p style="width: 80%;margin: auto;padding-bottom: 10px;">Profesional</p>
+                                <select id="id_id_prof" name="id_prof" multiple >
+                                {% for x, y in form.fields.id_prof.choices %}
+                                    <option value="{{ x }}"{% if form.fields.id_prof.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="crea-act-button">
+                            <input type="submit" value="Crear" id="button" class="alter-button">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

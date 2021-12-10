@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Crear tipo Asesoría{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/asesorias.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="signup-box">
+                <div class="perfil-text-container">
+                    <h2>CREAR TIPO DE ASESORIA</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form}}
+                        <input type="submit" value="Registrar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

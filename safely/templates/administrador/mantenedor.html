@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Mantenedor{% endblock %}
+
+{% block body %}
+{% include 'administrador/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/mantenedor.html'%}
+    
+    <div class="info-perfiles">
+        <div class="container-mantenedor">
+            <div class="mantenedor-user">
+                <a href="{% url 'mantenedor-usr' %}">
+                    <div class="acciones-mantenedor">
+                        <div class="desc-acc">
+                            <h3>Mantenedor Usuario</h3>
+                            <p>Permite la creación de los usuarios dentro del sistema, listar, modificar y desactivar.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'mantenedor-servicio' %}">
+                    <div class="acciones-mantenedor">
+                        <div class="desc-acc">
+                            <h3>Mantenedor Servicio</h3>
+                            <p>Permite la creación de los servicios dentro del sistema, listar, modificar y desactivar.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'mantenedor-plan' %}">
+                <div class="acciones-mantenedor">
+                    <div class="desc-acc">
+                        <h3>Mantenedor Plan</h3>
+                        <p>Permite la creación de los planes dentro del sistema, listar, modificar y desactivar.</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

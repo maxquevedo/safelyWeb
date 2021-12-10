@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Datos Profesional{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/datos-personales.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>MODIFICAR PERFIL</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre Usuario</p>
+                                {{u_form.username}}
+                                <p>Nombre</p>
+                                {{u_form.first_name}}
+                                <p>Apellido</p>
+                                {{u_form.last_name}}
+                                <p>Correo</p>
+                                {{u_form.email}}
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Rut</p>
+                                {{form_p.rut}}
+                                <p>Teléfono</p>
+                                {{form_p.telefono}}
+                                <p>Dirección</p>
+                                {{form_p.direccion}}
+    
+                                {{form_c}}
+    
+                            </div>
+                        </div>
+                        <div class="crea-act-button">
+                            <input type="submit" value="Modificar" id="button" class="alter-button">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

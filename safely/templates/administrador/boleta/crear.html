@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block js %}
+<script>
+    $(function() {
+        $('#id_tipo_act').change(function(){
+            $('.tipo').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
+{% endblock %}
+{% block tittle %}Crear Actividad{% endblock %}
+
+{% block body %}
+{% include 'administrador/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/boletas.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>CREAR BOLETA PARA CLIENTE</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                {{form.errors }}
+                                <p>Emision boleta</p>
+                                <input type="date" name="fec_emision_bol" class="form-control" placeholder="Seleccionar Fecha" required="" id="id_fec_emision_bol">
+                                <p>Fecha de  pago</p>
+                                <input type="date" name="fec_pago" class="form-control" placeholder="Seleccionar Fecha" required="" id="id_fec_pago">
+                                <p>Fecha de corte</p>
+                                <input type="date" name="fec_corte" class="form-control" placeholder="Seleccionar Fecha" required="" id="id_fec_corte">
+                                <p>Pago mensual</p>
+                                <input type="number" name="pago_mensual" min="-9223372036854775808" max="9223372036854775807" required="" id="id_pago_mensual">
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Estado</p>
+                                <input type="checkbox" name="pagado" id="id_pagado">
+                                <p>Valores extras</p>
+                                <input type="number" name="pago_extra" min="-9223372036854775808" max="9223372036854775807" required="" id="id_pago_extra">
+                                <p>Url de pago</p>
+                                <input type="url" name="url" maxlength="200" id="id_url">
+                                <p>Contrato</p>
+                                {{form.id_contrato}}
+                            </div>
+                        </div>
+                        <div class="crea-act-button">
+                            <input type="submit" value="Crear" id="button" class="alter-button">
+                        </div>
+                    </form>
+                    {{mensaje}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

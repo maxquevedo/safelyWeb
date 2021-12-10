@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    {% block head %}
+    <title>Safely - {% block tittle %}{% endblock %}</title>
+    {% endblock %}
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'css/escalado.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static 'css/pantalla-hd.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+	{% block body %}
+	<!--BODY-->
+	{% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/smooth.js' %}"></script>
+    <script src="{% static 'js/menu-horizontal.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% if messages %}
+        {% for m in messages %}
+            {% if m.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <script>
+                    Swal.fire({
+                        "title": "Error",
+                        "text": "{{m}}",
+                        "icon": "error"
+                    })
+                </script>
+            {% else %}
+                <script>
+                    Swal.fire({
+                        "title": "Felicitaciones",
+                        "text": "{{m}}",
+                        "icon": "success"
+                    })
+                </script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% block js %}
+    {% endblock %}
+</body>
+</html>

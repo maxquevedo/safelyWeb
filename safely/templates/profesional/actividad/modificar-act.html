@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Modificar Actividad{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/actividad.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>MODIFICAR ACTIVIDAD</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="crea-act-container">
+                            Nombre
+                            {{form.nombre}}
+                            Descripción
+                            {{form.descripcion}}
+                            Fecha estimada
+                            {{form.fec_estimada}}
+                            Fecha de ida
+                            {{form.fec_ida}}
+                        </div>
+                        <input type="submit" value="Modificar" id="button" class="alter-button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

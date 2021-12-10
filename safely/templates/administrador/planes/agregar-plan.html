@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Registro{% endblock %}
+
+{% block body %}
+{% include 'administrador/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/mantenedor.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>Crear Plan</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre</p>
+                                {{form.nombre}}
+                                {{form.nombre.errors}}
+                                <p>Descripción</p>
+                                {{form.descripcion}}
+                                <p>Costo</p>
+                                {{form.costo}}
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Estado</p>
+                                {{form.estado}}
+                                <p>Servicio</p>
+                                {{form.id_servicio}}
+                                <input type="submit" value="Registrar" id="button" class="alter-button">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

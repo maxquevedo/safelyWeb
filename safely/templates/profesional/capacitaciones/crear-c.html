@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Crear Capacitación{% endblock %}
+
+{% block body %}
+{% include 'profesional/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'profesional/menu-prof/capacitaciones.html'%}
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="actividad-box">
+                <div class="act-text-container">
+                    <h2>CREAR CAPACITACIÓN</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="act-columns">
+                            <div class="crea-act-container">
+                                <p>Nombre</p>
+                                {{form.nombre}}
+                                {{form.nombre.errors}}
+                                <p>Cantidad de asistentes</p>
+                                {{form.cant_asistentes}}                          
+                            </div>
+                            <div class="crea-act-container">
+                                <p>Materiales</p>
+                                {{form.materiales}}
+                                <input type="submit" value="Registrar" id="button" class="alter-button">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

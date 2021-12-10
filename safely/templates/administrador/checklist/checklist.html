@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block js %}
+<script>
+    $(function() {
+        $('#id_tipo_act').change(function(){
+            $('.tipo').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
+{% endblock %}
+{% block tittle %}Crear Actividad{% endblock %}
+
+{% block body %}
+{% include 'administrador/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/checklist.html'%}
+
+    <div class="info-perfiles">
+        <div class="login-container">
+            <div class="admin-box">
+                <div class="admin-text">
+                    <h2>ASIGNAR CHECKLIST</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                        <div class="error-mensaje">
+                            <p>Este cliente ya tiene un checklists, selecciona otro</p>
+                        </div>
+                        {% endif %}
+                        <p style="width: 80%;margin: auto;padding-bottom: 10px;">Profesional</p>
+                        <select id="id_id_prof" name="id_prof" multiple style="width: 300px; height: 100px; font-size: 14px;">
+                        {% for x, y in form.fields.id_prof.choices %}
+                            <option value="{{ x }}"{% if form.fields.id_prof.value == x %} selected{% endif %}>{{ y }}</option>
+                        {% endfor %}
+                        </select>
+                        <p style="width: 80%;margin: auto;padding-bottom: 10px;">Cliente</p>
+                        <select id="id_id_cli" name="id_cli" multiple style="width: 300px; height: 100px; font-size: 14px;">
+                        {% for x, y in form.fields.id_cli.choices %}
+                            <option value="{{ x }}"{% if form.fields.id_cli.value == x %} selected{% endif %}>{{ y }}</option>
+                        {% endfor %}
+                        </select>
+                        <input type="submit" value="Crear" id="button" class="alter-button">
+                    </form>
+                    {{mensaje}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

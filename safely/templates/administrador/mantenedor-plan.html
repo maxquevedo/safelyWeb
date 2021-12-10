@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Mantenedor Plan{% endblock %}
+
+{% block body %}
+{% include 'administrador/menu-horizontal.html'%}
+<div class="container-menu">
+    {% include 'administrador/menu-admin/mantenedor.html'%}
+    <div class="info-perfiles">
+        <div class="container-mantenedor">
+            <div class="mantenedor-user">
+                <a href="{% url 'agregar-plan' %}">
+                    <div class="acciones-mantenedor">
+                        <div class="desc-acc">
+                            <h3>Crear Plan</h3>
+                            <p>Permite la creación de un plan dentro del sistema Safely.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'lista-plan' %}">
+                <div class="acciones-mantenedor">
+                    <div class="desc-acc">
+                        <h3>Listar Planes</h3>
+                        <p>Permite la visualización de los planes dentro del sistema Safely.</p>
+                        <p>Para borrar o modificar planes, debe ingresar aquí.</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
