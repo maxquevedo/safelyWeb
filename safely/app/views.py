@@ -439,7 +439,6 @@ def modificar_perfil(request,id_perfil):
         return redirect(to='infoPerfil')
     context = {
         'form':form
-
     }
     return render(request, 'administrador/info_perfil/modificar-perfil.html',context)
 
