@@ -22,7 +22,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["username", "first_name", "last_name", "email", "password1", "password2","groups"]
+        fields = ["username", "first_name", "last_name", "email", "password1", "password2","groups", "is_staff"]
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
@@ -190,6 +190,10 @@ class IngresarAsesoria(forms.ModelForm):
             'fec_ida': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccionar Fecha', 'type':'date'}),
         }
 
+class DesactivarAseForm(forms.ModelForm):
+    class Meta:
+        model = Asesoria
+        fields = ['estado']
 ## Capacitacion 
 class CapacitacionForm(forms.ModelForm):
     nombre = forms.CharField(min_length=4, max_length=250)

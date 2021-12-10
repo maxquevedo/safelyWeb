@@ -12,13 +12,43 @@ from django.contrib.auth.forms import  AuthenticationForm
 
 from django.contrib.auth.models import  User
 
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.http import Http404
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 
 from django.db import connection
 
+from functools import wraps
+
+from django.contrib.admin.views import decorators
+
+def staff_member_required(view_func):
+    def _checklogin(request, *args, **kwargs):
+        if request.user.is_active and request.user.is_staff:
+            # The user is valid. Continue to the admin page.
+            return view_func(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect('/acceso-denegado')
+    return wraps(view_func)(_checklogin)
+
+decorators.staff_member_required = staff_member_required
+
+def accesodenegado(request):
+    return render(request,'acceso-denegado.html')
+
+def groups_only(*groups):
+    def inner(view_func):
+        @wraps(view_func)
+        def wrapper_func(request, *args, **kwargs):
+            if request.user.groups.filter(name__in=groups).exists():
+                return view_func(request, *args, **kwargs)
+            else:
+                return redirect(to='acceso-denegado')
+        return wrapper_func
+    return inner
+
+@staff_member_required
 def crear_grupo(request):
     data = {
         'form': GrupoForm
@@ -34,7 +64,7 @@ def crear_grupo(request):
     return render(request, 'registration/group.html',data )
 
 
-
+@staff_member_required
 def user_filter(request):
     # https://www.youtube.com/watch?v=dkJ3uqkdCcY
     #https://django-filter.readthedocs.io/en/stable/index.html
@@ -76,7 +106,7 @@ def user_filter(request):
     }
     return render(request, 'pruebas/ekisde.html', context)
 
-
+@staff_member_required
 def signup_view(request):
     context = {'form': CustomUserCreationForm(),
     'form_p':PerfilForm(),
@@ -115,7 +145,7 @@ def signup_view(request):
                 cli.save()
 
             messages.success(request, 'Usuario '+usuario.username+' creado correctamente')
-            return redirect(to="mantenedor")
+            return redirect(to="mantenedor-usr")
         context = {'form': CustomUserCreationForm(),
         'form_p':PerfilForm(),
         'adminform':AdminForm(),
@@ -128,24 +158,21 @@ def signup_view(request):
 
 def home(request):
     return render(request, 'home.html')
-
-
-    
-
+@staff_member_required
 def home_admin(request):
     usuario = User.objects.all().order_by('id')
     context = {'usuario': usuario }
     return render(request,'administrador/home-adm.html', context)
-
+@staff_member_required
 def maintainer(request):
     return render(request, 'administrador/mantenedor.html')
-
+@staff_member_required
 def maintainer_user(request):
     return render(request, 'administrador/mantenedor-usuario.html')
-
+@staff_member_required
 def maintainer_plan(request):
     return render(request, 'administrador/mantenedor-plan.html')
-
+@staff_member_required
 def maintainer_service(request):
     return render(request, 'administrador/mantenedor-servicio.html')
 
@@ -155,7 +182,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect(to='home-adm')
+            return redirect(to='home')
     else:
             form = AuthenticationForm()
     return render(request,'registration/login.html',{'form':form})
@@ -167,9 +194,8 @@ def login_filter(request):
         return redirect(to='home-prof')
     else:
         return redirect(to='home-cliente')
-
+@staff_member_required
 #mantenedor 
-@permission_required('app.view_user')
 def UserLista(request):
     usuario = User.objects.all().order_by('id')
     page = request.GET.get('page', 1)
@@ -182,8 +208,7 @@ def UserLista(request):
     context = {'entity': usuario,
                 'paginator': paginator}
     return render(request, 'administrador/lista.html', context)
-
-@permission_required('app.change_user')
+@staff_member_required
 def UserEdit(request,id):
     usuario = User.objects.get(id=id)
    
@@ -199,8 +224,7 @@ def UserEdit(request,id):
             'form':form,
         }  
     return render(request,'administrador/editar.html', context)
-
-@permission_required('app.delete_user')
+@staff_member_required
 def UserDelete(request,id):
     usuario = User.objects.get(id=id)
     usuario.is_active = 0
@@ -212,7 +236,7 @@ def UserDelete(request,id):
             form.save()
             messages.success(request, "Usuario desactivado correctamente")
     return redirect(to="listar")
-
+@staff_member_required
 def UserActivate(request,id):
     usuario = User.objects.get(id=id)
     if request.method == 'POST':
@@ -225,7 +249,7 @@ def UserActivate(request,id):
             user.save()
             messages.success(request, "Usuario activado correctamente")
     return redirect(to="listar")
-
+@staff_member_required
 ##PLAN
 def PlanCreate(request):
     data = {
@@ -241,7 +265,7 @@ def PlanCreate(request):
         else:
             data["form"] = formulario       
     return render(request, 'administrador/planes/agregar-plan.html', data)
-
+@staff_member_required
 def plan_lista(request):
     plan = Plan.objects.all().order_by('id_plan')
     page = request.GET.get('page', 1)
@@ -254,7 +278,7 @@ def plan_lista(request):
     context = {'entity': plan,
                 'paginator': paginator}
     return render(request, 'administrador/planes/lista-plan.html', context)
-
+@staff_member_required
 def PlanEdit(request,id_plan):
     plan = Plan.objects.get(id_plan=id_plan)
     if request.method == 'GET':
@@ -267,7 +291,7 @@ def PlanEdit(request,id_plan):
         return redirect(to='lista-plan')
     return render(request,'administrador/planes/editar-plan.html',{'form':form})
 
-
+@staff_member_required
 def PlanDelete(request,id):
     plan = Plan.objects.get(id_plan=id)
     plan.estado = 0
@@ -279,7 +303,7 @@ def PlanDelete(request,id):
             form.save()
             messages.success(request, "Plan desactivado correctamente")
     return redirect(to="lista-plan")
-
+@staff_member_required
 def PlanActivate(request,id):
     plan = Plan.objects.get(id_plan=id)
     if request.method == 'POST':
@@ -294,7 +318,7 @@ def PlanActivate(request,id):
     return redirect(to="lista-plan")
 
 ##SERVICIOS
-
+@staff_member_required
 def ServicioCreate(request):
     data = {
         'form': ServicioForm
@@ -309,7 +333,7 @@ def ServicioCreate(request):
         else:
             data["form"] = formulario       
     return render(request, 'administrador/servicios/agregar-servicio.html', data)
-
+@staff_member_required
 def Servicio_lista(request):
     servicio = Servicio.objects.all().order_by('id_servicio')
     page = request.GET.get('page', 1)
@@ -322,7 +346,7 @@ def Servicio_lista(request):
     context = {'entity': servicio,
                 'paginator': paginator}
     return render(request, 'administrador/servicios/lista-servicio.html', context)
-
+@staff_member_required
 def ServicioEdit(request,id_servicio):
     servicio = Servicio.objects.get(id_servicio=id_servicio)
     if request.method == 'GET':
@@ -335,8 +359,7 @@ def ServicioEdit(request,id_servicio):
         return redirect(to='lista-servicios')
     return render(request,'administrador/servicios/editar-servicio.html',{'form':form})
 
-
-
+@staff_member_required
 def ServicioDelete(request,id):
     serv = Servicio.objects.get(id_servicio=id)
     serv.estado = 0
@@ -349,6 +372,7 @@ def ServicioDelete(request,id):
             messages.success(request, "Servicio desactivado correctamente")
     return redirect(to="lista-servicios")
 
+@staff_member_required
 def ServicioActivate(request,id):
     serv = Servicio.objects.get(id_servicio=id)
     if request.method == 'POST':
@@ -374,7 +398,7 @@ def cliente_datos():
         lista.append(fila)
     return lista
 
-@login_required
+@staff_member_required
 def infoCliente(request):
 
     cliente = cliente_datos()
@@ -392,7 +416,7 @@ def infoCliente(request):
     
 
 #informacion de clientes ProfesionalForm
-@login_required
+@staff_member_required
 def infoProfesional(request):
     pro = Profesional.objects.all().order_by('id_prof')
     page = request.GET.get('page', 1)
@@ -408,7 +432,7 @@ def infoProfesional(request):
 
 #informacion de perfiles 
 
-@login_required
+@staff_member_required
 def infoPerfil(request):
 
     PerfilF = filtersets.PerfilFilter(request.GET,queryset= Perfil.objects.all())
@@ -425,7 +449,7 @@ def infoPerfil(request):
     return render(request, 'administrador/info_perfil/info-perfil.html', context)
 
 
-@login_required
+@staff_member_required
 def modificar_perfil(request,id_perfil):
     perfil = Perfil.objects.get(id_perfil=id_perfil)
 
@@ -515,7 +539,7 @@ def guardar_actividad(nombre,descripcion,tipo_act,fec_estimada,estado,id_cli,id_
     return salida.getvalue()
 
 # actividades
-@login_required
+@staff_member_required
 def actividades(request):
 
     actividad = lista_actividades()
@@ -531,10 +555,7 @@ def actividades(request):
                 }
     return render(request, 'administrador/actividades/actividades_lista.html',context)
 
-
-
-
-@login_required
+@staff_member_required
 def crear_actividad(request):
     capacitacion = lista_capacitacion()
     asesoria = lista_asesoria()
@@ -565,7 +586,7 @@ def crear_actividad(request):
             data['mensaje'] = 'No se a podido guardar'
     return render(request, 'administrador/actividades/crear.html',data)
 
-@login_required
+@staff_member_required
 def actualizar_actividad(request,id_actividad):
     act = Actividad.objects.get(id_actividad=id_actividad)
 
@@ -581,7 +602,7 @@ def actualizar_actividad(request,id_actividad):
     context = {'form':form}
     return render(request, 'administrador/actividades/actualizar.html',context)
 
-
+@staff_member_required
 def checklist(request):
     data = {
         'form': listaForm
@@ -598,7 +619,7 @@ def checklist(request):
       
     return render(request, 'administrador/checklist/checklist.html', data)
 
-
+@staff_member_required
 def listaCheck(request):
     lista = CliCheckPro.objects.all().order_by('id_clicheck')
     page = request.GET.get('page', 1)
@@ -611,7 +632,7 @@ def listaCheck(request):
     context = {'entity': lista,
                 'paginator': paginator}
     return render(request, 'administrador/checklist/listado.html', context)
-
+@staff_member_required
 def modificaCheck(request,id_clicheck):
     lista = CliCheckPro.objects.get(id_clicheck=id_clicheck)
     if request.method == 'GET':

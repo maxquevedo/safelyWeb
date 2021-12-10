@@ -4,7 +4,7 @@
 
 {% block body %}
 {% include 'administrador/menu-horizontal.html'%}
-{% if perms.api.add_user %}
+
 <div class="container-menu">
     {% include 'administrador/menu-admin/info-profesional.html'%}
     <div class="info-perfiles">
@@ -45,5 +45,5 @@
 
     </div>
 </div>
-{% endif %}
+
 {% endblock %}

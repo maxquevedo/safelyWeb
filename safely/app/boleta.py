@@ -16,7 +16,9 @@ from django.conf import settings
 
 from datetime import date
 
-@login_required
+from app.views import staff_member_required
+
+@staff_member_required
 def creaBoleta(request):
     context = {'form':BoletaForm()}
 
@@ -29,7 +31,8 @@ def creaBoleta(request):
         else:
             context["form"] = formulario  
     return render(request, 'administrador/boleta/crear.html',context)
-@login_required
+
+@staff_member_required
 def editarBoleta(request,id_boleta):
     boleta = Boleta.objects.get(id_boleta=id_boleta)
     if request.method == 'GET':
@@ -42,7 +45,7 @@ def editarBoleta(request,id_boleta):
         return redirect(to='listaBoletas')
     return render(request,'administrador/boleta/modificar.html',{'form':form})
 
-@login_required
+@staff_member_required
 def listaBoletas(request):
     boleta = Boleta.objects.all().order_by('pagado') 
     page = request.GET.get('page', 1)
@@ -55,7 +58,7 @@ def listaBoletas(request):
                 'paginator': paginator}
     return render(request, 'administrador/boleta/boleta.html',context)
 
-@login_required
+@staff_member_required
 def datosBoleta(request, id_boleta):
     boleta = Boleta.objects.get(id_boleta=id_boleta)
     context = {'form': boleta}

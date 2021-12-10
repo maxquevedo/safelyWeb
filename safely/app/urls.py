@@ -73,6 +73,7 @@ urlpatterns = [
     path('administrador/checklist/',views.checklist,name='checklist'),
     path('administrador/checklist/lista/',views.listaCheck,name='listaCheck'),
     path('administrador/checklist/modificar/<int:id_clicheck>/',views.modificaCheck,name='modificaCheck'),
+    path('acceso-denegado/', views.accesodenegado, name='acceso-denegado')
 
 ]
 
