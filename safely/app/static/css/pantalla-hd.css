@@ -291,8 +291,8 @@
         padding: 2px 2px;
         font-size: 12px;
     }
+    
     .info-perfiles{
-        background-color: bisque;
         margin-left: 0px;
         width: 100%;
     }
@@ -327,5 +327,9 @@
 
     .carta:last-child {
         margin-bottom: 20px;
+    }
+    
+    #calendar {
+        height: 90%;
     }
 }
