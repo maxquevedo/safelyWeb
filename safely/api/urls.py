@@ -30,7 +30,7 @@ router.register('clicheck',views.CliCheckProViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('inicio/', views.UserLoginApiView.as_view()),
+    path('api/inicio/', views.UserLoginApiView.as_view()),
 
 ]
 
