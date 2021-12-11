@@ -4,5 +4,33 @@
 {% block tittle %}Acceso Denegado{% endblock %}
 
 {% block body %}
-<h2>Acceso Denegado, su IP ha sido bloqueada!</h2>
+<style>
+    .alerta-denegado {
+        margin-top: auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cuadro-alerta {
+        width: 500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column  ;
+    }
+    .cuadro-alerta h2 {
+        margin: auto;
+        font-size: 50px;
+    }
+    .cuadro-alerta p {
+        margin: auto;
+        font-size: 60px;
+    }
+</style>
+<div class="alerta-denegado">
+    <div class="cuadro-alerta">
+        <h2>Acceso Denegado</h2>
+        <p>🚨</p>
+    </div>
+</div>
 {% endblock %}

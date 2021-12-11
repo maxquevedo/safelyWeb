@@ -726,19 +726,6 @@ input[type=checkbox] {
     font-size: 26px;
 }
 
-.menu-vertical .profile-photo { 
-    width: 120px;
-    height: 120px;
-    margin: auto;
-    background-image: url('../img/default.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 100px;
-    margin-bottom: 20px;
-    box-shadow: inset 00px 00px 16px 1px rgba(0, 0, 0, 0.08);
-}
-
 .info-perfiles { 
     width: 80%;
     height: 100%;
@@ -1259,7 +1246,7 @@ input[type=checkbox] {
     background: #616161; 
 }
 
-@media (max-width:950px) {
+@media (max-width:750px) {
     .menu {
         display: block;
     }

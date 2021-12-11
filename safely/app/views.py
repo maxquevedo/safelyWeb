@@ -23,6 +23,16 @@ from functools import wraps
 
 from django.contrib.admin.views import decorators
 
+from django.template import RequestContext
+
+
+def handler404(request, *args, **argv):
+    response = render('404.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+
 def staff_member_required(view_func):
     def _checklogin(request, *args, **kwargs):
         if request.user.is_active and request.user.is_staff:

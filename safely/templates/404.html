@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Acceso Denegado{% endblock %}
+
+{% block body %}
+<style>
+    .alerta-denegado {
+        margin-top: auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        width: auto;
+    }
+
+    .cuadro-alerta {
+        width: 600px;
+        margin: auto;
+        display: flex;
+        flex-direction: column  ;
+    }
+    .cuadro-alerta h2 {
+        margin: auto;
+        font-size: 50px;
+    }
+    .cuadro-alerta p {
+        margin: auto;
+        font-size: 40px;
+        margin-top: 10px;
+    }
+
+    @media (max-width:950px) {
+        .cuadro-alerta {
+            width: auto;
+            margin: auto;
+            display: flex;
+            flex-direction: column  ;
+        }
+
+        .cuadro-alerta h2 {
+            margin: auto;
+            font-size: 30px;
+        }
+
+        .cuadro-alerta p {
+            margin: auto;
+            font-size: 30px;
+        }
+    }
+</style>
+<div class="alerta-denegado">
+    <div class="cuadro-alerta">
+        <p style="font-size: 30px;">404</p>
+        <h2>Esta página no existe</h2>
+        <p>(╯°□°）╯︵ ┻━┻</p>
+    </div>
+</div>
+{% endblock %}
