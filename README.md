@@ -1,5 +1,5 @@
 # safely
-> Repositorio de prueba personal para proyecto de portafolio, trabajado con un grupo de trabajo de 5 personas.
+> Repositorio para proyecto de portafolio, trabajado con un grupo de trabajo de 5 personas.
 
 # Configuración de compilación
 ## Crear entorno virtual fuera de la carpeta safely
